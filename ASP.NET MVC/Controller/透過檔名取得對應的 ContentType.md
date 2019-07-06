@@ -3,7 +3,6 @@
 給前端的檔案，可能會因為後端的判斷條件會有不同的檔案類型，可以在 Response Header 給定對應的 Content Type 
 
 範例：
-
 ```
 MimeMapping.GetMimeMapping("a.txt").Dump();
 MimeMapping.GetMimeMapping("a.xls").Dump();
