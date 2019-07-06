@@ -6,10 +6,10 @@
 
 範例：
 ```csharp
-MimeMapping.GetMimeMapping("a.txt").Dump();
-MimeMapping.GetMimeMapping("a.xls").Dump();
-MimeMapping.GetMimeMapping("a.xlsx").Dump();
-MimeMapping.GetMimeMapping("a.zip").Dump();
+Console.WriteLine(MimeMapping.GetMimeMapping("a.txt"));
+Console.WriteLine(MimeMapping.GetMimeMapping("a.xls"));
+Console.WriteLine(MimeMapping.GetMimeMapping("a.xlsx"));
+Console.WriteLine(MimeMapping.GetMimeMapping("a.zip"));
 ```
 
 執行結果如下：
