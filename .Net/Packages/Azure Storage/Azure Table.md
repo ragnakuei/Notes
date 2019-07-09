@@ -193,7 +193,7 @@ namespace Tube.Test
 
 參考資料
 > https://docs.microsoft.com/en-us/azure/visual-studio/vs-storage-aspnet5-getting-started-tables
-
+> https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities
 
 待 Study
 > https://blogs.msdn.microsoft.com/windowsazurestorage/2010/11/06/how-to-get-most-out-of-windows-azure-tables/
