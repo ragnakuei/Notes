@@ -75,6 +75,12 @@
 | git pull --rebase | 可以視為 git fetch > git rebase |
 | git pull <remote-branch> | 可以視為 git fetch > git merge |
 
+| git push | 說明 |
+|----------|------|
+| git push | 將目前的變更記錄 push 至 remote trach branch |
+| git push | 將目前的變更記錄 push 至指定的 remote branch |
+| git push -u <remote-branch> | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
+| git push --set-upstream <remote-branch> | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
 
 | git config | 說明 |
 |------------|-----|
