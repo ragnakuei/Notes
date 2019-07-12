@@ -59,6 +59,9 @@ namespace Tube.Test
             Task.WaitAll(tasks.Where(t=>t!=null).ToArray());
         }
         
+        /// Test Failed
+        /// 因為 SDK 背後呼叫 restful api 時，是將 query condition 以 query string 方式給定
+        /// 所以導致 query condition 過長時，就會發生 Exception
         [Test]
         public void Query1000()
         {
@@ -85,86 +88,6 @@ namespace Tube.Test
         
     }
 
-    public static class AzureTableHelper
-    {
-        public static async Task InsertSingleAsync<T>(this CloudTable cloudTable, T tableInstance) where T : ITableEntity, new()
-        {
-            TableOperation insertOperation = TableOperation.Insert(tableInstance);
-            await cloudTable.ExecuteAsync(insertOperation);
-        }
-        
-        public static void InsertSingle<T>(this CloudTable cloudTable, T tableInstance) where T : ITableEntity, new()
-        {
-            TableOperation insertOperation = TableOperation.Insert(tableInstance);
-            cloudTable.Execute(insertOperation);
-        }
-        
-        public static void Insert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
-        {
-            foreach (T tableInstance in tableInstances)
-            {
-                TableOperation insertOperation = TableOperation.Insert(tableInstance);
-                cloudTable.Execute(insertOperation);
-            }
-        }
-        
-        /// <summary>
-        /// 要用相同的 Partition Key
-        /// </summary>
-        public static void BatchInsert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
-        {
-            TableBatchOperation batch = new TableBatchOperation();
-
-            foreach (T tableInstance in tableInstances)
-            {
-                batch.Insert(tableInstance);
-            }
-                
-            cloudTable.ExecuteBatch(batch, requestOptions : null, operationContext : null);
-            batch.Clear();
-        }
-        
-        public static List<T> Query<T>(this CloudTable cloudTable) where T : ITableEntity, new()
-        {
-            return cloudTable.ExecuteQuery<T>(new TableQuery<T>().Where(string.Empty)
-                                            , requestOptions : null
-                                            , operationContext : null)
-                             .ToList<T>();
-        }
-        
-        /// 因為 string 條件查詢語法會以 URI 的方式進行查詢，如果條件太長，就會產生 Exception，只好透過分頁查詢的方式來處理
-        public static List<T> Query<T>(this CloudTable cloudTable,string key, IEnumerable<string> values) where T : ITableEntity, new()
-        {
-            var result = new List<T>();
-            var pagedValues = values.Chunk(30);
-
-            foreach (var onePageValues in pagedValues)
-            {
-                var condition = string.Join(" or ", onePageValues.Select(k => $"{key} eq '{k}'"));
-                var pagedResult = cloudTable.ExecuteQuery<T>(new TableQuery<T>().Where(condition)
-                                                           , requestOptions : null
-                                                           , operationContext : null);
-                result.AddRange(pagedResult);
-            }
-            
-            return result;
-        }
-        
-        public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunksize = 99)
-        {
-            if (source != null)
-            {
-                IEnumerable<T> sourceArray = source as T[] ?? source.ToArray();
-                while (sourceArray.Any())
-                {
-                    yield return sourceArray.Take(chunksize);
-                    sourceArray = sourceArray.Skip(chunksize).ToArray();
-                }
-            }
-        }
-    }
-    
-
     public class OrderItemTest : TableEntity
     {
         public string ShopId { get; set; } //店家Guid
@@ -190,6 +113,90 @@ namespace Tube.Test
 }
 ```
 
+CloudTable 的擴充方法
+
+```csharp
+public static class AzureTableHelper
+{
+    public static async Task InsertSingleAsync<T>(this CloudTable cloudTable, T tableInstance) where T : ITableEntity, new()
+    {
+        TableOperation insertOperation = TableOperation.Insert(tableInstance);
+        await cloudTable.ExecuteAsync(insertOperation);
+    }
+    
+    public static void InsertSingle<T>(this CloudTable cloudTable, T tableInstance) where T : ITableEntity, new()
+    {
+        TableOperation insertOperation = TableOperation.Insert(tableInstance);
+        cloudTable.Execute(insertOperation);
+    }
+    
+    public static void Insert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
+    {
+        foreach (T tableInstance in tableInstances)
+        {
+            TableOperation insertOperation = TableOperation.Insert(tableInstance);
+            cloudTable.Execute(insertOperation);
+        }
+    }
+    
+    /// <summary>
+    /// 要用相同的 Partition Key
+    /// </summary>
+    public static void BatchInsert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
+    {
+        TableBatchOperation batch = new TableBatchOperation();
+
+        foreach (T tableInstance in tableInstances)
+        {
+            batch.Insert(tableInstance);
+        }
+            
+        cloudTable.ExecuteBatch(batch, requestOptions : null, operationContext : null);
+        batch.Clear();
+    }
+    
+    public static List<T> Query<T>(this CloudTable cloudTable) where T : ITableEntity, new()
+    {
+        return cloudTable.ExecuteQuery<T>(new TableQuery<T>().Where(string.Empty)
+                                        , requestOptions : null
+                                        , operationContext : null)
+                            .ToList<T>();
+    }
+    
+    /// 因為 string 條件查詢語法會以 URI 的方式進行查詢，如果條件太長，就會產生 Exception，只好透過分頁查詢的方式來處理
+    public static List<T> Query<T>(this CloudTable cloudTable,string key, IEnumerable<string> values) where T : ITableEntity, new()
+    {
+        var result = new List<T>();
+        var pagedValues = values.Chunk(30);
+
+        foreach (var onePageValues in pagedValues)
+        {
+            var condition = string.Join(" or ", onePageValues.Select(k => $"{key} eq '{k}'"));
+            var pagedResult = cloudTable.ExecuteQuery<T>(new TableQuery<T>().Where(condition)
+                                                        , requestOptions : null
+                                                        , operationContext : null);
+            result.AddRange(pagedResult);
+        }
+        
+        return result;
+    }
+    
+    public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunksize = 99)
+    {
+        if (source != null)
+        {
+            IEnumerable<T> sourceArray = source as T[] ?? source.ToArray();
+            while (sourceArray.Any())
+            {
+                yield return sourceArray.Take(chunksize);
+                sourceArray = sourceArray.Skip(chunksize).ToArray();
+            }
+        }
+    }
+}
+```
+
+
 
 參考資料
 > https://docs.microsoft.com/en-us/azure/visual-studio/vs-storage-aspnet5-getting-started-tables
@@ -197,21 +204,3 @@ namespace Tube.Test
 
 待 Study
 > https://blogs.msdn.microsoft.com/windowsazurestorage/2010/11/06/how-to-get-most-out-of-windows-azure-tables/
-
-
-透過 SDK 組 Query Condition
-``` csharp
-                var query = TableQuery.CombineFilters(
-                                                      TableQuery.GenerateFilterCondition("Level", QueryComparisons.Equal, "ERROR"), 
-                                                      TableOperators.And, 
-                                                      TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.GreaterThanOrEqual, DateTimeOffset.Now.AddDays(-20).Date));
-
-                var query2 = TableQuery.CombineFilters(query,
-                                                       TableOperators.And, 
-                                                       TableQuery.GenerateFilterConditionForDate("Timestamp", QueryComparisons.LessThanOrEqual, DateTimeOffset.Now));
-
-                var exQuery = new TableQuery<LogEntry>().Where(query2);
-```
-
-可透過 Azure Storage Explorer 來產生對應的 Query Condition
-![Alt text](_images/01.png)
