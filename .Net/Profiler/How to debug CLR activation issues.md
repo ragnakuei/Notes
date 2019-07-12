@@ -1,0 +1,1 @@
+https://docs.microsoft.com/en-us/dotnet/framework/deployment/how-to-debug-clr-activation-issues
