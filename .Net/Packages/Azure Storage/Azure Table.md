@@ -3,9 +3,10 @@
 > Install-Package WindowsAzure.Storage
 
 # Normal Mode
+一次執行一筆 Azure Table 的動作
 
 # Batch Mode
-
+一次執行多筆 Azure Table 的動作
 
 ```csharp
 using System;
@@ -130,6 +131,7 @@ public static class AzureTableHelper
         cloudTable.Execute(insertOperation);
     }
     
+    /// Normal Mode
     public static void Insert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
     {
         foreach (T tableInstance in tableInstances)
@@ -140,7 +142,7 @@ public static class AzureTableHelper
     }
     
     /// <summary>
-    /// 要用相同的 Partition Key
+    /// Batch Mode 要用相同的 Partition Key
     /// </summary>
     public static void BatchInsert<T>(this CloudTable cloudTable, IEnumerable<T> tableInstances) where T : ITableEntity, new()
     {
