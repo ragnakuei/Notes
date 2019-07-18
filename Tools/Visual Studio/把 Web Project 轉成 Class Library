@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/546979/how-to-convert-web-application-project-to-class-library-project/18435008
