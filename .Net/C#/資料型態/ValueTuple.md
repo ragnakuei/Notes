@@ -3,7 +3,6 @@
 - 可給定 具名 Property
 - Value Type
 
-
 ## 不具名用法
 
 大致上跟 Tuple 使用方式一樣，但 Tuple 是 Reference Type，而 Value Tuple 是 Value Type
@@ -28,8 +27,8 @@ private void Test1((int, string ) t)
 }
 ```
 
-
 ## 具名用法
+
 ```csharp
 void Main()
 {
