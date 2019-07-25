@@ -22,11 +22,7 @@ ROLLBACK TRANSACTION Test
 
 ```sql
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED
-BEGIN TRANSACTION Test
-
-select * from orders where OrderId = 10248
-
-ROLLBACK TRANSACTION Test
+SELECT * FROM orders WHERE OrderId = 10248
 ```
 
 ## 不同情境執行結果
@@ -40,7 +36,7 @@ ROLLBACK TRANSACTION Test
     ```sql
     BEGIN TRANSACTION Test
 
-    select * from orders where OrderId = 10248
+    SELECT * FROM orders WHERE OrderId = 10248
 
     WAITFOR DELAY '00:00:20'
 
