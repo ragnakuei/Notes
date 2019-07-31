@@ -1,0 +1,1 @@
+# [Edit & Continue, Just-in-time Debugging, and more debugger improvements in Rider 2019.1](https://blog.jetbrains.com/dotnet/2019/04/16/edit-continue-just-time-debugging-debugger-improvements-rider-2019-1/)
