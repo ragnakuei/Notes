@@ -1,8 +1,32 @@
+# Code Completion
+
 資料來源：[Code completion](https://www.jetbrains.com/help/datagrip/auto-completing-code.html)
+
+## sel
+
+輸入 sel 後，按下 Tab，會產生以下語法
+
+```sql
+select *
+from ;
+```
+
+## cast
+
+輸入至以下語法的 orderid.cast 時，按下 Tab
+
+```sql
+select OrderID.cast
+from Orders;
+```
+
+就會產生
+
+![Text](_images/09.png)
 
 # select 所有欄位
 
-# 步驟
+## 步驟
 
 1. 先輸入
 
