@@ -37,4 +37,5 @@ result2.Dump();
 ```
 
 實際執行結果
+
 ![Alt Text](_images/01.png)
