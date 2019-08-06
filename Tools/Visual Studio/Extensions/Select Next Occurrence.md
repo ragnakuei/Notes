@@ -10,4 +10,4 @@
 
 | 命令 | 快速鍵 | 描述 |
 | ---- | ------ | ---- |
-| SelectNextOccurrence.SelectNextOccurrence | Ctrl + D | 選取下個同選取關鍵字 |
+| SelectNextOccurrence.SelectNextOccurrence | Ctrl + Shift + D | 選取下個同選取關鍵字 |

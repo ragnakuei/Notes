@@ -8,5 +8,15 @@ namespace CalculatorPractice
         {
             return first + second;
         }
+
+        public int Subtract(int first, int second)
+        {
+            return first - second;
+        }
+
+        public int Multiple(int first, int second)
+        {
+            return first * second;
+        }
     }
 }

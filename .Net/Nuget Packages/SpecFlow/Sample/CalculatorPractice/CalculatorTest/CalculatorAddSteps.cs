@@ -6,12 +6,13 @@ using TechTalk.SpecFlow;
 namespace CalculatorTest
 {
     [Binding]
-    public class CalculatorSteps
+    [Scope(Tag = "Add")]
+    public class CalculatorAddSteps
     {
         private readonly Calculator _target;
         private readonly CalculatorContextDTO dto;
 
-        public CalculatorSteps(CalculatorContextDTO dto)
+        public CalculatorAddSteps(CalculatorContextDTO dto)
         {
             _target = new Calculator();
             this.dto = dto;
