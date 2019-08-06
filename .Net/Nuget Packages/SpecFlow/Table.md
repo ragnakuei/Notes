@@ -1,10 +1,20 @@
 # Table
 
+## Column Naming
+
+Table Column 的名稱不需要與 Class Property Name 一模一樣
+
+可以有空白間隔、不區分大小寫
+
+例：FirstName 與 First name 都是相同的欄位
+
 ## [CreateInstance](https://github.com/techtalk/SpecFlow/wiki/SpecFlow-Assist-Helpers#createinstance)、[CompareToInstance](https://github.com/techtalk/SpecFlow/wiki/SpecFlow-Assist-Helpers#comparetoinstance)
 
 將 feature Table 轉成 instance
 
-feature
+### feature
+
+instance property 水平展開
 
 ```
 Feature: CalculatorSubtract
@@ -21,51 +31,67 @@ Scenario: Subtract two numbers
 	| 2      |
 ```
 
-step
+或是 instance property 垂直展開，分別以 field、value 表示欄位名稱及欄位值
+
+```
+Feature: CalculatorSubtract
+	Practice SpecFlow 3 @dotnet core
+
+@Subtract
+Scenario: Subtract two numbers
+	Given I have entered the following numbers
+	| field  | value |
+	| first  | 3     |
+	| second | 1     |
+	When I press substract
+	Then the result should be the folloing
+	| field  | value |
+	| answer | 2     |
+```
+
+### step
+
+CompareToInstance 可以跟 Anonymous Class 比較
 
 ```csharp
 using CalculatorPractice;
-using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
 namespace CalculatorTest
 {
     [Binding]
-    [Scope(Tag = "Multiple")]
-
-    public class CalculatorMultipleSteps
+    [Scope(Tag = "Subtract")]
+    public class CalculatorSubtractSteps
     {
         private readonly Calculator _target;
-        private IEnumerable<CalculatorMultipleContext> _context;
+        private CalculatorSubtractContext _context;
 
-        public CalculatorMultipleSteps()
+        public CalculatorSubtractSteps()
         {
             _target = new Calculator();
         }
 
-        [Given(@"I have entered the following multiple numbers")]
+        [Given(@"I have entered the following numbers")]
         public void GivenIHaveEnteredTheFollowingNumbers(Table table)
         {
-            _context = table.CreateSet<CalculatorMultipleContext>();
+            _context = table.CreateInstance< CalculatorSubtractContext>();
         }
 
-        [When(@"I press multiple")]
-        public void WhenIPressMultiple()
+        [When(@"I press substract")]
+        public void WhenIPressSubstract()
         {
-            foreach (var context in _context)
-            {
-                context.Actual = _target.Multiple(context.First, context.Second);
-            }
+            _context.Actual = _target.Subtract(_context.First, _context.Second);
         }
 
         [Then(@"the result should be the folloing")]
-        public void ThenTheResultShouldBeTheFolloing(Table table)
+        public void ThenTheResultShouldBeOnTheScreen(Table table)
         {
-            table.CompareToSet(_context);
+            table.CompareToInstance(new { Answer = _context.Actual });
         }
     }
-    public class CalculatorMultipleContext
+
+    public class CalculatorSubtractContext
     {
         public int First { get; set; }
         public int Second { get; set; }
@@ -78,7 +104,7 @@ namespace CalculatorTest
 
 將 feature Table 轉成 IEnumerable<T>
 
-feature
+### feature
 
 ```
 Feature: CalculatorMultiple
@@ -97,7 +123,9 @@ Scenario: Multiple two numbers
 	| 12     |
 ```
 
-step
+### step
+
+CompareToSet 可以跟 IEnumerable<T> T 是 Anonymous Class 比較
 
 ```csharp
 using CalculatorPractice;

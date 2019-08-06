@@ -81,21 +81,26 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                        "first",
-                        "second"});
+                        "field",
+                        "value"});
             table3.AddRow(new string[] {
-                        "3",
+                        "first",
+                        "3"});
+            table3.AddRow(new string[] {
+                        "second",
                         "1"});
 #line 6
  testRunner.Given("I have entered the following numbers", ((string)(null)), table3, "Given ");
-#line 9
+#line 10
  testRunner.When("I press substract", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                        "answer"});
+                        "field",
+                        "value"});
             table4.AddRow(new string[] {
+                        "answer",
                         "2"});
-#line 10
+#line 11
  testRunner.Then("the result should be the folloing", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
