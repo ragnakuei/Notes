@@ -21,4 +21,4 @@ GroupBy<TSource,TKey,TResult>(IEnumerable<TSource>
 
 這個效能會比 GroupBy().Select() 好
 
-[Sample](../../Nuget\ Packages/BenchmarkDotNet/Sample/GroupBySelectVsGroupBy/)
+[Sample](../../Nuget%20Packages/BenchmarkDotNet/Sample/GroupBySelectVsGroupBy/)
