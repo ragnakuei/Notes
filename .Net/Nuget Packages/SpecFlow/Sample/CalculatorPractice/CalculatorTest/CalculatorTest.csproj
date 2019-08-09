@@ -19,6 +19,30 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <Compile Update="CalculatorMutiple.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CalculatorMutiple.feature</DependentUpon>
+    </Compile>
+    <Compile Update="CalculatorSubtract.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CalculatorSubtract.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="CalculatorMutiple.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CalculatorMutiple.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="CalculatorSubtract.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CalculatorSubtract.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+>>>>>>> AddNotes
     <SpecFlowFeatureFiles Update="SpecFlowFeature1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CalculatorFeature.feature.cs</LastGenOutput>
