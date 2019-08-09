@@ -1,5 +1,12 @@
 # Assert
 
+
+
+
+
+
+
+
 ## Instance
 
 ## Collection
@@ -168,12 +175,7 @@ Assert.DoesNotContain()
 Assert.DoesNotMatch()
 ```
 
-```csharp
-///<summary>
-/// 
-///</summary>
-Assert.Equal()
-```
+
 
 ```csharp
 ///<summary>
@@ -338,10 +340,5 @@ Assert.Subset()
 Assert.Superset()
 ```
 
-```csharp
-///<summary>
-/// 
-///</summary>
-Assert.StrictEqual()
-```
+
 
