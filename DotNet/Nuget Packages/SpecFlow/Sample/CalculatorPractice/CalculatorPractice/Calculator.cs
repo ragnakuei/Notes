@@ -8,6 +8,8 @@ namespace CalculatorPractice
         {
             return first + second;
         }
+<<<<<<< HEAD
+=======
 
         public int Subtract(int first, int second)
         {
@@ -18,5 +20,6 @@ namespace CalculatorPractice
         {
             return first * second;
         }
+>>>>>>> AddNotes
     }
 }

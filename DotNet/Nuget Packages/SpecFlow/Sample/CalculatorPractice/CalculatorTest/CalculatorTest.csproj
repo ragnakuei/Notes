@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
     <Compile Update="CalculatorMutiple.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -40,6 +42,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CalculatorSubtract.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
+>>>>>>> AddNotes
     <SpecFlowFeatureFiles Update="SpecFlowFeature1.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CalculatorFeature.feature.cs</LastGenOutput>
