@@ -1,8 +1,22 @@
 # String
 
-字串比對都可以給定參數 StringComparison
+有些字串比對的 method 可以給定參數 StringComparison
+
 
 不給定 StringComparison，就會以 以 StringComparison.CurrentCulture 進行比對
+
+## Assert.Equal
+
+比對字串是否相等
+
+- **ignoreCase** - 不區分大小寫
+- **ignoreLineEndingDifferences** - 忽略 \r 或 \n 換行字元
+- **ignoreWhiteSpaceDifferences** - 忽略 空白 及 tab 間隔
+
+```csharp
+Assert.Equal(string expected, string actual)
+Assert.Equal(string expected, string actual, bool ignoreCase = false, bool ignoreLineEndingDifferences = false, bool ignoreWhiteSpaceDifferences = false)
+```
 
 ## Assert.StartsWith
 
@@ -38,4 +52,22 @@ Assert.Contains(string expectedStartString , string  actualString , StringCompar
 ```csharp
 Assert.DoesNotContain(string expectedStartString , string  actualString)
 Assert.DoesNotContain(string expectedStartString , string  actualString , StringComparison comparisonType)
+```
+
+## Assert.Matches
+
+以正規法判斷字串是否符合條件
+
+```csharp
+Assert.Matches(string expectedRegexPattern, string actualString)
+Assert.Matches(Regex expectedRegex, string actualString)
+```
+
+## Assert.DoesNotMatch
+
+以正規法判斷字串是否不符合條件
+
+```csharp
+Assert.DoesNotMatch(string expectedRegexPattern, string actualString)
+Assert.DoesNotMatch(Regex expectedRegex, string actualString)
 ```
