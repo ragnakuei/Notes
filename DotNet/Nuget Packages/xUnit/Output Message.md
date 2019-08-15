@@ -23,13 +23,5 @@ public class Tests : IClassFixture<Calculator>
         var actual = _calculator.Add(1, 2);
         Assert.Equal(3, actual);
     }
-
-    [Fact]
-    public void Given_1_Subtract_2_Expected_Minus1()
-    {
-        _output.WriteLine(_calculator.ThreadId.ToString());
-        var actual = _calculator.Subtract(1, 2);
-        Assert.Equal(-1, actual);
-    }
 }
 ```

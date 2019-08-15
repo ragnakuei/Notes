@@ -2,6 +2,8 @@
 
 讓指定的 instance 在 Test Class 執行完畢時，可以被 Dispose
 
+> 把中斷點下在 `_calculator.ThreadId` 的地方，會發現會 Dispose 一次。
+
 ```csharp
 public class Tests : IClassFixture<CalculatorFixture>
 {
