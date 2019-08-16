@@ -3,13 +3,19 @@
 比較 expected 與 actual 是否相等。浮點數可傳入精準度。
 
 ```csharp
-Assert.Equal<T>(T expected, T actual)
-Assert.Equal<T>(T expected, T actual, IEqualityComparer<T> comparer)
 Assert.Equal(double expected, double actual, int precision)
 Assert.Equal(decimal expected, decimal actual, int precision)
-Assert.Equal(string expected, string actual)
-Assert.Equal(string expected, string actual, bool ignoreCase = false, bool ignoreLineEndingDifferences = false, bool ignoreWhiteSpaceDifferences = false)
+```
 
+比較二個物件是否相等
+
+> 無法比較匿名型別。
+
+> 參考型別預設比較的是 instance 位址，如果需要欄位比較，要給定 comparer。
+
+```csharp
+Assert.Equal<T>(T expected, T actual)
+Assert.Equal<T>(T expected, T actual, IEqualityComparer<T> comparer)
 ```
 
 ## StrictEqual
@@ -20,7 +26,7 @@ Assert.Equal(string expected, string actual, bool ignoreCase = false, bool ignor
 Assert.StrictEqual<T>(T expected, T actual)
 ```
 
-## Assert.NotEqual
+## NotEqual
 
 ```csharp
 Assert.NotEqual<T>(T expected, T actual)

@@ -91,12 +91,15 @@ Assert.Collection<T>(IEnumerable<T> collection, params Action<T>[] elementInspec
 
 elementInspectors 檢查失敗時，要以 throw Exception 的方式才可以被指定為檢查失敗。
 
+> throw Exception 的方式，可用 xUnit Assert 的方式。
+
 ```csharp
 Assert.Collection(new[] { 2, 3, 4 }
                 , new Action<int>[]
                   {
                       i => { }
-                    , i => { throw new Exception("Test Message"); }
+                  // , i => { throw new Exception("Test Message"); }
+                     , i => Assert.True( i % 2 == 0 )
                     , i => { }
                   });
 ```
@@ -122,7 +125,8 @@ Assert.Collection(new[] { 2, 3 }
                   {
                       i => { }
                     , i => { }
-                    , i => { throw new Exception("Test Message"); }
+                 // , i => { throw new Exception("Test Message"); }
+                    , i => Assert.False(true)
                   });
 ```
 
