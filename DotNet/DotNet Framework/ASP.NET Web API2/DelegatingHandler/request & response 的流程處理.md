@@ -5,7 +5,7 @@
 
 
 ```csharp
-// 註冊 Debug MessageHandlers 至 WebApi.config
+// 註冊 Debug MessageHandlers 至 WebApiConfig.cs
 config.MessageHandlers.Add(new DebugWriteHandler());
 
 // 新增 語法
@@ -31,7 +31,7 @@ public class DebugWriteHandler : DelegatingHandler
 ## Sample 2
 
 ```csharp
-// 註冊 Debug MessageHandlers 至 WebApi.config
+// 註冊 Debug MessageHandlers 至 WebApiConfig.cs
 config.MessageHandlers.Add(new DebugWriteHandler1());
 config.MessageHandlers.Add(new DebugWriteHandler2());
 

@@ -1,4 +1,4 @@
-#
+# 搭配 Debug.WriteLine
 
 加入以下語法至 WebApiConfig.cs 中
 
