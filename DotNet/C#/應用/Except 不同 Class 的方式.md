@@ -1,6 +1,6 @@
 # Except 不同 Class 的方式
 
-[Compare Test Sample](ComparSample/ComparaerDifferentClass)
+[Compare Test Sample](CompareSample/ComparaerDifferentClass)
 
 ```csharp
 void Main()
