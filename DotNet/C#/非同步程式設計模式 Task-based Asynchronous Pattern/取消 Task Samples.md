@@ -64,3 +64,59 @@ private Task PrintAsync(CancellationToken token)
     }, token);
 }
 ```
+
+## Sample 2：非同步方法呼叫
+
+```csharp
+async Task Main()
+{
+    CancellationTokenSource cts = new CancellationTokenSource(100);
+
+    var tasks = new[]{
+        PrintAsync(cts.Token),
+        PrintAsync(cts.Token, true),
+        PrintAsync(cts.Token),
+    };
+
+    try
+    {
+        await Task.WhenAll(tasks);
+    }
+    catch (OperationCanceledException)
+    {
+        foreach (var t in tasks.Where(t => t.IsCanceled))
+        {
+            Console.WriteLine($"Task Id:{t.Id} Canceled !!");
+        }
+
+        foreach (var t in tasks.Where(t => t.IsFaulted))
+        {
+            Console.WriteLine($"Task Id:{t.Id} Faulted !! {t.Exception.Message}");
+        }
+    }
+
+    foreach (var t in tasks.Where(t => t.Status == TaskStatus.RanToCompletion))
+    {
+        Console.WriteLine($"Task Id:{t.Id} Completed !!");
+    }
+}
+
+private async Task PrintAsync(CancellationToken token, bool hasError = false)
+{
+    await Task.Delay(1000);
+
+    if (token.IsCancellationRequested)
+    {
+        // "Cancelled".Dump();
+        token.ThrowIfCancellationRequested();
+        return;
+    }
+
+    if (hasError)
+    {
+        throw new Exception("Test Error");
+    }
+
+    Console.WriteLine($"Thread Id:{Thread.CurrentThread.ManagedThreadId}");
+}
+```
