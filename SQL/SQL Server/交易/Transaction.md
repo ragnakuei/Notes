@@ -8,3 +8,29 @@
 - https://ithelp.ithome.com.tw/articles/10194749?sc=p
 
 - https://medium.com/getamis/database-transaction-isolation-a1e448a7736e
+
+## Nested Transaction
+
+```sql
+SELECT *
+FROM dbo.TestA
+
+BEGIN TRAN A1
+
+-- A2 交易
+BEGIN TRAN A2
+INSERT INTO dbo.TestA (Id)
+VALUES (6)
+COMMIT TRAN A2
+
+-- A3 交易
+BEGIN TRAN A3
+INSERT INTO dbo.TestA (Id)
+VALUES (7)
+COMMIT TRAN A3
+
+ROLLBACK TRAN A1
+
+SELECT *
+FROM dbo.TestA
+```
