@@ -67,6 +67,8 @@ private Task PrintAsync(CancellationToken token)
 
 ## Sample 2：非同步方法呼叫
 
+使用 TAP 時，就可以直接 catch OperationCanceledException 來做正確的處理
+
 ```csharp
 async Task Main()
 {
