@@ -85,3 +85,7 @@
 | git config | 說明 |
 |------------|-----|
 | --global user.email user@Test.com | 設定 global user 的 email，有設定過email，才可以用git commit |
+
+| git rebase | 說明 |
+|----------|------|
+| git rebase <target-branch> | 將目前的 branch 接至 <target-branch> 上。 rebase 後的順序跟 commit 順序無關，而是以 目前 branch > target branch > 共同的來源 branch 的方式排列 |
