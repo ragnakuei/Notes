@@ -1,4 +1,4 @@
-# TRY CATCH RAISERROR
+# TRY CATCH [RAISERROR](https://docs.microsoft.com/zh-tw/sql/t-sql/language-elements/raiserror-transact-sql)
 
 Message、Severity、State 這三個是自訂的
 
