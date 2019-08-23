@@ -8,13 +8,13 @@ void Main()
     var tests1 = Enumerable.Range(1, 1000).Select(i => new Test { Id = i });
     var tests2 = Enumerable.Range(1, 1000);
 
-// 大約 6 秒
+// 六核的電腦，大約要 6 秒，但 12 核的電腦就大約只要 0.3 秒，多次執行偶爾會有 Delay 的情況
 //    Parallel.ForEach(tests1, t1 =>
 //    {
 //        t1.UpperId = tests2.AsParallel().FirstOrDefault(t2 => t2 < t1.Id);
 //    });
 
-// 不到 0.02 秒
+// 六核的電腦，不到 0.02 秒，但 12 核的電腦就大約要 0.5 秒，多次執行相對穩定。
     foreach (var t1 in tests1)
     {
         t1.UpperId = tests2.AsParallel().FirstOrDefault(t2 => t2 < t1.Id);
