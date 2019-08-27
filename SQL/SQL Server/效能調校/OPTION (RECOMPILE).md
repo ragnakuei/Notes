@@ -8,4 +8,4 @@
 
 > 聽說 SQL Server 2019 已修正
 
-![](_images/01.png)
+![x](_images/01.png)
