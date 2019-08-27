@@ -11,6 +11,11 @@ CREATE TYPE dbo.ut_TestTableType AS TABLE
     Name nvarchar(50),
     Type int INDEX ix_Type NONCLUSTERED,
     INDEX ix_Name NONCLUSTERED (Name DESC)  
+    --, PRIMARY KEY CLUSTERED ([DistCritTypeId] ASC)
 )
 GO
 ```
+
+## 不允許有自定義的 naming of contraints
+
+[Test](https://stackoverflow.com/questions/4451052/how-to-add-an-index-or-primary-key-to-a-user-defined-table-type-in-sql-server)
