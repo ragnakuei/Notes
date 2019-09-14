@@ -1,5 +1,7 @@
 # 以 Where 做到 Dynamic + 條件欄位查詢
 
+初始化資料
+
 ```sql
 DECLARE @tmp table
              (
@@ -19,9 +21,11 @@ VALUES (1, 'A', 11),
        (8, 'I', 18),
        (9, 'J', 19),
        (10, 'K', 20)
+```
 
------------------------------------------------------
+方式一
 
+```sql
 DECLARE @queryId int = 1
 DECLARE @nameKeyword nvarchar(50) = NULL
 DECLARE @queryAge int = 11
@@ -34,6 +38,35 @@ WHERE ((@queryId IS NOT NULL AND t.Id = @queryId)
        OR @nameKeyword IS NULL)
   AND ((@queryAge IS NOT NULL AND t.Age = @queryAge)
        OR @queryAge IS NULL)
+```
+
+方式二 - 可搭配集合 Join
+
+```sql
+DECLARE @queryId int = 1
+DECLARE @nameKeyword nvarchar(50) = NULL
+DECLARE @queryAge int = 11
+
+SELECT t.Id, t.Name, t.Age
+FROM @tmp t
+WHERE ((@queryId IS NOT NULL AND EXISTS(
+        SELECT 1
+        FROM @tmp t1
+        WHERE t1.Id = @queryId
+          AND t1.Id = t.Id
+    )) OR @queryId IS NULL)
+  AND ((@nameKeyword IS NOT NULL AND EXISTS(
+        SELECT 1
+        FROM @tmp t1
+        WHERE t1.Name LIKE @nameKeyword
+          AND t1.Name = t.Name
+    )) OR @nameKeyword IS NULL)
+  AND ((@queryAge IS NOT NULL AND EXISTS(
+        SELECT 1
+        FROM @tmp t1
+        WHERE t1.Age = @queryAge
+          AND t1.Age = t.Age
+    )) OR @queryAge IS NULL)
 ```
 
 結構說明
