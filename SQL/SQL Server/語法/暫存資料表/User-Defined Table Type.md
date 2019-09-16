@@ -10,7 +10,7 @@ CREATE TYPE dbo.ut_TestTableType AS TABLE
     Id int not null  PRIMARY KEY,
     Name nvarchar(50),
     Type int INDEX ix_Type NONCLUSTERED,
-    INDEX ix_Id NONCLUSTERED (Name DESC)  
+    INDEX ix_Name NONCLUSTERED (Name DESC)  
     --, PRIMARY KEY CLUSTERED ([DistCritTypeId] ASC)
 )
 GO
