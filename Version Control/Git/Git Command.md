@@ -1,6 +1,5 @@
 # Git Command
 
-
 | git status | 說明 |
 |------------|------
 | git status | 檢查目前的狀態，可能會有對應的提示 |
