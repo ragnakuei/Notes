@@ -1,4 +1,4 @@
-# Sample
+# Sample - ProcessingMode Local
 
 ## 套件
 
@@ -12,7 +12,9 @@
 
     [Microsoft.ReportingServices.ReportViewerControl.WebForms](https://www.nuget.org/packages/Microsoft.ReportingServices.ReportViewerControl.WebForms/)
 
-    千萬不要裝這版 > [Microsoft.ReportViewer](https://www.nuget.org/packages/Microsoft.ReportViewer/11.0.3366.16?_src=template)  < 否則會造成版本混亂
+    上述套件安裝完畢後，會在該專案下建立 SqlServerTypes 資料表，該資料夾內會有 x86、x64 資料夾，目前測試後，這二個資料夾是可以刪除的。
+
+    > 注意：千萬不要裝這個套件 > [Microsoft.ReportViewer](https://www.nuget.org/packages/Microsoft.ReportViewer/11.0.3366.16?_src=template) 否則會造成版本混亂
 
 ## 報表設計
 
@@ -176,7 +178,7 @@
                                         Age = true
                                     }
                                 };
-            
+
             // 用來顯示欄位名稱，一定要用 IEnumerable<T> 的資料型態
             var columnNameDto = new List<ReportPersonColumnNameDto>
                                 {
@@ -187,7 +189,7 @@
                                         Age = "年齡"
                                     }
                                 };
-            
+
             // 欄位的值
             var cellDtos = new List<ReportPersonDto>
             {
