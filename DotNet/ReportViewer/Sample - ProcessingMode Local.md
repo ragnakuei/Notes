@@ -24,7 +24,7 @@
 
 1. 報表專案安裝套件
 
-    安裝上述的專案套件 [Microsoft.ReportingServices.ReportViewerControl.WebForms](https://www.nuget.org/packages/Microsoft.ReportingServices.ReportViewerControl.WebForms/)
+    在上述的專案安裝套件 [Microsoft.ReportingServices.ReportViewerControl.WebForms](https://www.nuget.org/packages/Microsoft.ReportingServices.ReportViewerControl.WebForms/)
 
 1. 新增報表 Dto
 
