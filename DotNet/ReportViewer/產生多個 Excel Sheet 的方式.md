@@ -1,6 +1,6 @@
 # 產生多個 Excel Sheet 的方式
 
-## 第立第二個 Sheet
+[範例](https://github.com/ragnakuei/RdlcPractice02/tree/master)
 
 1. 建立第二個 Table
 
