@@ -1,5 +1,7 @@
 # Sample - ProcessingMode Local
 
+[範例](https://github.com/ragnakuei/RdlcPractice01)
+
 ## 套件
 
 - Visual Studio 套件
