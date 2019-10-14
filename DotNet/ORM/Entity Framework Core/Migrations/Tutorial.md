@@ -4,4 +4,5 @@
 
 建立 Migrations
 > dotnet ef migrations add InitialCreate
-必須在該專案目錄下
+必須在該專案目錄下執行
+

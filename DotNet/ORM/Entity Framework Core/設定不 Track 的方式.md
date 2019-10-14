@@ -1,5 +1,3 @@
-<font face="微軟正黑體">
-
 # 設定不 Track 的方式
 
 ```csharp
@@ -10,5 +8,3 @@ services.AddDbContext<DemoDbContext>(
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
 ```
-
-</font>
