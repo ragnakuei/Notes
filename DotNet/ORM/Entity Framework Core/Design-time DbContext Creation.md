@@ -14,3 +14,9 @@
 > dotnet ef migrations add xxx
 
 [實作](https://github.com/ragnakuei/DbMigrationsForEfCodeFirst)
+
+## 待測
+
+可以在別的專案放 DbContext，然後在 Console App 專案來實作 IDesignTimeDbContextFactory<T>
+
+這樣同樣可以處理 Migrations
