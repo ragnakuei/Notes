@@ -159,7 +159,21 @@
     =NOT(First(Fields!Id.Value, "DsReportPersonVisible"))
     ```
 
+    如果 DataSet 中 Datatable 的設定方式是以是否隱藏的角度設計的話，語法要記得改為以下的方式
+
+    > 如果把 = true 拿掉，就會發生 ReportViewer 在 Render 時產生 Exception 的問題 !
+
+    ```vb
+    =(First(Fields!Id.Value, "DsReportPersonVisible") = true)
+    ```
+
     ![image](_images/17.png)
+
+    必填顯示紅字
+
+    ```vb
+    =IIF(First(Fields!DataColumn30.Value, "RequiredColumn"), "Red", "Black")
+    ```
 
 ## 程式語法
 
