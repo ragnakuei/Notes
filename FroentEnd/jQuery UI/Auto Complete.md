@@ -1,6 +1,7 @@
 # Auto Complete
 
 因為顯示出來的資料，放在 input 中，只能有一個值
+
 所以在選取對應的項目後，可以把 value 放到 input type hidden 中，方便在 submit form 時，可以正確回應 value 給後端
 
 1. 範例
@@ -56,9 +57,12 @@
                                 // console.log('open');
                                 // return false;
                             },
-                // 點擊下拉選單的其中一個項目後的動作
+                // 點擊下拉選單的其中一個項目後的動作，因為預設的動作，下拉選單顯示 label，但點擊之後，反而顯示 value
+                // 所以用以下的方式去進行改寫，return false 是為了不要讓程式進行後續的處理
                 select: function (event, ui) {
                     $('#' + searchEmployeeResultValueDomObjectId).val(ui.item.value);
+                    $('#' + searchEmployeeResultTextDomObjectId).val(ui.item.label);
+                    return false;
                 }
             });
         });
