@@ -14,4 +14,5 @@ blueFontStyle.SetFont(font);
 
 解決方式
 
-> 改用 2.3.0 版就可以了 !
+1. 改用 2.3.0 版
+2. 給定 font 完整資料
