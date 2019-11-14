@@ -1,0 +1,1 @@
+# [Blazor Component Lifecycle Diagram](./_files/blazor-component-lifecycle-diagram.pdf)
