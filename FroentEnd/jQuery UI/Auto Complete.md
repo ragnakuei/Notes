@@ -78,4 +78,9 @@
             asp-for="EmployeeId" />
     ```
 
-[參考資料](https://dotblogs.com.tw/a802216/2013/09/19/119070)
+參考資料
+
+1. https://dotblogs.com.tw/a802216/2013/09/19/119070
+
+1. http://learningprogramming.net/net/asp-net-core-mvc/autocomplete-in-asp-net-core-mvc-and-entity-framework-core/
+
