@@ -54,17 +54,22 @@
 
     1. 瀏覽網站，確認可顯示
 
-## 參考資料
+## Angular 預備知識
 
-- [Angular Versioning and Releases](https://angular.io/guide/releases)
-- nvm 常用指令
+- [TypeScript](https://www.typescriptlang.org/docs/home.html)
+- DI (Dependency Injection) Design Pattern
 
-    | 指令 | 功能  |
-    | ---- | ----- |
-    | nvm list | 列出本機可選的 Node.js 版本 |
-    | nvm list available | 列出目前可用的 Node.js 版本 |
-    | nvm install 版號 | 安裝指定版號的 Node.js |
-    | nvm use 版號 | 本機使用指定版號的 Node.js |
+## Angular 開發環境
+
+- Editor : [Visual Studio Code](https://code.visualstudio.com/)
+
+  - Plugins：
+
+    - [Angular Extension Pack](https://marketplace.visualstudio.com/items?itemName=doggy8088.angular-extension-pack)
+
+- Chrome Extension：
+
+  - [Augury](https://augury.rangle.io/)
 
 ---
 
@@ -74,3 +79,38 @@
 - 選擇空白範本
 - 新增資料夾和核心參考，勾選 Web API
 - 進階，取消勾選 HTTPS
+
+## 參考資料
+
+- nvm 常用指令
+
+    | 指令 | 功能  |
+    | ---- | ----- |
+    | nvm list | 列出本機可選的 Node.js 版本 |
+    | nvm list available | 列出目前可用的 Node.js 版本 |
+    | nvm install 版號 | 安裝指定版號的 Node.js |
+    | nvm use 版號 | 本機使用指定版號的 Node.js |
+
+- DI (Dependency Injection) Design Pattern
+
+  - Huan-Lin 學習筆記
+
+    - [電子書] [.NET 相依性注入](https://leanpub.com/dinet)
+    - [網頁] Dependency Injection 筆記
+
+      - [1] (https://www.huanlintalk.com/2011/10/dependency-injection-1.html)
+      - [2] (https://www.huanlintalk.com/2011/10/dependency-injection-2.html)
+      - [3] (https://www.huanlintalk.com/2011/10/dependency-injection-3.html)
+      - [4] (https://www.huanlintalk.com/2011/10/dependency-injection-4.html)
+      - [5] (https://www.huanlintalk.com/2011/11/dependency-injection-5.html)
+      - [6] (https://www.huanlintalk.com/2011/11/dependency-injection-6.html)
+
+  - [.NET / C# 開發實戰：掌握相依性注入的觀念與開發技巧](https://www.accupass.com/event/1910240302432112993487)
+
+- Angular
+
+  - [Angular Versioning and Releases](https://angular.io/guide/releases)
+
+  - [用30天深入Angular 5的世界 系列](https://ithelp.ithome.com.tw/users/20107113/ironman/1240)
+
+  - [Using Angular Augury to Debug Your Code](https://www.sitepoint.com/angular-augury-debug-code/)
