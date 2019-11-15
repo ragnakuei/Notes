@@ -13,6 +13,14 @@
 </nav>
 ```
 
+開啟 /order/edit/orderId 的頁面
+
+```html
+<a style="cursor: pointer;" [routerLink]="['/order/edit/', order?.OrderID]" routerLinkActive="active">
+    Edit
+</a>
+```
+
 ## [navigate](https://angular.io/api/router/Router#navigate)
 
 Sample
