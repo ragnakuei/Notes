@@ -46,3 +46,7 @@ return this.httpClient.put<Order>(environment.apiHost + "order/" + order.OrderID
   }
 );
 ```
+
+---
+
+TODO：加上 retry 機制

@@ -54,12 +54,12 @@
 
     1. 瀏覽網站，確認可顯示
 
-## Angular 預備知識
+## 預備知識
 
 - [TypeScript](https://www.typescriptlang.org/docs/home.html)
 - DI (Dependency Injection) Design Pattern
 
-## Angular 開發環境
+## [開發環境](https://angular.io/resources)
 
 - Editor : [Visual Studio Code](https://code.visualstudio.com/)
 
