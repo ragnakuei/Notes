@@ -153,6 +153,13 @@ template
 </form>
 ```
 
+以下二段 formGroupName 語法，功能一樣
+
+```html
+<div *ngFor="let control of myForm.get('myarray').controls;let i=index;" formGroupName="{{i}}">
+<div *ngFor="let control of myForm.get('myarray').controls;let i=index;" [formGroupName]="i">
+```
+
 ---
 
 FormGroup 裡面有 FormArray 的寫法
