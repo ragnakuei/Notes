@@ -49,4 +49,25 @@ return this.httpClient.put<Order>(environment.apiHost + "order/" + order.OrderID
 
 ---
 
+get with query string
+
+```typescript
+getList(pageIndex: number, pageSize: number): Observable<OrderList[]> {
+  return this.httpClient
+    .get<OrderList[]>(environment.apiHost + "order/list", {
+      params: {
+        pageIndex: pageIndex.toString(),
+        pageSize: pageSize.toString()
+      },
+      observe: "response"
+    })
+    .pipe(
+      map(resp => resp.body),
+      tap(_ => this.log("get order list"))
+    );
+}
+```
+
+---
+
 TODO：加上 retry 機制

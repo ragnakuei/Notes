@@ -6,6 +6,8 @@ https://code.visualstudio.com/docs/python/python-tutorial
 
 https://code.visualstudio.com/docs/editor/intellisense#_customizing-intellisense
 
+- [跟著微軟一起學 Python](https://blog.darkthread.net/blog/-python-for-beginners/)
+
 ## web framework
 
 - Django
