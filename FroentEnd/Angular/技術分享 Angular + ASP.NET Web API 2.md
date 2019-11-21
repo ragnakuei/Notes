@@ -29,6 +29,8 @@
 1. 安裝 [Angular CLI](https://cli.angular.io/)
 
     - npm install -g @angular/cli
+    
+    > 注意：不同的 npm 套件會依照 npm 的版本進行安裝。
 
 1. 建立 Angular 專案
 
@@ -61,7 +63,7 @@
 
 ## [開發環境](https://angular.io/resources)
 
-- Editor : [Visual Studio Code](https://code.visualstudio.com/)
+- Editor : [Visual Studio Code](https://code.visualstudio.com/) 目前市佔率[極高](https://insights.stackoverflow.com/survey/2019#development-environments-and-tools)的 Editor
 
   - Plugins：
 

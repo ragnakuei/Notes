@@ -48,7 +48,6 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 <mat-toolbar>Footer</mat-toolbar>
-
 ```
 
 注意事項：
@@ -67,38 +66,36 @@
 
 - mode
 
-    | 值 | 效果說明 |
-    | -- | ------- |
-    | over | 預設值。會以 lightbox 的效果，讓 sidevar 浮動跳出，並可能蓋住 \<mat-toolbar> 及 \<mat-sidenav-content> 。按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏。 |
-    | side | 不會以 lightbox 的效果，讓 sidevar 跳出，會將 \<mat-sidenav-content> 往右推。 |
-    | push | 會以 lightbox 的效果，讓 sidevar 跳出，會將 \<mat-sidenav-content> 往右推。按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏。|
+  | 值   | 效果說明                                                                                                                                |
+  | ---- | --------------------------------------------------------------------------------------------------------------------------------------- |
+  | over | 預設值。會以 lightbox 的效果，讓 sidevar 浮動跳出。按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏。                         |
+  | side | 不會以 lightbox 的效果，讓 sidevar 跳出，會將 \<mat-sidenav-content> 往右推。                                                           |
+  | push | 會以 lightbox 的效果，讓 sidevar 跳出，會將 \<mat-sidenav-content> 往右推。按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏。 |
 
 - disabledClose
 
-    在 mode 設定成 over 或是 push 時，如果不想要有 按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏 的功能，可以透過這個 directive 來達成。
+  在 mode 設定成 over 或是 push 時，如果不想要有 按下 \<esc> 或是 \<mat-sidenav-content> 內的地方，就會隱藏 的功能，可以透過這個 directive 來達成。
 
-    使用此 directive 時，就會建議要自己實作 將 sidenav 關閉 的功能。
+  使用此 directive 時，就會建議要自己實作 將 sidenav 關閉 的功能。
 
 - position
 
-    | 值 | 效果說明 |
-    | -- | ------- |
-    | start | 預設值。通常是左邊。 |
-    | end | 通常是右邊。|
+  | 值    | 效果說明             |
+  | ----- | -------------------- |
+  | start | 預設值。通常是左邊。 |
+  | end   | 通常是右邊。         |
 
 - fixedInViewport
 
-    | 值 | 效果說明 |
-    | -- | ------- |
-    | false | 預設值 |
-    | true | 這個設定會讓 sidenav 固定在 viewport 上，就有可能會蓋到 toolbar 的區域。搭配 mode="over" 比較不會太突兀 |
+  | 值    | 效果說明                                                                                                |
+  | ----- | ------------------------------------------------------------------------------------------------------- |
+  | false | 預設值                                                                                                  |
+  | true  | 這個設定會讓 sidenav 固定在 viewport 上，就有可能會蓋到 toolbar 的區域。搭配 mode="over" 比較不會太突兀 |
 
 - fixedTopGap
 
-    在 fixedInViewport 設定成 true 時，與 viewport top 的距離。
+  在 fixedInViewport 設定成 true 時，與 viewport top 的距離。
 
 - fixedBottomGap
 
-    在 fixedInViewport 設定成 true 時，與 viewport bottom 的距離。
-
-    
+  在 fixedInViewport 設定成 true 時，與 viewport bottom 的距離。
