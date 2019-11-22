@@ -171,5 +171,5 @@ let detail of this.orderForm.get('Details')?.controls
 ```
 
 ```typescript
-let detail of this.orderForm.value.Detail;
+let detail of this.orderForm.value.Details;
 ```
