@@ -1,4 +1,4 @@
-# [WebForm](https://docs.microsoft.com/zh-tw/aspnet/web-forms/)
+# [WebForms](https://docs.microsoft.com/zh-tw/aspnet/web-forms/)
 
 - [控制項 Namespace](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.webcontrols?view=netframework-4.8)
 
@@ -10,7 +10,7 @@
      1. Title
      1. Language
      1. MasterPageFile - Master Page 檔路徑，非必要，可用 `~/` 開頭代表網站根目錄
-     1. [AutoEventWireup](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.configuration.pagessection.autoeventwireup?view=netframework-4.8)
+     1. [AutoEventWireup](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.configuration.pagessection.autoeventwireup)
      1. Code Behind 檔
 1. 專案內的 bin 資料夾必須加入版控 (與 MVC 不同)
 

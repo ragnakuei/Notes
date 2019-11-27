@@ -1,4 +1,4 @@
-# [GridView](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.webcontrols.gridview?view=netframework-4.8)
+# [GridView](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.webcontrols.gridview)
 
 ## Sample
 
