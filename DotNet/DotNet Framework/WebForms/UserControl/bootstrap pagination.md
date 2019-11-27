@@ -56,7 +56,9 @@
    ```html
    <%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master"
    AutoEventWireup="true" CodeBehind="List.aspx.cs"
-   Inherits="AngularDemoWebForm.Order.List" %> <%@ Register
+   Inherits="AngularDemoWebForm.Order.List" %>
+   
+   <%@ Register
    Src="~/UserControls/BootstrapPagination.ascx" TagName="WebControl"
    TagPrefix="TBootstrapPagination" %>
 
