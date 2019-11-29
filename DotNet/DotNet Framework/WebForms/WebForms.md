@@ -14,6 +14,29 @@
      1. Code Behind 檔
 1. 專案內的 bin 資料夾必須加入版控 (與 MVC 不同)
 
+## 語法
+
+- `<%= %>` - [Code Render Blocks](<https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/k6xeyd4z(v=vs.100)>) 在 render time 執行裡面的 C# expression
+- `<%@ %>` - [Directives for ASP.NET Web Pages](<https://docs.microsoft.com/en-us/previous-versions/aspnet/t8syafc7(v=vs.100)>)
+
+- `<% %>` - [Code Render Blocks](<https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/k6xeyd4z(v=vs.100)>) 用來執行多行 C# statement
+
+* `<%: %>` - 跟 `<%= %>` 一樣，但是多了 HtmlEncodes() 的功能
+
+* `<%# %>` - [Data-Binding Expression Syntax](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/bda9bbfx(v=vs.100)?redirectedfrom=MSDN) - 在 data binding handler 才會執行裡面的 C# expression。應該是用於控制項中。
+
+* `<%#: %>` - `<%: %>` 及 `<%# %>` 的結合版
+
+* `<%$ %>` - [ASP.NET Expression](http://msdn.microsoft.com/en-us/library/d5bd1tad.aspx)
+
+* `<%-- --%>` - server side 的註解
+
+* `<!-- #Include -->` - [Server-Side Include Directive Syntax](<https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/3207d0e3(v=vs.100)>)
+
+## [Code Declaration Blocks](<https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/2cy7sxha(v=vs.100)>)
+
+## [Server-Side Object Tag Syntax](<https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/h8k45y06(v=vs.100)>)
+
 ## Master Page
 
 1. Master Page 副檔名為 .Master
