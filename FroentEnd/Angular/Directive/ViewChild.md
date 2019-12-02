@@ -25,3 +25,4 @@
     ```
 
     [Sample](https://stackblitz.com/edit/angular-viewchild-example?file=app%2Fapp.component.ts)
+
