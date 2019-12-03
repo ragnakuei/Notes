@@ -4,4 +4,4 @@
 
 View > (最下方) Report Data 就會出現了
 
-或是使用預設快捷鍵 <Ctrl> + <Alt> + <D>
+或是使用預設快捷鍵 \<Ctrl> + \<Alt> + \<D>
