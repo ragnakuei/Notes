@@ -31,12 +31,18 @@
 
 ## 教學
 
-- [第 1 課：建立報表伺服器專案 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-1-creating-a-report-server-project-reporting-services)
-- [第 2 課：指定連接資訊 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-2-specifying-connection-information-reporting-services)
-- [第 3 課：定義資料表報表的資料集 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-3-defining-a-dataset-for-the-table-report-reporting-services)
-- [第 4 課：將資料表加入至報表 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-4-adding-a-table-to-the-report-reporting-services)
-- [第 5 課：格式化報表 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-5-formatting-a-report-reporting-services)
-- [第 6 課：新增群組和總計 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-5-formatting-a-report-reporting-services)
+- 非官方
+
+  - [影片](https://www.youtube.com/playlist?list=PL7A29088C98E92D5F)
+
+- 官方
+
+  - [第 1 課：建立報表伺服器專案 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-1-creating-a-report-server-project-reporting-services)
+  - [第 2 課：指定連接資訊 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-2-specifying-connection-information-reporting-services)
+  - [第 3 課：定義資料表報表的資料集 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-3-defining-a-dataset-for-the-table-report-reporting-services)
+  - [第 4 課：將資料表加入至報表 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-4-adding-a-table-to-the-report-reporting-services)
+  - [第 5 課：格式化報表 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-5-formatting-a-report-reporting-services)
+  - [第 6 課：新增群組和總計 (Reporting Services)](https://docs.microsoft.com/zh-tw/sql/reporting-services/lesson-5-formatting-a-report-reporting-services)
 
 ---
 
