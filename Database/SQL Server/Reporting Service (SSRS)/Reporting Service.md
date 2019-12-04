@@ -34,6 +34,7 @@
 - 非官方
 
   - [影片](https://www.youtube.com/playlist?list=PL7A29088C98E92D5F)
+  - [SSRS Tutorials](http://ssrstutorials.blogspot.com/2012/07/ssrs-tutorials.html)
 
 - 官方
 
