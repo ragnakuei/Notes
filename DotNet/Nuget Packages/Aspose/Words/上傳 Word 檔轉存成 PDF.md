@@ -9,6 +9,8 @@
 - 呼叫 Aspose 進行轉換
 - 回傳 pdf 檔
 
+> 如果不指定輸出格式，就會依照副檔名自動判斷輸出格式
+
 ```csharp
 public partial class ConvertFromWord : System.Web.UI.Page
 {
@@ -66,6 +68,27 @@ internal class FileInfo
     public string FileName { get; internal set; }
     public string FileNameWithPath { get; internal set; }
 }
+```
+
+```html
+<form id="form1" runat="server">
+  <div>
+    <p>
+      <asp:FileUpload ID="FileUpload1" runat="server" />
+    </p>
+    <p>
+      <asp:Button
+        ID="btnConvert"
+        runat="server"
+        Text="Convert"
+        OnClick="btnConvert_Click"
+      />
+    </p>
+    <p>
+      <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+    </p>
+  </div>
+</form>
 ```
 
 ---
