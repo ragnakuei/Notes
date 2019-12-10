@@ -10,13 +10,6 @@
 
 - 微軟官方維護版
 
-[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-- 目前用過最強大的 format 套件，可支援各式各樣的語法，包含 markdown
-
-- 安裝完套件後，記得把 vscode 預設的 formatter 指向至此套件
-
-
 [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2)
 
 - 括號對應工具
@@ -24,4 +17,3 @@
 [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
 
 - 標示 indent block 的部份
-

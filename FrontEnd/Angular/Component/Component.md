@@ -2,10 +2,6 @@
 
 ## app.module 加 Component 的方式
 
-以下方註解標示要注意的順序
-
-> // n
-
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -50,7 +46,7 @@ export class AppModule {
 
 使用 Component Property : templateUrl
 
-值以相對路徑給定 !
+以相對路徑給定 !
 
 ```typescript
 import { Component } from '@angular/core';
