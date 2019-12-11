@@ -1,4 +1,4 @@
-# Combobox
+# ComboBox
 
 Combobox 需要細部微調才能在一開啟 Excel 時，能符合 Cell 的大小，而不像 []() 的做法，是直接嵌在 Cell 上
 
