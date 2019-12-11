@@ -120,3 +120,4 @@ public onCustomerOptionChanged(e: MatAutocompleteSelectedEvent) {
 ## option 內的做法要注意使用
 
 [method called multiple times in angular material autocomplete](https://stackoverflow.com/questions/57856800/method-gets-called-multiple-times-in-angular-material-autocomplete)
+

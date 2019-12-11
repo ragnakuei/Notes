@@ -17,6 +17,12 @@ public class AposeLicenseService
         new Aspose.Words.License().SetLicense(licenseFilePath);
     }
 
+    public static void RegisterExcel()
+    {
+        string licenseFilePath = GetLicenseFilePath();
+        new Aspose.Cells.License().SetLicense(licenseFilePath);
+    }
+
     private static string GetLicenseFilePath()
     {
         var licenseFile = ConfigurationManager.AppSettings["AsposeLicenseFileName"];
