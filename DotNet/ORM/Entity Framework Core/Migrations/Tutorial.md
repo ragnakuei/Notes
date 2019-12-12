@@ -2,25 +2,13 @@
 
 [Migrations](https://docs.microsoft.com/zh-tw/ef/core/managing-schemas/migrations/)
 
-在 dotnet cli 加上 dotnet-ef cli
+透過 dotnet cli 安裝 ef cli
 
 > dotnet tool install --global dotnet-ef
 
 安裝套件
 
-> dotnet add package Microsoft.EntityFrameworkCore
-
 > dotnet add package Microsoft.EntityFrameworkCore.Design
-
-> dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-
-> dotnet add package Microsoft.Extensions.Configuration
-
-> dotnet add package Microsoft.Extensions.Configuration.FileExtensions
-
-> dotnet add package Microsoft.Extensions.Configuration.Json
-
-> dotnet add package Microsoft.Extensions.Configuration.EnvironmentVariables
 
 建立 Migrations
 
