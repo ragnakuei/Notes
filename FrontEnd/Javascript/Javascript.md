@@ -1,5 +1,7 @@
 # Javascript
 
+[無瑕的程式碼 JavaScript](https://hackmd.io/@trylovetom/SJnKIrajH)
+
 ---
 
 ## 頁面讀取完畢後執行
