@@ -1,4 +1,4 @@
-# DataContext Bindind
+# DataContext Binding
 
 ## Value Type Array
 
@@ -26,6 +26,7 @@ public partial class MainWindow{
     </ListBox>
 </Grid>
 ```
+
 ---
 
 ## Object Type Array
@@ -55,10 +56,13 @@ public class ImageItem
 
 ```xml
 <Grid>
-    <ListBox ItemsSource="{Binding}">
+    <ListBox ItemsSource="{Binding ImageFiles}">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <Label Content="{Binding Path=ImageFile}" />
+
+                <!-- 也可以這樣寫 -->
+                <!-- <Label Content="{Binding ImageFile}" /> -->
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>
