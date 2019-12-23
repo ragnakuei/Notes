@@ -113,3 +113,11 @@ public onCustomerOptionChanged(e: MatAutocompleteSelectedEvent) {
 
 - [[Angular Material完全攻略] Day 10 - 打造問卷頁面(2) - Input、Autocomplete](https://ithelp.ithome.com.tw/articles/10194495)
 - [Angular Material Autocomplete](https://hoshcoding.com/courses/1/angular-material-autocomplete)
+
+
+---
+
+## option 內的做法要注意使用
+
+[method called multiple times in angular material autocomplete](https://stackoverflow.com/questions/57856800/method-gets-called-multiple-times-in-angular-material-autocomplete)
+
