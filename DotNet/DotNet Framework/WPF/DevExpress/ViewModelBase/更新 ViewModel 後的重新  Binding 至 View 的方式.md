@@ -1,6 +1,6 @@
 # 更新 ViewModel 後的重新 Binding 至 View 的方式
 
-[範例](https://github.com/ragnakuei/WpfRebindingFromViewModel)
+[範例](https://github.com/ragnakuei/WpfSample01)
 
 - 在 AView 裡面
 

@@ -6,7 +6,7 @@
 
 > System.Windows.Interactivity 這個套件好像會有問題
 
-[程式碼](https://github.com/ragnakuei/WpfRebindingFromViewModel/tree/master/WpfApp3/F)
+[程式碼](https://github.com/ragnakuei/WpfSample01/tree/master/WpfApp3/F)
 
 - 在 Canvas 加上 取得 滑鼠座標的 Behavior
 - 以 OneWayToSource 的方式 Binding 回 ViewModel
