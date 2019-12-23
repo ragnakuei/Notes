@@ -1,6 +1,18 @@
 # [ViewModelBase](https://documentation.devexpress.com/WPF/17446/MVVM-Framework/Services/Services-in-ViewModelBase-descendants)
 
-手動引用 `DevExpress.Mvvm`
+- 手動引用 `DevExpress.Mvvm`
+- 提供以下 Method
+  - GetProperty()
+  - SetProperty()
+  - RaisePropertyChanged()
+  - RaisePropertiesChanged()
+- Initialize properties separately for runtime and design-time modes
+  - OnInitializeInDesignMode() - 用於給 .Designer.cs 時顯示預覽用
+  - OnInitializeInRuntime() - 執行時會執行的地方
+- [Access Services registered within a View](##GetService\<T>())
+- [Use View Model parent-child relationships](ParentViewModel.md)
+- [Pass data between View Models](更新%20ViewModel%20後的重新%20Binding%20至%20View%20的方式.md)
+- Create Commands without command properties
 
 ## GetService\<T>()
 

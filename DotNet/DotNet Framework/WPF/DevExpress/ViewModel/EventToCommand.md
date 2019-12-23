@@ -5,6 +5,7 @@
   - [GridView](#gridview)
   - [GridControl](#gridcontrol)
   - [Canvas](#canvas)
+  - [Window](#window)
 
 ---
 
@@ -147,3 +148,82 @@ private bool MouseEnterEventCanEnable()
 以 DevExpress 本身是做不到的 EventToCommand 的
 
 [參考資料](https://stackoverflow.com/questions/43949931/wpf-mvvm-canvas-clickevent)
+
+---
+
+## Window
+
+```xml
+<dxr:DXRibbonWindow xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:d1="clr-namespace:WpfSample01.D"
+                    x:Class="WpfSample01.D.DView"
+                    mc:Ignorable="d"
+                    d:DesignHeight="300" d:DesignWidth="300">
+    <dxr:DXRibbonWindow.DataContext>
+        <d1:DViewModel />
+    </dxr:DXRibbonWindow.DataContext>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:CurrentWindowService />
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding OnLoadedCommand}" />
+    </dxmvvm:Interaction.Behaviors>
+    <Grid>
+
+    </Grid>
+</dxr:DXRibbonWindow>
+```
+
+```csharp
+public class DViewModel : ViewModelBase
+{
+    public DViewModel()
+    {
+        OnLoadedCommand = new DelegateCommand(OnLoadedCommandExecute, OnLoadedCommandCanEnable);
+    }
+
+    private ICurrentWindowService _currentWindowService
+    {
+        get => GetService<ICurrentWindowService>();
+    }
+
+    private DView ViewClass
+    {
+        get => (_currentWindowService as CurrentWindowService)?.ActualWindow as DView;
+    }
+
+    #region View Related Event
+
+    public ICommand OnLoadedCommand { get; private set; }
+
+    private void OnLoadedCommandExecute()
+    {
+        var svgFilePath = Path.Combine(
+                                        AppDomain.CurrentDomain.BaseDirectory,
+                                        "Images",
+                                        "NoteBook 1.svg"
+                                        );
+
+        new DragDropSvgImage(ViewClass.canvasLayout, svgFilePath)
+                    {
+                        Width = 100,
+                        Margin = new Thickness
+                                {
+                                    Left = 0,
+                                    Top = 0
+                                }
+                    };
+    }
+
+    private bool OnLoadedCommandCanEnable()
+    {
+        return true;
+    }
+
+    #endregion
+}
+```

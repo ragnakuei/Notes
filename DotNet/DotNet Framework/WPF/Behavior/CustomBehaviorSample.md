@@ -137,3 +137,8 @@ public class FViewModel : ViewModelBase
 }
 
 ```
+
+參考資料
+
+- [WPF Interaction框架簡介（一）——Behavior](https://www.itread01.com/content/1541605216.html)
+- [WPF之Behavior](https://www.cnblogs.com/ListenFly/p/3275289.html)
