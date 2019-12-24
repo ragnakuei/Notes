@@ -1,57 +1,8 @@
-# [Binding](https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.binding)
+# ListBox with Content
 
-- [Data binding how-to topics](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/data-binding-how-to-topics)
+[How to: Bind to a Collection and Display Information Based on Selection](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/how-to-bind-to-a-collection-and-display-information-based-on-selection)
 
-- [如何：指定系結的方向](https://docs.microsoft.com/zh-tw/dotnet/framework/wpf/data/how-to-specify-the-direction-of-the-binding)
-
----
-
-## Simple Binding
-
-- 於 Resource 中，直接宣告物件的資料
-- Binding Source StaticResource 後面接的是 Window.Resource Key
-- Binding Source Path 指的是物件的 Property
-
-```csharp
-public class Person
-{
-    public string PersonName { get; set; }
-}
-```
-
-```xml
-<Window x:Class="WpfApp3.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-        xmlns:local="clr-namespace:WpfApp3"
-        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <local:Person x:Key="myDataSource" PersonName="Joe"/>
-    </Window.Resources>>
-    <StackPanel>
-        <TextBlock Text="{Binding Source={StaticResource myDataSource}, Path=PersonName}"/>
-    </StackPanel>
-</Window>
-```
-
----
-
-## 將 View 內的某控制項的值綁定到另一個控制項中
-
-```xml
-<TextBox Name="TextBox1"></TextBox>
-<subUserControl:ESubUserControl1
-                UserName="{Binding Path=Text, ElementName=TextBox1, Mode=OneWay}" />
-```
-
----
-
-## ObservableCollection Binding
+- ContentControl 會視 ListBox.IsSynchronizedWithCurrentItem 所設定的值來決定是否會同步顯示所選擇的項目
 
 ```xml
 <Window x:Class="WpfApp3.MainWindow"
@@ -104,24 +55,4 @@ public class Person
         <ContentControl Content="{Binding Source={StaticResource MyFriends}}" ContentTemplate="{StaticResource DetailTemplate}" />
     </StackPanel>
 </Window>
-```
-
-```csharp
-public class People : ObservableCollection<Person>
-{
-
-}
-
-public class Person
-{
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string HomeTown { get; set; }
-
-    // 為了讓 UI 的 ListBox 可以直接顯示 FirstName 清單
-    public override string ToString()
-    {
-        return FirstName.ToString();
-    }
-}
 ```

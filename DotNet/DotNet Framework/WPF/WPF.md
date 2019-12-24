@@ -14,6 +14,10 @@
 
 - [Walkthroughs](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/wpf-walkthroughs)
 
+- [WPF 入門教程](https://blog.csdn.net/weixin_38029882/category_7952230.html)
+
+- [WPF 教程](https://blog.csdn.net/seanbei/category_2396699.html)
+
 - MVVM
 
   - http://blog.sanc.idv.tw/2011/12/wpf-mvvm.html
