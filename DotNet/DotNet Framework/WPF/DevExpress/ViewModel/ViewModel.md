@@ -11,38 +11,58 @@
 
   - 以 ViewModelSource.Create() 的方式來建立 ViewModel
 
-
 ---
 
 ## BindableBase
 
-以 Get\<T>、Set\<T> 來取代原本 Accessor 的功能
+- 以 Get\<T>、Set\<T> 來取代原本 Accessor 的功能
 
-```csharp
-public class ViewModel : BindableBase {
-    public string FirstName {
-        get { return GetValue<string>(nameof(FirstName)); } 
-        set { SetValue(value, nameof(FirstName)); }
-    }
-}
-```
+  ```csharp
+  public class ViewModel : BindableBase {
+      public string FirstName {
+          get { return GetValue<string>(nameof(FirstName)); }
+          set { SetValue(value, nameof(FirstName)); }
+      }
+  }
+  ```
 
-Set\<T> 回傳 bool，在設定值成功之後，就會回傳 true
+- Set\<T> 回傳 bool，在設定值成功之後，就會回傳 true
 
-```csharp
-using DevExpress.Mvvm;
+  可用來在值更新後，給定要執行的動作
 
-public class ViewModel : BindableBase {
-    public string FirstName {
-        get { return GetValue<string>(); }
-        set {
-            if (SetValue(value))
-            {
-                // Value 更新後所需要執行的動作
-                NotifyFullNameChanged();
-            }
-            else MessageBox.Show("Could not change value!");
+  ```csharp
+  using DevExpress.Mvvm;
+
+  public class ViewModel : BindableBase {
+      public string FirstName {
+          get { return GetValue<string>(); }
+          set {
+              if (SetValue(value))
+              {
+                  // 值更新後所需要執行的動作
+                  NotifyFullNameChanged();
+              }
+              else MessageBox.Show("Could not change value!");
+          }
+      }
+  }
+  ```
+
+- 利用 Set\<T> 的 Callback Method 來處理值更新後所需要執行的動作
+
+  可用來在值更新後，給定要執行的動作
+
+  ```csharp
+    using DevExpress.Mvvm;
+
+    public class ViewModel : BindableBase {
+        public string FirstName {
+            get { return GetValue<string>(); }
+            set { SetValue(value, changedCallback: OnFirstNameChanged); }
+        }
+
+        void OnFirstNameChanged() {
+        //...
         }
     }
-}
-```
+  ```

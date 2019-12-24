@@ -1,6 +1,6 @@
 # RelativeSource
 
 ```xml
-<subUserControl:ESubUserControl1 
+<subUserControl:ESubUserControl1
                 TestObject="{Binding RelativeSource={RelativeSource Self}}" />
 ```

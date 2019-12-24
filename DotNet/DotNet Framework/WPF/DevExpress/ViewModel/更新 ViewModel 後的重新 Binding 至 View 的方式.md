@@ -23,45 +23,34 @@
 
   1. 透過 BindableBase 儲存值
 
-  ```csharp
-  private string _labelResult;
-  public string LabelResult
-  {
-     get => _labelResult;
-     private set
+     ```csharp
+     public string LabelResult
      {
-         if (this.SetValue<string>(ref this._labelResult, value, nameof(LabelResult)))
-         {
-             // MessageBox.Show("Success");
-         }
-         else
-         {
-             // MessageBox.Show("Failed");
-         }
+         get => GetValue<string>();
+         private set => SetValue<string>(value);
      }
-  }
-  ```
+     ```
 
   1. 加上 field
 
-  ```csharp
-    private string _labelResult;
-    public string LabelResult
-    {
-        get => _labelResult;
-        private set
-        {
-            if (this.SetValue<string>(ref this._labelResult, value, nameof(LabelResult)))
-            {
-                // MessageBox.Show("Success");
-            }
-            else
-            {
-                // MessageBox.Show("Failed");
-            }
-        }
-    }
-  ```
+     ```csharp
+     private string _labelResult;
+     public string LabelResult
+     {
+         get => _labelResult;
+         private set
+         {
+             if (this.SetValue<string>(ref this._labelResult, value, nameof(LabelResult)))
+             {
+                 // MessageBox.Show("Success");
+             }
+             else
+             {
+                 // MessageBox.Show("Failed");
+             }
+         }
+     }
+     ```
 
 - 方式二
 
