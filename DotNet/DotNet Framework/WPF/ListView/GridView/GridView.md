@@ -1,5 +1,7 @@
 # [GridView](https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.gridview)
 
+## Sample01
+
 ```xml
 <ListView ItemsSource="{Binding Path=ActiveCounters}">
     <ListView.View>
@@ -42,3 +44,30 @@
     </ListView.View>
 </ListView>
 ```
+
+---
+
+## Sample02
+
+````xml
+<ListView Margin="10" Name="lvUsers">
+    <ListView.View>
+        <GridView>
+            <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding Name}" />
+            <GridViewColumn Header="Age" Width="50" DisplayMemberBinding="{Binding Age}" />
+
+            <!-- 原本顯示欄位的語法 -->
+            <GridViewColumn Header="Mail" Width="150" DisplayMemberBinding="{Binding Mail}"/>
+
+            <!-- 調整成為可點選的藍字語法。 注意：沒有 DisplayMemberBinding Attribute 了 ! -->
+            <GridViewColumn Header="Mail" Width="150" >
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Mail}" TextDecorations="Underline" Foreground="Red" Cursor="Hand" />
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridView>
+    </ListView.View>
+</ListView>
+````

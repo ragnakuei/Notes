@@ -7,6 +7,8 @@
 | LostFocus       | 每當繫結目標項目失焦時，就會更新繫結來源。                                                                                                       |
 | Explicit        | 只有在呼叫 BindingExpression.UpdateSource 方法時，才會更新繫結來源。                                                                             |
 
+---
+
 ## Explicit - 手動更新 Sample
 
 ```xml

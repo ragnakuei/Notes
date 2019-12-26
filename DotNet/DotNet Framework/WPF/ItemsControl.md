@@ -5,11 +5,9 @@
     <ItemsControl ItemsSource="{Binding OrderList}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <WrapPanel>
-                    <TextBlock Text="{Binding OrderId}"></TextBlock>
-                </WrapPanel>
+                <TextBlock Text="{Binding OrderId}"></TextBlock>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
-    <ItemsControl>
+    </ItemsControl>
 </Grid>
 ```

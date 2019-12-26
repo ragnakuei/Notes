@@ -61,6 +61,9 @@
 - 傳遞參數
 - 抓出所選擇的項目
 - 因為 ListView 的 ItemSource 是 `OrderListItem[]`，所以 SelectedItem 就會是 `OrderListItem`
+- Event 效果
+  - MouseUp 的效果會比 MouseDown 好
+  - MouseLeftButtonUp 的效果會比 MouseLeftButtonDown 好
 
 - View
 
