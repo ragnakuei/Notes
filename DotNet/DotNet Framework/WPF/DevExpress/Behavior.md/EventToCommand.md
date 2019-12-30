@@ -1,11 +1,96 @@
 # [EventToCommand](https://documentation.devexpress.com/WPF/17369/MVVM-Framework/Behaviors/Predefined-Set/EventToCommand)
 
 - [EventToCommand](#eventtocommand)
+  - [語法](#%e8%aa%9e%e6%b3%95)
   - [ListView](#listview)
   - [GridView](#gridview)
   - [GridControl](#gridcontrol)
   - [Canvas](#canvas)
   - [Window](#window)
+
+---
+
+## 語法
+
+1. EventName
+
+   直接指定 Event 的名稱
+
+   ```xml
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="MouseEnter" Command="{Binding MouseEnterListViewCommand}" />
+    </dxmvvm:Interaction.Behaviors>
+   ```
+
+1. Event
+
+   指定 Event 的名稱及所在的 Type
+
+   ```xml
+    <TextBox>
+        <dxmvvm:Interaction.Behaviors>
+            <dxmvvm:EventToCommand Command="{Binding TextChangedCommand}" Event="TextBoxBase.TextChanged" />
+        </dxmvvm:Interaction.Behaviors>
+    </TextBox>
+   ```
+
+1. 在 Element 外部指定 Behavior
+
+   ```xml
+   <UserControl ...>
+
+       <dxmvvm:Interaction.Behaviors>
+           <dxmvvm:EventToCommand SourceName="list"    EventName="MouseDoubleClick" Command="{Binding InitializeCommand}"/>
+           <dxmvvm:EventToCommand SourceObject="{Binding ElementName=list}"    EventName="MouseDoubleClick" Command="{Binding InitializeCommand}"/>
+       </dxmvvm:Interaction.Behaviors>
+
+           <ListBox x:Name="list" ... />
+
+   </UserControl>
+   ```
+
+1. 傳遞參數
+
+   - PassEventArgsToCommand
+   - CommandParameter
+
+   ```xml
+   <ListView Name="listView" ItemsSource="{Binding OrderList}" Grid.Row="2">
+       <dxmvvm:Interaction.Behaviors>
+           <dxmvvm:EventToCommand EventName="MouseDoubleClick"
+                                   Command="{Binding    MouseDoubleClickListViewCommand}"
+                                   PassEventArgsToCommand="True"
+                                   CommandParameter="{Binding    Path=SelectedItem, ElementName=listView}"
+                                   />
+       </dxmvvm:Interaction.Behaviors>
+       <ListView.View>
+           <GridView AllowsColumnReorder="true"
+                       ColumnHeaderToolTip="Order Information">
+
+               <GridViewColumn DisplayMemberBinding="{Binding Path=OrderId}"
+                               Header="OrderId" Width="100" />
+
+               <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerId}"
+                               Header="CustomerId"
+                               Width="100" />
+           </GridView>
+       </ListView.View>
+   </ListView>
+   ```
+
+1. 搭配鍵盤
+
+   - ModifierKeys
+
+   ```xml
+   <dxmvvm:Interaction.Behaviors>
+       <dxmvvm:EventToCommand EventName="MouseLeftButtonUp" Command="{Binding    EditCommand}" ModifierKeys="Ctrl+Alt">
+           <dxmvvm:EventToCommand.EventArgsConverter>
+               <Common:ListBoxEventArgsConverter/>
+           </dxmvvm:EventToCommand.EventArgsConverter>
+       </dxmvvm:EventToCommand>
+   </dxmvvm:Interaction.Behaviors>
+   ```
 
 ---
 
@@ -62,6 +147,7 @@
 - 抓出所選擇的項目
 - 因為 ListView 的 ItemSource 是 `OrderListItem[]`，所以 SelectedItem 就會是 `OrderListItem`
 - Event 效果
+
   - MouseUp 的效果會比 MouseDown 好
   - MouseLeftButtonUp 的效果會比 MouseLeftButtonDown 好
 

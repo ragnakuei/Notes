@@ -49,7 +49,7 @@
 
 ## Sample02
 
-````xml
+```xml
 <ListView Margin="10" Name="lvUsers">
     <ListView.View>
         <GridView>
@@ -70,4 +70,4 @@
         </GridView>
     </ListView.View>
 </ListView>
-````
+```

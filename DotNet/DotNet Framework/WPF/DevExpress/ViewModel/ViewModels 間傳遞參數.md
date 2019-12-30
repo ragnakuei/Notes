@@ -12,40 +12,40 @@
 - 一定要給定外層控制項的 Element
 - Binding 時，指定外層控制項的 DataContext 或是 DataContext.Property
 
-    ```xml
-    <Grid Name="LayoutRoot">
-        <iChildView:IChildAView x:Name="ChildAView" Grid.Column="0" Grid.Row="1"
-                                        dxmvvm:ViewModelExtensions.Parameter="{Binding DataContext.TextBoxValue, ElementName=LayoutRoot }"/>
-    </Grid>
-    ```
+  ```xml
+  <Grid Name="LayoutRoot">
+      <iChildView:IChildAView x:Name="ChildAView" Grid.Column="0" Grid.Row="1"
+                                      dxmvvm:ViewModelExtensions.Parameter="{Binding DataContext.TextBoxValue, ElementName=LayoutRoot }"/>
+  </Grid>
+  ```
 
-    - Overrider `void OnParameterChanged(object parameter)` - 此 Method 是 Parameter Changed Callback Method
+  - Overrider `void OnParameterChanged(object parameter)` - 此 Method 是 Parameter Changed Callback Method
 
-    ```csharp
-    public class IChildAViewModel : ViewModelBase
-    {
-        public IChildAViewModel()
-        {
-        }
+  ```csharp
+  public class IChildAViewModel : ViewModelBase
+  {
+      public IChildAViewModel()
+      {
+      }
 
-        private string _textBoxValue;
+      private string _textBoxValue;
 
-        public string TextBoxValue
-        {
-            get => _textBoxValue;
-            set
-            {
-                SetValue(ref _textBoxValue, value, nameof(TextBoxValue));
-            }
-        }
+      public string TextBoxValue
+      {
+          get => _textBoxValue;
+          set
+          {
+              SetValue(ref _textBoxValue, value, nameof(TextBoxValue));
+          }
+      }
 
-        protected override void OnParameterChanged(object parameter)
-        {
-            base.OnParameterChanged(parameter);
-            if (parameter?.ToString() != null)
-            {
-                TextBoxValue = parameter.ToString();
-            }
-        }
-    }
-    ```
+      protected override void OnParameterChanged(object parameter)
+      {
+          base.OnParameterChanged(parameter);
+          if (parameter?.ToString() != null)
+          {
+              TextBoxValue = parameter.ToString();
+          }
+      }
+  }
+  ```
