@@ -2,6 +2,7 @@
 
 - [Converter](#converter)
   - [透過 BooleanToObjectConverter 直接將 boolean 值轉換成要顯示的文字](#%e9%80%8f%e9%81%8e-booleantoobjectconverter-%e7%9b%b4%e6%8e%a5%e5%b0%87-boolean-%e5%80%bc%e8%bd%89%e6%8f%9b%e6%88%90%e8%a6%81%e9%a1%af%e7%a4%ba%e7%9a%84%e6%96%87%e5%ad%97)
+  - [Custom Converter](#custom-converter)
 
 ---
 
@@ -28,3 +29,7 @@
     </StackPanel>
 </UserControl>
 ```
+
+---
+
+## Custom Converter
