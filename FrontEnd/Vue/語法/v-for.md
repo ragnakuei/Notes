@@ -4,7 +4,7 @@
   - [Object](#object)
     - [取值](#%e5%8f%96%e5%80%bc)
     - [取值及 property name](#%e5%8f%96%e5%80%bc%e5%8f%8a-property-name)
-    - [取值、欄位名稱 及 index](#%e5%8f%96%e5%80%bc%e6%ac%84%e4%bd%8d%e5%90%8d%e7%a8%b1-%e5%8f%8a-index)
+    - [取值、property name 及 index](#%e5%8f%96%e5%80%bcproperty-name-%e5%8f%8a-index)
   - [Array](#array)
     - [取值](#%e5%8f%96%e5%80%bc-1)
     - [取值及 index](#%e5%8f%96%e5%80%bc%e5%8f%8a-index)
@@ -33,7 +33,7 @@
 </ul>
 ```
 
-### 取值、欄位名稱 及 index
+### 取值、property name 及 index
 
 ```html
 <ul>
