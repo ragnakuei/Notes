@@ -69,6 +69,7 @@ public class Person
         <local:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
+        <!-- People 就是 ObservableCollection<Person> -->
         <local:People x:Key="MyFriends" >
             <local:Person FirstName="FirstA" LastName="LastA" HomeTown="TownA" />
             <local:Person FirstName="FirstB" LastName="LastB" HomeTown="TownB" />
@@ -123,5 +124,141 @@ public class Person
     {
         return FirstName.ToString();
     }
+}
+```
+
+---
+
+Binding Enum
+
+```xml
+<Window x:Class="WpfApp3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <!-- 這邊指定了使用 mscorlib 內的 System.Enum.GetValues() 來取值 -->
+        <ObjectDataProvider MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}"
+                        x:Key="AlignmentValues">
+            <!-- 這邊指定了以 Type HorizontalAlignment 做為上述的參數 -->
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="HorizontalAlignment" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Width="300">
+            <TextBlock>Choose the HorizontalAlignment value of the Button:</TextBlock>
+            <!-- 以 Key 值來做對應，從 Windows Resouces 中取出物件陣列來做為此 ListBox 的 Source -->
+            <ListBox Name="myComboBox" SelectedIndex="0" Margin="8"
+               ItemsSource="{Binding Source={StaticResource AlignmentValues}}"/>
+            <!-- 當 ListBox 選定了其中一個項目後，就會直接套用至此 Button 上 -->
+            <Button Content="Click Me!"
+              HorizontalAlignment="{Binding ElementName=myComboBox,
+                                            Path=SelectedItem}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
+```
+
+---
+
+## Composite Collection
+
+複合式 Collection
+
+```xml
+<Window x:Class="WpfApp3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+
+        <!-- 第一種資料 -->
+        <local:GreekGods x:Key="GreekGodsData">
+            <local:GreekGod Name="GodA" />
+            <local:GreekGod Name="GodB" />
+            <local:GreekGod Name="GodC" />
+        </local:GreekGods>
+
+        <!-- 第二種資料 -->
+        <XmlDataProvider x:Key="GreekHeroesData" XPath="GreekHeroes/Hero">
+            <x:XData>
+                <GreekHeroes xmlns="">
+                    <Hero Name="Jason" />
+                    <Hero Name="Hercules" />
+                    <Hero Name="Bellerophon" />
+                    <Hero Name="Theseus" />
+                    <Hero Name="Odysseus" />
+                    <Hero Name="Perseus" />
+                </GreekHeroes>
+            </x:XData>
+        </XmlDataProvider>
+
+        <!-- 以 Type 來給定不同的 DataTemplate -->
+        <DataTemplate DataType="{x:Type local:GreekGod}">
+            <TextBlock Text="{Binding Path=Name}" Foreground="Gold"/>
+        </DataTemplate>
+
+        <!-- 以 Type 來給定不同的 DataTemplate -->
+        <DataTemplate DataType="Hero">
+            <TextBlock Text="{Binding XPath=@Name}" Foreground="Cyan"/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <StackPanel>
+        <TextBlock FontSize="18" FontWeight="Bold" Margin="10"
+      HorizontalAlignment="Center">Composite Collections Sample</TextBlock>
+        <ListBox Name="myListBox" Height="300" Width="200" Background="White">
+            <ListBox.ItemsSource>
+                <!-- 宣告會以不同的 Collection 來做為 DataSource -->
+                <CompositeCollection>
+                    <CollectionContainer
+            Collection="{Binding Source={StaticResource GreekGodsData}}" />
+                    <CollectionContainer
+            Collection="{Binding Source={StaticResource GreekHeroesData}}" />
+                    <ListBoxItem Foreground="Red">Other Listbox Item 1</ListBoxItem>
+                    <ListBoxItem Foreground="Red">Other Listbox Item 2</ListBoxItem>
+                </CompositeCollection>
+            </ListBox.ItemsSource>
+        </ListBox>
+    </StackPanel>
+</Window>
+```
+
+```csharp
+public class GreekGods : ObservableCollection<GreekGod>
+{
+
+}
+
+public class GreekGod
+{
+    public string Name { get; set; }
+}
+
+public class GreekHeroes : ObservableCollection<Hero>
+{
+
+}
+
+public class Hero
+{
+    public string Name { get; set; }
 }
 ```
