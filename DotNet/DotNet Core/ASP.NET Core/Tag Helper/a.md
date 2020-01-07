@@ -15,8 +15,7 @@
 Razor 語法如下：
 
 ```html
-<a asp-page="/Attendee"
-   asp-route-attendeeid="10">View Attendee</a>
+<a asp-page="/Attendee" asp-route-attendeeid="10">View Attendee</a>
 ```
 
 實際產生的 Html 如下：
@@ -25,17 +24,25 @@ Razor 語法如下：
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-
-
 ---
 
 ## [asp-route-{value}](https://docs.microsoft.com/zh-tw/aspnet/core/mvc/views/tag-helpers/built-in/anchor-tag-helper#asp-page)
 
-用來產生 query string field name 及 value 的 attribute
+- 如果 Route 有設定對應的 Parameter 就會套用該 Route 規則來產生 Route
 
-以 asp-route-{value} 給定指定的 query string field name
+- 如果 Route 沒有設定對應的 Parameter 就會產生 query string field name 及 value
 
-assign 給 asp-route-{value} 的值，就是 query string field value
+語法
+
+```html
+<a
+  class="btn btn-primary"
+  asp-page="/order/edit"
+  asp-route-id="@Model.Id"
+  role="button"
+  >Edit</a
+>
+```
 
 ---
 
@@ -69,39 +76,17 @@ assign 給 asp-route-{value} 的值，就是 query string field value
 
 - 可以讓一個 View 可以共用相同的 Http Method 及不同的 Method
 - 會以 query string 方式顯示
+- 不確定 MVC 是否可用
+- 格式 On-Method-Handler
+  - Method 就是指 Http Method
+  - Handler 自訂名稱
 
 ```html
-@page
-@{
-    @functions{
-        public string Message { get; set; } = "Initial Request";
-
-        public void OnGet()
-        {
-        }
-
-        public void OnPost()
-        {
-            Message = "Form Posted";
-        }
-
-        public void OnPostDelete()
-        {
-            Message = "Delete handler fired";
-        }
-
-        public void OnPostEdit(int id)
-        {
-            Message = "Edit handler fired";
-        }
-
-        public void OnPostView(int id)
-        {
-            Message = "View handler fired";
-        }
-
-    }
-}
+@page @{ @functions{ public string Message { get; set; } = "Initial Request";
+public void OnGet() { } public void OnPost() { Message = "Form Posted"; } public
+void OnPostDelete() { Message = "Delete handler fired"; } public void
+OnPostEdit(int id) { Message = "Edit handler fired"; } public void
+OnPostView(int id) { Message = "View handler fired"; } } }
 
 <div class="row">
   <div class="col-lg-1">
