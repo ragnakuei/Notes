@@ -1,0 +1,1 @@
+# [利用WPF製作Gadget](http://johnniebooks.blogspot.com/2009/07/wpfgadget.html)
