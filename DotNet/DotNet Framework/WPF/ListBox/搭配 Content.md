@@ -1,4 +1,4 @@
-# ListBox with Content
+# 搭配 ContentControl
 
 [How to: Bind to a Collection and Display Information Based on Selection](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/how-to-bind-to-a-collection-and-display-information-based-on-selection)
 
