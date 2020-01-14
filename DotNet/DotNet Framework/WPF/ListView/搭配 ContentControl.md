@@ -1,6 +1,6 @@
-# EventToCommand
+# 搭配 ContentControl
 
-- [EventToCommand](#eventtocommand)
+- [搭配 ContentControl](#%e6%90%ad%e9%85%8d-contentcontrol)
   - [範例一](#%e7%af%84%e4%be%8b%e4%b8%80)
     - [View](#view)
     - [BaseCommand](#basecommand)
@@ -8,16 +8,13 @@
 
 ---
 
-不使用任何框架的前提下
-
----
+- ContentControl 可同步 ListView 所選擇的項目
+- ListView 透過 `IsSynchronizedWithCurrentItem="true"` 來設定與 ContentControl 的同步
 
 ## 範例一
 
-以下面二個 Command 為例
-
-- WindowOnLoadCommand
-- ConfirmOnClickCommand
+- 預設情況下，ListView 初始化後，就選擇了第一個項目
+- 透過 WindowOnLoadCommand 來重置 ListView 上述的情況
 
 ### View
 
@@ -94,13 +91,6 @@
 ```
 
 ### BaseCommand
-
-因為下面二個原因
-
-- .Net Framework 似乎未提供 ICommand 的實作
-- 每個繼承 ICommand 的內容是一樣的
-
-所以透過 BaseCommand 來統一實作需要的內容，而在各 ViewModel 內的 Command 只需要實作 Constructor 的部份就可以了
 
 ```csharp
 public class BaseCommand : ICommand
@@ -252,7 +242,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             _selectedUser = value;
             OnPropertyChanged("SelectedUser");
-
         }
     }
 

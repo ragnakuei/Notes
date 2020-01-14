@@ -1,6 +1,6 @@
-# EventToCommand
+# Model Binding 
 
-- [EventToCommand](#eventtocommand)
+- [Model Binding](#model-binding)
   - [範例一](#%e7%af%84%e4%be%8b%e4%b8%80)
     - [View](#view)
     - [BaseCommand](#basecommand)
@@ -8,16 +8,17 @@
 
 ---
 
-不使用任何框架的前提下
-
----
+透過實作 INotifyPropertyChanged 來達成 Model Binding
 
 ## 範例一
 
-以下面二個 Command 為例
+以下 Property 都有 Model Binding 的功能
 
-- WindowOnLoadCommand
-- ConfirmOnClickCommand
+- 集合 - INotifyPropertyChanged 的實作要放在 `集合元素` 中
+  - Users
+- 單一值 - INotifyPropertyChanged 的實作要放在 `ViewModel` 中
+  - SelectedUser
+  - SelectedUserIndex
 
 ### View
 
@@ -94,13 +95,6 @@
 ```
 
 ### BaseCommand
-
-因為下面二個原因
-
-- .Net Framework 似乎未提供 ICommand 的實作
-- 每個繼承 ICommand 的內容是一樣的
-
-所以透過 BaseCommand 來統一實作需要的內容，而在各 ViewModel 內的 Command 只需要實作 Constructor 的部份就可以了
 
 ```csharp
 public class BaseCommand : ICommand
@@ -252,7 +246,6 @@ public class MainWindowViewModel : INotifyPropertyChanged
         {
             _selectedUser = value;
             OnPropertyChanged("SelectedUser");
-
         }
     }
 
