@@ -92,6 +92,8 @@
 
 ### BaseCommand
 
+說明可參考[這裡](../EventToCommand.md##BaseCommand)
+
 ```csharp
 public class BaseCommand : ICommand
 {

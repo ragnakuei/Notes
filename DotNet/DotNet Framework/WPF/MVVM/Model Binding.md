@@ -1,4 +1,4 @@
-# Model Binding 
+# Model Binding
 
 - [Model Binding](#model-binding)
   - [範例一](#%e7%af%84%e4%be%8b%e4%b8%80)
@@ -21,6 +21,8 @@
   - SelectedUserIndex
 
 ### View
+
+ListView 同步至 ContentControl 可以參考[這裡](../ListView/搭配%20ContentControl.md#範例一)
 
 ```xml
 <Window x:Class="WpfApp13.MainWindow"
@@ -95,6 +97,8 @@
 ```
 
 ### BaseCommand
+
+說明可參考[這裡](../EventToCommand.md##BaseCommand)
 
 ```csharp
 public class BaseCommand : ICommand
