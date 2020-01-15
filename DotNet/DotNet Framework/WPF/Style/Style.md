@@ -64,7 +64,7 @@
                 <Style.Triggers>
                     <!-- 2 -->
                     <DataTrigger Binding="{Binding ElementName=cbSample, Path=IsChecked}" Value="True">
-                        <!-- 1 -->
+                        <!-- 3 -->
                         <Setter Property="Text" Value="Yes!" />
                         <Setter Property="Foreground" Value="Green" />
                     </DataTrigger>
