@@ -10,7 +10,7 @@ void App_Startup(object sender, StartupEventArgs e) { }
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfApp"
              StartupUri="MainWindow.xaml"
-			 Startup="Application_Startup">
+             Startup="Application_Startup">
     <Application.Resources></Application.Resources>
 </Application>
 ```
