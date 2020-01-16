@@ -143,7 +143,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
 {
     public MainWindowViewModel()
     {
-        Users = new List<User>
+        Users = new ObservableCollection<User>
                 {
                     new User
                     {
@@ -203,7 +203,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
     }
 
 
-    public List<User> Users { get; }
+    public ObservableCollection<User> Users { get; }
 
     #region Command
 

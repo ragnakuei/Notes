@@ -1,10 +1,15 @@
 # xaml
 
+- [xaml](#xaml)
+  - [語法](#%e8%aa%9e%e6%b3%95)
+    - [Sample ： 結構語法](#sample--%e7%b5%90%e6%a7%8b%e8%aa%9e%e6%b3%95)
+    - [Sample ： 以 xaml 來描述物件](#sample--%e4%bb%a5-xaml-%e4%be%86%e6%8f%8f%e8%bf%b0%e7%89%a9%e4%bb%b6)
+
 ---
 
 ## 語法
 
-以下三種語法的功能完全一樣
+### Sample ： 結構語法
 
 ```xml
 <TextBox Text="{Binding TextBoxValue, UpdateSourceTrigger=PropertyChanged}" />
@@ -26,4 +31,50 @@
         </Binding>
     </TextBox.Text>
 </TextBox>
+```
+
+### Sample ： 以 xaml 來描述物件
+
+```csharp
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+```
+
+```xml
+<StackPanel>
+    <Grid Margin="10">
+        <ItemsControl>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <GroupBox>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Id}"/>
+                            <TextBlock Text="{Binding Name}"/>
+                        </StackPanel>
+                    </GroupBox>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <local:User>
+                <local:User.Id>1</local:User.Id>
+                <local:User.Name>A</local:User.Name>
+            </local:User>
+            <local:User>
+                <local:User.Id>2</local:User.Id>
+                <local:User.Name>B</local:User.Name>
+            </local:User>
+            <local:User>
+                <local:User.Id>3</local:User.Id>
+                <local:User.Name>C</local:User.Name>
+            </local:User>
+        </ItemsControl>
+    </Grid>
+</StackPanel>
 ```

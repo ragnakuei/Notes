@@ -1,4 +1,4 @@
-# Binding Converter
+# Converter
 
 在 View 上做立即的轉換，而不需要額外處理 Model
 
@@ -45,3 +45,8 @@ public class DateConverter : IValueConverter
     }
 }
 ```
+
+
+參考資料
+
+- [Value conversion with IValueConverter](https://wpf-tutorial.com/data-binding/value-conversion-with-ivalueconverter/)

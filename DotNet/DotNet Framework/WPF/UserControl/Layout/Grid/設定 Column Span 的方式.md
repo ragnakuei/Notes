@@ -1,6 +1,7 @@
 # 設定 Column Span 的方式
 
-目前還找不到 ColumnSpan 可以欄位置中的方式
+- 會以原本所在的 Column 再加上後面一個 Column 來做合併
+- 目前還找不到 ColumnSpan 可以欄位置中的方式
 
 ```xml
 <Grid>

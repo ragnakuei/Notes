@@ -1,5 +1,13 @@
 # [Binding](https://docs.microsoft.com/en-us/dotnet/api/system.windows.data.binding)
 
+- [Binding](#binding)
+  - [Simple Binding](#simple-binding)
+  - [將 View 內的某控制項的值綁定到另一個控制項中](#%e5%b0%87-view-%e5%85%a7%e7%9a%84%e6%9f%90%e6%8e%a7%e5%88%b6%e9%a0%85%e7%9a%84%e5%80%bc%e7%b6%81%e5%ae%9a%e5%88%b0%e5%8f%a6%e4%b8%80%e5%80%8b%e6%8e%a7%e5%88%b6%e9%a0%85%e4%b8%ad)
+  - [ObservableCollection Binding](#observablecollection-binding)
+  - [Composite Collection](#composite-collection)
+
+---
+
 - [Data binding how-to topics](https://docs.microsoft.com/en-us/dotnet/framework/wpf/data/data-binding-how-to-topics)
 
 - [如何：指定系結的方向](https://docs.microsoft.com/zh-tw/dotnet/framework/wpf/data/how-to-specify-the-direction-of-the-binding)
