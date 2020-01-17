@@ -1,6 +1,12 @@
 # BackgroundWorker
 
-[範例](http://blog.tonycube.com/2011/04/backgroundworker.html)
+- 可產生背景程式
+- 支援`處理中`、`處理完成`事件
+- 支援處理百分比的更新
+
+---
+
+## [範例](http://blog.tonycube.com/2011/04/backgroundworker.html)
 
 ```csharp
 private BackgroundWorker backGroundWorker = new BackgroundWorker();

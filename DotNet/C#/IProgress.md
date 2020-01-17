@@ -74,4 +74,4 @@ public void Test2(object sender, int i)
 
 ## 待思考
 
-- 如果有工作需要很密集的回報時，該如何處理 ?
+- 如果有需要很密集的回報時，該如何處理 ?
