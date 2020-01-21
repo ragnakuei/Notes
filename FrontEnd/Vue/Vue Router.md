@@ -10,6 +10,8 @@
 
 > npm install vue-router
 
+---
+
 ## JS 版 語法套用
 
 - 建立 /src/router.js

@@ -3,6 +3,7 @@
 | 指令                            | 功能                        | 參考連結                                 |
 | ------------------------------- | --------------------------- | ---------------------------------------- |
 | npm outdated                    | 檢查已安裝的套件是否過期(?) | https://docs.npmjs.com/cli/outdated.html |
+| npm update                      | 更新本地端的 npm 套件索引   |                                          |
 | npm install [package][@version] | 安裝 / Upgrade 套件         | https://docs.npmjs.com/cli/install.html  |
 
 ## package.json
