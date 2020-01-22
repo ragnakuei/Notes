@@ -40,7 +40,7 @@
 
 會將資料輸出至 dist 資料夾中
 
-> num run build
+> npm run build
 
 ### Lint 檢查
 
