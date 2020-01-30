@@ -1,0 +1,2 @@
+
+> "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
