@@ -10,6 +10,10 @@
 
 ---
 
+Assembly：DevExpress.Xpf.Core
+
+---
+
 ## 語法
 
 1. EventName
@@ -60,7 +64,7 @@
            <dxmvvm:EventToCommand EventName="MouseDoubleClick"
                                    Command="{Binding    MouseDoubleClickListViewCommand}"
                                    PassEventArgsToCommand="True"
-                                   CommandParameter="{Binding    Path=SelectedItem, ElementName=listView}"
+                                   CommandParameter="{Binding Path=SelectedItem, ElementName=listView}"
                                    />
        </dxmvvm:Interaction.Behaviors>
        <ListView.View>

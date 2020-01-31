@@ -2,9 +2,9 @@
 
 安裝套件
 
-> Expression.Blend.Sdk
+> 因為 System.Windows.Interactivity 這個套件好像會有問題
 
-> System.Windows.Interactivity 這個套件好像會有問題
+> 請安裝 Expression.Blend.Sdk 套件
 
 [程式碼](https://github.com/ragnakuei/WpfSample01/tree/master/WpfApp3/F)
 

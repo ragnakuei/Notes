@@ -28,9 +28,9 @@
 
 ### 建立 vue 專案
 
-> vue create `[project name]`
+    project name 要全部小寫
 
-> project name 要全部小寫
+> vue create `[project name]`
 
 ### 執行開發階段 Server
 
@@ -38,7 +38,7 @@
 
 ### 最小化編譯成 Production 環境
 
-會將資料輸出至 dist 資料夾中
+    會將資料輸出至 dist 資料夾中
 
 > npm run build
 

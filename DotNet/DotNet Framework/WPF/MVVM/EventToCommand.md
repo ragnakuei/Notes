@@ -8,6 +8,10 @@
 
 ---
 
+安裝套件，請參考[這裡](../Behavior/CustomBehaviorSample.md)
+
+---
+
 ## 範例一
 
 不使用任何框架的前提下，使用 EventToCommand 的範例 (同[範例](./ListView/搭配%20ContentControl.md))
