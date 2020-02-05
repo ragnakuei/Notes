@@ -16,6 +16,8 @@
 
 ## 程式
 
+[範例](https://github.com/ragnakuei/RabbitMqSample01)
+
 ### 自制 RabbitMqService
 
 ```csharp
