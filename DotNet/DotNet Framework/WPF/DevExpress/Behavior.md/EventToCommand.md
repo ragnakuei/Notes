@@ -7,6 +7,7 @@
   - [GridControl](#gridcontrol)
   - [Canvas](#canvas)
   - [Window](#window)
+  - [PassEventArgsToCommand](#passeventargstocommand)
 
 ---
 
@@ -326,3 +327,37 @@ Assembly：DevExpress.Xpf.Core
       #endregion
   }
   ```
+
+## PassEventArgsToCommand
+
+給定 bool 值，可以把`事件參數`傳至 ICommand\<T> 中
+
+```xml
+<Border x:Name="svgContainerBorder"
+        Background="#ecf0f4"
+        BorderThickness="10"
+        CornerRadius="10"
+        ClipToBounds="True"
+        BorderBrush="Black">
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="MouseDown"
+                                PassEventArgsToCommand="True"
+                                Command="{Binding OnBorderMouseDownCommand}" />
+    </dxmvvm:Interaction.Behaviors>
+    <Canvas Name="svgContainer" MinHeight="300" />
+</Border>
+```
+
+```csharp
+public ICommand OnBorderMouseDownCommand { get; }
+
+ctor()
+{
+    OnBorderMouseDownCommand   = new DelegateCommand<MouseButtonEventArgs>( OnBorderMouseDownCommandExecute );
+}
+
+private void OnBorderMouseDownCommandExecute( MouseButtonEventArgs e )
+{
+    // ...
+}
+```
