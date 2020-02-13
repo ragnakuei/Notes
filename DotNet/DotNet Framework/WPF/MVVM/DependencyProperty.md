@@ -1,0 +1,102 @@
+# DependencyProperty
+
+- [DependencyProperty](#dependencyproperty)
+  - [CustomButton](#custombutton)
+
+---
+
+在 MVVM 架構下
+
+---
+
+## CustomButton
+
+延續 [Button](../DevExpress/Behavior.md/EventArgsConverter.md#Button) 的範例
+
+- CustomButton
+
+    ```c#
+    public class CustomButton : Button
+    {
+        public int CustomParameterInt { get; set; }
+        public string CustomParameterString { get; set; }
+
+        public static readonly DependencyProperty TestListBoxProperty
+            = DependencyProperty.Register(nameof(TestListBox)
+                , typeof(ListBox)
+                , typeof(CustomButton)
+                , new FrameworkPropertyMetadata(null,
+                        FrameworkPropertyMetadataOptions.AffectsRender,
+                        new PropertyChangedCallback(ChangeListBox)
+            ));
+
+        private static void ChangeListBox(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+        }
+
+        public ListBox TestListBox
+        {
+            get { return (ListBox)this.GetValue(TestListBoxProperty); }
+            set { this.SetValue(TestListBoxProperty, (object)value); }
+        }
+    }
+    ```
+
+- View
+
+    ```xml
+    <ListBox x:Name="list" ItemsSource="{Binding Persons}" Grid.Row="1">
+        <dxmvvm:Interaction.Behaviors>
+            <dxmvvm:EventToCommand EventName="MouseLeftButtonUp" Command="{Binding EditCommand}" ModifierKeys="Ctrl">
+                <dxmvvm:EventToCommand.EventArgsConverter>
+                    <Common:ListBoxEventArgsConverter />
+                </dxmvvm:EventToCommand.EventArgsConverter>
+            </dxmvvm:EventToCommand>
+            <dxmvvm:KeyToCommand Command="{Binding EditCommand}" KeyGesture="Ctrl+Enter" CommandParameter="{Binding ElementName=list, Path=SelectedItem}" />
+        </dxmvvm:Interaction.Behaviors>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock>
+                    <Run Text="{Binding FirstName}" /> <Run Text="{Binding LastName}" />
+                </TextBlock>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    <ViewModel:CustomButton
+                Content="Click"
+                Grid.Row="2"
+                CustomParameterInt="1"
+                TestListBox="{Binding ElementName=list}"
+                CustomParameterString="A">  
+        <dxmvvm:Interaction.Behaviors>
+            <dxmvvm:EventToCommand EventName="Click"
+                            PassEventArgsToCommand="True"
+                            CommandTarget="{Binding ElementName=list}"
+                            Command="{Binding ClickBtnCommand}">
+                <dxmvvm:EventToCommand.EventArgsConverter>
+                    <Common:ButtonEventArgsConverter />
+                </dxmvvm:EventToCommand.EventArgsConverter>
+            </dxmvvm:EventToCommand>
+        </dxmvvm:Interaction.Behaviors>
+    </ViewModel:CustomButton>
+    ```
+
+- ViewModel
+
+    可在這邊下 BreakPoint 來看 sender 的內容
+
+    ```c#
+    public class ButtonEventArgsConverter : EventArgsConverterBase<RoutedEventArgs>
+    {
+        protected override object Convert(object sender, RoutedEventArgs argsObj)
+        {
+            var button = sender as CustomButton;
+
+            return new
+            {
+                Id = button.CustomParameterInt,
+                Name = button.CustomParameterString
+            };
+        }
+    }
+    ```
