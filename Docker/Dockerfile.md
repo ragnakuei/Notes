@@ -23,7 +23,7 @@ env 的使用
 ```docker
 FROM microsoft/mssql-server-windows-express
 
-ENV sa_password="zzz@ZZZ" \
+ENV sa_password="password" \
     ACCEPT_EULA="Y" 
     sa_password_path="C:\ProgramData\Docker\secrets\sa-password"
 
