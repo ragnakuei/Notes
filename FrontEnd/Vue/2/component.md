@@ -49,11 +49,14 @@
     ```ts
     import Order from "./Order";
     ```
+
 ---
 
 ## 外部給定 Property 值
 
 - 要接外部 Property 的 Component
+- props - 宣告給外部 component 使用的 property
+- data - 要給 template binding 的 property
 
     ```html
     <template>
@@ -64,6 +67,10 @@
         export default {
             name: "clickCountButton",
             props: ['initialCounter'],
+
+            // 也可以寫成
+            // props: { initialCounter: Boolean },
+
             data() {
                 return {
                     count : this.initialCounter
