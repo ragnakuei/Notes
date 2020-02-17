@@ -1,4 +1,4 @@
-# Vue 3
+# [Vue 3](https://github.com/vuejs/vue-next)
 
 - [Vue 3](#vue-3)
   - [產生 Vue 專案](#%e7%94%a2%e7%94%9f-vue-%e5%b0%88%e6%a1%88)
@@ -7,7 +7,7 @@
     - [執行開發階段 Server](#%e5%9f%b7%e8%a1%8c%e9%96%8b%e7%99%bc%e9%9a%8e%e6%ae%b5-server)
     - [最小化編譯成 Production 環境](#%e6%9c%80%e5%b0%8f%e5%8c%96%e7%b7%a8%e8%ad%af%e6%88%90-production-%e7%92%b0%e5%a2%83)
     - [Lint 檢查](#lint-%e6%aa%a2%e6%9f%a5)
-  - [結構](#%e7%b5%90%e6%a7%8b)
+  - [資料夾結構](#%e8%b3%87%e6%96%99%e5%a4%be%e7%b5%90%e6%a7%8b)
   - [Lifecycle](#lifecycle)
 
 ---
@@ -48,7 +48,7 @@
 
 ---
 
-## 結構
+## 資料夾結構
 
 - public
 
