@@ -1,5 +1,8 @@
 # refs
 
+- [refs](#refs)
+  - [範例](#%e7%af%84%e4%be%8b)
+
 ---
 
 可以用來直接存取 template 指定的 element
