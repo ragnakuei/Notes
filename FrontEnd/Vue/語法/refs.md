@@ -5,7 +5,7 @@
 
 ---
 
-可以用來直接存取 template 指定的 element
+可以用來直接存取 template 指定的 component
 
 在 template 中，指定 refs 的名稱
 
