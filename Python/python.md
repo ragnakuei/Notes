@@ -1,5 +1,14 @@
 # python
 
+- [python](#python)
+  - [web framework](#web-framework)
+  - [Windows 10](#windows-10)
+  - [安裝 pip 至 Windows 中](#%e5%ae%89%e8%a3%9d-pip-%e8%87%b3-windows-%e4%b8%ad)
+  - [安裝 pylint](#%e5%ae%89%e8%a3%9d-pylint)
+  - [編譯成 pyc 檔](#%e7%b7%a8%e8%ad%af%e6%88%90-pyc-%e6%aa%94)
+
+---
+
 https://docs.python.org/3.8/tutorial/index.html
 
 https://code.visualstudio.com/docs/python/python-tutorial
@@ -36,3 +45,11 @@ https://code.visualstudio.com/docs/editor/intellisense#_customizing-intellisense
 - pip install pylint
 
 > 註：pip 應該是在裝完 python 時就一併安裝了
+
+## 編譯成 pyc 檔
+
+import 的檔案只會辨識 pyc 檔
+
+如果要製作 module 檔，可以先編譯成 pyc 檔
+
+> python -m compileall `pythonFile.py`
