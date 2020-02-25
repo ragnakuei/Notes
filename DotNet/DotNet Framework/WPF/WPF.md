@@ -48,3 +48,7 @@
 
   - http://blog.sanc.idv.tw/2011/12/wpf-mvvm.html
   - http://radio-idea.blogspot.com/2018/12/wpf-mvvm.html
+
+- MVVM async
+
+  - [範例](https://stackoverflow.com/questions/38717533/mvvm-async-await-pattern)
