@@ -17,7 +17,19 @@ https://code.visualstudio.com/docs/editor/intellisense#_customizing-intellisense
 - bottle.py
 - Zope & Plone
 
+## Windows 10
 
+在 cmd 內，輸入並執行 `python` 後，會開啟 Microsoft Store
+
+只要刪除環境變數 Path 的 `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps`
+
+就可以了
+
+## 安裝 pip 至 Windows 中
+
+1. 至[這邊](https://bootstrap.pypa.io/get-pip.py)下載 pip python install script
+1. 以 python 來執行剛才的 install script
+1. 在 cmd 下，直接輸入 pip ，確認安裝完畢
 
 ## 安裝 pylint
 
