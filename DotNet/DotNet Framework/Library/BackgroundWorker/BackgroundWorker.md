@@ -3,6 +3,7 @@
 - 可產生背景程式
 - 支援`處理中`、`處理完成`事件
 - 支援處理百分比的更新
+- ProgressChanged 所呼叫的 method 是 UI Thread 
 
 ---
 

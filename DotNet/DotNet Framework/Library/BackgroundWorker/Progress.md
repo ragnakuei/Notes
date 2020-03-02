@@ -4,6 +4,7 @@
 - 透過 BackgroundWorker.ReportProgress(int) 來更新 ProgressPercentage
 - 在 BackgroundWorker.ProgressChanged 時，就可以從  ProgressChangedEventArgs.ProgressPercentage 取出
 - ProgressPercentage 資料型態是 int
+- ProgressChanged 所呼叫的 method 是 UI Thread 
 
 ---
 

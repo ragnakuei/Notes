@@ -1,5 +1,6 @@
 # UserState
 
+- UserState 適合傳遞定期變更的 object
 - 跟 Progress 的做法差不多
 - 設定 BackgroundWorker.WorkerReportsProgress = true 開啟此功能
 - 值的給定是透過 BackgroundWorker.ReportProgress(int, object) 第二個參數
