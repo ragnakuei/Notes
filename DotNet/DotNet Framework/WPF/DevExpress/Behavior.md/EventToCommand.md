@@ -97,6 +97,40 @@ Assembly：DevExpress.Xpf.Core
    </dxmvvm:Interaction.Behaviors>
    ```
 
+1. 取得 sender 及 EventArgs 範例
+
+語法
+
+```xml
+<dxmvvm:Interaction.Behaviors>
+    <dxmvvm:EventToCommand
+        Command="{Binding OnAccordionItemPreviewMouseLeftButtonDownCommand}"
+        EventName="PreviewMouseLeftButtonDown"
+        PassEventArgsToCommand="True" />
+</dxmvvm:Interaction.Behaviors>
+```
+
+直接給定 DelegateCommand\<T> 為 DelegateCommand\<EventArgs> 後
+
+- EventArgs 為該 Event 所對應的 EventArgs
+
+- EventArgs.Source 為該 Event 的 sender
+
+1. 取得 EventToCommand 範例
+
+語法
+
+```xml
+<dxmvvm:Interaction.Behaviors>
+    <dxmvvm:EventToCommand
+        Command="{Binding OnAccordionItemPreviewMouseLeftButtonDownCommand}"
+        CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+        EventName="PreviewMouseLeftButtonDown"
+        PassEventArgsToCommand="True" />
+```
+
+這樣就可以從 DelegateCommand\<EventToCommand> 來取出該物件資料
+
 ---
 
 ## ListView
