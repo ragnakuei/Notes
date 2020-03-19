@@ -23,28 +23,28 @@ public class TestViewModel : ViewModelBase
     public TestViewModel()
     {
         Tests = new ObservableCollection<Test>
-    {
-        new Test
         {
-            Id = 1,
-            Name = TestEnum.A,
-        },
-        new Test
-        {
-            Id = 2,
-            Name = TestEnum.B,
-        },
-        new Test
-        {
-            Id = 3,
-            Name = TestEnum.C,
-        },
-    };
+            new Test
+            {
+                Id = 1,
+                Name = TestEnum.A,
+            },
+            new Test
+            {
+                Id = 2,
+                Name = TestEnum.B,
+            },
+            new Test
+            {
+                Id = 3,
+                Name = TestEnum.C,
+            },
+        };
     }
 
     public ObservableCollection<Test> Tests { get; set; }
 
-    private Test selectedTest;
+    private Test _selectedTest;
 
     public Test SelectedTest
     {
@@ -66,6 +66,7 @@ public class Test
 
 public enum TestEnum
 {
+    None,
     A,
     B,
     C,
