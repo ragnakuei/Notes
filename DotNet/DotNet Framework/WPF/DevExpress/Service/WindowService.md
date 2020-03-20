@@ -6,11 +6,12 @@
 
 ---
 
-把 UserControl View 以 Windows 方式呈現
+把 UserControl View 以 Window 方式呈現
 
 - 被開啟的 View，一定不能是 Window
 - 如果直接在宣告 WindowService 時，就給定指定的 View，那就無法選擇要開啟第二個 userControl
 - 透過 WindowService 開啟的 View 中，同時只開啟一個，無法同時開啟第二個
+- 當 View 以 Window 方式呈現時，該 View/ViewModel 可以透過 ICurrentWindowService 來做 Close() 的動作
 
 ---
 

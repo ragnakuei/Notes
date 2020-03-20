@@ -3,6 +3,8 @@
 - [GridControl](#gridcontrol)
   - [範例一:ObservableCollection\<T>](#%e7%af%84%e4%be%8b%e4%b8%80observablecollectiont)
   - [範例二:List\<T>](#%e7%af%84%e4%be%8b%e4%ba%8clistt)
+  - [TableView 停用最上方的 GroupPanel](#tableview-%e5%81%9c%e7%94%a8%e6%9c%80%e4%b8%8a%e6%96%b9%e7%9a%84-grouppanel)
+  - [SelectedItem 語法](#selecteditem-%e8%aa%9e%e6%b3%95)
 
 ---
 
@@ -20,6 +22,8 @@ FilterString 的 Binding 需要以下𤨔境
 ItemsSource Binding 的 Property 如果要用 ObservableCollection\<T>，就必須只能在 ViewModel 建構子中初始化，而且之後無法變更。
 
 如果要把上述的狀況改成可以動態變更的話，要把 ObservableCollection\<T> 改成 List\<T>，再透過 SetProperty() 的方式來變更。
+
+重新給定 ItemsSource 後，CurrentItem 及 SelectedItem 都會被清空 !
 
 ---
 
@@ -161,4 +165,37 @@ public class MainViewModel : ViewModelBase
         }
     }
 }
+```
+
+---
+
+## TableView 停用最上方的 GroupPanel
+
+在指定 TableView 時，給定以下 Property 值
+
+```xml
+ShowGroupPanel="False"
+```
+
+---
+
+## SelectedItem 語法
+
+重新給定 ItemsSource 後，CurrentItem 及 SelectedItem 都會被清空 !
+
+```xml
+<dxg:GridControl
+    Height="600"
+    AutoGenerateColumns="AddNew"
+    CurrentItem="{Binding GridControlCurrentItem}"
+    ItemsSource="{Binding GridControlItemsSource}"
+    SelectedItem="{Binding GridControlSelectedItem}">
+    <dxg:GridControl.View>
+        <dxg:TableView/>
+    </dxg:GridControl.View>
+    <dxg:GridControl.Columns>
+        <dxg:GridColumn Width="1*" FieldName="Id" />
+        <dxg:GridColumn Width="1*" FieldName="Name" />
+    </dxg:GridControl.Columns>
+</dxg:GridControl>
 ```
