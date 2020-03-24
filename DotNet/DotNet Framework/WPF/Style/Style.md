@@ -1,14 +1,5 @@
 # Style
 
-- [Style](#style)
-  - [單一條件式變更 Style](#%e5%96%ae%e4%b8%80%e6%a2%9d%e4%bb%b6%e5%bc%8f%e8%ae%8a%e6%9b%b4-style)
-    - [Property Trigger](#property-trigger)
-    - [Data Trigger](#data-trigger)
-    - [Event Trigger](#event-trigger)
-  - [多條件式變更 Style](#%e5%a4%9a%e6%a2%9d%e4%bb%b6%e5%bc%8f%e8%ae%8a%e6%9b%b4-style)
-    - [MultiTrigger](#multitrigger)
-    - [MultiDataTrigger](#multidatatrigger)
-
 ---
 
 ## 單一條件式變更 Style
@@ -44,7 +35,7 @@
 </TextBlock>
 ```
 
-### Data Trigger
+### Data Trigger 範例一
 
 參考對象是別人的 Property，來改變自己的 Style
 
@@ -74,6 +65,55 @@
     </TextBlock>
 </StackPanel>
 ```
+
+### Data Trigger 範例二
+
+下拉選單選到 A 時，顯示 A 對應的 Grid  
+下拉選單選到 B 時，顯示 B 對應的 Grid
+
+1. 給定預設的 Style
+2. 指定參考對象的 Element 、 Property 及 值
+3. 指定符合條件後要設定的 Style
+
+```xml
+<StackPanel>
+    <ComboBox x:Name="comboMyCombo">
+        <ComboBoxItem Tag="Show">A</ComboBoxItem>
+        <ComboBoxItem Tag="Show">B</ComboBoxItem>
+    </ComboBox>
+
+
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <!-- 1 -->
+                <Setter Property="Grid.Visibility" Value="Hidden" />
+                <Style.Triggers>
+                    <!-- 2 -->
+                    <DataTrigger Binding="{Binding ElementName=comboMyCombo, Path=SelectedItem.Tag}" Value="A">
+                        <!-- 3 -->
+                        <Setter Property="Grid.Visibility" Value="Visible" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+    </Grid>
+    <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Grid.Visibility" Value="Hidden" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=comboMyCombo, Path=SelectedItem.Tag}" Value="B">
+                        <Setter Property="Grid.Visibility" Value="Visible" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+    </Grid>
+
+</StackPanel>
+```
+
 
 ### Event Trigger
 
