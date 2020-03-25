@@ -1,7 +1,8 @@
 # DependencyProperty
 
 - [DependencyProperty](#dependencyproperty)
-  - [CustomButton](#custombutton)
+  - [CustomButton 增加 DependencyProperty 的方式](#custombutton-%e5%a2%9e%e5%8a%a0-dependencyproperty-%e7%9a%84%e6%96%b9%e5%bc%8f)
+  - [透過 Code 給定 UIElement 的 DependencyProperty 的方式](#%e9%80%8f%e9%81%8e-code-%e7%b5%a6%e5%ae%9a-uielement-%e7%9a%84-dependencyproperty-%e7%9a%84%e6%96%b9%e5%bc%8f)
 
 ---
 
@@ -9,7 +10,7 @@
 
 ---
 
-## CustomButton
+## CustomButton 增加 DependencyProperty 的方式
 
 延續 [Button](../DevExpress/Behavior.md/EventArgsConverter.md#Button) 的範例
 
@@ -100,3 +101,19 @@
         }
     }
     ```
+
+## 透過 Code 給定 UIElement 的 DependencyProperty 的方式
+
+透過 `DependencyObject.SetValue(DependencyProperty, object)` 就可以了
+
+```csharp
+this.SetValue(BarManager.DXContextMenuProperty, popupMenu);
+
+var barButtonItem = new BarButtonItem
+{
+    Content = "A"
+};
+
+popupMenu.Items.Add(barButtonItem);
+popupMenu.ShowPopup(this);
+```
