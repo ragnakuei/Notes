@@ -1,3 +1,7 @@
+# [EditorConfig](https://docs.microsoft.com/zh-tw/visualstudio/ide/editorconfig-code-style-settings-reference)
+
+
+
 ## 參考資料
 
 - [.NET coding convention settings for EditorConfig](https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference?view=vs-2019)
