@@ -1,0 +1,1 @@
+# [target](https://github.com/nlog/NLog/wiki/File-target)
