@@ -1,8 +1,14 @@
 # Model Binding
 
 - [Model Binding](#model-binding)
-  - [簡單型別](#%e7%b0%a1%e5%96%ae%e5%9e%8b%e5%88%a5)
-  - [複雜型別](#%e8%a4%87%e9%9b%9c%e5%9e%8b%e5%88%a5)
+  - [三個方式](#%e4%b8%89%e5%80%8b%e6%96%b9%e5%bc%8f)
+    - [透過引數](#%e9%80%8f%e9%81%8e%e5%bc%95%e6%95%b8)
+    - [透過 Attribute BindProperty](#%e9%80%8f%e9%81%8e-attribute-bindproperty)
+    - [透過 Request.Form](#%e9%80%8f%e9%81%8e-requestform)
+    - [Validation](#validation)
+  - [範例](#%e7%af%84%e4%be%8b)
+    - [簡單型別](#%e7%b0%a1%e5%96%ae%e5%9e%8b%e5%88%a5)
+    - [複雜型別](#%e8%a4%87%e9%9b%9c%e5%9e%8b%e5%88%a5)
   - [疑難雜症](#%e7%96%91%e9%9b%a3%e9%9b%9c%e7%97%87)
 
 ---
@@ -11,7 +17,60 @@
 
 ---
 
-## 簡單型別
+## 三個方式
+
+### 透過引數
+
+```csharp
+
+```
+
+### 透過 Attribute BindProperty
+
+```csharp
+
+```
+
+### 透過 Request.Form
+
+```csharp
+
+```
+
+### Validation
+
+```csharp
+public class Validation : PageModel
+{
+    [BindProperty]
+    [Required]
+    [MinLength( 6)]
+    public string Name { get; set; }
+
+    public void OnGet( )
+    {
+    }
+
+    public IActionResult OnPost()
+    {
+        if (ModelState.IsValid)
+        {
+            // return Redirect("/Sample/Post/Validation");
+            return Page();
+        }
+        else
+        {
+            return Page();
+        }
+    }
+}
+```
+
+---
+
+## 範例
+
+### 簡單型別
 
 - 針對需要在 Binding 至 PageModel 的欄位上加上 `BindProperty`
 
@@ -48,7 +107,7 @@ public class Index : PageModel
 
 ---
 
-## 複雜型別
+### 複雜型別
 
 - 針對需要在 Binding 至 PageModel 的欄位上加上 `BindProperty`
 - 使用 Tag Helper 來 Binding Property 更好維護
