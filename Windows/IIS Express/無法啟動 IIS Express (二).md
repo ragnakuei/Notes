@@ -8,7 +8,7 @@
 
 > 就是刪除原本方案內的 IIS Express 設定檔案，重新建立同名 Web 專案，再以原 Web 專案下去用新的 port 來啟動
 
-### 細節
+### 步驟
 
 - 關閉 Visual Studio
 - 刪除與 .sln 檔同目錄下的 .vs 資料夾
