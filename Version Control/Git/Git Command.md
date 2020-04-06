@@ -80,6 +80,7 @@
 | git push                                | 將目前的變更記錄 push 至指定的 remote branch                             |
 | git push -u <remote-branch>             | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
 | git push --set-upstream <remote-branch> | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
+| git push origin :cat                    | 刪除 origin/cat branch                                                   |
 
 | git config                        | 說明                                                           |
 | --------------------------------- | -------------------------------------------------------------- |

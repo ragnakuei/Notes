@@ -2,6 +2,93 @@
 
 ---
 
+## 可用的 Resource
+
+Resources 裡面可以套用的東西很多，要找到對應的 Class 的`可能`方式：
+
+> 找出該控制項的 Property Type
+
+| Class Name      | 說明            |
+| --------------- | --------------- |
+| SolidColorBrush | 用來指定顏色    |
+| Thickness       | 用來指定 margin |
+|                 |                 |
+
+---
+
+## 指定至相同檔案 resource key
+
+以下二個 Button 的 style 一樣，只差在宣告語法不同
+
+```xml
+<Window.Resources>
+    <SolidColorBrush x:Key="foreground" Color="Blue" />
+</Window.Resources>
+<StackPanel HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+    <Button Content="ABC" 
+            Foreground="{StaticResource foreground}"
+            Margin="10"
+            />
+    <Button Content="DEF" 
+            Foreground="Blue"
+            Margin="10"
+            />
+</StackPanel>
+```
+---
+
+## 指定至 global resource key
+
+以下二個 Button 的 style 一樣，只差在宣告語法不同
+
+```xml
+<Window.Resources>
+    <SolidColorBrush x:Key="foreground" Color="Blue" />
+</Window.Resources>
+<StackPanel HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+    <Button Content="ABC" 
+            Foreground="{StaticResource foreground}"
+            Margin="10"
+            />
+    <Button Content="DEF" 
+            Foreground="Blue"
+            Margin="10"
+            />
+</StackPanel>
+```
+
+---
+
+## style 參考至相同檔案 resource key
+
+- TargetType 必填
+- 如果要此檔案全部套用，可不給定 style key
+- global 設定方式與 上述相同
+
+```xml
+<Window.Resources>
+    <SolidColorBrush x:Key="foreground" Color="Blue" />
+    <Style TargetType="Button" x:Key="btn" >
+        <Setter Property="Foreground" Value="Blue" />
+    </Style>
+</Window.Resources>
+<StackPanel HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+    <Button Content="ABC" 
+            Foreground="{StaticResource foreground}"
+            Margin="10"
+            />
+    <Button Content="DEF" 
+            Margin="10"
+            Style="{StaticResource btn}"
+            />
+</StackPanel>
+```
+
+---
+
 ## 單一條件式變更 Style
 
 依照指定的條件來改變 Style
@@ -160,6 +247,7 @@
     </TextBlock>
 </StackPanel>
 ```
+---
 
 ## 多條件式變更 Style
 
