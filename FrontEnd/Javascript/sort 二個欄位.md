@@ -91,7 +91,7 @@ students.sort((a, b) => {
   // step 1 : isFixed
   if ( (a.isFixed == undefined || a.isFixed == null)
     && (b.isFixed == undefined || b.isFixed == null)) { 
-        //return 0; 
+        // 不排序
   } 
   else if (a.isFixed == undefined || a.isFixed == null) { return 1; } 
   else if (b.isFixed == undefined || b.isFixed == null) { return -1; } 
@@ -101,7 +101,7 @@ students.sort((a, b) => {
   // step 2 : grade
   if ( (a.grade == undefined || a.grade == null)
     && (b.grade == undefined || b.grade == null)) { 
-        //return 0; 
+        // 不排序
   } 
   else if (a.grade == undefined || a.grade == null) { return 1; } 
   else if (b.grade == undefined || b.grade == null) { return -1; } 
