@@ -63,4 +63,8 @@
 
   - [Program.cs](https://github.com/ragnakuei/CallCplusplusFunction01/blob/master/CallCplusplusFunction01/Program.cs)
 
-- 複製 C++ DLL 至 C# 專案中
+- 複製 C++ DLL 至 C# Console 輸出專案 bin 中
+
+  C++ DLL 位於與 C++ 專案目錄相同一層下的 Debug 中
+
+- 執行
