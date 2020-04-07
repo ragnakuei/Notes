@@ -2,7 +2,7 @@
 
 會有額外的成本來處理 Exception。但如果只是為了讓外層的 catch 可以明確分辨 Exception 來自於哪裡，勉強可以接受一次的 re throw exception 動作。
 
-[Sample](Sample/ReThrowExceptionPerformance)
+[Sample](https://github.com/ragnakuei/ReThrowExceptionPerformance)
 
 | Method |     Mean |     Error |    StdDev |  Gen 0 | Gen 1 | Gen 2 | Allocated |
 |------- |---------:|----------:|----------:|-------:|------:|------:|----------:|
