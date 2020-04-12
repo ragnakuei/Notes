@@ -6,7 +6,7 @@ Package：`Microsoft.Extensions.Localization`
 
 ---
 
-## 預設設定方式
+## 設定方式
 
 預設會找 `專案目錄/Resources` 內的 resx 檔案
 
