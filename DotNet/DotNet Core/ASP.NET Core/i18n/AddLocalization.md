@@ -2,8 +2,6 @@
 
 Package：`Microsoft.Extensions.Localization`
 
-可透過 LocalizationOptions 來自訂 Resources 路徑
-
 ---
 
 ## 設定方式
@@ -26,6 +24,8 @@ app.UseRequestLocalization(locOptions.Value);
 ---
 
 ## 自訂 Resources 路徑
+
+透過 LocalizationOptions 來自訂 Resources 路徑
 
 所指定的目錄一定會以 `專案目錄` 做為根目錄，並且在指定目錄下找尋 `Resources` 的子目錄
 
