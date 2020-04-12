@@ -55,7 +55,7 @@ services.AddLocalization(options => options.ResourcesPath = "ABC")
 services.AddLocalization(options => options.ResourcesPath = "ABC")
 ```
 
-當 Key 為 `Hello` 時，就可以查看 `IStringLocalizer\<T>["Hello"]` 的內容
+當 Key 為 `Hello` 時，就可以查看 `IStringLocalizer<T>["Hello"]` 的內容
 
 ![AltMessage](./_images/Annotation&#32;2020-04-12&#32;110438.png)
 
