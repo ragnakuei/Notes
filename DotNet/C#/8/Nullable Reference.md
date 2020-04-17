@@ -1,15 +1,19 @@
 # Nullable Reference
 
-- 套用設定後，是指會檢查 null 的判斷，不是指允許 null !
+- 套用設定後，是指 `會檢查 null 的判斷`，不是指允許 null !
 - 影響的部份主要在於明確統一 nullable 與 non-nullable 型態宣告的統一
   - nullable type 宣告就必須以 ? 結尾
   - non-nullable type 宣告就不能以 ? 結尾
+
+---
 
 ## 全域設定方式 1
 
 與 [全域設定方式 2](#%e5%85%a8%e5%9f%9f%e8%a8%ad%e5%ae%9a%e6%96%b9%e5%bc%8f-2)結果相同，只是設定方式不同
 
 project properties > Build > Nullable 下拉選單 > 設定成 `Enable`
+
+---
 
 ## 全域設定方式 2
 
@@ -22,6 +26,8 @@ project properties > Build > Nullable 下拉選單 > 設定成 `Enable`
     <Nullable>enable</Nullable> <!--加入這一行-->
   </PropertyGroup>
 ```
+
+---
 
 ## 個別檔案設定方式
 
