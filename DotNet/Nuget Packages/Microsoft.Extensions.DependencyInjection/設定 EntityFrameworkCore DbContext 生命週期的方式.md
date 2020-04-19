@@ -1,8 +1,8 @@
-<font face="微軟正黑體">
-
 # 設定 EntityFrameworkCore DbContext 生命週期的方式
 
-contextLifetime 參數就是指定 DbContext 的生命週期
+下面程式是套件原始碼
+
+而 contextLifetime 參數就是指定 DbContext 的生命週期
 
 > 註： optionsLifetime 參數就是指定 透過 DbContextOptionsBuilder 產生的 DbContextOptions 生命週期
 
@@ -22,5 +22,3 @@ public static IServiceCollection AddDbContext<TContext>(
     return serviceCollection.AddDbContext<TContext, TContext>(optionsAction, contextLifetime, optionsLifetime);
 }
 ```
-
-</font>
