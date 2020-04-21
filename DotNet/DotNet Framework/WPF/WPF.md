@@ -28,6 +28,8 @@
 
 - [Walkthroughs](https://docs.microsoft.com/en-us/dotnet/framework/wpf/getting-started/wpf-walkthroughs)
 
+- [官方 Sample DotNet Core](https://github.com/microsoft/WPF-Samples)
+
 - [巡覽概觀](https://docs.microsoft.com/zh-tw/dotnet/framework/wpf/app-development/navigation-overview)
 
 - [C# WPF UI Tutorials](https://www.youtube.com/watch?v=Vjldip84CXQ&list=PLrW43fNmjaQVYF4zgsD0oL9Iv6u23PI6M)
