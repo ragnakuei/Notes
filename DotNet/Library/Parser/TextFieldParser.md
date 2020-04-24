@@ -4,13 +4,13 @@
 using Microsoft.VisualBasic.FileIO;
 ```
 
+建構子支援 `檔案` 或 `Steram`
+
 支援
 - .net framework 4.8
 - .net core 3.1
 
 > 注意： 不支援 .net standard
-
-建構子支援 `檔案` 或 `Steram`
 
 ## Sample
 
