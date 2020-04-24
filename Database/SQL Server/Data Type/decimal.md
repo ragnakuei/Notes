@@ -5,19 +5,19 @@
 ```sql
 DECLARE @a decimal(20, 8)=1000.00000001
     ,@b decimal(20, 8)=0.123456789
-    ,@c decimal(20, 8)=0.00000001
+    ,@c decimal(20, 8)=0.00000001;
 
 SELECT SQL_VARIANT_PROPERTY(@a, 'BaseType')  AS BaseType
      , SQL_VARIANT_PROPERTY(@a, 'Precision') AS Precision
-     , SQL_VARIANT_PROPERTY(@a, 'Scale')     AS Scale
+     , SQL_VARIANT_PROPERTY(@a, 'Scale')     AS Scale;
 
 SELECT SQL_VARIANT_PROPERTY(@a * @b, 'BaseType')  AS BaseType
      , SQL_VARIANT_PROPERTY(@a * @b, 'Precision') AS Precision
-     , SQL_VARIANT_PROPERTY(@a * @b, 'Scale')     AS Scale
+     , SQL_VARIANT_PROPERTY(@a * @b, 'Scale')     AS Scale;
 
 SELECT SQL_VARIANT_PROPERTY(@a * @b * @c, 'BaseType')  AS BaseType
      , SQL_VARIANT_PROPERTY(@a * @b * @c, 'Precision') AS Precision
-     , SQL_VARIANT_PROPERTY(@a * @b * @c, 'Scale')     AS Scale
+     , SQL_VARIANT_PROPERTY(@a * @b * @c, 'Scale')     AS Scale;
 ```
 
 上述語法執行後會得到下面的結果
