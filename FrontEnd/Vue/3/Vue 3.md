@@ -8,7 +8,6 @@
     - [最小化編譯成 Production 環境](#%e6%9c%80%e5%b0%8f%e5%8c%96%e7%b7%a8%e8%ad%af%e6%88%90-production-%e7%92%b0%e5%a2%83)
     - [Lint 檢查](#lint-%e6%aa%a2%e6%9f%a5)
   - [資料夾結構](#%e8%b3%87%e6%96%99%e5%a4%be%e7%b5%90%e6%a7%8b)
-  - [Lifecycle](#lifecycle)
 
 ---
 
@@ -111,5 +110,3 @@
     }
     </style>
     ```
-
-## [Lifecycle](https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram)
