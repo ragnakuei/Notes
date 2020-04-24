@@ -2,6 +2,8 @@
 
 [無瑕的程式碼 JavaScript](https://hackmd.io/@trylovetom/SJnKIrajH)
 
+[深入了解物件模型](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Details_of_the_Object_Model)
+
 ---
 
 ## 頁面讀取完畢後執行
