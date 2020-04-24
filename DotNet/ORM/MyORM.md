@@ -1,1 +1,0 @@
-https://marketplace.visualstudio.com/items?itemName=GelisWu.MyORMWizardExtensions
