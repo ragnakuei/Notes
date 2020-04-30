@@ -8,7 +8,7 @@
 
 > DI >> Constructor >> 執行 Action Filter
 
-如果需要在 Constructor 取出 Di Property 的資料，於流程上是做不到的 !
+如果需要在 Action Filter Constructor 取出 Di Property 的資料，於流程上是做不到的 !
 
 ---
 
