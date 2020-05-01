@@ -8,7 +8,7 @@
 
     [Microsoft RDLC Report Designer](https://marketplace.visualstudio.com/items?itemName=ProBITools.MicrosoftRdlcReportDesignerforVisualStudio-18001)
 
-    ![Text](_images/01.png)
+    ![Text](../_images/01.png)
 
 - 專案套件
 
@@ -71,41 +71,41 @@
   
     專案 > 新增項目 > 報表 > ReportPerson.rdlc
 
-    ![image](_images/02.png)
+    ![image](../_images/02.png)
 
 1. 新增 DataSet
 
-    ![image](_images/03.jpg)
+    ![image](../_images/03.jpg)
 
     新增 DataSource
 
     > 注意：如果在 Asp.Net MVC Empty Project 專案中新增 DataSet > DataSource 時，會沒有下面的畫面 !
 
-    ![image](_images/04.png)
+    ![image](../_images/04.png)
 
-    ![image](_images/05.png)xx
+    ![image](../_images/05.png)xx
 
-    ![image](_images/06.png)
+    ![image](../_images/06.png)
 
     重覆上述動作，分別建立 DsReportPersonVisible、DsReportPersonColumn、DsReportPerson 這三個 DataSet
 
-    ![image](_images/07.png)
+    ![image](../_images/07.png)
 
 1. 新增表格
 
     在 Report Designer 的報表顯示區域內，按下滑鼠右鍵，Insert > Table
 
-    ![image](_images/08.png)
+    ![image](../_images/08.png)
 
 1. 指定 Table 資料來源的 DataSet
 
     點擊 Table 中任一 Cell 後，在 Table 左上 Cell 按下滑鼠右鍵，選擇 Tablix Properties
 
-    ![image](_images/09.png)
+    ![image](../_images/09.png)
 
     於 General > DataSet name 選擇指定的 DataSet 做為表格的資料來源
 
-    ![image](_images/10.png)
+    ![image](../_images/10.png)
 
 1. 指定 Table 各欄位對應至 DataSet 欄位
 
@@ -115,13 +115,13 @@
 
     透過在 Table 第二列的每個 Cell 右上角的 Icon 來指定顯示指定欄位的資料
 
-    ![image](_images/11.png)
+    ![image](../_images/11.png)
 
 1. 指定 Table 欄位標題
 
     在 Table 第一列的 Cell 內，按下滑鼠右鍵，選擇 Expression
 
-    ![image](_images/12.png)
+    ![image](../_images/12.png)
 
     於 Category 選擇 DataSet
 
@@ -129,23 +129,23 @@
 
     Values 選擇該欄位的值後，記得雙擊滑鼠左鍵，會自動套用 VB 的語法至 expresion 語法中
 
-    ![image](_images/13.png)
+    ![image](../_images/13.png)
 
     將所有欄位標題設定完畢
 
-    ![image](_images/14.png)
+    ![image](../_images/14.png)
 
 1. 設定欄位動態隱藏
 
     在表格外框的欄位 Cell 上按下滑鼠右鍵，選擇 Column Visibility
 
-    ![image](_images/15.png)
+    ![image](../_images/15.png)
 
     選擇 Show or hide based an expression
 
     點擊 fx 的 icon
 
-    ![image](_images/16.png)
+    ![image](../_images/16.png)
 
     於 Category 選擇 DataSet
 
@@ -167,7 +167,7 @@
     =(First(Fields!Id.Value, "DsReportPersonVisible") = true)
     ```
 
-    ![image](_images/17.png)
+    ![image](../_images/17.png)
 
     必填顯示紅字
 
