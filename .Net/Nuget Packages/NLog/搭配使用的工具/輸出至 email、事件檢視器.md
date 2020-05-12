@@ -1,1 +1,0 @@
-# [輸出至 email、事件檢視器](https://www.huanlintalk.com/2013/08/nlog-configuration-example.html)
