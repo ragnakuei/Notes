@@ -1,6 +1,4 @@
-# SPA
-
-## 獨立執行 Angular
+# 獨立執行 Angular
 
 > 注意：需要手動設定 CORS
 
@@ -15,7 +13,7 @@ app.UseSpa(spa =>
     if (env.IsDevelopment())
     {
         // spa.UseAngularCliServer(npmScript: "start");
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");     // 1
     }
 });
 ```
