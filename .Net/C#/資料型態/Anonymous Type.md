@@ -1,4 +1,8 @@
+# Anonymous Type
 
+匿名型別
+
+可透過反射產生另一個實體
 
 ```csharp
 void Main()

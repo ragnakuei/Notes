@@ -1,4 +1,4 @@
-# [Deconstruction](https://blogs.msdn.microsoft.com/msdntaiwan/2017/04/10/c7-new-features/#desconstruction-)
+# [Deconstruction](https://docs.microsoft.com/zh-tw/archive/blogs/msdntaiwan/c7-new-features#desconstruction-)
 
 定義物件如何 "拆解" 為多個獨立的變數。
 

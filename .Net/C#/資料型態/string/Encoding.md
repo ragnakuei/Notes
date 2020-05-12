@@ -5,7 +5,7 @@
 | Encoding.GetBytes(strigng) | 將字串轉成 byte[] |
 
 
-## 轉換
+## 與 MemorySteam 互相轉換
 
 ```csharp
 void Main()
@@ -37,4 +37,3 @@ public static string ToString(Stream stream)
 	return result;
 }
 ```
-

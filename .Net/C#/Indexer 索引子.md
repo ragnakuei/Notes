@@ -1,8 +1,8 @@
-# 索引子
+# Indexer 索引子
 
-- [索引子](#%e7%b4%a2%e5%bc%95%e5%ad%90)
-  - [仿 Array\<T>](#%e4%bb%bf-arrayt)
-  - [自訂義集合型別](#%e8%87%aa%e8%a8%82%e7%be%a9%e9%9b%86%e5%90%88%e5%9e%8b%e5%88%a5)
+- [Indexer 索引子](#indexer-%e7%b4%a2%e5%bc%95%e5%ad%90)
+	- [仿 Array\<T>](#%e4%bb%bf-arrayt)
+	- [自訂義集合型別](#%e8%87%aa%e8%a8%82%e7%be%a9%e9%9b%86%e5%90%88%e5%9e%8b%e5%88%a5)
 
 ---
 
