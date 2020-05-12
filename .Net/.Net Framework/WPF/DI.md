@@ -1,6 +1,8 @@
 # DI
 
----
+> 讓 View 在指定 ViewModel 時，仍使用無參數建構子的方式 !
+
+> ViewModel 內仍以 DiFactory.GetService<T>() 的方式來建立 intance
 
 ## 範例
 

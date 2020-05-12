@@ -1,10 +1,12 @@
-# [ScriptManager](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.scriptmanager)
+# ScriptManager
 
----
+[https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.scriptmanager](https://docs.microsoft.com/zh-tw/dotnet/api/system.web.ui.scriptmanager)
+
+[ASP.NET 4.5 ScriptManager Improvements in WebForms](https://devblogs.microsoft.com/aspnet/asp-net-4-5-scriptmanager-improvements-in-webforms/)
 
 ## RegisterClientScriptBlock()
 
-在 \<form>\</form> 裡面第一行加上 指定的 js script
+在 <form></form> 裡面第一行加上 指定的 js script
 
 ```csharp
 ScriptManager.RegisterClientScriptBlock(this

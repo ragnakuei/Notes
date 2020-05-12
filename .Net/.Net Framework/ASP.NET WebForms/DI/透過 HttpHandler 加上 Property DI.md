@@ -1,6 +1,6 @@
 # 透過 HttpHandler 加上 Property DI
 
-如果要跟 RouteHandler 混用，要想清楚 Route 處理 非 .aspx 的部份，否則就不要套 Route 了 !!
+跟 RouteHandler 混用時，不好理 非 .aspx 的部份，目前還沒找到好處理的方式 !!
 
 ## 範例
 
@@ -8,8 +8,7 @@
 
 /api/Order/List.ashx
 
-因為在 PageHandlerFactory 中，要透過  PageHandlerFactory.GetHandler() 中取出 IHttpHandler 的方式已限定為 Page  (以 F12 往內追二次就可以看到了)
-所以將 ashx 原本要實作 IHttpHandler 改為繼承 Page  
+因為在 PageHandlerFactory 中，要透過 PageHandlerFactory.GetHandler() 中取出 IHttpHandler 的方式已限定為 Page (以 F12 往內追二次就可以看到了) 所以將 ashx 原本要實作 IHttpHandler 改為繼承 Page
 然後再 override ProcessRequest(HttpContext context) 及 new bool IsReusable 就可以了 !!
 
 ```csharp
@@ -65,7 +64,7 @@ namespace WebForm.API.Order
 
 ### Global.asax.cs
 
-於網站啟動時，就建立 DiFactory 並放至 Application["DiContainer"] 中
+於網站啟動時，就建立 DiFactory 並放至 Application[“DiContainer”] 中
 
 ```csharp
 public class Global : HttpApplication
@@ -83,7 +82,7 @@ public class Global : HttpApplication
 
 ### PageHandlerFactory 實作
 
-透過 Application["DiContainer"] 取出 DiFactory
+透過 Application[“DiContainer”] 取出 DiFactory
 
 ```csharp
 public class DiPageHandlerFactory : PageHandlerFactory
@@ -103,13 +102,11 @@ public class DiPageHandlerFactory : PageHandlerFactory
         return page;
     }
 }
-
 ```
-
 
 ### 設定 Web.config 指向 HttpHandler
 
-```xml
+```csharp
 <system.webServer>
   <handlers>
     <add name="DiPageHandlerFactory" path="*.aspx" verb="*" type="WebForm.HttpHandlers.DiPageHandlerFactory" />
@@ -180,5 +177,4 @@ public class DiFactory : IDiFactory
         return props;
     }  
 }
-
 ```
