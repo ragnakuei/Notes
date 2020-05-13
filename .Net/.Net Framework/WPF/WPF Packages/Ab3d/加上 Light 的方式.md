@@ -1,11 +1,11 @@
 # 加上 Light 的方式
 
-1. 停用 Camera 的 Lighting
+1. 停用 Camera 的 Lighting
 
-把 Camera.ShowCameraLight 設定成 `Never`
+    把 Camera.ShowCameraLight 設定成 `Never`
 
-```xml
-<cameras:TargetPositionCamera
+    ```xml
+    <cameras:TargetPositionCamera
         x:Name="SideViewCamera"
         Heading="0"
         Attitude="90"
@@ -14,11 +14,11 @@
         ShowCameraLight="Never"
         TargetPosition="0 0 0"
         TargetViewport3D="{Binding ElementName=SideView, Path=Viewport3D}" />
-```
+    ```
 
-1. 加上 LightingRigVisual3D
+1. 加上 LightingRigVisual3D
 
-在 Viewport3D 內加上 `LightingRigVisual3D`
+在 Viewport3D 內加上 `LightingRigVisual3D`
 
 ```xml
 <Viewport3D Name="MainViewport">
@@ -32,4 +32,4 @@
 </Viewport3D>
 ```
 
-就可以了 !
+就可以了 !

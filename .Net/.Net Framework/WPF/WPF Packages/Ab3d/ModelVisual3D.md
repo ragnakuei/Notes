@@ -1,8 +1,8 @@
 # ModelVisual3D
 
-可視為 Visual3D 的 Group
+可視為 Visual3D 的 Group
 
-可以塞 BoxVisual3D、LineVisual3D ．．． 等
+可以塞 BoxVisual3D、LineVisual3D ．．． 等
 
 ```csharp
 eventSource3D.MouseEnter += MouseEnterTopViewItem;
