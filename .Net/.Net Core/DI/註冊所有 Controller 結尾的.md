@@ -1,6 +1,4 @@
-# DI
-
-## 註冊所有 Controller 結尾的
+# 註冊所有 Controller 結尾的
 
 ```csharp
 public static void AddControllersAsServices(this IServiceCollection services)
