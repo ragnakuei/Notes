@@ -4,6 +4,7 @@
 
 ```xml
  <dxmvvm:Interaction.Behaviors>
-    <dxmvvm:KeyToCommand Command="{Binding EditCommand}" KeyGesture="Ctrl+Enter" CommandParameter="{Binding ElementName=list, Path=SelectedItem}"/>
+    <dxmvvm:KeyToCommand KeyGesture="Ctrl+Enter" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=list, Path=SelectedItem}"/>
+    <dxmvvm:KeyToCommand KeyGesture="F7" Command="{Binding OnClickOpenOutputWindowCommand}"  />
 </dxmvvm:Interaction.Behaviors>
 ```

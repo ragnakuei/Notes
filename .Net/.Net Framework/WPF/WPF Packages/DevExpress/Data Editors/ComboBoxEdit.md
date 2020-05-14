@@ -1,10 +1,22 @@
 # [ComboBoxEdit](https://documentation.devexpress.com/WPF/6166/Controls-and-Libraries/Data-Editors/Editor-Types/ComboBoxEdit)
 
 - [ComboBoxEdit](#comboboxedit)
+  - [Properties](#properties)
   - [基本範例](#%e5%9f%ba%e6%9c%ac%e7%af%84%e4%be%8b)
   - [套用 EnumItemsSourceBehavior.md 結合的 Sample](#%e5%a5%97%e7%94%a8-enumitemssourcebehaviormd-%e7%b5%90%e5%90%88%e7%9a%84-sample)
+  - [Operation Mode](#operation-mode)
+  - [highlight sample](#highlight-sample)
 
 ---
+
+## Properties
+
+| Property             | 說明                                  |
+| -------------------- | ------------------------------------- |
+| ImmediatePopup       | 輸入值 / EditValueChange 是否要 Popup |
+| IncrementalFiltering | 是否要動態篩選                        |
+| FilterCondition      | 動態篩選比對模式                      |
+|                      |                                       |
 
 ## 基本範例
 
@@ -243,3 +255,18 @@ namespace EnumItemsSourceBehaviorExample.ViewModel {
     }
 
 ```
+
+## [Operation Mode](https://docs.devexpress.com/WPF/116528/controls-and-libraries/data-editors/common-features/editor-operation-modes/comboboxedit)
+
+
+```xml
+<dxe:ComboBoxEdit ItemsSource="{Binding LookUpEditItemSource}">
+    <dxe:ComboBoxEdit.StyleSettings>
+        <!-- 指定 StyleSetting -->
+        <dxe:ComboBoxStyleSettings />
+    </dxe:ComboBoxEdit.StyleSettings>
+</dxe:ComboBoxEdit>
+```
+
+
+## [highlight sample](https://supportcenter.devexpress.com/Ticket/Details/T351288/comboboxedit-with-editable-text-highlight-matches-in-combobox-items)
