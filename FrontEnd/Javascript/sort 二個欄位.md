@@ -4,7 +4,7 @@
 
 ## property 確定都會有值的情況
 
-```js
+```jsx
 let students = [{
  firstName: 'John',
  lastName: 'Appletree',
@@ -27,7 +27,6 @@ let students = [{
  isFixed : false
 }];
 
-
 students.sort((a,b) => {
 
     // step 1 : isFixed
@@ -41,13 +40,11 @@ students.sort((a,b) => {
 })
 ```
 
----
-
 ## property 不確定都會有值的情況
 
 把 undefined 或 null 的值，放到最後面
 
-```js
+```jsx
 let students = [
   {
     firstName: "John",
