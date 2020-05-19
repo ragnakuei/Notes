@@ -15,6 +15,8 @@
 
 在需要的時候，透過 `this.$refs["refs 名稱"]` 就可以一次取出所有 child component 狀態
 
+> 可能的替代方案： `eventBus` `store`
+
 ---
 
 ## 範例
