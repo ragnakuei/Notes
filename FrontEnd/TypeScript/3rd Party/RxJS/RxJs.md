@@ -1,7 +1,4 @@
 # RxJS
 
-- debounceTime
+移至 [這裡](../../../JavaScript%20Library/RxJS/) 整理筆記
 
-  參考資料
-
-  - https://www.concretepage.com/angular/angular-debouncetime

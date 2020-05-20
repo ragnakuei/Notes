@@ -13,7 +13,10 @@
 | dataFilter | 處理從後端驗証完的 response 資料 |
 
 
-預設讀取 remote api 的 response 值 true / false
+預設讀取 remote api 的 response 值
+
+- true 代表驗証成功
+- 除了 true 以外，以錯誤訊息內容的方式回傳
 
 如果回傳資料是某種 json 資料格式時，可透過 dataFilter 處理
 
@@ -71,6 +74,6 @@ $('#postForm').validate({
 
 ```jsx
 $(“#schoolId”).change(function(){
-		$(“#gradeId”).removeData(“previousValue”);
+		$(“#gradeId”).removeData("previousValue");
 });
 ```
