@@ -93,3 +93,11 @@
 | git remote                                                                   | 說明                         |
 | ---------------------------------------------------------------------------- | ---------------------------- |
 | git remote add origin https://github.com/ragnakuei/AngularMaterailDemo01.git | 設定遠端的 github repository |
+
+
+| git bundle                              | 說明        |
+| --------------------------------------- | ----------- |
+| git bundle create \<fileName> \<branch> | create 範本 |
+| git bundle create gitbungldTest master  |             |
+|                                         |             |
+|                                         |             |
