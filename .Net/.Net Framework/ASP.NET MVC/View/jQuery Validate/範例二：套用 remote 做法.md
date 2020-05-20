@@ -104,7 +104,7 @@ public class TestController : Controller
 
 @section scripts
 {
-    @* 如果有設定 Bundle 可以用以下的語法 *@
+    @* 如果有設定 Bundle 可以用以下的語法來引用 jQuery Validate *@
     @Scripts.Render("~/bundles/jqueryval")
     
     <script>
