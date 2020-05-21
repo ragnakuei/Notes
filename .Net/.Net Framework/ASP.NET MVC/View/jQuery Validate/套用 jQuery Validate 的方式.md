@@ -1,5 +1,9 @@
 # 套用 jQuery Validate 的方式
 
+View 所產生的 html attributes 的 `data-val` 開頭的項目是透過 `jquery.validate.unobtrusive` 去運作的
+
+而 `jquery.validate.unobtrusive` 套件是由 `Microsoft.jQuery.Unobtrusive.Validation` 套件提供的
+
 ```html
 @section scripts
 {
