@@ -1,5 +1,0 @@
-﻿rule,資料型態,說明
-required,bool,
-minilength,int,
-equalTo,字串，放 css selector,
-email,bool,
