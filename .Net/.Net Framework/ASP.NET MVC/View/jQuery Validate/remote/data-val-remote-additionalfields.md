@@ -71,3 +71,6 @@ public class RoleValidateModel
                     })
 ```
 
+這個做法的好處
+
+- 可以套用 nameof() 的方式來給定 Property Name，這點比以字串的方式給定 Remote.AdditionalFields() 還要更好 !
