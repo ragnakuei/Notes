@@ -10,6 +10,8 @@ https://docs.microsoft.com/en-us/previous-versions/msp-n-p/hh848246(v=pandp.10)
 
 https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern
 
+https://docs.microsoft.com/en-us/archive/msdn-magazine/2014/april/mvvm-multithreading-and-dispatching-in-mvvm-applications
+
 ## 生命週期
 
 ### 觀念 1
