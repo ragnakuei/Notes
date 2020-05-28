@@ -10,7 +10,10 @@
 new SqlParameter("@filter", myFilter)
 
 // 明確指定型別，最佳寫法
-new SqlParameter(parameterName: "@id",dbType: SqlDbType.Int){ Value = 1 }
+new SqlParameter(parameterName: "@id", dbType: SqlDbType.Int) { Value = 1 }
+
+// 這個寫法也可以   
+new SqlParameter(parameterName: "@id", value:  1) { SqlDbType = SqlDbType.Int }
 ```
 
 [參考資料](https://stackoverflow.com/questions/40781928/sqlparameter-is-already-contained-by-another-sqlparametercollection-ef-sqlquer)

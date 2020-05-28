@@ -19,6 +19,7 @@ async Task Main()
     result[0].Dump();
     result[1].Dump();
     
+    // 要用這個方式也是可以
     //(await a).Dump();
     //(await b).Dump();
 }
