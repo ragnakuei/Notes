@@ -37,6 +37,7 @@
                 <li>
                     <a href="/groups">Group</a>
                 </li>
+                <!-- 下拉選單 -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                     <ul class="dropdown-menu">
