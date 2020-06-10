@@ -13,7 +13,7 @@
 ## Spade
 
 1. 列出目前檔案內的成員
-2. 列出成員的複雜度 (後方數字)
+2. 列出成員的複雜度 (後方數字) 關鍵字：`McCabe complexity`
 
 ## Reorganizing
 
