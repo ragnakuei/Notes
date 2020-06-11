@@ -1,6 +1,8 @@
-## 
+# Type Handler
 
 自訂轉換型別的處理
+
+目前不知道怎麼跟 DynamicParameter 合併使用 !
 
 
 參考資料：
@@ -130,3 +132,76 @@ public class Customer
 }
 ```
 
+## 範例三：完整的給值及取值
+
+跟範例二相比，只差在回傳型別
+
+```csharp
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using Dapper;
+using Newtonsoft.Json;
+
+namespace DapperSqlMapperTypeHandler
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dapper.SqlMapper.ResetTypeHandlers();
+            Dapper.SqlMapper.AddTypeHandler(typeof(Customer), new JsonTypeHandler<Customer>());
+
+            string Connection = "Data Source=.\\mssql2017;Initial Catalog=Northwind;Integrated Security=True";
+
+            var dto = new Dto
+                      {
+                          Customer = new Customer
+                                     {
+                                         Id   = 1,
+                                         Name = "A"
+                                     }
+                      };
+
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                var sql = @"select @customer as Customer";
+
+                var result = conn.Query<Dto>(sql, dto).FirstOrDefault();
+                Console.WriteLine(result.Customer.Id);
+                Console.WriteLine(result.Customer.Name);
+            }
+        }
+    }
+
+    public class JsonTypeHandler<T> : SqlMapper.TypeHandler<T>
+    {
+        // Read From Db
+        public override T Parse(object value)
+        {
+            return JsonConvert.DeserializeObject<T>(value.ToString());
+        }
+
+        // Write To Db
+        public override void SetValue(IDbDataParameter parameter, T value)
+        {
+            parameter.Value = (value == null)
+                                  ? (object)DBNull.Value
+                                  : JsonConvert.SerializeObject(value);
+            parameter.DbType = DbType.String;
+        }
+    }
+
+    public class Dto
+    {
+        public Customer Customer { get; set; }
+    }
+
+    public class Customer
+    {
+        public int    Id   { get; set; }
+        public string Name { get; set; }
+    }
+}
+```
