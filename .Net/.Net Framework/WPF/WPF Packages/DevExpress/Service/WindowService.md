@@ -13,6 +13,7 @@
 - 如果直接在宣告 WindowService 時，就給定指定的 View，那就無法選擇要開啟第二個 userControl
 - 透過 WindowService 開啟的 View 中，同時只開啟一個，無法同時開啟第二個
 - 當 View 以 Window 方式呈現時，該 View/ViewModel 可以透過 ICurrentWindowService 來做 Close() 的動作
+- WindowService.Show() 所開啟的 View ，如果有指定 DataContext，就必需給定第二個引數，該引數 就是 DataContext !
 
 ---
 
