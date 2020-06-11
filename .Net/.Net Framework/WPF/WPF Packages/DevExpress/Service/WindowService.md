@@ -1,8 +1,9 @@
 # WindowService
 
 - [WindowService](#windowservice)
-  - [範例：指定開啟一個 View](#%e7%af%84%e4%be%8b%e6%8c%87%e5%ae%9a%e9%96%8b%e5%95%9f%e4%b8%80%e5%80%8b-view)
-  - [範例：選擇開啟一個 View](#%e7%af%84%e4%be%8b%e9%81%b8%e6%93%87%e9%96%8b%e5%95%9f%e4%b8%80%e5%80%8b-view)
+  - [範例：指定開啟一個 View](#範例指定開啟一個-view)
+  - [範例：選擇開啟一個 View](#範例選擇開啟一個-view)
+  - [範例：程式內給定 Window Style](#範例程式內給定-window-style)
 
 ---
 
@@ -146,3 +147,30 @@ public class MainViewModel : ViewModelBase
     }
 }
 ```
+
+## 範例：程式內給定 Window Style
+
+```csharp
+AboutViewModel viewModel = new AboutViewModel();
+
+if (WindowService is WindowService windowService)
+{
+    windowService.WindowShowMode = WindowShowMode.Dialog;
+    Style windowStyle = new Style
+                        {
+                            TargetType = typeof(ThemedWindow),
+                            Setters =
+                            {
+                                new Setter(ThemedWindow.WidthProperty,      (double)600),
+                                new Setter(ThemedWindow.HeightProperty,     (double)300),
+                                new Setter(ThemedWindow.TitleProperty,      "About"),
+                                new Setter(ThemedWindow.ResizeModeProperty, ResizeMode.NoResize),
+                            }
+                        };
+
+    windowService.WindowStyle = windowStyle;
+}
+
+WindowService.Show(nameof(AboutView), viewModel);
+```
+
