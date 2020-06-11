@@ -8,6 +8,8 @@
 
 - [透過自訂 Attribute 標示屬性讓 Dapper 進行 json 轉換](https://blog.yowko.com/dapper-customattribute-typehandler/)
 
+- [Dapper小技巧：以資料表保存集合物件JSON](https://blog.darkthread.net/blog/dapper-typehandler/)
+
 
 ## 範例一：取值時轉換
 
@@ -27,7 +29,6 @@ namespace DapperSqlMapperTypeHandler
     {
         static void Main(string[] args)
         {
-            // SqlMapper.AddTypeHandler(typeof(string), new StringTypeHandler());    
             SqlMapper.AddTypeHandler(typeof(Customer), new JsonTypeHandler<Customer>());    
         
             string Connection = "Data Source=.\\mssql2017;Initial Catalog=Northwind;Integrated Security=True";
