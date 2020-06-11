@@ -1,0 +1,1 @@
+# [Input Validation](https://docs.devexpress.com/WPF/7076/controls-and-libraries/data-editors/common-features/input-validation)
