@@ -1,0 +1,1 @@
+# [TypeScript 支持](https://cn.vuejs.org/v2/guide/typescript.html)
