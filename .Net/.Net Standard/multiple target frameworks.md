@@ -44,5 +44,10 @@ public class Class1
         <Reference Include="System.Net.Http" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+        <Reference Include="System.Net.Http" />
+        <PackageReference Include="" Version="1.0.0" />
+    </ItemGroup>
+
 </Project>
 ```
