@@ -2,15 +2,16 @@
 
 - [v-for](#v-for)
   - [Object](#object)
-    - [取值](#%e5%8f%96%e5%80%bc)
-    - [取值及 property name](#%e5%8f%96%e5%80%bc%e5%8f%8a-property-name)
-    - [取值、property name 及 index](#%e5%8f%96%e5%80%bcproperty-name-%e5%8f%8a-index)
+    - [取值](#取值)
+    - [取值及 property name](#取值及-property-name)
+    - [取值、property name 及 index](#取值property-name-及-index)
   - [Array](#array)
-    - [取值](#%e5%8f%96%e5%80%bc-1)
-    - [取值及 index](#%e5%8f%96%e5%80%bc%e5%8f%8a-index)
-    - [套用至 v-bind](#%e5%a5%97%e7%94%a8%e8%87%b3-v-bind)
+    - [取值](#取值-1)
+    - [取值及 index](#取值及-index)
+    - [inline 給定值](#inline-給定值)
+    - [套用至 v-bind](#套用至-v-bind)
   - [attribute](#attribute)
-    - [自訂 attribute](#%e8%87%aa%e8%a8%82-attribute)
+    - [自訂 attribute](#自訂-attribute)
 
 ---
 
@@ -97,6 +98,35 @@
   <td>{{user.age}}</td>
 </tr>
 ```
+
+### inline 給定值
+
+在選取的當下，讓 selectedName = name
+
+```js
+Vue.component("product", {
+    template: `
+        <div>
+          <ul>
+            <li v-for="(name, index in names" :key=index 
+                @click="selectedName = name"
+            >{{ name }}</li>
+          </ul>
+        </div>
+    `,
+    data() {
+        return {
+              names : [
+                'A',
+                'B',
+                'C',
+              ],
+              selectedName : null,
+        };
+    }
+});
+```
+
 
 ### 套用至 v-bind 
 
