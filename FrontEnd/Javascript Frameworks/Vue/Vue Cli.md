@@ -2,7 +2,7 @@
 
 安裝套件
 
-> npm install @vue/cli-service
+> npm install -g @vue/cli
 
 建立專案
 

@@ -6,7 +6,7 @@
 
 - parent
 
-  - onButtonClick 是子類提供的 custom event
+  - onButtonClick 是子組件提供的 custom event
 
     ```html
     <template>
