@@ -1,8 +1,12 @@
 # binding
 
 - [binding](#binding)
-  - [範例 - Property Binding](#%e7%af%84%e4%be%8b---property-binding)
-  - [範例 - Event Binding](#%e7%af%84%e4%be%8b---event-binding)
+  - [範例 - Property Binding](#範例---property-binding)
+  - [範例 - Event Binding](#範例---event-binding)
+
+---
+
+`{{  }}` 裡面是放 expression 
 
 ---
 
