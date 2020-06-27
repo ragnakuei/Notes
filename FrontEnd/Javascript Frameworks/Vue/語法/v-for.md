@@ -29,9 +29,13 @@
 
 ### 取值及 property name
 
+為了防止 ESlint 的檢查 `Elements in iteration expect to have ‘v-bind:key’ directives`
+
+最好加上 `:key` 的部份
+
 ```html
 <ul>
-  <li v-for="(value, name) in getUser">
+  <li v-for="(value, name) in getUser" :key="index" >
     {{index}} - {{name}}
   </li>
 </ul>

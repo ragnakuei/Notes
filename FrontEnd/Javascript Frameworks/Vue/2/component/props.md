@@ -52,6 +52,8 @@ Vue.component('product', {
 
 -   data - 要給 template binding 的 property
 
+    child component
+
     ```html
     <template>
         <button @click="count++">You clicked me {{ count }} times.</button>
@@ -80,6 +82,8 @@ Vue.component('product', {
 
     > v-bind:Property="值"
 
+    parent component
+
     ```html
     <template>
         <div>
@@ -103,3 +107,11 @@ Vue.component('product', {
         };
     </script>
     ```
+
+## 同步 propety
+
+加上 modifier `sync`
+
+```html
+<clickCountButton.sync :initialCounter="20" />
+```
