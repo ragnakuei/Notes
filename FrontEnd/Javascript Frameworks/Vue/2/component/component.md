@@ -40,8 +40,6 @@ component
 
 - 絕對路徑
 
-    Rider 目前無法辨識
-
     ```ts
     import Order from "@/views/Order";
     ```

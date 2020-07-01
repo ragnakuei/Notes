@@ -1,7 +1,7 @@
 # refs
 
 - [refs](#refs)
-  - [範例](#%e7%af%84%e4%be%8b)
+  - [範例](#範例)
 
 ---
 
@@ -16,6 +16,8 @@
 在需要的時候，透過 `this.$refs["refs 名稱"]` 就可以一次取出所有 child component 狀態
 
 > 可能的替代方案： `eventBus` `store`
+
+取出資料的時機： 在 mounted 之後
 
 ---
 
