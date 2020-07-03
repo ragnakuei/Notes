@@ -4,6 +4,8 @@
 
 註冊 Vuex 至 store 中
 
+建立 store
+
 ```ts
 import Vue from 'vue'
 import Vuex from 'vuex'
