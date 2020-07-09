@@ -1,5 +1,7 @@
 # 自制 pub sub 功能
 
+用 static class 控管，要注意物件是否會確實執行 destructor
+
 ```csharp
 public static class EventHandlerService
 {
