@@ -77,6 +77,8 @@ new Vue({
 
 從上面的範例新增了 storeData 跟 increment2
 
+簡單說就是，也可以透過 payload 來設定 值 !
+
 ```ts
 import Vue from 'vue'
 import Vuex from 'vuex'
