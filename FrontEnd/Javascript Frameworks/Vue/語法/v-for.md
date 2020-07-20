@@ -35,7 +35,7 @@
 
 ```html
 <ul>
-  <li v-for="(value, name) in getUser" :key="index" >
+  <li v-for="(value, name, index) in getUser" :key="index" >
     {{index}} - {{name}}
   </li>
 </ul>

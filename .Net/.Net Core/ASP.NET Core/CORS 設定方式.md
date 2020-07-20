@@ -3,25 +3,24 @@
 Startup.cs
 
 ```csharp
-private readonly string _frontEndSite = "http://localhost:4200";
+private readonly string _frontEndSiteName = "Vue";
 
 public void ConfigureServices(IServiceCollection services)
 {
-
     services.AddCors(options =>
-    {
-        options.AddPolicy(_frontEndSite,
-        builder =>
-        {
-            builder.WithOrigins("http://example.com",
-                                "http://www.contoso.com");
-        });
-    });
+                        {
+                            options.AddPolicy(_frontEndSiteName,
+                                            builder =>
+                                            {
+                                                builder.WithOrigins("http://localhost:8080");
+                                            });
+                        });
+    services.ConfigDiContainer(Configuration);
 }
 
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
-    app.UseCors(_frontEndSite);
+    app.UseCors(_frontEndSiteName);
 }
 ```
 
