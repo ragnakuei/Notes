@@ -1,6 +1,11 @@
 # vuex-persistedstate
 
-vuex 裡面的資料不隨著 refresh page 而消失
+可以讓 vuex 裡面的資料不隨著 refresh page 而消失
+
+以下是全域設定保留資料的地方，要確實保留資料，還需要看 module 的設定
+
+- [typscript 範例](../../../TypeScript/Vuex/vuex-persistedstate/有%20modules%20範例.md)
+
 
 ## 改用 local storage
 
