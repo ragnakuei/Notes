@@ -1,8 +1,9 @@
 # [Dock Layout Manager](https://documentation.devexpress.com/wpf/6820/Controls-and-Libraries/Layout-Management/Dock-Windows/Getting-Started/Dock-Layout-Manager)
 
 二種 Layout 元件
- - LayoutGroup
- - TabbedGroup
+
+-   LayoutGroup
+-   TabbedGroup
 
 Layout 元件內，可直接擺放 LayoutPanel
 
@@ -36,9 +37,9 @@ Tab List 會在下方
             <dxdo:LayoutPanel Caption="Panel2">
                 <Label>Panel2</Label>
             </dxdo:LayoutPanel>
-            
+
         </dxdo:TabbedGroup>
-        
+
         <dxdo:DocumentGroup>
             <dxdo:DocumentPanel  Caption="Document 1">
                 <RichTextBox/>
@@ -48,7 +49,10 @@ Tab List 會在下方
 </dxdo:DockLayoutManager>
 ```
 
+## 拖拉超出 DockLayoutManager 的方式
+
+設定 [FloatingMode](https://docs.devexpress.com/WPF/DevExpress.Xpf.Docking.FloatingMode) 為 Desktop
+
 ## 參考資料
 
-- [產生 DocumentPanel 的方式](dockingdocumentuiservice.md)
-
+-   [產生 DocumentPanel 的方式](dockingdocumentuiservice.md)

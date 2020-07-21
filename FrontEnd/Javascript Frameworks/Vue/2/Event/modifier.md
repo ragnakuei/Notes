@@ -2,9 +2,9 @@
 
 ## form prevent sample
 
-```js
-Vue.component("product", {
-  template: `
+```ts
+Vue.component('product', {
+    template: `
     <div>
       <form @submit.prevent="onSubmit">
         <p>
@@ -21,12 +21,12 @@ Vue.component("product", {
       </form>
     </div>
   `,
-  data() {
-    return {
-        userName: "",
-        password: "",
-    };
-  },
+    data() {
+        return {
+            userName: '',
+            password: '',
+        };
+    },
     methods: {
         onSubmit(e) {
             console.log(e);

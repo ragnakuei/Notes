@@ -2,10 +2,12 @@
 
 - [ComboBoxEdit](#comboboxedit)
   - [Properties](#properties)
-  - [基本範例](#%e5%9f%ba%e6%9c%ac%e7%af%84%e4%be%8b)
-  - [套用 EnumItemsSourceBehavior.md 結合的 Sample](#%e5%a5%97%e7%94%a8-enumitemssourcebehaviormd-%e7%b5%90%e5%90%88%e7%9a%84-sample)
+  - [基本範例](#基本範例)
+  - [Binding 做法](#binding-做法)
+  - [套用 EnumItemsSourceBehavior.md 結合的 Sample](#套用-enumitemssourcebehaviormd-結合的-sample)
   - [Operation Mode](#operation-mode)
   - [highlight sample](#highlight-sample)
+  - [搜尋功能](#搜尋功能)
 
 ---
 
@@ -124,12 +126,80 @@ namespace EnumItemsSourceBehaviorExample.ViewModel {
 }
 ```
 
----
+## Binding 做法
+
+```xml
+<dxe:ComboBoxEdit
+    DisplayMember="Name"
+    ItemsSource="{Binding Tests}"
+    SelectedItem="{Binding SelectedTest}"
+    ValueMember="Id">
+    <dxe:ComboBoxEdit.StyleSettings>
+        <dxe:ComboBoxStyleSettings />
+    </dxe:ComboBoxEdit.StyleSettings>
+</dxe:ComboBoxEdit>
+```
+
+```csharp
+public class TestViewModel : ViewModelBase
+{
+    public TestViewModel()
+    {
+        Tests = new ObservableCollection<Test>
+        {
+            new Test
+            {
+                Id = 1,
+                Name = TestEnum.A,
+            },
+            new Test
+            {
+                Id = 2,
+                Name = TestEnum.B,
+            },
+            new Test
+            {
+                Id = 3,
+                Name = TestEnum.C,
+            },
+        };
+    }
+
+    public ObservableCollection<Test> Tests { get; set; }
+
+    private Test _selectedTest;
+
+    public Test SelectedTest
+    {
+        get {
+            return selectedTest;
+        }
+
+        set {
+            SetProperty(ref selectedTest, value, nameof(SelectedTest));
+        }
+    }
+}
+
+public class Test
+{
+    public int Id { get; set; }
+    public TestEnum Name { get; set; }
+}
+
+public enum TestEnum
+{
+    None,
+    A,
+    B,
+    C,
+}
+```
 
 ## 套用 [EnumItemsSourceBehavior.md](./Behavior.md/EnumItemsSourceBehavior.md) 結合的 Sample
 
-- 可直接抓取 enum 的 attribute Image 及 Display
-- 如果要搭配 GridControl 的 Filter Binding，要改為 使用 ViewModelSource 的方式給定 ViewModel
+-   可直接抓取 enum 的 attribute Image 及 Display
+-   如果要搭配 GridControl 的 Filter Binding，要改為 使用 ViewModelSource 的方式給定 ViewModel
 
 ```xml
 <Window x:Class="WpfSample01.Samples.K.KView"
@@ -258,7 +328,6 @@ namespace EnumItemsSourceBehaviorExample.ViewModel {
 
 ## [Operation Mode](https://docs.devexpress.com/WPF/116528/controls-and-libraries/data-editors/common-features/editor-operation-modes/comboboxedit)
 
-
 ```xml
 <dxe:ComboBoxEdit ItemsSource="{Binding LookUpEditItemSource}">
     <dxe:ComboBoxEdit.StyleSettings>
@@ -268,5 +337,29 @@ namespace EnumItemsSourceBehaviorExample.ViewModel {
 </dxe:ComboBoxEdit>
 ```
 
-
 ## [highlight sample](https://supportcenter.devexpress.com/Ticket/Details/T351288/comboboxedit-with-editable-text-highlight-matches-in-combobox-items)
+
+## 搜尋功能
+
+要用搜尋功能時，無法使用 DisplayMember 及 ValueMember，但可以建立一備繼承 ComboBoxEditItem 的 class 來處理/替代 value 的部份 !
+
+```csharp
+ComboBoxEdit featureCombobox = new ComboBoxEdit
+                                {
+                                    Margin               = new Thickness(5, 5, 5, 5),
+                                    Height               = 20,
+
+                                    // 主要差在下面三個項目上
+                                    IncrementalFiltering = true,
+                                    FilterCondition      = FilterCondition.Contains,
+                                    ImmediatePopup       = true,
+
+                                    ItemsSource = FeatureStore.Features
+                                                                .Select(f => new ComboBoxEditItemWithFeature
+                                                                            {
+                                                                                Content = f.Text,
+                                                                                Feature = f.Feature
+                                                                            }),
+                                };
+featureCombobox.SelectedIndexChanged += OnFeatureChanged;
+```
