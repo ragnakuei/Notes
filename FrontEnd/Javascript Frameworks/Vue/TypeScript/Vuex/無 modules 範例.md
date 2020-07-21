@@ -1,4 +1,4 @@
-# Vuex
+# 無 module 範例
 
 ## 無參數範例
 
@@ -7,37 +7,36 @@
 建立 store
 
 ```ts
-import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import App from './App.vue';
+import router from './router';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
+    state: {
+        count: 0,
+    },
+    mutations: {
+        increment(state) {
+            state.count++;
+        },
+    },
+});
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
-
+    router,
+    store,
+    render: (h) => h(App),
+}).$mount('#app');
 ```
 
 透過 commit store > mutations > function name 來呼叫動作
 
-透過 this.$store > 取得 state 中指定 property 的值
+透過 this.\$store > 取得 state 中指定 property 的值
 
 ```ts
 <template>
@@ -71,6 +70,7 @@ new Vue({
     }
 </script>
 ```
+
 ---
 
 ## 給定 payload 範例
@@ -80,39 +80,38 @@ new Vue({
 簡單說就是，也可以透過 payload 來設定 值 !
 
 ```ts
-import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App.vue'
-import router from './router'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import App from './App.vue';
+import router from './router';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-export const eventBus = new Vue()
+export const eventBus = new Vue();
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {
-    count: 0,
-    storeData : '',
-  },
-  mutations: {
-    increment (state) {
-      state.count++
+    state: {
+        count: 0,
+        storeData: '',
     },
+    mutations: {
+        increment(state) {
+            state.count++;
+        },
 
-    increment2 (state, obj) {
-      state.storeData = obj;
-    }
-  }
-})
+        increment2(state, obj) {
+            state.storeData = obj;
+        },
+    },
+});
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
-
+    router,
+    store,
+    render: (h) => h(App),
+}).$mount('#app');
 ```
 
 新增 get property storeData
