@@ -4,6 +4,9 @@
 
 如需整合 WebPack，請參考[這裡](./搭配%20WebPack%20建立%20Vue%20專案.md)
 
+[升級 Vue 3 前，你必須要知道的改動](https://medium.com/peerone-technology-皮偶玩互動科技/升級-vue-3-前-你必須要知道的改動-5891a297dbe2)
+
+
 ---
 
 ## 產生 Vue 專案
