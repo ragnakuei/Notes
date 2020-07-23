@@ -8,6 +8,8 @@
 
 ## 第一種
 
+> 注意：這個方式目前會在 無痕環境 / production 發生找不到 VuexModule 裡面指定的成員的問題
+
 不用在 Vuex.Store() StoreOptions 中定義 modules
 
 ### Store
