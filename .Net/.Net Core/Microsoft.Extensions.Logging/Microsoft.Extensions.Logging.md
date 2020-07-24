@@ -1,6 +1,14 @@
 # Microsoft.Extensions.Logging
 
-## [Providers](docs.microsoft.com/zh-tw/aspnet/core/fundamentals/logging#built-in-logging-providers)
+[Logging in .NET Core and ASP.NET Core](https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/logging/)
+
+## 流程
+
+asp.net core logging 收到 log 訊息 > 送給指定的 Provider(s) > 依照 Provider 設定內容 log message
+
+> NLog 的設定，可以指定多個 targets
+
+## [Providers](https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/logging#built-in-logging-providers)
 
 | Provider             | Package                                          |
 | -------------------- | ------------------------------------------------ |
@@ -20,6 +28,7 @@
 ```csharp
 var loggerFactory = LoggerFactory.Create(builder =>
 {
+    // 指定以 Console 做為 Provider
     builder.AddConsole();
 });
 ILogger logger = loggerFactory.CreateLogger<Program>();
@@ -49,6 +58,3 @@ logger.LogInformation("Example log message");
 會在事件檢視器中顯示 Log 訊息
 
 ![Text](./../_images/加入%20WebService%20的方式/01.png)
-
-
-
