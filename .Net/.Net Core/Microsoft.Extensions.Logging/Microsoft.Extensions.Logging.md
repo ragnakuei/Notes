@@ -8,6 +8,13 @@ asp.net core logging 收到 log 訊息 > 送給指定的 Provider(s) > 依照 Pr
 
 > NLog 的設定，可以指定多個 targets
 
+## Startup.cs 注意事項
+
+-   Logger injection into the Startup constructor is not supported.
+-   Logger injection into the Startup.ConfigureServices method signature is not supported
+
+要在 `Startup.ConfigureServices` DI ILogger\<T> 只能透過 services.BuildServiceProvider().GetService<ILogger<Startup>>() 來取得，目前不確定會有什麼副作用 !
+
 ## [Providers](https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/logging#built-in-logging-providers)
 
 | Provider             | Package                                          |

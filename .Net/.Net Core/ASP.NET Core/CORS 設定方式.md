@@ -2,6 +2,8 @@
 
 [參考資料](https://docs.microsoft.com/zh-tw/aspnet/core/security/cors)
 
+注意：設定 Cors 後，可能會讓 error response message 都變成 cors 沒過的訊息，但實際上是別的問題。可用 Log 來釐清 !
+
 ## 全域設定方式
 
 Startup.cs
