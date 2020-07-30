@@ -2,7 +2,17 @@
 
 可用來產生 RSA Key Pair 的 Package
 
-## 產生 Public Key 範例
+.Net Core 版本 套件
+
+-   BouncyCastle.NetCore
+
+## [與 JSEncrypt 搭配使用](https://github.com/ragnakuei/JsEncryptWithBouncyCastleTest)
+
+可以做到前台 JSEncrypt 以公𫓂加密，後台以私𫓂解密 !
+
+## [Asp.Net MVC 前端 JS 加密 後端解密](https://github.com/ragnakuei/AspNetMvcFormEncryptPassword)
+
+## 產生 Public Key File 範例
 
 ```csharp
 void Main()
