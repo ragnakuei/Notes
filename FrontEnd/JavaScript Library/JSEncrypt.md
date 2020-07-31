@@ -86,3 +86,33 @@ xwIDAQAB
 </script>
 }
 ```
+
+## 搭配 vue
+
+npm install jsencrypt
+
+```ts
+import { Component, Vue } from 'vue-property-decorator';
+import { JSEncrypt } from 'jsencrypt'; // 這邊會產生警告，但可以暫時不管
+
+@Component
+export class JSEncryptService extends Vue {
+    constructor() {
+        super();
+
+        this.jsEncrypt = new JSEncrypt();
+    }
+
+    async mounted() {
+        const publicKey = (await this.$axios.get<string>('/rsa/publickey'))
+            .data;
+        this.jsEncrypt.setPublicKey(publicKey);
+    }
+
+    public Encrypt(str: string): string {
+        return this.jsEncrypt.encrypt(str);
+    }
+
+    private jsEncrypt: any;
+}
+```

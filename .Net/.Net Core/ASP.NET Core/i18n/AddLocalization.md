@@ -37,7 +37,7 @@ app.UseRequestLocalization(locOptions.Value);
 services.AddLocalization(options => options.ResourcesPath = "ABC")
 ```
 
-就會尋找 `專案目錄/ABC/Resources` 中的 *.resx
+就會尋找 `專案目錄/ABC/Resources` 中的 \*.resx
 
 ---
 
@@ -57,7 +57,7 @@ services.AddLocalization(options => options.ResourcesPath = "ABC")
 
 當 Key 為 `Hello` 時，就可以查看 `IStringLocalizer<T>["Hello"]` 的內容
 
-![AltMessage](./_images/Annotation&#32;2020-04-12&#32;110438.png)
+![AltMessage](<./_images/Annotation 2020-04-12 110438.png>)
 
-- ResourceNotFound - 是否有找到 Resource File
-- SearchedLocation - 從這個路徑來找 Resource File
+-   ResourceNotFound - 是否有找到 Resource File
+-   SearchedLocation - 從這個路徑來找 Resource File
