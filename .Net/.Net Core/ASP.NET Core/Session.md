@@ -81,3 +81,9 @@ public class HomeController : Controller
     }
 }
 ```
+
+## 清除 Session
+
+```csharp
+_contextAccessor.HttpContext.Session.Clear();
+```
