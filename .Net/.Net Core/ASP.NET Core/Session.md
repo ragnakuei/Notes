@@ -42,7 +42,7 @@ DI [IHttpContextAccessor](./../../Nuget%20Packages/Microsoft.AspNetCore.Http.IHt
 ```csharp
 public class BaseController : ControllerBase
 {
-    private readonly IHttpContextAccessor _contextAccessor;
+    protected readonly IHttpContextAccessor _contextAccessor;
 
     public BaseController(IHttpContextAccessor contextAccessor)
     {
@@ -56,13 +56,12 @@ public class BaseController : ControllerBase
 ## 放入及取出資料
 
 ```csharp
-public class HomeController : Controller
+public class HomeController : BaseController
 {
-    private readonly IHttpContextAccessor _contextAccessor;
 
     public HomeController(IHttpContextAccessor contextAccessor)
+        : base(contextAccessor)
     {
-        _contextAccessor = contextAccessor;
     }
 
     public IActionResult Index()

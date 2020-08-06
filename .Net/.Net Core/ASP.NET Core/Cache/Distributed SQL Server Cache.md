@@ -55,7 +55,7 @@
 
         public HomeController(IDistributedCache cache)
         {
-            _cache           = cache;
+            _cache = cache;
         }
 
         public IActionResult Index()
