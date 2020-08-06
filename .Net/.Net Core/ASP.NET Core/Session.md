@@ -8,7 +8,9 @@
 
 ## 啟用 Session
 
-啟用 `IDistributedCache`
+如果是 Web Api 專案，就要啟用 `IDistributedCache`
+
+> MVC 專案待測：是否可改用 `Distributed SQL Server Cache`
 
 -   [Asp.Net Core MemoryCache](./Cache/MemoryCache.md)
 -   [Distributed SQL Server Cache](./Cache/Distributed%20SQL%20Server%20Cache.md)
