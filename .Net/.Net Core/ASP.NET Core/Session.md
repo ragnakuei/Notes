@@ -10,6 +10,7 @@
 
 啟用 `IDistributedCache`
 
+-   [Asp.Net Core MemoryCache](./Cache/MemoryCache.md)
 -   [Distributed SQL Server Cache](./Cache/Distributed%20SQL%20Server%20Cache.md)
 
 Startup.ConfigureServices() 加上
@@ -79,4 +80,18 @@ public class HomeController : BaseController
         return View();
     }
 }
+```
+
+View
+
+```html
+<p>ViewBag.SessionId: @(ViewBag.SessionId)</p>
+<p>ViewBag.SessionData: @(ViewBag.SessionData)</p>
+<p>ViewBag.SessionByteArrayData: @(ViewBag.SessionByteArrayData)</p>
+```
+
+## 清除 Session
+
+```csharp
+_contextAccessor.HttpContext.Session.Clear();
 ```
