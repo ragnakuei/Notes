@@ -8,7 +8,9 @@
 
 ## 啟用 Session
 
-啟用 `IDistributedCache`
+如果是 Web Api 專案，就要啟用 `IDistributedCache`
+
+> MVC 專案待測：是否可改用 `Distributed SQL Server Cache`
 
 -   [Asp.Net Core MemoryCache](./Cache/MemoryCache.md)
 -   [Distributed SQL Server Cache](./Cache/Distributed%20SQL%20Server%20Cache.md)
@@ -43,7 +45,7 @@ DI [IHttpContextAccessor](./../../Nuget%20Packages/Microsoft.AspNetCore.Http.IHt
 ```csharp
 public class BaseController : ControllerBase
 {
-    private readonly IHttpContextAccessor _contextAccessor;
+    protected readonly IHttpContextAccessor _contextAccessor;
 
     public BaseController(IHttpContextAccessor contextAccessor)
     {
@@ -57,13 +59,12 @@ public class BaseController : ControllerBase
 ## 放入及取出資料
 
 ```csharp
-public class HomeController : Controller
+public class HomeController : BaseController
 {
-    private readonly IHttpContextAccessor _contextAccessor;
 
     public HomeController(IHttpContextAccessor contextAccessor)
+        : base(contextAccessor)
     {
-        _contextAccessor = contextAccessor;
     }
 
     public IActionResult Index()

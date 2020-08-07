@@ -1,15 +1,6 @@
-# 直接把 configuration 轉成指定的 DTO
+# [練習]直接把 configuration 轉成指定的 DTO
 
 [範例](https://github.com/ragnakuei/IConfigurationRootDtoLibrary)
-
-因為 configuration 套件，本身具有文件改變就重新讀取的功能
-
-如果套用這個功能時，有些東西要有所取捨
-
--   因為 config DTO 不會太常變動，可以搭配 DI Container 設定成 singleton，來減少讀取動作
--   如果讓 DI 指定為 singleton，每次取得相同的資料，即使更新了 config file ，`也不會更新到 DTO` !
--   如果讓 DI 指定為 非 singleton，更新了 config file 後，就會更新到 DTO，但是在`轉 DTO 的過程中，會比較費時` !
--   提供額外手動更新 DTO 的方式來更新 DTO，例：內部可執行的 api
 
 ```csharp
 using System;
