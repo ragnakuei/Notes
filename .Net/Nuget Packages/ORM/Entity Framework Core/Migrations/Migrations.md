@@ -36,8 +36,10 @@ Migrations 專案安裝套件
   - 透過 command line 操作
   - 必須在該專案目錄下執行
 
-    | 動作      | 指令                                     | 說明 |
-    | --------- | ---------------------------------------- | ---- |
-    | 新增      | dotnet ef migrations add [MigrationName] |      |
-    | 移除      | dotnet ef migrations remove              |      |
-    | 更新至 DB | dotnet ef database update                |      |
+    | 動作                       | 指令                                     | 說明                           |
+    | -------------------------- | ---------------------------------------- | ------------------------------ |
+    | 新增                       | dotnet ef migrations add [MigrationName] |                                |
+    | 移除                       | dotnet ef migrations remove              |                                |
+    | 更新至 DB                  | dotnet ef database update                |                                |
+    | 更新至 DB 並列出 script    | dotnet ef database update -v             |                                |
+    | 不更新至 DB，僅列出 script | dotnet ef database script                | script 不包含 create db 的部份 |
