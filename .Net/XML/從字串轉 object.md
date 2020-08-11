@@ -1,5 +1,9 @@
 # 從字串轉 object
 
+## 範例
+
+> 這個做法在 Linqpad 上會掛掉，原因待釐清 !
+
 ```csharp
 internal class Program
 {
