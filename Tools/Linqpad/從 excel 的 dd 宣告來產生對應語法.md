@@ -200,7 +200,7 @@ private bool ToNullable(string column)
 private string ColumnDtoToFluentApiSyntax(IEnumerable<ColumnDto> dtos)
 {
 	var columnDefinitions = new StringBuilder();
-	var foreignKeyOneToOneDefinitions = new StringBuilder("===Foreign Key Definitions===");
+	var foreignKeyOneToOneDefinitions = new StringBuilder("// 以下是 FK 設定");
 
 	dtos.ForEach(dto =>
 	{
@@ -242,7 +242,7 @@ void AddForeignKeyOneToOneDefinitions(StringBuilder foreignKeyDefinitions, Colum
                    .WithOne()
                    .IsRequired()
                    .HasConstraintName($""IX_{{nameof({TableName})}}_{{nameof({TableName}.{dto.Name})}}_{{nameof({dto.ForeignKeyTable})}}_{{nameof({dto.ForeignKeyTable}.{dto.ForeignKeyTableColumnName})}}"")
-				   .HasForeignKey<{dto.ForeignKeyTable}>(x => x.Id);
+				   .HasForeignKey<{dto.ForeignKeyTable}>(x => x.{dto.ForeignKeyTableColumnName});
 	");
 }
 
