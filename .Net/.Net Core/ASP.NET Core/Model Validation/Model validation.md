@@ -1,0 +1,1 @@
+# [Model validation](https://docs.microsoft.com/zh-tw/aspnet/core/mvc/models/validation)
