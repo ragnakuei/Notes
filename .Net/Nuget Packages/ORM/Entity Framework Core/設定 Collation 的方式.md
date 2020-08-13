@@ -10,7 +10,7 @@
 否則字串欄位都有可能會有原本的 Collation 設定
 ```
 
-## 在 Ef Core 3.x (含)之前
+## 在 Ef Core 3.1 
 
 [如何在 EF Core 3.1 的 Code First 進行資料庫移轉時指定資料庫定序](https://blog.miniasp.com/post/2020/08/07/EF-Core-31-Code-First-DB-Migration-set-collation)
 
@@ -23,3 +23,103 @@ DbContext.OnModelCreating()
 ```csharp
 modelBuilder.UseCollation("Collation Name")
 ```
+
+## 在 Ef Core 3.1 - 範例
+
+將下述程式碼加到 .net core console 專案中
+
+```csharp
+public class TestDbContext : DbContext
+{
+    public TestDbContext(DbContextOptions<TestDbContext> options)
+        : base(options)
+    {
+    }
+
+    public DbSet<Test> Test { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // optionsBuilder.AddInterceptors(new CreateDatabaseCollationInterceptor("Chinese_Taiwan_Stroke_CI_AS"));
+        optionsBuilder.AddInterceptors(new CreateDatabaseCollationInterceptor("Chinese_Taiwan_Stroke_BIN"));
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+    }
+}
+```
+
+```csharp
+public class Test
+{
+    public int    Id   { get; set; }
+    public string Name { get; set; }
+}
+```
+
+```csharp
+public class TestDbContextFactory : IDesignTimeDbContextFactory<TestDbContext>
+{
+    public TestDbContextFactory()
+    {
+    }
+
+    public TestDbContext CreateDbContext(string[] args)
+    {
+        var connectionString = "Server=.\\mssql2017;Initial Catalog=Test;Trusted_Connection=True;";
+
+        var optionBuilder = new DbContextOptionsBuilder<TestDbContext>().UseSqlServer(connectionString);
+
+        return new TestDbContext(optionBuilder.Options);
+    }
+}
+```
+
+```csharp
+public class CreateDatabaseCollationInterceptor : DbCommandInterceptor
+{
+    private readonly string _collation;
+
+    public CreateDatabaseCollationInterceptor(string collation)
+    {
+        _collation = collation;
+    }
+
+    public override InterceptionResult<int> NonQueryExecuting(DbCommand command, CommandEventData eventData, InterceptionResult<int> result)
+    {
+        var pattern = @"^CREATE DATABASE (\[.*\])(.*)$";
+        if (Regex.IsMatch(command.CommandText, pattern))
+        {
+            command.CommandText = Regex.Replace(command.CommandText, pattern, $"CREATE DATABASE $1 COLLATE {_collation} $2");
+        }
+
+        return result;
+    }
+
+    public override Task<InterceptionResult<int>> NonQueryExecutingAsync(DbCommand command, CommandEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
+    {
+        var pattern = @"^CREATE DATABASE (\[.*\])(.*)$";
+        if (Regex.IsMatch(command.CommandText, pattern))
+        {
+            command.CommandText = Regex.Replace(command.CommandText, pattern, $"CREATE DATABASE $1 COLLATE {_collation} $2");
+        }
+
+        return Task.FromResult(result);
+    }
+}
+```
+
+執行 dotnet ef migration add
+
+執行 dotnet ef database update -v
+
+就會看到關鍵語法
+
+```
+Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [Test];
+Executed DbCommand (454ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+CREATE DATABASE [Test] COLLATE Chinese_Taiwan_Stroke_BIN ;
+```
+

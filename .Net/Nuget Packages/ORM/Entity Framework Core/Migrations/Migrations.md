@@ -42,4 +42,4 @@ Migrations 專案安裝套件
     | 移除                       | dotnet ef migrations remove              |                                |
     | 更新至 DB                  | dotnet ef database update                |                                |
     | 更新至 DB 並列出 script    | dotnet ef database update -v             |                                |
-    | 不更新至 DB，僅列出 script | dotnet ef database script                | script 不包含 create db 的部份 |
+    | 不更新至 DB，僅列出 script | dotnet ef migrations script                | script 不包含 create db 的部份 |
