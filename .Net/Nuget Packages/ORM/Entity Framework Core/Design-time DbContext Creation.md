@@ -7,11 +7,21 @@
 -   把 Code-First 放進版控中
 -   以呼叫 exe 的方式來手動執行 Migration 的動作
 
-注意事項
+## 關於發佈目的資料庫
+
+第一種方式：以執行 console 來做 migrations
+
+> 可套用指定的 appsettings.json 來指定發佈的目的地
+
+第二種方式：以 dotnet ef cli 來做 migrations
+
+> 預設只會讀取 appsettings.json
+
+## 步驟
 
 1. 所有關聯的 Project 不能是 .Net Standard
-1. DbContext 所在 Project 不需要安裝 `Microsoft.EntityFrameworkCore.Design`
-1. 建立繼承 IDesignTimeDbContextFactory\<TDbContext> 的 類別
+2. DbContext 所在 Project 不需要安裝 `Microsoft.EntityFrameworkCore.Design`
+3. 建立繼承 IDesignTimeDbContextFactory\<TDbContext> 的 類別
 
     - 一定要有無參數建構子
     - 語法
@@ -47,7 +57,7 @@
     }
     ```
 
-1. 建立 Migrations
+4. 建立 Migrations
 
     - Visual Studio
 
@@ -70,6 +80,6 @@
 
         `dotnet ef migrations add [MigrationName]`
 
-1. 執行程式進行 Migration
+5. 執行程式進行 Migration
 
 [實作](https://github.com/ragnakuei/DbMigrationsForEfCodeFirst)

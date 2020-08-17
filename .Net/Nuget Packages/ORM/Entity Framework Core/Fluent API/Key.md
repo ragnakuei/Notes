@@ -12,9 +12,9 @@ builder.HasKey(x => new
         .IsClustered();
 ```
 
-## ForeignKey
+## [ForeignKey](https://docs.microsoft.com/zh-tw/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#foreign-key)
 
-要先建立好對應 Table 的 Property
+-   指向的 Property 必須是 Primary Key
 
 > 待釐清：被指向的 Column 似乎不能加上 `UseIdentityColumn()` 的設定
 
@@ -40,6 +40,22 @@ builder.HasOne(x => x.Role)
        .HasForeignKey<Role>(x => x.Id);
 ```
 
+### one to many 範例
+
+one Role.Id → many User.RoleId
+
+```csharp
+builder.HasOne(x => x.Role)
+        .WithMany()
+        .IsRequired()
+        .HasConstraintName($"IX_{nameof(User)}_{nameof(User.RoleId)}_{nameof(Role)}_{nameof(Role.Id)}")
+        .HasForeignKey(x => x.RoleId);
+```
+
+## [Principal key](https://docs.microsoft.com/zh-tw/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key#principal-key)
+
+-   指向的 Property 不是 Primary Key
+
 ### one to one 範例 - self reference
 
 如果是自體關聯的話，要用以下語法
@@ -51,16 +67,4 @@ builder.HasOne(x => x.Creater)
        .HasPrincipalKey<User>(x => x.Guid)
        .HasConstraintName($"IX_{nameof(User)}_{nameof(User.CreaterGuid)}_{nameof(User)}_{nameof(User.Guid)}")
        .OnDelete(DeleteBehavior.NoAction);
-```
-
-### one to many 範例
-
-one Role.Id → many User.RoleId
-
-```csharp
-builder.HasOne(x => x.Role)
-        .WithMany()
-        .IsRequired()
-        .HasConstraintName($"IX_{nameof(User)}_{nameof(User.RoleId)}_{nameof(Role)}_{nameof(Role.Id)}")
-        .HasForeignKey(x => x.RoleId);
 ```

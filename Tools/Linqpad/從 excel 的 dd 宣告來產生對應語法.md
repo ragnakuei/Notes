@@ -131,7 +131,7 @@ builder.HasOne(x => x.Creater)
        .WithOne()
        .IsRequired()
        .HasPrincipalKey<User>(x => x.Guid)
-       .HasConstraintName($"IX_{nameof(User)}_{nameof(User.CreateGuid)}_{nameof(User)}_{nameof(User.Guid)}")
+       .HasConstraintName($"FK_{nameof(User)}_{nameof(User.CreateGuid)}_{nameof(User)}_{nameof(User.Guid)}")
        .OnDelete(DeleteBehavior.NoAction);
 ```
 
@@ -241,7 +241,7 @@ void AddForeignKeyOneToOneDefinitions(StringBuilder foreignKeyDefinitions, Colum
             builder.HasOne(x => x.{dto.ForeignKeyTable})
                    .WithOne()
                    .IsRequired()
-                   .HasConstraintName($""IX_{{nameof({TableName})}}_{{nameof({TableName}.{dto.Name})}}_{{nameof({dto.ForeignKeyTable})}}_{{nameof({dto.ForeignKeyTable}.{dto.ForeignKeyTableColumnName})}}"")
+                   .HasConstraintName($""FK_{{nameof({TableName})}}_{{nameof({TableName}.{dto.Name})}}_{{nameof({dto.ForeignKeyTable})}}_{{nameof({dto.ForeignKeyTable}.{dto.ForeignKeyTableColumnName})}}"")
 				   .HasForeignKey<{dto.ForeignKeyTable}>(x => x.{dto.ForeignKeyTableColumnName});
 	");
 }
