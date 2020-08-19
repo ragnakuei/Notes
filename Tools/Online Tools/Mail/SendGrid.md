@@ -3,14 +3,20 @@
 ## 註冊步驟
 
 1. 前往官網註冊帳號
-1. 開啟 Settings
-1. 選擇 Sender Authentication
+1. 左方工具列，開啟 Settings，選擇 Sender Authentication
 1. 建立 Single Sender Verification
     1. `From Email Address` 跟 `Reply To` 都填自己
     1. 公司資訊都填寫詳細
 1. 寄發驗証信，點擊驗証信內的連結，驗証成功 (可能需要嘗試多次)
+1. 左方工具列，開啟 Settings，選擇 API Keys
+1. 點擊右上角 Create API Key
+1. 可以選擇 Restricted Access
+    - 權限
+        - Mail Send - Full Access
+        - 其餘 - No Access
+1. 複製建立好的 API Key 放到 appsettings 中 (下面的範例是 `AppSettingsKey.SendGridApiKey` )
 
-## C
+## C# 語法
 
 安裝[套件](https://github.com/sendgrid/sendgrid-csharp#prerequisites) `SendGrid`
 
