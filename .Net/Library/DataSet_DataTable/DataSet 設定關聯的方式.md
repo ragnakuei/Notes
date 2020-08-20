@@ -33,16 +33,28 @@ void Main()
 	//dtOrder.Rows[0].Dump();
 	//dtOrder.Rows[0].GetChildRows(relation).Dump();
 
-	for (int i = 0; i < ds.Tables["Customer"].Rows.Count; i++)
-	{
-		"Customer".Dump();
-		ds.Tables["Customer"].Rows[i].Dump();
+    // 以關聯方式取出
+    //	for (int i = 0; i < ds.Tables["Customer"].Rows.Count; i++)
+    //	{
+    //		"Customer".Dump();
+    //		ds.Tables["Customer"].Rows[i].Dump();
+    //
+    //		"Order".Dump();
+    //		ds.Tables["Customer"].Rows[i].GetChildRows(relation).Dump();
+    //		"-------------------------------------".Dump();
+    //	}
 
-		"Order".Dump();
-		ds.Tables["Customer"].Rows[i].GetChildRows(relation).Dump();
-		"-------------------------------------".Dump();
-	}
 
+	// 以 LINQ 建立關聯
+	var joinResult = (from customer in ds.Tables["Customer"].Rows.Cast<DataRow>()
+					  join order in ds.Tables["Order"].Rows.Cast<DataRow>()
+					      on customer["Id"] equals order["CustomerId"] into customerJoinOrder
+					  from cjo in customerJoinOrder.DefaultIfEmpty()
+					  select new { customer, cjo })
+					  .GroupBy(r => r.customer)
+					  .ToDictionary(r => r.Key,
+					                v => v.Select(r => r.cjo).ToArray());
+	joinResult.Dump();
 }
 
 private DataTable GetCustomerDataTable()
