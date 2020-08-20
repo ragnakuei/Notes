@@ -51,9 +51,12 @@ void Main()
 					      on customer["Id"] equals order["CustomerId"] into customerJoinOrder
 					  from cjo in customerJoinOrder.DefaultIfEmpty()
 					  select new { customer, cjo })
-					  .GroupBy(r => r.customer)
-					  .ToDictionary(r => r.Key,
-					                v => v.Select(r => r.cjo).ToArray());
+					  .GroupBy(r => r.customer,
+					  		(c, g) => new {
+								Key = c,
+								Value = g.Select(r => r.cjo).ToArray()
+							}
+					  );
 	joinResult.Dump();
 }
 
