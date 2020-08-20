@@ -181,7 +181,6 @@ public class ExceptionMiddleware
                                             }.ToJson());
     }
 }
-
 ```
 
 ### FormDto
@@ -316,5 +315,18 @@ public class ErrorCode
                 [E400008] = "上傳檔案有誤，請重新上傳",
                 [E400009] = "Cache Key 為空",
             };
+}
+```
+
+### ResponseDto
+
+```csharp
+public class ResponseDto
+{
+    public string Message { get; set; }
+
+    public int ErrorCode { get; set; }
+
+    public object Data { get; set; }
 }
 ```

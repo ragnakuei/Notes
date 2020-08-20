@@ -1,4 +1,4 @@
-# 範例一
+# 範例一 - 以 alert 顯示錯誤訊息
 
 ## Dto 定義
 
@@ -86,5 +86,54 @@ public static class ModelStateHelper
 
         return result;
     }
+}
+```
+
+
+## View
+
+```csharp
+@model TestDto
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Home</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <p>
+        <label asp-for="Id"></label>
+        <input asp-for="Id" />
+    </p>
+    <p>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </p>
+    <p>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </p>
+    <p>
+        <label asp-for="UploadFile"></label>
+        <input asp-for="UploadFile" />
+    </p>
+    <p>
+        <label asp-for="UploadFile"></label>
+        <input asp-for="UploadFile" />
+    </p>
+    <p>
+        <input type="submit"
+               value="Submit" />
+    </p>
+</form>
+
+@section Scripts {
+    <script>
+    window.ValidMessage = '@(Html.Raw(TempData["ValidMessage"]?.ToString()))';
+    if(ValidMessage.length > 0)
+    {
+        alert(ValidMessage);
+    }
+</script>
 }
 ```
