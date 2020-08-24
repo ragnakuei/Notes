@@ -124,7 +124,7 @@ public class ColumnDto
 
 ## 轉成 Ef Core Fluent API
 
-如果是自體關聯的話，可能需要在產生後改成以下語法
+如果是關聯至 NonCluster-Index 的話，可能需要在產生後改成以下語法
 
 ```csharp
 builder.HasOne(x => x.Creater)
@@ -139,9 +139,9 @@ builder.HasOne(x => x.Creater)
 // ForeignKeyDefinitions 目前只支援 one to one
 // one to many 還沒想到怎麼做
 
-private const string DefaultSchema = "dbo";
-private const string TableName = "Role";
 private const string SqlDbTypesName = "SqlDbTypes";
+private const string DefaultSchema = "dbo";
+private const string TableName = "TestTable";
 
 void Main()
 {
@@ -153,6 +153,10 @@ Value	nvarchar(50)	No	值		";
 	var lines = SplitLine(columnDefinitions);
 	var dtos = SplitColumnsToColumnDto(lines);
 	dtos.Dump();
+
+	var classSyntax = CreateClassSyntax(dtos);
+	classSyntax.Dump();
+
 	var result = ColumnDtoToFluentApiSyntax(dtos);
 	result.Dump();
 }
@@ -164,7 +168,14 @@ private IEnumerable<string> SplitLine(string columnDefinitions)
 
 private IEnumerable<ColumnDto> SplitColumnsToColumnDto(IEnumerable<string> lines)
 {
-	return lines.Select(l => ToColumnDto(l.Split("\t")));
+	return lines.Select(l =>
+	{
+		var tmp = l.Split("\t");
+		var columns = ToColumnDto(l.Split("\t").Concat(Enumerable.Repeat(string.Empty, 6))
+											   .Take(6)
+											   .ToArray());
+		return columns;
+	});
 }
 
 private ColumnDto ToColumnDto(string[] columns)
@@ -177,9 +188,12 @@ private ColumnDto ToColumnDto(string[] columns)
 		Description = columns[3],
 	};
 
-	if (string.IsNullOrWhiteSpace(columns[5]) == false)
+	if (string.IsNullOrWhiteSpace(columns.Skip(4).FirstOrDefault()) == false)
 	{
-		var foreignKeyParts = columns[5].Split('.');
+		var foreignKeyParts = columns[5].Split('.')
+										.Concat(Enumerable.Repeat(string.Empty, 2))
+										.Take(2)
+										.ToArray();
 		result.ForeignKeyTable = foreignKeyParts[0];
 		result.ForeignKeyTableColumnName = foreignKeyParts[1];
 	}
@@ -195,6 +209,66 @@ private bool ToNullable(string column)
 	}
 
 	return true;
+}
+
+
+private string CreateClassSyntax(IEnumerable<ColumnDto> dtos)
+{
+	var result = new StringBuilder();
+	result.AppendLine($"public class {TableName} {{");
+
+	foreach (var dto in dtos)
+	{
+		var csharpDataType = ToCsharDataType(dto.Type, dto.Nullable);
+		result.AppendLine($@"	/// <summary>
+	/// {dto.Description}
+	/// </summary>");
+		result.AppendLine($"	public {csharpDataType} {dto.Name} {{ get; set; }}");
+		result.AppendLine();
+	}
+
+	result.AppendLine();
+
+	foreach (var fk in dtos.Where(d=>string.IsNullOrWhiteSpace(d.ForeignKeyTable) == false))
+	{
+		result.AppendLine($@"	/// <summary>
+	/// {fk.Description.Replace("Guid", string.Empty, StringComparison.CurrentCultureIgnoreCase).Replace("Id", string.Empty, StringComparison.CurrentCultureIgnoreCase)}
+	/// </summary>");
+		result.AppendLine($"	public {fk.ForeignKeyTable} {fk.Name.Replace(fk.ForeignKeyTableColumnName, string.Empty)} {{ get; set; }}");
+		result.AppendLine();
+	}
+
+	result.AppendLine("}");
+	return result.ToString();
+}
+
+private readonly Dictionary<string, string> SqlDataTypeToCsharDataType
+	= new Dictionary<string, string> {
+		["nvarchar"] = "string",
+		["varchar"] = "string",
+		["bigint"] = "long",
+		["int"] = "int",
+		["tinyint"] = "short",
+		["uniqueidentifier"] = "Guid",
+		["datetime"] = "DateTime",
+		["date"] = "DateTime",
+		["bit"] = "bool",
+		["money"] = "decimal",
+		["numeric"] = "decimal",
+	};
+
+private string ToCsharDataType(string type, bool isNullable)
+{
+	var isNullableStr = isNullable ? "?" : string.Empty;
+	foreach (var to in SqlDataTypeToCsharDataType)
+	{
+		if(type.Contains(to.Key, StringComparison.InvariantCultureIgnoreCase))
+		{
+			return to.Value + isNullableStr;
+		}
+	}
+
+	return type;
 }
 
 private string ColumnDtoToFluentApiSyntax(IEnumerable<ColumnDto> dtos)
@@ -238,11 +312,12 @@ void AddForeignKeyOneToOneDefinitions(StringBuilder foreignKeyDefinitions, Colum
 	}
 
 	foreignKeyDefinitions.Append($@"
-            builder.HasOne(x => x.{dto.ForeignKeyTable})
-                   .WithOne()
+            builder.HasOne(x => x.{dto.Name.Replace("Guid", string.Empty).Replace("Id", string.Empty)})
+                   .WithMany()
                    .IsRequired()
                    .HasConstraintName($""FK_{{nameof({TableName})}}_{{nameof({TableName}.{dto.Name})}}_{{nameof({dto.ForeignKeyTable})}}_{{nameof({dto.ForeignKeyTable}.{dto.ForeignKeyTableColumnName})}}"")
-				   .HasForeignKey<{dto.ForeignKeyTable}>(x => x.{dto.ForeignKeyTableColumnName});
+				   .HasForeignKey(x => x.{dto.Name})
+				   .OnDelete(DeleteBehavior.NoAction);
 	");
 }
 
