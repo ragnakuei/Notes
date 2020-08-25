@@ -168,14 +168,18 @@ private IEnumerable<string> SplitLine(string columnDefinitions)
 
 private IEnumerable<ColumnDto> SplitColumnsToColumnDto(IEnumerable<string> lines)
 {
-	return lines.Select(l =>
-	{
-		var tmp = l.Split("\t");
-		var columns = ToColumnDto(l.Split("\t").Concat(Enumerable.Repeat(string.Empty, 6))
-											   .Take(6)
-											   .ToArray());
-		return columns;
-	});
+    foreach (var line in lines)
+    {
+        var dto = ToColumnDto(line.Split("\t").Concat(Enumerable.Repeat(string.Empty, 6))
+                                               .Take(6)
+                                               .ToArray());
+        if(dto == null)
+        {
+            continue;
+        }
+                                               
+        yield return dto;
+    }
 }
 
 private ColumnDto ToColumnDto(string[] columns)
