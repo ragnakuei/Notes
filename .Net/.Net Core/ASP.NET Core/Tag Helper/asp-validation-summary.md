@@ -1,10 +1,12 @@
-# asp-validation-summary
+# [asp-validation-summary](https://www.learnrazorpages.com/razor-pages/tag-helpers/validation-summary-tag-helper)
 
 [Model Validation](../Model%20Validation/Model%20Validation.md)
 
 ## 語法
 
-放在 form 裡面，才可以套用 `jquery.validate.unobtrusive` 前端驗証的部份
+-   放在 form 裡面，才可以套用 `jquery.validate.unobtrusive` 前端驗証的部份
+
+-   當 asp-validation-summary 設定為 All 時，就可以顯示除了 Model Property 以外的 Key
 
 ```csharp
 <form method="post">
