@@ -1,17 +1,37 @@
 # add header Content-Security-Policy
 
-[參考資料]
-- [Content Security Policy Directives](https://w3c.github.io/webappsec-csp/#csp-directives)
-- [[鐵人賽 Day27] ASP.NET Core 2 系列 - 網頁內容安全政策 (Content Security Policy)](https://blog.johnwu.cc/article/ironman-day27-asp-net-core-content-security-policy.html)
+## 注意事項
 
+-   套用 csp 後，會無法直接使用 inline css
+    -   就是無法在 cshtml 內使用 \<style><\style>
+    -   可以改用 css file
+-   優先序：指定特定項目的 policy > default
+
+## 參考資料
+
+-   [Content Security Policy Directives](https://w3c.github.io/webappsec-csp/#csp-directives)
+-   [[鐵人賽 Day27] ASP.NET Core 2 系列 - 網頁內容安全政策 (Content Security Policy)](https://blog.johnwu.cc/article/ironman-day27-asp-net-core-content-security-policy.html)
+-   [Content Security Policy (CSP) in ASP.NET Core](https://joonasw.net/view/csp-in-aspnet-core)
+
+## 語法
 
 ```csharp
 app.UseCsp(options =>
             {
+                // 最通用的設定方式
+                options.Defaults.AllowSelf().AllowUnSafeInline();
+
+                // 這樣連自己的網頁都會無法存取
+                options.Defaults.Disallow();
+
+                // 其他的範例
                 options.Styles.Allow("https:");
                 options.Images.AllowSelf();
                 options.Frames.Disallow();
                 options.Scripts.AllowSelf();
+
+                // 允許 image src 指定 base64
+                options.Images.Allow("'self' data: ");
             });
 ```
 
@@ -27,9 +47,10 @@ public class CspDirective
 
     private List<string> _sources { get; set; } = new List<string>();
 
-    public virtual CspDirective AllowAny()  => Allow("*");
-    public virtual CspDirective Disallow()  => Allow("'none'");
-    public virtual CspDirective AllowSelf() => Allow("'self'");
+        public virtual CspDirective AllowAny()          => Allow("*");
+        public virtual CspDirective Disallow()          => Allow("'none'");
+        public virtual CspDirective AllowSelf()         => Allow("'self'");
+        public virtual CspDirective AllowUnSafeInline() => Allow("'unsafe-inline'");
 
     public virtual CspDirective Allow(string source)
     {

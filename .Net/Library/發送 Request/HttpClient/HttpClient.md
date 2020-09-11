@@ -1,7 +1,7 @@
-
-
+# HttpClient
 
 範例
+
 ```csharp
 private readonly string BaseUri = "http://www.test.com";
 private readonly string ContentType = "application/json";
@@ -38,7 +38,7 @@ public async Task<(HttpStatusCode HttpStatusCode, T ResponseBody)> SendAsync<T>(
 	var responseMessage = await client.SendAsync(request);
 	var responseContent = (await responseMessage.Content.ReadAsStringAsync());
 	var responseBody = responseContent.DeserialzeJson<T>();
-	
+
 	return(HttpStatusCode : responseMessage.StatusCode, ResponseBody : responseBody);
 }
 

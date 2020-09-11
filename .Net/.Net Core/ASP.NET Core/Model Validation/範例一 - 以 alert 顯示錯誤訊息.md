@@ -2,6 +2,8 @@
 
 ## Dto 定義
 
+-   `{0}` 所指的都是 Display.Name
+
 ```csharp
 public class TestDto
 {
@@ -12,7 +14,7 @@ public class TestDto
 
     [Display(Name = "名稱")]
     [DataType(DataType.Text)]
-    [Required(ErrorMessage         = "必填喔")]
+    [Required(ErrorMessage         = "請輸入{0}")]
     [StringLength(5, MinimumLength = 2, ErrorMessage = "{0} 長度 要介於 {2} 及 {1} 之間")]
     public string Name { get; set; }
 
@@ -88,7 +90,6 @@ public static class ModelStateHelper
     }
 }
 ```
-
 
 ## View
 
