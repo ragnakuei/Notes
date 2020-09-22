@@ -105,3 +105,28 @@
     </div>;
 }
 ```
+
+### functions 用法三
+
+```csharp
+<div>
+    @GenerateName(item)
+</div>
+```
+
+```csharp
+@functions
+{
+    string GenerateName(Dto dto)
+    {
+        if (string.IsNullOrWhiteSpace(dto.EngineerName))
+        {
+            return "指派";
+        }
+        else
+        {
+            return "重新指派";
+        }
+    }
+}
+```

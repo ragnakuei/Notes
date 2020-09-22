@@ -39,7 +39,7 @@ public class ExceptionStatusCodePageMiddleware
 
             var code = 500;
 
-            httpContext.Response.Redirect($"/StatusCode?code={code}", true);
+            httpContext.Response.Redirect($"/StatusCode?code={code}", false);
         }
     }
 }

@@ -4,19 +4,19 @@
 
 Console
 
-.Net Framework 4.8
+.Net Framework 4.8 / .Net Core 3.1
 
 ### 安裝套件
 
-```powershell
-Install-Package Microsoft.EntityFrameworkCore
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.Extensions.Configuration
-Install-Package Microsoft.Extensions.Configuration.Json
-Install-Package Microsoft.Extensions.Options.ConfigurationExtensions
+```
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Options.ConfigurationExtensions
 ```
 
-### C#
+### C Sharp 語法
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -112,8 +112,8 @@ namespace EfCoreStoredProcedure
 
 ```json
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=.\\mssql2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true"
-  }
+    "ConnectionStrings": {
+        "DefaultConnection": "Server=.\\mssql2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
 }
 ```
