@@ -1,5 +1,7 @@
 # 建立並套用內建的 DbFunction JSON_VALUE
 
+[範例](https://github.com/ragnakuei/TestCustomDbFunctionForEfCore)
+
 ### 環境
 
 Console
@@ -62,8 +64,10 @@ public class TestDataBaseContext : DbContext
 
     public DbSet<TableA> TableA { get; set; }
 
+    // 這是 EF Core 2.x 的語法， 3.x 不需要了
+    // [DbFunction("JSON_VALUE", "dbo")]
+
     // 1
-    [DbFunction("JSON_VALUE", "dbo")]
     public static string JsonValue(string column, [NotParameterized]string path) => throw new NotSupportedException();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
