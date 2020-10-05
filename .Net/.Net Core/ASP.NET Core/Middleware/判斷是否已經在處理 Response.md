@@ -19,6 +19,7 @@ app.Use(async (context, next) =>
     }
     catch (Exception ex)
     {
+        // 可以透過 context.Response.HasStarted 來判斷 response 是否已經給定了
         // if (context.Response.HasStarted == false)
         // {
             context.Response.StatusCode  = (int)HttpStatusCode.InternalServerError;

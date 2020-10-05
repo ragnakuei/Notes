@@ -1,4 +1,4 @@
-# 範例一 - 以 alert 顯示錯誤訊息
+# 範例一 - 以 js alert 顯示錯誤訊息
 
 ## Dto 定義
 
@@ -96,10 +96,10 @@ public static class ModelStateHelper
 ```csharp
 @model TestDto
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Test Page";
 }
 
-<h1>Home</h1>
+<h1>Test</h1>
 
 <form method="post" enctype="multipart/form-data">
     <p>
@@ -115,14 +115,6 @@ public static class ModelStateHelper
         <input asp-for="Email" />
     </p>
     <p>
-        <label asp-for="UploadFile"></label>
-        <input asp-for="UploadFile" />
-    </p>
-    <p>
-        <label asp-for="UploadFile"></label>
-        <input asp-for="UploadFile" />
-    </p>
-    <p>
         <input type="submit"
                value="Submit" />
     </p>
@@ -130,11 +122,11 @@ public static class ModelStateHelper
 
 @section Scripts {
     <script>
-    window.ValidMessage = '@(Html.Raw(TempData["ValidMessage"]?.ToString()))';
-    if(ValidMessage.length > 0)
-    {
-        alert(ValidMessage);
-    }
-</script>
+        window.ValidMessage = '@(Html.Raw(TempData["ValidMessage"]?.ToString()))';
+        if(ValidMessage.length > 0)
+        {
+            alert(ValidMessage);
+        }
+    </script>
 }
 ```

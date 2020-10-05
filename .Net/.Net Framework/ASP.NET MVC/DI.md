@@ -39,7 +39,7 @@ public class DiFactory : IDependencyResolver
         services.AddSingleton<DiFactory>();
         services.AddSingleton<IConfigurationService, ConfigurationService>();
         services.AddTransient<AccountService>();
-    
+
         _serviceProvider = services.BuildServiceProvider();
     }
 
@@ -58,5 +58,4 @@ public class DiFactory : IDependencyResolver
         return Enumerable.Empty<object>();
     }
 }
-
 ```

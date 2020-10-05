@@ -1,7 +1,8 @@
-
-
+# 範例二- 使用 jquery.validate.unobtrusive
 
 ## View 範例
+
+-   \_ValidationScriptsPartial.cshtml 為範本已提供的 View
 
 ```html
 @model LoginFormDto
@@ -35,25 +36,19 @@
     <p>
         <label asp-for="UserName"></label>
         <input asp-for="UserName" />
-        <span asp-validation-for="UserName"
-              class="text-danger">
-        </span>
+        <span asp-validation-for="UserName" class="text-danger"> </span>
     </p>
     <p>
         <label asp-for="Password"></label>
         <input asp-for="Password" />
-        <span asp-validation-for="Password"
-              class="text-danger">
-        </span>
+        <span asp-validation-for="Password" class="text-danger"> </span>
     </p>
     <p>
-        <input type="submit"
-               value="Login" />
+        <input type="submit" value="Login" />
     </p>
 </form>
 
-@section Scripts
-{
-    <partial name="_ValidationScriptsPartial" />
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
 }
 ```
