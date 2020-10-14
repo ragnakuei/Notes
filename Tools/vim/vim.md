@@ -27,6 +27,12 @@
 
 - f[char] - 跳到指定的 [char]
 
+## command
+
+| 命令 | 功能             | 說明                                                         |
+| ---- | ---------------- | ------------------------------------------------------------ |
+| map  | 顯示目前 mapping | [map manual](https://vimhelp.org/map.txt.html#map%2Dlisting) |
+
 
 ## 參考資料
 
