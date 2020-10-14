@@ -53,7 +53,7 @@
 -   :noh 可以取消 高亮搜尋關鍵字
 
 
-在 Normal Mode 取消搜尋 Highlight
+在 Normal Mode 取消搜尋 Highlight，並呼叫原本 Esc 功能
 
 > 待觀察，是否會影響到 \<Esc> 應有的功能 !
 
