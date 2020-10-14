@@ -52,6 +52,15 @@
 -   用 N 往上一個方向找
 -   :noh 可以取消 高亮搜尋關鍵字
 
+
+在 Normal Mode 取消搜尋 Highlight
+
+> 待觀察，是否會影響到 \<Esc> 應有的功能 !
+
+```
+nnoremap <Esc> :nohlsearch<CR><Esc>
+```
+
 ### 取代原本的 搜尋
 
 ```
@@ -75,6 +84,25 @@ vnoremap <S-Tab> <gv
 ```
 nnoremap <Tab> >>_
 vnoremap <Tab> >gv
+```
+
+### Select
+
+```
+nmap <S-Home> v<Home>
+nmap <S-End> v<End>
+nmap <S-Up> v<Up>
+nmap <S-Down> v<Down>
+nmap <S-Left> v<Left>
+nmap <S-Right> v<Right>
+vmap <S-Up> <Up>
+vmap <S-Down> <Down>
+vmap <S-Left> <Left>
+vmap <S-Right> <Right>
+imap <S-Up> <Esc>v<Up>
+imap <S-Down> <Esc>v<Down>
+imap <S-Left> <Esc>v<Left>
+imap <S-Right> <Esc>v<Right>
 ```
 
 ## 參考資料
