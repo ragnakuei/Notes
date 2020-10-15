@@ -6,6 +6,14 @@
 | ------ | ---- | ---- |
 |        |      |      |
 
+### 在 Normal Mode 清除搜尋高亮結果
+
+如果已經在其他 mode 時，要按先按第一次的 esc 返回 Normal Mode
+
+```
+nmap <Esc> :nohlsearch<CR>
+```
+
 ### Move
 
 | 快速鍵 | 功能       | 說明 |
@@ -59,6 +67,21 @@ nmap / :action Find<CR>
 ```
 
 ## Visual Mode
+
+### 支援 Shift 選取，就進入 Visual Mode
+
+```
+nmap <S-Home> v<Home>
+nmap <S-End> v<End>
+nmap <S-Up> v<Up>
+nmap <S-Down> v<Down>
+nmap <S-Left> v<Left>
+nmap <S-Right> v<Right>
+vmap <S-Up> <Up>
+vmap <S-Down> <Down>
+vmap <S-Left> <Left>
+vmap <S-Right> <Right>
+```
 
 ### 支援 Tab Indent
 
