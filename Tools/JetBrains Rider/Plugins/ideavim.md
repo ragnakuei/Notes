@@ -52,7 +52,6 @@
 -   用 N 往上一個方向找
 -   :noh 可以取消 高亮搜尋關鍵字
 
-
 在 Normal Mode 取消搜尋 Highlight，並呼叫原本 Esc 功能
 
 > 待觀察，是否會影響到 \<Esc> 應有的功能 !
@@ -71,6 +70,15 @@ nmap / :action Find<CR>
 
 ### 支援 Tab Indent
 
+這部份的語法就夠了
+
+```
+nnoremap <Tab> >>_
+vnoremap <Tab> >gv
+```
+
+google 到的完整語法
+
 ```
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
@@ -79,14 +87,7 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 ```
 
-測試用，只用以下的語法
-
-```
-nnoremap <Tab> >>_
-vnoremap <Tab> >gv
-```
-
-### Select
+### 支援 Shift 選取，就進入 Visual Mode
 
 ```
 nmap <S-Home> v<Home>
