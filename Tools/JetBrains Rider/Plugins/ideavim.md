@@ -1,5 +1,13 @@
 # ideavim
 
+## Rider Action
+
+### 以 mapleader 加上 qo 來關閉目前以外的頁面
+
+```
+nnoremap <Leader>qo :action CloseAllEditorsButActive<CR>
+```
+
 ## Normal Mode
 
 | 快速鍵 | 功能 | 說明 |

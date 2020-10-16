@@ -22,3 +22,5 @@
      "singleQuote": true
    }
    ```
+
+## [設定檔 Option 說明文件](https://prettier.io/docs/en/options.html#embedded-language-formatting)
