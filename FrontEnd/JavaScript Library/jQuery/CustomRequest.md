@@ -9,109 +9,145 @@
 
 ```csharp
 <script>
-    window.CustomRequest = {};
-    CustomRequest.RequestFileLimitSize = @(ServerParameter.RequestBodyMaxSize);
-
-    @* 傳入參數需要的 Properties：
-          Url              - request url
-          RequestBody      - request body
-          SuccessCallback  - request 成功後會執行的 callback
-          ErrorCallback(Optional) - request 失敗後會執行的 callback                          *@
-    CustomRequest.Post  = function(obj){
-
-        CustomRequest.ErrorCallback = obj.ErrorCallback;
-
-        try {
-           $.ajax({
-               beforeSend: function(request) {
-                   // 在 ajax 加上 Request Header 來處理 Antifogery
-                   request.setRequestHeader("RequestVerificationToken"), Antiforgery.RequestVerificationToken);
-               },
-               url: obj.Url,
-               data: obj.RequestBody,
-               type: 'post',
-               // dataType: jQueryParameter.DataType,
-               // contentType: jQueryParameter.ContentType,
-               success: obj.SuccessCallback,
-               error: CustomRequest.PostRequestError,
-           });
-        }
-        catch(e)
-        {
-            alert('發生錯誤，請聯絡開發人員 !');
-            console.log(e);
-        }
-    }
-
-    CustomRequest.CheckUploadFileSize = function(file) {
-        if (file
-         && file.size
-         && file.size >= CustomRequest.RequestFileLimitSize)
-        {
-            const errorMessage = '@(Html.Raw(ErrorCode.GetErrorMessage(ErrorCode.E400007)))';
-            alert(errorMessage);
-            throw errorMessage;
-        }
-    }
-
-    CustomRequest.PostFile  = function(obj){
-
-        CustomRequest.ErrorCallback = obj.ErrorCallback;
-
-        try {
-           $.ajax({
-               beforeSend: function(request) {
-                  request.setRequestHeader("@(ViewParameter.RequestVerificationToken)", Antiforgery.@(ViewParameter.RequestVerificationToken));
-               },
-               url: obj.Url,
-               data: obj.RequestBody,
-               type: 'post',
-
-               @* 以下二個為解決 Illegal invocation 的問題 *@
-               processData: false,
-               contentType : false,
-
-               success: obj.SuccessCallback,
-               error: CustomRequest.PostRequestError,
-               complete: obj.CompleteCallback,
-           });
-        }
-        catch(e)
-        {
-            alert('發生錯誤，請聯絡開發人員 !');
-            console.log(e);
-        }
-    }
-
-    CustomRequest.PostRequestError = function(jqXHR, textStatus, errorThrown)
+    @* 將 CustomRequest 設計為狀態不共用 *@
+    window.CustomRequest = function(option)
     {
-        if (jqXHR.status === 401)
+        const self = this;
+
+        @* 下面是 Properties *@
+
+        self.RequestFileLimitSize = @(ServerParameter.RequestBodyMaxSize);
+
+        @* 傳入參數需要四個 Properties： Url, RequestBody, SuccessCallback, ErrorCallback(Optional), CompleteCallback(Optional) *@
+        self.Option = option;
+
+        @* 下面是 Functions *@
+
+        self.Post = function()
         {
-            window.location.href = '@Url.Action("Login", "Account")'
+            // console.log(self.Option.ErrorCallback);
+            // console.log(self.Option.RequestBody);
+
+            try
+            {
+                $.ajax(
+                {
+                    beforeSend: function(request)
+                    {
+                        request.setRequestHeader("@(ViewParameter.RequestVerificationToken)", Antiforgery.@(ViewParameter.RequestVerificationToken));
+                    },
+                    url: self.Option.Url,
+                    data: self.Option.RequestBody,
+                    type: 'post',
+
+                    // dataType: jQueryParameter.DataType,
+                    // contentType: jQueryParameter.ContentType,
+                }).done(function(e)
+                {
+                   self.Option.SuccessCallback(e);
+                }).fail(function (e)
+                {
+                   self.PostRequestError(e);
+
+                   if (self.Option.ErrorCallback)
+                   {
+                       self.Option.ErrorCallback(e.responseJSON);
+                   }
+                }).always(function (e){
+                   if (self.Option.CompleteCallback)
+                   {
+                       self.Option.CompleteCallback(e);
+                   }
+                });
+            }
+            catch (e)
+            {
+                alert('發生錯誤，請聯絡開發人員 !');
+                console.log(e);
+            }
         }
 
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown);
-        console.log(jqXHR.responseJSON);
-
-        if(jqXHR.responseJSON)
-        if(jqXHR.responseJSON.Message)
+        self.CheckUploadFileSize = function(file)
         {
-            alert(jqXHR.responseJSON.Message);
-        }
-        else
-        {
-            alert('發生錯誤，請聯絡開發人員');
+            if (file &&
+                file.size &&
+                file.size >= self.RequestFileLimitSize)
+            {
+                const errorMessage = '@(Html.Raw(ErrorCode.GetErrorMessage(ErrorCode.E400007)))';
+                alert(errorMessage);
+                throw errorMessage;
+            }
         }
 
-        console.log(CustomRequest.ErrorCallback);
-        if(CustomRequest.ErrorCallback)
+        self.PostFile = function(file)
         {
-            CustomRequest.ErrorCallback(jqXHR.responseJSON);
-        }
-    }
+            self.CheckUploadFileSize(file);
 
+            try
+            {
+                $.ajax(
+                {
+                    beforeSend: function(request)
+                    {
+                        request.setRequestHeader("@(ViewParameter.RequestVerificationToken)", Antiforgery.@(ViewParameter.RequestVerificationToken));
+                    },
+                    url: self.Option.Url,
+                    data: self.Option.RequestBody,
+                    type: 'post',
+
+                    @* 以下二個為解決 Illegal invocation 的問題 *@
+                    processData: false,
+                    contentType: false,
+                }).done(function(e)
+                {
+                   self.Option.SuccessCallback(e);
+                }).fail(function (e)
+                {
+                   self.PostRequestError(e);
+
+                   if (self.Option.ErrorCallback)
+                   {
+                       self.Option.ErrorCallback(e.responseJSON);
+                   }
+                }).always(function (e){
+                   if (self.Option.CompleteCallback)
+                   {
+                       self.Option.CompleteCallback(e);
+                   }
+                });
+            }
+            catch (e)
+            {
+                alert('發生錯誤，請聯絡開發人員 !');
+                console.log(e);
+            }
+        }
+
+        self.PostRequestError = function(jqXHR, textStatus, errorThrown)
+        {
+            if (jqXHR.status === 401)
+            {
+                window.location.href = '@Url.Action("Login", "Account")'
+            }
+
+            // console.log(jqXHR);
+            // console.log(textStatus);
+            // console.log(errorThrown);
+            console.log(jqXHR.responseJSON);
+
+            if (jqXHR.responseJSON
+            && jqXHR.responseJSON.Message)
+            {
+                alert(jqXHR.responseJSON.Message);
+            }
+            else
+            {
+                alert('發生錯誤，請聯絡開發人員');
+            }
+
+            // console.log(self);
+        }
+    };
 </script>
 ```
 
@@ -120,25 +156,43 @@
 ```csharp
 <script>
     window.VendorList = {};
+    VendorList.Request = new CustomRequest(VendorList);
     VendorList.Url = '@(Url.Action("GetList"))';
     VendorList.RequestBody = @Html.Raw(ViewHelpers.GenerateDefaultPageInfoDto(Model))
-    VendorList.ReloadList = function() {
-        VendorList.RequestBody.SearchVendorName = $('#searchVendorName').val();
-        VendorList.RequestBody.SearchVendorTaxId = $('#searchVendorTaxId').val();
+    VendorList.SearchList = function()
+    {
+        VendorList.RequestBody.SearchVendorName = $('#SearchVendorName').val();
+        VendorList.RequestBody.SearchVendorTaxId = $('#SearchVendorTaxId').val();
 
-        // 這裡呼叫 CustomRequest
-        CustomRequest.Post(VendorList);
+        VendorList.Reload();
     };
-    VendorList.SortColumn = function(column, orderby) {
+    VendorList.SortColumn = function(column, orderby)
+    {
         VendorList.RequestBody.SortColumn = column;
         VendorList.RequestBody.SortColumnOrder = orderby;
-        VendorList.ReloadList();
+        VendorList.SearchList();
     };
+    VendorList.SuccessCallback = function(e)
+    {
+        console.log(e);
 
-    // 正常 Request 回應的地方
-    VendorList.SuccessCallback = function (e){
         $('#vendorList').html(e.Data);
-        VendorList.RequestBody.DataCount = e.PageInfo.DataCount;
+        VendorList.SavePageInfoToRequestBody(e.PageInfo);
+        initialPageSelect();
     };
+    VendorList.Reload = function(e)
+    {
+        VendorList.Request.Post();
+    }
+    VendorList.SavePageInfoToRequestBody = function(pageInfo)
+    {
+    var SearchVendorName = VendorList.RequestBody.SearchVendorName;
+    var SearchVendorTaxId = VendorList.RequestBody.SearchVendorTaxId;
+
+    VendorList.RequestBody = pageInfo;
+
+    VendorList.RequestBody.SearchVendorName = SearchVendorName;
+    VendorList.RequestBody.SearchVendorTaxId = SearchVendorTaxId;
+    }
 </script>
 ```

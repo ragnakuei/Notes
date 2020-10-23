@@ -13,83 +13,73 @@
 -   `optionSourceNameSpace` 定義給 `CustomRequest` 呼叫的 object namespace
 
 ```csharp
-<link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css">
-<script src="~/lib/jquery-ui/jquery-ui.min.js"
-        asp-append-version="true"
-        crossorigin="use-credentials"></script>
+@* <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css"> *@
 <style>
     .ui-autocomplete-loading {
         background: white url("/lib/jquery-ui/ui-anim_basic_16x16.gif") right center no-repeat;
     }
 </style>
 <script>
-    window.CustomAutoComplete = {};
 
-    @*
-        用來可以對一個畫面上的多個 dom 來實作 autocomplete 功能
-        Key Value Pair
-            - Key : TriggerDomId
-            - Value : obj
-        透過 Key 找到 obj.StoreDomId 來刪除該 Dom 的 value
-    *@
-    CustomAutoComplete.Store = {};
+    @* 因為需要一開始就註冊 option 內的 dom 事件，所以請把 new CustomAutoComplete(initialOption) 放在最後一行 *@
+    window.CustomAutoComplete = function(initialOption) {
 
-    @* obj 需要的 properties：
-            1. TriggerDomId                   - 註冊 AutoComplete 的 Dom Id
-            2. Search(requestBody, response)  - 進行 Remote AutoComplete 使用的取資料的方式
-            3. StoreDomId                     - 選取下拉選單後會把 item.Id 放至 StoreDomId 的 value 中
-            4. SelectedStatus : boolean       - 用來判斷是否已選取下拉選單項目，特別是用於 編輯頁面
-            5. AutoCompleteSuccessCallback(selectedItem)  - 選取下拉選單後會執行的 callback
-    *@
+        const self = this;
 
-    CustomAutoComplete.Register = function(obj){
+        @* option 需要的 properties：
+                1. TriggerDomId                   - 註冊 AutoComplete 的 Dom Id
+                2. Search(requestBody, response)  - 進行 Remote AutoComplete 使用的取資料的方式
+                3. StoreDomId                     - 選取下拉選單後會把 item.Id 放至 StoreDomId 的 value 中
+                4. SelectedStatus : boolean       - 用來判斷是否已選取下拉選單項目，特別是用於 編輯頁面
+                5. AutoCompleteSuccessCallback(selectedItem)  - 選取下拉選單後會執行的 callback
+        *@
+        const option = initialOption;
 
-        CustomAutoComplete.Store[obj.TriggerDomId] = obj;
+        @* Enter = 13
+           Tab = 9
+           Shift = 16
+           Ctrl = 17
+           Alt = 18
+           按下這二個鍵，不會清空 AutoComplete 的內容
+        *@
+        const ignoreKeyCodesWhenKeyDown = [ 9, 13, 16, 17, 18 ];
 
-        $("#" + obj.TriggerDomId).autocomplete({
-            source: obj.Search,
+        @* 註冊 TriggerDomId 使用 jQuery UI AutoComplete *@
+        $("#" + option.TriggerDomId).autocomplete({
+            source: option.Search,
             minLength: 1,
             select: function( e, selectTarget ) {
 
                 @* console.log("id: " + selectTarget.item.id + " ,label: " + selectTarget.item.label + " ,value: " + selectTarget.item.value); *@
 
-                const targetObj = CustomAutoComplete.Store[e.target.id];
+                $('#' + option.StoreDomId).val(selectTarget.item.id);
+                option.SelectedStatus = true;
 
-                $('#' + targetObj.StoreDomId).val(selectTarget.item.id);
-                targetObj.SelectedStatus = true;
-
-                if (targetObj.AutoCompleteSuccessCallback)
+                if (option.AutoCompleteSuccessCallback)
                 {
-                    targetObj.AutoCompleteSuccessCallback(selectTarget.item);
+                    option.AutoCompleteSuccessCallback(selectTarget.item);
                 }
             }
         });
 
-        @* Enter = 13、Tab = 9*@
-        CustomAutoComplete.ignoreKeyCodesWhenKeyDown = [ 9, 13 ];
+        @* 只要輸入新的字元，就讓 TriggerDomId 清空原本輸入的內容 *@
+        $('#' + option.TriggerDomId).keydown(function(e) {
 
-        $('#' + obj.TriggerDomId).keydown(function(e) {
-
-            if (CustomAutoComplete.ignoreKeyCodesWhenKeyDown.includes(e.keyCode))
+            if (ignoreKeyCodesWhenKeyDown.includes(e.keyCode))
             {
                 return;
             }
 
-            const targetObj = CustomAutoComplete.Store[e.target.id];
-
-            if (targetObj.SelectedStatus === true)
+            if (option.SelectedStatus === true)
             {
                 @* console.log('清空 TriggerDomId 內容 及 刪除 StoreDomId 所儲存的值'); *@
 
-                $('#' + obj.TriggerDomId).val('');
-                $('#' + obj.StoreDomId).val('');
-                targetObj.SelectedStatus = false;
+                $('#' + option.TriggerDomId).val('');
+                $('#' + option.StoreDomId).val('');
+                option.SelectedStatus = false;
             }
         });
-
-        console.log('CustomAutoComplete.Register obj:' );
-        console.log(obj);
-    }
+    };
 </script>
 ```
 
@@ -98,21 +88,21 @@
 ```csharp
 <script>
     window.@(optionNameSpace) = {};
-    @(optionNameSpace).TriggerDomId = '@(nameof(Model.Vendors))';
+    @(optionNameSpace).TriggerDomId = '@(nameof(Model.Vendor))';
     @(optionNameSpace).StoreDomId = '@(nameof(Model.VendorGuid))';
+    @(optionNameSpace).SelectedStatus = @(optionNameSpaceSelectedStatus.ToString().ToLower());
     @(optionNameSpace).Search = function (requestBody, response)
     {
-        window.@(optionSourceNameSpace) = {};
-        @(optionSourceNameSpace).Url = '@Url.Action("Post", "Options")';
-        @(optionSourceNameSpace).StoreDomId = '@(nameof(Model.VendorGuid))';
-        @(optionSourceNameSpace).RequestBody = {};
-        @(optionSourceNameSpace).RequestBody.Option = '@(Option.ValidVendors)';
-        @(optionSourceNameSpace).RequestBody.Keyword = requestBody.term;
-        @(optionSourceNameSpace).SuccessCallback = response;  @* 給 CustomRequest 回傳給 response 用，不用改 *@
+        window.@(optionAjaxNameSpace) = {};
+        @(optionAjaxNameSpace).Request = new CustomRequest(@(optionAjaxNameSpace));
+        @(optionAjaxNameSpace).Url = '@Url.Action("AutoComplete", "Options")';
+        @(optionAjaxNameSpace).RequestBody = {};
+        @(optionAjaxNameSpace).RequestBody.AutoCompleteOption = '@(AutoCompleteOption.ValidVendors)';
+        @(optionAjaxNameSpace).RequestBody.Keyword = requestBody.term;
+        @(optionAjaxNameSpace).SuccessCallback = response;  @* 給 CustomRequest 回傳給 response 用，不用改 *@
 
-        CustomRequest.Post(@(optionSourceNameSpace));
+        @(optionAjaxNameSpace).Request.Post();
     }
-
-    CustomAutoComplete.Register(@optionNameSpace);
+    @(optionNameSpace).CustomAutoComplete = new CustomAutoComplete(@(optionNameSpace));
 </script>
 ```
