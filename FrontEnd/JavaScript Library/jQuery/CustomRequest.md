@@ -186,13 +186,13 @@
     }
     VendorList.SavePageInfoToRequestBody = function(pageInfo)
     {
-    var SearchVendorName = VendorList.RequestBody.SearchVendorName;
-    var SearchVendorTaxId = VendorList.RequestBody.SearchVendorTaxId;
+        var SearchVendorName = VendorList.RequestBody.SearchVendorName;
+        var SearchVendorTaxId = VendorList.RequestBody.SearchVendorTaxId;
 
-    VendorList.RequestBody = pageInfo;
+        VendorList.RequestBody = pageInfo;
 
-    VendorList.RequestBody.SearchVendorName = SearchVendorName;
-    VendorList.RequestBody.SearchVendorTaxId = SearchVendorTaxId;
+        VendorList.RequestBody.SearchVendorName = SearchVendorName;
+        VendorList.RequestBody.SearchVendorTaxId = SearchVendorTaxId;
     }
 </script>
 ```
