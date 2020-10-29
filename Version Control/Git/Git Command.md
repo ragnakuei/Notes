@@ -1,5 +1,9 @@
 # Git Command
 
+| git config                             | 說明                        |
+| -------------------------------------- | --------------------------- |
+| git config --global core.quotepath off | 讓 git command 支援顯示中文 |
+
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
 | git status | 檢查目前的狀態，可能會有對應的提示 |
@@ -93,7 +97,6 @@
 | git remote                                                                   | 說明                         |
 | ---------------------------------------------------------------------------- | ---------------------------- |
 | git remote add origin https://github.com/ragnakuei/AngularMaterailDemo01.git | 設定遠端的 github repository |
-
 
 | git bundle                              | 說明        |
 | --------------------------------------- | ----------- |

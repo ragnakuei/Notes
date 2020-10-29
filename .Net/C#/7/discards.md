@@ -1,4 +1,4 @@
-# [Discards](https://docs.microsoft.com/en-us/dotnet/csharp/discards)
+# [discards](https://docs.microsoft.com/en-us/dotnet/csharp/discards)
 
 以 _ 來做為假的變數來呼叫 method 或承接變數
 
