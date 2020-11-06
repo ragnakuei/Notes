@@ -63,6 +63,11 @@
 | git stash drop stash@{x}  | 刪掉指定的 stash 項目                                    |
 | git stash clear           | 刪除所有 stash 項目                                      |
 
+| git reset        | 說明                         |
+| ---------------- | ---------------------------- |
+| git reset Head   | Unstage 已 Stage Files       |
+| git reset --hard | 重置目前所有未 commit 的變更 |
+
 | git diff                        | 說明                                               |
 | ------------------------------- | -------------------------------------------------- |
 | git diff <remote-branch> <file> | 以 local file 與指定的 branch 的同個 file 進行比對 |
