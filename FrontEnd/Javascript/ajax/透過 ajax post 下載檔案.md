@@ -4,6 +4,8 @@
 
 以下範例搭配[_CustomRequest](../../JavaScript%20Library/jQuery/CustomRequest.md)
 
+- 因為使用 jQuery 發生不明錯誤，短時間內無法解決，以 XMLHttpRequest 測試成功 !
+
 ```js
 self.PostDownloadFile = function()
 {
