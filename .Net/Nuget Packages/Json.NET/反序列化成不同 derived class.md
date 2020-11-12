@@ -1,6 +1,6 @@
 # 反序列化成不同 derived class
 
-- 情境對照 [System.Text.Json 反序列化成不同 derived class](./../../Library/System.Text.Json.md##%20反序列化成不同%20derived%20class)
+- 情境對照 [System.Text.Json 反序列化成不同 derived class](./../../Library/System.Text.Json.md#反序列化成不同-derived-class)
 
 ## 範例一
 
