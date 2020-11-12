@@ -32,7 +32,7 @@ void Main()
 	
 	// 與 Newton.Json 不同的點，Serialize 不會注意到子類 !
 	var json1 = JsonSerializer.Serialize(dtos);
-	json1.Dump();    
+	json1.Dump();	
 	// [{"Type":"A"},{"Type":"A"},{"Type":"B"},{"Type":"B"},{"Type":"B"}]
 
 	var serializeOptions = new JsonSerializerOptions();
@@ -86,24 +86,24 @@ public class BaseTypeDiscriminator : JsonConverter<BaseType>
 			throw new JsonException();
 		}
 
-        // 讀取 Property Name
+		// 讀取 Property Name
 		string propertyName = reader.GetString();
 		if (propertyName != "Type")
 		{
 			throw new JsonException();
 		}
 
-        // 判斷 Type 的型態是否正確
+		// 判斷 Type 的型態是否正確
 		reader.Read();
 		if (reader.TokenType != JsonTokenType.String)
 		{
 			throw new JsonException();
 		}
 
-        // 讀取 Property Value
+		// 讀取 Property Value
 		var type = reader.GetString();
 
-        // 依照 type 建立對應子類
+		// 依照 type 建立對應子類
 		BaseType result = type switch
 		{
 			"A" => new ChildTypeA(),
@@ -113,7 +113,7 @@ public class BaseTypeDiscriminator : JsonConverter<BaseType>
 
 		result.Type = type;
 
-        // 子類 Property 讀取
+		// 子類 Property 讀取
 		while (reader.Read())
 		{
 			// 所有 Property 讀取完畢
@@ -124,10 +124,10 @@ public class BaseTypeDiscriminator : JsonConverter<BaseType>
 
 			if (reader.TokenType == JsonTokenType.PropertyName)
 			{
-                // 讀取 Property Name
+				// 讀取 Property Name
 				propertyName = reader.GetString();
 
-                讀取 Property Value
+				// 讀取 Property Value
 				reader.Read();
 				switch (propertyName)
 				{
@@ -155,7 +155,7 @@ public class BaseTypeDiscriminator : JsonConverter<BaseType>
 	{
 		writer.WriteStartObject();
 
-        // 為了讓反序列化比較好處理，Discriminator 欄位必須先給定
+		// 為了讓反序列化比較好處理，Discriminator 欄位必須先給定
 		writer.WriteString("Type", serializeObject.Type);
 
 		if (serializeObject is ChildTypeA childTypeA)
