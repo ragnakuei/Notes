@@ -54,7 +54,7 @@ public class ChildTypeA : BaseType
 {
 	public int Id { get; set; }
 }
-
+ 
 public class ChildTypeB : BaseType
 {
 	public string Name { get; set; }
