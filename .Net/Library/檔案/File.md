@@ -1,8 +1,38 @@
 # File
 
 - [File](#file)
-  - [從未關閉的 Stream 寫入至 File 中](#%e5%be%9e%e6%9c%aa%e9%97%9c%e9%96%89%e7%9a%84-stream-%e5%af%ab%e5%85%a5%e8%87%b3-file-%e4%b8%ad)
-  - [從關閉的 Stream 寫入至 File 中](#%e5%be%9e%e9%97%9c%e9%96%89%e7%9a%84-stream-%e5%af%ab%e5%85%a5%e8%87%b3-file-%e4%b8%ad)
+  - [將字串寫入檔案](#將字串寫入檔案)
+  - [從檔案一次讀出所有字串](#從檔案一次讀出所有字串)
+  - [從未關閉的 Stream 寫入至 File 中](#從未關閉的-stream-寫入至-file-中)
+  - [從關閉的 Stream 寫入至 File 中](#從關閉的-stream-寫入至-file-中)
+
+## 將字串寫入檔案
+
+```csharp
+var _lastRecordFileName = "lastRecord.json";
+
+var _lastRecordFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _lastRecordFileName);
+
+var jsonSerializerOptions = new JsonSerializerOptions
+                            {
+                                WriteIndented = true
+                            };
+var fileContent = JsonSerializer.Serialize(LastRecordDto, jsonSerializerOptions);
+
+File.WriteAllText(_lastRecordFullPath, fileContent);
+```
+
+## 從檔案一次讀出所有字串
+
+```csharp
+var _lastRecordFileName = "lastRecord.json";
+
+var _lastRecordFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _lastRecordFileName);
+
+var fileContent = File.ReadAllText(_lastRecordFullPath);
+
+LastRecordDto = JsonSerializer.Deserialize<LastRecordDto>(fileContent);
+```
 
 ## 從未關閉的 Stream 寫入至 File 中
 
