@@ -1,15 +1,16 @@
 # Model Binding
 
 - [Model Binding](#model-binding)
-  - [三個方式](#%e4%b8%89%e5%80%8b%e6%96%b9%e5%bc%8f)
-    - [透過引數](#%e9%80%8f%e9%81%8e%e5%bc%95%e6%95%b8)
-    - [透過 Attribute BindProperty](#%e9%80%8f%e9%81%8e-attribute-bindproperty)
-    - [透過 Request.Form](#%e9%80%8f%e9%81%8e-requestform)
+  - [三個方式](#三個方式)
+    - [透過引數](#透過引數)
+    - [透過 Attribute BindProperty](#透過-attribute-bindproperty)
+    - [透過 Request.Form](#透過-requestform)
     - [Validation](#validation)
-  - [範例](#%e7%af%84%e4%be%8b)
-    - [簡單型別](#%e7%b0%a1%e5%96%ae%e5%9e%8b%e5%88%a5)
-    - [複雜型別](#%e8%a4%87%e9%9b%9c%e5%9e%8b%e5%88%a5)
-  - [疑難雜症](#%e7%96%91%e9%9b%a3%e9%9b%9c%e7%97%87)
+  - [範例](#範例)
+    - [簡單型別](#簡單型別)
+    - [複雜型別 - 範例一](#複雜型別---範例一)
+    - [複雜型別 - 範例二](#複雜型別---範例二)
+  - [疑難雜症](#疑難雜症)
 
 ---
 
@@ -22,19 +23,115 @@
 ### 透過引數
 
 ```csharp
+[ValidateAntiForgeryToken]
+public class IndexModel : PageModel
+{
+    [Display(Name = "名稱", Prompt = "名稱")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [StringLength(maximumLength: 5, MinimumLength = 2, ErrorMessage = "{0} 長度要介於 {2} 及 {1} 之間")]
+    public string Name { get; set; }
 
+    [Display(Name = "單價", Prompt = "單價")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [Range(minimum: 1, maximum: 10, ErrorMessage = "{0} 要介於 {2} 及 {1} 之間")]
+    [RegularExpression("([0-9]+)", ErrorMessage = "請輸入正整數")]
+    public int? UnitPrice { get; set; }
+
+    [Display(Name = "分配日期", Prompt = "分配日期")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [DataType(DataType.Date)]
+    public DateTime? AssignDate { get; set; }
+
+    public void OnGet()
+    {
+
+    }
+
+    public void OnPost(string name, int? unitPrice, DateTime? assignDate)
+    {
+
+    }
+}
 ```
 
 ### 透過 Attribute BindProperty
 
 ```csharp
+[ValidateAntiForgeryToken]
+public class IndexModel : PageModel
+{
+    [BindProperty]
+    [Display(Name = "名稱", Prompt = "名稱")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [StringLength(maximumLength: 5, MinimumLength = 2, ErrorMessage = "{0} 長度要介於 {2} 及 {1} 之間")]
+    public string Name { get; set; }
 
+    [BindProperty]
+    [Display(Name = "單價", Prompt = "單價")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [Range(minimum: 1, maximum: 10, ErrorMessage = "{0} 要介於 {2} 及 {1} 之間")]
+    [RegularExpression("([0-9]+)", ErrorMessage = "請輸入正整數")]
+    public int? UnitPrice { get; set; }
+
+    [BindProperty]
+    [Display(Name = "分配日期", Prompt = "分配日期")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [DataType(DataType.Date)]
+    public DateTime? AssignDate { get; set; }
+
+    public void OnGet()
+    {
+
+    }
+
+    public void OnPost()
+    {
+
+    }
+}
 ```
 
 ### 透過 Request.Form
 
 ```csharp
+[ValidateAntiForgeryToken]
+public class IndexModel : PageModel
+{
+    [Display(Name                                 = "名稱", Prompt = "名稱")]
+    [Required(ErrorMessage                        = "請填寫{0}")]
+    [StringLength(maximumLength: 5, MinimumLength = 2, ErrorMessage = "{0} 長度要介於 {2} 及 {1} 之間")]
+    public string Name { get; set; }
 
+    [Display(Name                                = "單價", Prompt = "單價")]
+    [Required(ErrorMessage                       = "請填寫{0}")]
+    [Range(minimum: 1, maximum: 10, ErrorMessage = "{0} 要介於 {2} 及 {1} 之間")]
+    [RegularExpression("([0-9]+)", ErrorMessage  = "請輸入正整數")]
+    public int? UnitPrice { get; set; }
+
+    [Display(Name          = "分配日期", Prompt = "分配日期")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [DataType(DataType.Date)]
+    public DateTime? AssignDate { get; set; }
+
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+        Name = Request.Form["Name"].ToString();
+
+        if (Int32.TryParse(Request.Form["UnitPrice"], out var unitPrice))
+        {
+            UnitPrice = unitPrice;
+        }
+
+        if (DateTime.TryParse(Request.Form["AssignDate"], out var assignDate))
+        {
+            AssignDate = assignDate;
+        }
+    }
+}
 ```
 
 ### Validation
@@ -107,7 +204,7 @@ public class Index : PageModel
 
 ---
 
-### 複雜型別
+### 複雜型別 - 範例一
 
 - 針對需要在 Binding 至 PageModel 的欄位上加上 `BindProperty`
 - 使用 Tag Helper 來 Binding Property 更好維護
@@ -198,6 +295,114 @@ public class Index : PageModel
       public int? Count { get; set; }
   }
   ```
+
+---
+
+### 複雜型別 - 範例二
+
+```csharp
+[ValidateAntiForgeryToken]
+public class IndexModel : PageModel
+{
+    [BindProperty]
+    public TestDto TestDto { get; set; }
+
+    public void OnGet()
+    {
+    }
+
+    public void OnPost()
+    {
+    }
+}
+
+public class TestDto
+{
+    [Display(Name                                 = "名稱", Prompt = "名稱")]
+    [Required(ErrorMessage                        = "請填寫{0}")]
+    [StringLength(maximumLength: 5, MinimumLength = 2, ErrorMessage = "{0} 長度要介於 {2} 及 {1} 之間")]
+    public string Name { get; set; }
+
+    [Display(Name                                = "單價", Prompt = "單價")]
+    [Required(ErrorMessage                       = "請填寫{0}")]
+    [Range(minimum: 1, maximum: 10, ErrorMessage = "{0} 要介於 {2} 及 {1} 之間")]
+    [RegularExpression("([0-9]+)", ErrorMessage  = "請輸入正整數")]
+    public int? UnitPrice { get; set; }
+
+    [Display(Name          = "分配日期", Prompt = "分配日期")]
+    [Required(ErrorMessage = "請填寫{0}")]
+    [DataType(DataType.Date)]
+    public DateTime? AssignDate { get; set; }
+}
+```
+
+```html
+@page
+@model JqueryValidateUnobtrusive02.Pages.Test.IndexModel
+@{
+}
+
+<style>
+    .field-validation-error {
+        color: #e80c4d;
+        font-weight: bold;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+    input.input-validation-error {
+        border: 1px solid #e80c4d;
+    }
+
+    .validation-summary-errors {
+        color: #e80c4d;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
+</style>
+
+<form method="post">
+    <p>
+        <label asp-for="TestDto.Name"></label>
+        <input asp-for="TestDto.Name" />
+        <span asp-validation-for="TestDto.Name"
+              class="text-danger">
+        </span>
+    </p>
+    <p>
+        <label asp-for="TestDto.UnitPrice"></label>
+        <input asp-for="TestDto.UnitPrice" />
+        <span asp-validation-for="TestDto.UnitPrice"
+              class="text-danger">
+        </span>
+    </p>
+    <p>
+        <label asp-for="TestDto.AssignDate"></label>
+        <input asp-for="TestDto.AssignDate" />
+        <span asp-validation-for="TestDto.AssignDate"
+              class="text-danger">
+        </span>
+    </p>
+    <p>
+        <input type="submit"
+               value="Submit">
+    </p>
+</form>
+
+<form method="post">
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+```
 
 ---
 

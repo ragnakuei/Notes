@@ -3,6 +3,24 @@
 - [使用jQuery.validate.unobtrusive.js](https://blog.darkthread.net/blog/unobtrusive-jquery-validation/)
 - 預設會將驗証失敗的項目帶到畫面正中央 
 - 支援 regex 驗証
+- 一定要搭配 jQuery.Validate
+
+## 手動註冊指定的 form - 搭配 ajax
+
+```js
+$.validator.unobtrusive.parse('#form');
+```
+
+
+## 手動呼叫驗証
+
+```js
+// 單一驗証 - 指定 id 為 Name 的 dom 進行驗証 !
+$('#form').validate().element("#Name");
+
+// 整個 form 驗証
+$("#form").valid();
+```
 
 ### 範例一
 
