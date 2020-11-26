@@ -33,6 +33,19 @@ model 與 for
 <partial name="_OrderDetailPartial" for="@OrderDetail"/>
 ```
 
+for 支援二種語法
+- for 裡面以 @ 給定 object 
+  假設是這樣的語法
+  `<partial name="_OrderDetailPartial" for="@Model.OrderDetails"/>`
+  必須手動指定變數的 Property
+  可相容 for 廻圈給定，例：@(Model.OrderDetails[i])
+  使用的彈性較高，使用頻率也較高
+
+- for 裡面不以 @ 給定 object 
+  假設是這樣的語法
+  `<partial name="_OrderDetailPartial" for="OrderDetail"/>`
+  就會是直接讀取 Model.OrderDetail 的資料
+
 ### 範例
 
 假設傳入的 Model 是這樣
