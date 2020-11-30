@@ -36,13 +36,14 @@ public IActionResult Index()
 
     var vm = new TestViewModel
                 {
-                    DtoBIds = Array.Empty<int>()
+                    DtoBIds = new HashSet<int>()
                 };
 
     return View(vm);
 }
 
 [HttpPost]
+[ActionName("Index")]
 public IActionResult PostIndex(TestViewModel vm)
 {
     SetViewBagDtoAs();
@@ -85,18 +86,17 @@ ViewModel
 ```csharp
 public class TestViewModel
 {
-    public int[] DtoBIds { get; set; }
+    public HashSet<int> DtoBIds { get; set; }
 }
 ```
 
 View
 
 ```csharp
-<form asp-action="PostIndex">
+<form asp-action="Index" method="post">
 
     @{
         var dtoAs = ViewBag.DtoAs as DtoA[];
-        var selectedDtoBs = new HashSet<int>(Model.DtoBIds);
     }
     <p>
         @foreach (var dtoA in dtoAs)
@@ -109,7 +109,7 @@ View
                            value="@(dtoB.Id)"
                            id="@($"{dtoA.Id}_{dtoB.Id}")"
                            name="DtoBIds"
-                           @( selectedDtoBs.Contains(dtoB.Id) ? "checked" : "" )
+                           @( Model.DtoBIds.Contains(dtoB.Id) ? "checked" : "" )
                            />
                     <label for="@($"{dtoA.Id}_{dtoB.Id}")">@(dtoB.Name)</label>
                 </p>
