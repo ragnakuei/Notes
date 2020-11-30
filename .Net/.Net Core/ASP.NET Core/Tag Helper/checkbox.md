@@ -4,7 +4,68 @@
 - 有多少選項放到 checkbox 中，Post 時，就會接到多少 選項
 - 選項可以用自訂的 ViewModel
 
-### 範例
+### 手指指定簡單範例
+
+```csharp
+[HttpGet]
+public IActionResult Index()
+{
+    var vm = new Test2ViewModel
+                {
+                    Filters = new[]
+                            {
+                                new SelectListItem { Text = "A", Value = "vA" },
+                                new SelectListItem { Text = "B", Value = "vB" },
+                                new SelectListItem { Text = "C", Value = "vC" },
+                                new SelectListItem { Text = "D", Value = "vD" },
+                                new SelectListItem { Text = "E", Value = "vE" },
+                            }
+                };
+    return View(vm);
+}
+
+[HttpPost]
+public IActionResult PostIndex(Test2ViewModel vm)
+{
+    return View("Index", vm);
+}
+```
+
+```csharp
+public class Test2ViewModel
+{
+    public string[] SelectedValues { get; set; }
+
+    public SelectListItem[] Filters { get; set; }
+}
+```
+
+View
+
+```csharp
+@model CheckBoxPractice.Controllers.Test2ViewModel
+
+<form method="post"
+      asp-action="PostIndex">
+
+    @for (var index = 0; index < Model.Filters.Length; index++)
+    {
+        <p>
+            <input type="checkbox"
+                   name="SelectedValues"
+                   id="Filters@(index)"
+                   value="@(Model.Filters[index].Value)" />
+            <label for="Filters@(index)">@(Model.Filters[index].Text)</label>
+        </p>
+    }
+
+    <input type="submit"
+           value="Sumbit" />
+</form>
+
+```
+
+### 複雜型別範例 - 可指定勾選項目
 
 選項 ViewModel
 
