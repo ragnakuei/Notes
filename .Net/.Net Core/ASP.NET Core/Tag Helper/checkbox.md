@@ -4,65 +4,124 @@
 - 有多少選項放到 checkbox 中，Post 時，就會接到多少 選項
 - 選項可以用自訂的 ViewModel
 
-### 手指指定簡單範例
+## 以父類群組化的 Checkbox
+
+### 手動指定簡單範例
+
+選單的父類跟子類關聯
+
+```csharp
+public class DtoA
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public DtoB[] DtoBs { get; set; }
+}
+
+public class DtoB
+{
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+}
+```
 
 ```csharp
 [HttpGet]
 public IActionResult Index()
 {
-    var vm = new Test2ViewModel
+    SetViewBagDtoAs();
+
+    var vm = new TestViewModel
                 {
-                    Filters = new[]
-                            {
-                                new SelectListItem { Text = "A", Value = "vA" },
-                                new SelectListItem { Text = "B", Value = "vB" },
-                                new SelectListItem { Text = "C", Value = "vC" },
-                                new SelectListItem { Text = "D", Value = "vD" },
-                                new SelectListItem { Text = "E", Value = "vE" },
-                            }
+                    DtoBIds = Array.Empty<int>()
                 };
+
     return View(vm);
 }
 
 [HttpPost]
-public IActionResult PostIndex(Test2ViewModel vm)
+public IActionResult PostIndex(TestViewModel vm)
 {
+    SetViewBagDtoAs();
+
     return View("Index", vm);
+}
+
+private void SetViewBagDtoAs()
+{
+    ViewBag.DtoAs = new[]
+                    {
+                        new DtoA
+                        {
+                            Id   = 1,
+                            Name = "A1",
+                            DtoBs = new[]
+                                    {
+                                        new DtoB { Id = 11, Name = "B11" },
+                                        new DtoB { Id = 12, Name = "B12" },
+                                        new DtoB { Id = 13, Name = "B13" },
+                                    }
+                        },
+                        new DtoA
+                        {
+                            Id   = 2,
+                            Name = "A2",
+                            DtoBs = new[]
+                                    {
+                                        new DtoB { Id = 14, Name = "B14" },
+                                        new DtoB { Id = 15, Name = "B15" },
+                                        new DtoB { Id = 16, Name = "B16" },
+                                    }
+                        },
+                    };
 }
 ```
 
-```csharp
-public class Test2ViewModel
-{
-    public string[] SelectedValues { get; set; }
+ViewModel
 
-    public SelectListItem[] Filters { get; set; }
+```csharp
+public class TestViewModel
+{
+    public int[] DtoBIds { get; set; }
 }
 ```
 
 View
 
 ```csharp
-@model CheckBoxPractice.Controllers.Test2ViewModel
+<form asp-action="PostIndex">
 
-<form method="post"
-      asp-action="PostIndex">
-
-    @for (var index = 0; index < Model.Filters.Length; index++)
-    {
-        <p>
-            <input type="checkbox"
-                   name="SelectedValues"
-                   id="Filters@(index)"
-                   value="@(Model.Filters[index].Value)" />
-            <label for="Filters@(index)">@(Model.Filters[index].Text)</label>
-        </p>
+    @{
+        var dtoAs = ViewBag.DtoAs as DtoA[];
+        var selectedDtoBs = new HashSet<int>(Model.DtoBIds);
     }
+    <p>
+        @foreach (var dtoA in dtoAs)
+        {
+            <p>@(dtoA.Name)</p>
+            @foreach (var dtoB in dtoA.DtoBs)
+            {
+                <p>
+                    <input type="checkbox"
+                           value="@(dtoB.Id)"
+                           id="@($"{dtoA.Id}_{dtoB.Id}")"
+                           name="DtoBIds"
+                           @( selectedDtoBs.Contains(dtoB.Id) ? "checked" : "" )
+                           />
+                    <label for="@($"{dtoA.Id}_{dtoB.Id}")">@(dtoB.Name)</label>
+                </p>
+            }
+        }
+    </p>
 
-    <input type="submit"
-           value="Sumbit" />
+    <p>
+        <input type="submit"
+               value="Submit" />
+    </p>
 </form>
-
 ```
 
 ### 複雜型別範例 - 可指定勾選項目
