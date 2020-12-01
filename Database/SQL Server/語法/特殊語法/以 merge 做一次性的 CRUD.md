@@ -6,25 +6,25 @@
 MERGE [放進 db 上指定的資料表] [t]
 USING [來源資料] [s]
 ON [t].[欄位1] = [s].[欄位2]
-	AND [t].[欄位2] = [s].[欄位2]
+    AND [t].[欄位2] = [s].[欄位2]
 
 -- 符合上面 USING 的條件
 WHEN MATCHED
-	THEN
-	UPDATE
-	SET [t].[欄位3] = [s].[欄位3],
-		[t].[欄位4] = [s].[欄位4]
+    THEN
+    UPDATE
+    SET [t].[欄位3] = [s].[欄位3],
+        [t].[欄位4] = [s].[欄位4]
 
 -- 不符合上面 USING 的條件，且資料不在 t 中
 WHEN NOT MATCHED BY TARGET
-	THEN
-	INSERT ([欄位1], [欄位2], [欄位3]])
-	VALUES ([s].[欄位1], [s].[欄位2], [s].[欄位3]])
+    THEN
+    INSERT ([欄位1], [欄位2], [欄位3])
+    VALUES ([s].[欄位1], [s].[欄位2], [s].[欄位3])
 
 -- 不符合上面 USING 的條件，且資料不在 s 中
-WHEN NOT MATCHED BY SOURCE AND [t].[欄位3]] = 1 
-							-- 符合 AND 的條件，才會被刪除
-	THEN DELETE;
+WHEN NOT MATCHED BY SOURCE AND [t].[欄位3] = 1 
+                           -- 符合 AND 的條件，才會被刪除
+    THEN DELETE;
 ```
 
 ### 範例
