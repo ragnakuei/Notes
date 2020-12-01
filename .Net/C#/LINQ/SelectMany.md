@@ -1,7 +1,18 @@
 # SelectMany
 
+### 範例：攤平
 
-### 範例一：類似 Join 的效果
+```csharp
+var arr = new[] {
+	new [] { "A", "B",},
+	new [] { "C", "D", "E"},
+	new [] { "F", "G"},
+};
+
+arr.SelectMany(a => a).Dump();
+```
+
+### 範例：類似 Join 的效果
 
 ```csharp
 void Main()
@@ -53,7 +64,7 @@ public class DtoB
 }
 ```
 
-### 範例二
+### 範例：攤平比較
 
 ```csharp
 
