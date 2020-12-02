@@ -25,7 +25,7 @@ WHEN NOT MATCHED BY TARGET
 WHEN NOT MATCHED BY SOURCE AND [t].[欄位3] = 1 
                            -- 符合 AND 的條件，才會被刪除
                            -- 如果不加這個，可能會導致所有不相關資料都被刪除
-    THEN DELETE;
+    THEN DELETE;           -- 這個也可以改成 UPDATE SET !
 ```
 
 ### 範例
