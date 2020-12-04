@@ -18,7 +18,7 @@
   - configurationRoot["Key"].AsEnumerable() 
 - 以下二個語法效果相同
   - configurationRoot.GetSection("TestFolder:Image")
-  - configurationRoot.GetSection("TestFolder)..GetSection("Image") 
+  - configurationRoot.GetSection("TestFolder).GetSection("Image") 
 
 ## 取出指定 Section 的 Array 資料
 
