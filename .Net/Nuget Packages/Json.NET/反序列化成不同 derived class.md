@@ -77,3 +77,84 @@ void Main()
 	JsonConvert.DeserializeObject<BaseType[]>(json, options).Dump();
 }
 ```
+
+
+## 範例二
+
+ReadJson() 的語法與範例一，稍微不同 !
+
+```csharp
+void Main()
+{
+    var data = new BaseType[]
+    {
+        new TypeA { Id = 1, },
+        new TypeB { Name = "A" },
+    };
+
+    var json = JsonConvert.SerializeObject(data,
+                                           Newtonsoft.Json.Formatting.Indented);
+    json.Dump();
+
+    var jsonSettings = new JsonSerializerSettings
+    {
+        Converters = new List<JsonConverter>
+        {
+            new BaseTypeConverter(),
+        }
+    };
+
+    var data2 = JsonConvert.DeserializeObject<BaseType[]>(json, jsonSettings);
+    data2.Dump();
+}
+
+public class BaseType
+{
+    public string Type { get; set; }
+}
+
+public class TypeA : BaseType
+{
+    public TypeA()
+    {
+        Type = "TypeA";
+    }
+    
+    public int Id { get; set; }
+}
+
+public class TypeB : BaseType
+{
+    public TypeB()
+    {
+        Type = "TypeB";
+    }
+
+    public string Name { get; set; }
+}
+
+class BaseTypeConverter : JsonConverter
+{
+    public override bool CanConvert(Type objectType)
+    {
+        return typeof(BaseType).IsAssignableFrom(objectType);
+    }
+
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    {
+        JObject item = JObject.Load(reader);
+        switch (item[nameof(BaseType.Type)].Value<String>())
+        {
+            case "TypeA": return item.ToObject<TypeA>();
+            case "TypeB": return item.ToObject<TypeB>();
+            
+            default: throw new ArgumentException("Invalid source type");
+        }
+    }
+
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        throw new NotImplementedException();
+    }
+}
+```
