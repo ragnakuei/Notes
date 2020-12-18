@@ -7,6 +7,11 @@
 
 ## remote 範例
 
+response 需要的結
+- id
+- label - 下拉選單顯示的文字
+- value - 選擇項目後，所顯示的文字
+
 ### 包裝語法
 
 -   `optionNameSpace` 定義給 `CustomAutoComplete` 呼叫的 object namespace
