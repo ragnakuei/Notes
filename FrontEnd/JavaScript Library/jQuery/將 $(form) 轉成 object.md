@@ -57,20 +57,20 @@ TestCategories[0][TestItems][1][Name]: A112
 TestCategories[0][TestItems][2][Sort]: 2
 TestCategories[0][TestItems][2][Id]: 113
 TestCategories[0][TestItems][2][Name]: A113
-TestCategories[1][Sort]: 2
-TestCategories[1][Id]: 13
-TestCategories[1][Name]: A13
-TestCategories[1][TestItems][0][Sort]: 0
-TestCategories[1][TestItems][0][Id]: 131
-TestCategories[1][TestItems][0][Name]: A131
-TestCategories[1][TestItems][1][Sort]: 1
-TestCategories[1][TestItems][1][Id]: 132
-TestCategories[1][TestItems][1][Name]: A132
-TestCategories[1][TestItems][1][Detail][Id]: 1322
-TestCategories[1][TestItems][1][Detail][Name]: A1322
-TestCategories[1][TestItems][2][Sort]: 2
-TestCategories[1][TestItems][2][Id]: 133
-TestCategories[1][TestItems][2][Name]: A133
+TestCategories[2][Sort]: 2
+TestCategories[2][Id]: 13
+TestCategories[2][Name]: A13
+TestCategories[2][TestItems][0][Sort]: 0
+TestCategories[2][TestItems][0][Id]: 131
+TestCategories[2][TestItems][0][Name]: A131
+TestCategories[2][TestItems][1][Sort]: 1
+TestCategories[2][TestItems][1][Id]: 132
+TestCategories[2][TestItems][1][Name]: A132
+TestCategories[2][TestItems][1][Detail][Id]: 1322
+TestCategories[2][TestItems][1][Detail][Name]: A1322
+TestCategories[2][TestItems][2][Sort]: 2
+TestCategories[2][TestItems][2][Id]: 133
+TestCategories[2][TestItems][2][Name]: A133
 ```
 
 轉成 Json 格式
