@@ -2,6 +2,10 @@
 
 可以透過 ReSharper 設定後，轉成 XAML ，再貼到 Rider 來套用 !
 
+路徑
+
+> Settings > Editor > Code Style > C#
+
 ## 已套用之設定
 
 ```xml

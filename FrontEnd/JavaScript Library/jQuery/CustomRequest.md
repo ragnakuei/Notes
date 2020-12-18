@@ -21,6 +21,13 @@
         @* 傳入參數需要四個 Properties： Url, RequestBody, SuccessCallback, ErrorCallback(Optional), CompleteCallback(Optional) *@
         self.Option = option;
 
+        @* 用來防止多次觸發
+           已有 request 正在處理中 => true
+           沒有 request 正在處理中 => false
+           僅限於同一功能，無法跨功能支援 !
+        *@
+        self.Waiting = false;
+
         @* 下面是 Functions *@
 
         self.Post = function()
@@ -30,6 +37,14 @@
 
             try
             {
+                if (self.Waiting)
+                {
+                    console.log('已有 request 正在等待回應中');
+                    return;
+                }
+
+                self.Waiting = true;
+
                 $.ajax(
                 {
                     beforeSend: function(request)
@@ -58,6 +73,8 @@
                    {
                        self.Option.CompleteCallback(e);
                    }
+
+                   self.Waiting = false;
                 });
             }
             catch (e)
@@ -85,6 +102,14 @@
 
             try
             {
+                if (self.Waiting)
+                {
+                    console.log('已有 request 正在等待回應中');
+                    return;
+                }
+
+                self.Waiting = true;
+
                 $.ajax(
                 {
                     beforeSend: function(request)
@@ -114,6 +139,8 @@
                    {
                        self.Option.CompleteCallback(e);
                    }
+
+                   self.Waiting = false;
                 });
             }
             catch (e)
