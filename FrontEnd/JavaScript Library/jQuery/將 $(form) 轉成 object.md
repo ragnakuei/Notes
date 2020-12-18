@@ -151,6 +151,7 @@ $('#PostForm').submit(function (e)
         data: requestBody,
         type: 'post',
         dataType: "json",
+        contentType: 'application/json',
     }).done(function(e)
     {
         console.log(e);
