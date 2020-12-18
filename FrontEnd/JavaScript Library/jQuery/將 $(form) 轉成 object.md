@@ -201,19 +201,6 @@ window.SerializeJson = function (formDataArray) {
     }
 
     function AssignPropertyInfoToJson(propertyInfo) {
-
-        // 如果中間的 property 是 None 的話，就不處理
-        let childPropertyInfo = propertyInfo;
-        while (childPropertyInfo.PropertyType !== PropertyType.Normal) {
-            // 非指定的 PropertyType
-            if (childPropertyInfo.PropertyType === PropertyType.None) {
-                // 直接跳出，不做進一步處理
-                return;
-            }
-
-            childPropertyInfo = childPropertyInfo.ChildPropertyInfo;
-        }
-
         switch (propertyInfo.PropertyType) {
             case PropertyType.Normal:
                 self.Json[propertyInfo.Name] = propertyInfo.Value;
