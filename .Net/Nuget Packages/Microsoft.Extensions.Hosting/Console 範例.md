@@ -99,6 +99,7 @@ public class App : IHostedService
 
 ## 參考資料
 - [.NET Generic Host in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host)
+- [Environment variables](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/#environment-variables)
 - [Get started with .NET Generic Host](https://snede.net/get-started-with-net-generic-host/)
 - [使用 .NET Generic Host 建立 Console 主控台應用程式 (.NET Core 3.1+)](https://blog.miniasp.com/post/2020/12/08/NET-Generic-Host-Build-Console-App)
 - [參考關聯範例](./../../.Net%20Core/Configuration/依照不同%20profile%20讀不同檔案.md)

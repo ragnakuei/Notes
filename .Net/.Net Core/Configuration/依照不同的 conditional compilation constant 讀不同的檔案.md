@@ -19,24 +19,33 @@
         public static IHostBuilder CreateHostBuilder(string[] args)
             => Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
-                                            {
-    #if Debug
-                                                var configConst = "Debug";
-    #elif Tst
-                                                var configConst = "Tst";
-    #elif Uat
-                                                var configConst = "Uat";
-    #elif PrePrd
-                                                var configConst = "PrePrd";
-    #elif Release
-                                                var configConst = "Release";
-    #endif
-                                                config.AddJsonFile($"appsettings.{configConst}.json", false, true);
-                                            })
+                                           {
+                                               config.AddJsonFileByConfiguration(optional: false, reloadOnChange: true);
+                                           })
                 .ConfigureWebHostDefaults(webBuilder =>
                                             {
                                                 webBuilder.UseStartup<Startup>();
                                             });
+    }
+
+    public static class AddJsonFileByConfigurationHelper
+    {
+        public static IConfigurationBuilder AddJsonFileByConfiguration(this IConfigurationBuilder builder, bool optional, bool reloadOnChange)
+        {
+    #if Debug
+            var configConst = "Debug";
+    #elif SiteA
+            var configConst = "SiteA";
+    #elif SiteB
+            var configConst = "SiteB";
+    #elif SiteC
+            var configConst = "SiteC";
+    #elif Release
+            var configConst = "Release";
+    #endif
+            builder.AddJsonFile($"appsettings.{configConst}.json", optional, reloadOnChange);
+            return builder;
+        }
     }
     ```
 
