@@ -13,12 +13,12 @@ appsettings.json
 ```
 
 ```csharp
-var _configurationRoot = new ConfigurationBuilder()
+var configurationRoot = new ConfigurationBuilder()
                         .AddJsonFile("appsettings.json", false, true)
                         .Build();
 
-// var result = _configurationRoot["Test"];   // 這個方式也可以
-var result = _configurationRoot.GetSection("Test").Value;
+// var result = configurationRoot["Test"];   // 這個方式也可以
+var result = configurationRoot.GetSection("Test").Value;
 
 Console.WriteLine(result);
 ```
