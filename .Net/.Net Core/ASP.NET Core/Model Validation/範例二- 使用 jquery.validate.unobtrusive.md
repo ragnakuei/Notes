@@ -59,6 +59,9 @@
 [View Render 後的結果](./../../../../FrontEnd/JavaScript%20Library/jQuery%20Validate%20Unobtrusive/jQuery%20Validate%20Unobtrusive.md###%20範例一)
 - 支援 regex 驗証
 
+
+> 註：可以把 \<style> 這一部份宣告，直接放在 _ValidationScriptsPartial.cshtml 中
+
 ```html
 @model JqueryValidateUnobtrusive01.Controllers.TestViewModel
 @{
