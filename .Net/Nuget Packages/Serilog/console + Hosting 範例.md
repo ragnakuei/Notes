@@ -1,14 +1,17 @@
 # console + Hosting 範例
 
-- 讀取 appsettings.json
-  - 記得將檔案設定成 `copy to output directory`
-  - IConfiguration `預設`就會讀取 apppsettings.json，不需要特別指定
-  - 預設會讀取 appsettings.json 中的 Serilog property 的結構
-    - [可手動指定](#手動指定為-customsection)
-- 方式一
-  - 脫離原本 Hosting 的設定
-- 方式二
-  - 與原本 Hosting 的設定整合
+- 方式一 > 脫離原本 Hosting 的設定
+- 方式二 > 與原本 Hosting 的設定整合
+- 方式三 > 更明確的呼叫方式
+- 套件
+  - Microsoft.Extensions.Hosting
+  - Microsoft.Extensions.DependencyInjection
+  - Microsoft.Extensions.Configuration
+  - Microsoft.Extensions.Logging
+  - Serilog
+  - Serilog.AspNetCore
+  - Serilog.Sinks.Console
+  - Serilog.Sinks.File
 
 ```csharp
 class Program
@@ -27,7 +30,13 @@ class Program
         //             .CreateLogger();
 
         CreateHostBuilder(args)
-           .UseSerilog() // 套件 Serilog.AspNetCore
+           // .UseSerilog()
+
+           // 方式三
+           .UseSerilog((hostingContext, loggerConfiguration) =>
+                       {
+                           loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration);
+                       }) // 套件 Serilog.AspNetCore
            .Build()
            .Run();
     }
@@ -41,9 +50,9 @@ class Program
             .ConfigureAppConfiguration(config =>
                                        {
                                            // 方式二
-                                           Log.Logger = new LoggerConfiguration()
-                                                       .ReadFrom.Configuration(config.Build())
-                                                       .CreateLogger();
+                                           // Log.Logger = new LoggerConfiguration()
+                                           //             .ReadFrom.Configuration(config.Build())
+                                           //             .CreateLogger();
                                        });
 }
 
@@ -119,17 +128,3 @@ appsettings.json
 }
 ```
 
-### 手動指定為 CustomSection
-```csharp
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(configuration, sectionName: "CustomSection")
-    .CreateLogger();
-```
-
-```json
-{
-  "CustomSection": {
-    // TODO
-  }
-}
-```
