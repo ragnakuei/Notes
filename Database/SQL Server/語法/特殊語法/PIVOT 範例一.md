@@ -5,6 +5,17 @@
 ## 資料表資料
 
 ```sql
+CREATE TABLE [OrderDetailSummary]
+(
+    [Id]         INT       NOT NULL
+        CONSTRAINT [PK_OrderDetailSummary]
+            PRIMARY KEY,
+    [ProductId]  INT       NOT NULL,
+    [OrderDate]  DATETIME2 NOT NULL,
+    [TotalPrice] INT       NOT NULL,
+    [Count]      INT       NOT NULL
+)
+
 INSERT INTO [dbo].[OrderDetailSummary] ([Id],
                                         [ProductId],
                                         [OrderDate],
