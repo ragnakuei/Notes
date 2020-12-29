@@ -113,3 +113,32 @@ public IEnumerable<dynamic> GetData()
                      .ToArray;
 }
 ```
+
+### 手寫迴圈
+
+```csharp
+public static class Helper
+{
+    public static T MaxElement<T>(this IEnumerable<T> source,
+                                    Func<T, T, T>       func)
+    {
+        using (var iter = source.GetEnumerator())
+        {
+            // 先以第一個做為該欄位最大值的元素
+            var maxElement = default(T);
+
+            if (iter.MoveNext())
+            {
+                maxElement = iter.Current;
+            }
+
+            while (iter.MoveNext())
+            {
+                maxElement = func.Invoke(maxElement, iter.Current);
+            }
+
+            return maxElement;
+        }
+    }
+}
+```
