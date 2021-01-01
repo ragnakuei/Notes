@@ -1,5 +1,15 @@
 # SelectMany
 
+### 範例：Cross Join 效果
+
+輸出 九九乖法表 的乘數與被乘數清單 !
+
+```csharp
+var ints =  Enumerable.Range(1, 9);
+
+ints.SelectMany(i1 => ints, (i1, i2) => (i1, i2)).Dump();
+```
+
 ### 範例：攤平
 
 ```csharp
