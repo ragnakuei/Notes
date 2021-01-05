@@ -39,14 +39,17 @@ class Program
 
     private static string XmlSerializerToString<T>(T obj)
     {
-        var serializer = new XmlSerializer(typeof(T));
-        var ms         = new MemoryStream();
-        var writer     = new StreamWriter(ms);
+        using (var ms = new MemoryStream())
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            var writer     = new StreamWriter(ms);
 
-        serializer.Serialize(writer, obj);
-        writer.Close();
+            serializer.Serialize(writer, obj);
+            writer.Close();
 
-        return Encoding.UTF8.GetString(ms.ToArray());
+            var xmlSerializerToString = Encoding.UTF8.GetString(ms.ToArray());
+            return xmlSerializerToString;
+        }
     }
 }
 
