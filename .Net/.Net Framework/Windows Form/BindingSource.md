@@ -9,6 +9,8 @@
 
 ### List\<T> 與 DataGridView、BindingNavigator 及 GroupBox 顯示詳細資料
 
+[Github 範例](https://github.com/ragnakuei/WindowsFormDataBindingSample)
+
 - 單向 Binding
 
     ```csharp
