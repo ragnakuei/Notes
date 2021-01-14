@@ -297,6 +297,38 @@
 </script>
 ```
 
+CustomFullScreenLoading.js
+
+```html
+<script>
+    window.CustomFullScreenLoading = function()
+    {
+        const self = this;
+
+        @* 下面是 Properties *@
+
+        // self.Dom = $('#full-screen-loading');
+
+        @* 下面是 Functions *@
+
+        self.Show = function()
+        {
+            // self.Dom.fadeIn(300);
+
+            console.log('Show FullScreenLoading');
+        }
+
+        self.Close = function()
+        {
+            // self.Dom.fadeOut(300);
+
+            console.log('Hide FullScreenLoading');
+        }
+    }
+</script>
+```
+
+
 ## 呼叫語法
 
 ```csharp
