@@ -114,7 +114,7 @@ public IEnumerable<dynamic> GetData()
 }
 ```
 
-### 手寫迴圈
+### 手寫迴圈範例一
 
 ```csharp
 public static class Helper
@@ -142,3 +142,7 @@ public static class Helper
     }
 }
 ```
+
+### 手寫迴圈範例二
+
+[Github 連結](https://github.com/ragnakuei/ReplaceOnce/commit/706d4b3388317c24b4ee78c176fd5ca10b6969f6#diff-fa20421de30d4b93626ea7a25aed71d977ef605fd9a79b5744ede12a9afa2b03)
