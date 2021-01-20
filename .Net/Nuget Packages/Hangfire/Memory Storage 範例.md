@@ -6,7 +6,7 @@
 - Hangfire.MemoryStorage
 
 
-## 範例
+## [範例](https://github.com/ragnakuei/HangfirePractice)
 
 startup.cs > ConfigureServices()
 
