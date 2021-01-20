@@ -10,6 +10,7 @@ $.ajax({
     data: { keyword: request.term },
     dataType: 'json',
     contentType: 'application/json',
+    // processData: false,   // 不讓 jQuery 做額外的處理，適合用於只傳簡單型別的資料
     success: response,
     error: function () {
         response([]);
@@ -29,4 +30,21 @@ $.ajax({
 [ajaxSend()](https://api.jquery.com/ajaxsend/)
 
 
+## request body 傳簡單型別
 
+```javascript
+$.ajax({
+    url: searchEmployeeApiUrl,
+    type: 'post',
+    data: { keyword: request.term },
+    dataType: 'json',
+    contentType: 'application/json',
+
+    // 不讓 jQuery 做額外的處理，適合用於只傳簡單型別的資料
+    processData: false,
+
+    success: response,
+    error: function () {
+        response([]);
+    }
+})
