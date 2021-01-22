@@ -36,7 +36,7 @@ public class DiFactory : IDependencyResolver
         services.AddTransient<HomeController>();
         services.AddTransient<AccountController>();
         services.AddTransient<YoutubeController>();
-        services.AddSingleton<DiFactory>();
+        services.AddSingleton<DiFactory>(s => this );
         services.AddSingleton<IConfigurationService, ConfigurationService>();
         services.AddTransient<AccountService>();
 
