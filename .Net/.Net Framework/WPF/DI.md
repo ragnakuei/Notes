@@ -16,7 +16,7 @@ public class DiFactory
     static DiFactory()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<DiFactory>(x => new DiFactory());
+        services.AddSingleton<DiFactory>();
         services.AddTransient<MainWindow>();
         services.AddTransient<MainWindowViewModel>();
 

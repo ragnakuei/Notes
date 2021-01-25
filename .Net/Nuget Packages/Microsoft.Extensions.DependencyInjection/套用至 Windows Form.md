@@ -44,7 +44,7 @@
        {
            var services = new ServiceCollection();
            services.AddTransient<MainWindow>();
-           services.AddSingleton<DiFactory>(x => new DiFactory());
+           services.AddSingleton<DiFactory>();
 
            services.AddBusinessLogicLayer();
            _serviceProvider = services.BuildServiceProvider();

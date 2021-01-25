@@ -124,7 +124,7 @@ public class DiFactory : IDiFactory
     public DiFactory()
     {
         var services = new ServiceCollection();
-        services.AddSingleton<IDiFactory, DiFactory>();
+        services.AddSingleton<IDiFactory, DiFactory>(s => this);
         services.AddBusinessLogicServices();
 
         services.AddTransient<IConfiguration>(s => ConfigurationHelper.GetConfiguration());
