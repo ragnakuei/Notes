@@ -6,6 +6,10 @@
 
 檔案路徑
 
+- Publish 前 - 會在專案目錄下產生對應的目錄
+- Publish 後 - 會在執行目錄下產生對應的目錄
+- 可相對路徑
+
 ### restrictedToMinimumLevel
 
 最小的 Log Level
@@ -14,7 +18,8 @@
 
 Log 輸出內容範本
 
-預設是 `{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}`
+預設 : `{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}`
+範例 : `{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] [{SourceContext}] [{EventId}] {Message:lj}{NewLine}{Exception}`
 
 ### formatProvider
 
