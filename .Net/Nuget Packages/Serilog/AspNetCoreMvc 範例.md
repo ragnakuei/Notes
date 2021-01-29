@@ -40,12 +40,12 @@ appsettings.json
     },
     "WriteTo": [
         {
-        "Name": "File",
-        "Args": {
-            "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
-            "path": "../Files/Logs/log.json",
-            "rollingInterval" : "Day"
-        }
+            "Name": "File",
+            "Args": {
+                "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact",
+                "path": "../Files/Logs/log.json",
+                "rollingInterval" : "Day"
+            }
         }
     ]
 }
