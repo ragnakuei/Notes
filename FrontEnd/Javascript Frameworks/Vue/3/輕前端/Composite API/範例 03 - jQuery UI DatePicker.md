@@ -1,4 +1,4 @@
-# 範例 03
+# 範例 03 - jQuery UI DatePicker
 
 - setup() 可給定 argument props，來讀取 props 所宣告的 property
 - setup() 可給定 argument emit，來取代 Option API 所使用的 this.$emit
