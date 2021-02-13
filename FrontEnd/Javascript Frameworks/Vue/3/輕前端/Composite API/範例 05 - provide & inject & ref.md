@@ -3,6 +3,7 @@
 - provide
   - 資料提供者
   - 從 parent component 給定
+  - 給定 ref / reactive
 - inject
   - 資料接收者
   - 從 child component 取出，可跨層 !
@@ -11,7 +12,7 @@
 ```html
 <div id="app" class="text-center" style="display: none">
   <label>App:{{counter}}</label><br />
-  <button @@click="plusCounter">Plus Counter</button><br />
+  <button @click="plusCounter">Plus Counter</button><br />
   <child-counter></child-counter>
 </div>
 
