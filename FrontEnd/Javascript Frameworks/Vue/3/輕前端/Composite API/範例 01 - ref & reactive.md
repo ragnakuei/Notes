@@ -1,7 +1,9 @@
 # 範例 01 - ref & reactive
 
 - ref() 內給定的是 primitive type
+  - 必須以 變數.value 來存取
 - reactive() 內給定的是 object
+  - 不用以 變數.value 來存取
 
 ## 不會更新 Count 的範例
 
