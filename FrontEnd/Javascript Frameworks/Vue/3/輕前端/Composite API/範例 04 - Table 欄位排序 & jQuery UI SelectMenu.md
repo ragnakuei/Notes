@@ -1,7 +1,8 @@
-# 範例 01 - Table 欄位排序 & jQuery UI SelectMenu
+# 範例 04 - Table 欄位排序 & jQuery UI SelectMenu
 
 - 如果 Option API data() 內的資料，在初始化後，不會變更的話，可以不需要用 ref、reactive
 - 如果 Option API data() 內的資料，在初始化後，會變更的話，就要用 ref、reactive
+- Option API methods 的部份，可直接放在 setup() 中，直接以 變數方式 return !
 
 ## ref 版本
 
@@ -23,61 +24,59 @@
 </div>
 
 
-<script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<link rel="stylesheet"
-    href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
     const { createApp, ref, onMounted, computed } = Vue;
 
     const RootComponent = {
-    setup() {
+        setup() {
 
-        const data_items = ref(null);
-        const page_info = ref(null);
+            const data_items = ref(null);
+            const page_info = ref(null);
 
-        const getDataTable = function() {
-            axios.post('/api/Table/GetDataTable',
-                            page_info.value,
-                            {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                            })
-                    .then(response => {
-                        data_items.value = response.data.Data;
-                        page_info.value = response.data.PageInfo;
-                    });
-        };
-        const sort_column = function(columnName) {
-            page_info.value.ClickSortColumn = columnName;
-            getDataTable();
-        };
+            const getDataTable = function() {
+                axios.post('/api/Table/GetDataTable',
+                                page_info.value,
+                                {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                }
+                                })
+                        .then(response => {
+                            data_items.value = response.data.Data;
+                            page_info.value = response.data.PageInfo;
+                        });
+            };
+            const sort_column = function(columnName) {
+                page_info.value.ClickSortColumn = columnName;
+                getDataTable();
+            };
 
-        const to_page = function(pageNo) {
-            page_info.value.PageNo = pageNo;
-            getDataTable();
-        }
+            const to_page = function(pageNo) {
+                page_info.value.PageNo = pageNo;
+                getDataTable();
+            }
 
-        onMounted(() => {
-            getDataTable();
-        });
+            onMounted(() => {
+                getDataTable();
+            });
 
-        return {
-            data_items,
-            page_info,
-            getDataTable,
-            sort_column,
-            to_page,
-        }
-    },
+            return {
+                data_items,
+                page_info,
+                getDataTable,
+                sort_column,
+                to_page,
+            }
+        },
     };
 
-    const app = Vue.createApp(RootComponent);
+    const app = createApp(RootComponent);
 
     app.component("data-table", {
         data() {
@@ -211,7 +210,7 @@
 </div>
 
 
-<script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">

@@ -9,7 +9,7 @@
   <datepicker v-model="initialDate"></datepicker>
 </div>
 
-<script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"></script>
+<script src="https://unpkg.com/vue@next"></script>
 
 <script>
   const { createApp, ref, onMounted } = Vue;
