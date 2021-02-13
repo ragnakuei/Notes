@@ -25,6 +25,7 @@
   const app = createApp({
     setup(){
       const initialDate = ref('2020/12/31');
+      
       return {
         initialDate,
       }
@@ -38,15 +39,15 @@
     setup(props, { emit }){
 
         onMounted(() => {
-        // 此時已處理 template 的部份，所以在這給定 $( "#datepicker" )
-        datePickerDom = $( "#datepicker" );
+          // 此時已處理 template 的部份，所以在這給定 $( "#datepicker" )
+          datePickerDom = $( "#datepicker" );
 
-        datePickerDom.datepicker({
-            dateFormat : "yy/mm/dd",
-            onSelect: function (dateText, inst) {
-                selectDate.value = dateText;
-            }
-        });
+          datePickerDom.datepicker({
+              dateFormat : "yy/mm/dd",
+              onSelect: function (dateText, inst) {
+                  selectDate.value = dateText;
+              }
+          });
         })
 
         // 此時尚未處理 template 的部份，所以無法在這給定 $( "#datepicker" )
@@ -58,8 +59,8 @@
             });
 
         return {
-        datePickerDom,
-        selectDate
+          datePickerDom,
+          selectDate
         }
     },
     template: `<input id="datepicker" v-model="selectDate" />`,
