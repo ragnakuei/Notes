@@ -1,7 +1,8 @@
-# 範例 09 - jQuery UI Dialog
+# 範例 09 - emit & jQuery UI Dialog
 
 - 運用 slot 來重覆使用 component
 - 運用 watch props 來判斷是否需要開啟 jQuery UI Dialog
+- setup() 的 emit 參數給定，必須放在 props 後面的物件中
 
 ```html
 <div id="app" class="text-center" style="display: none">
