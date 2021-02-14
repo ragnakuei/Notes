@@ -39,6 +39,7 @@
       const changeCount = ref(0);
 
       watch(
+        // 用委派的方式指定 watch 的 property
         () => props.is_show_message,
         (newValue, oldValue) => {
           console.log("watch is_show_message", props.is_show_message);
