@@ -56,6 +56,7 @@
 
       const validateErrors = ref({});
 
+      // 在 AutoComplete 重新輸入
       const ResetProductInput = function (e) {
         dto.ProductId = null;
         dto.Product = e.data;
