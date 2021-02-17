@@ -1,4 +1,4 @@
-# each
+# [each](https://svelte.dev/docs#each)
 
 - #each [] as item,index
 
