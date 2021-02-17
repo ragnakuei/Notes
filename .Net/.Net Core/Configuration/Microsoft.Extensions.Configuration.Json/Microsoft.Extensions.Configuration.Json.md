@@ -1,6 +1,9 @@
 # Microsoft.Extensions.Configuration.Json
 
-不同 json 結構內的相同的 path 可以重複，但 property 最好不要重複
+- IConfigurationBuilder.AddJsonFile() 的引用順序是有差的
+  - 後讀的檔案內容，會蓋過先讀的檔案
+  - 建議 appsettings.json 先讀
+  - 建議 appsettings.組態.json 後讀
 
 ## 是否需要複製 configuration files 至指定目錄
 
