@@ -7,7 +7,7 @@
 
 ## remote 範例
 
-response 需要的結
+response 單一元素需要的值
 - id
 - label - 下拉選單顯示的文字
 - value - 選擇項目後，所顯示的文字
@@ -88,7 +88,7 @@ response 需要的結
 </script>
 ```
 
-### 範例
+### 使用範例
 
 ```csharp
 <script>
@@ -110,4 +110,29 @@ response 需要的結
     }
     @(optionNameSpace).CustomAutoComplete = new CustomAutoComplete(@(optionNameSpace));
 </script>
+```
+
+## remote 範例二
+
+```js
+$("#Product").autocomplete({
+    source: function( request, response ) {
+    $.ajax({
+        url: '/api/Form/GetProducts',
+        type: 'post',
+        data: JSON.stringify({ keyword: request.term }),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: response,
+        error: function (e) {
+            console.log(e);
+        }
+    });
+    },
+    minLength: 1,
+    select: function( e, selectTarget ) {
+        $("#ProductId").val(selectTarget.item.id);
+        $("#Product").val(selectTarget.item.label);
+    }
+});
 ```

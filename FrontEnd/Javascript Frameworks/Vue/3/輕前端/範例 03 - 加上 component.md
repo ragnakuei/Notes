@@ -1,4 +1,4 @@
-# 範例二 - 範例三 - 加上 component
+# 範例 03 - 加上 component
 
 - 引用 axios cdn
 - 直接以 axois 方式來使用

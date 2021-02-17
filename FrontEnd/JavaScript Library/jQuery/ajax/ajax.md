@@ -7,7 +7,7 @@
 $.ajax({
     url: searchEmployeeApiUrl,
     type: 'post',
-    data: { keyword: request.term },
+    data: JSON.stringfy({ keyword: request.term }),
     dataType: 'json',
     contentType: 'application/json',
     // processData: false,   // 不讓 jQuery 做額外的處理，適合用於只傳簡單型別的資料
