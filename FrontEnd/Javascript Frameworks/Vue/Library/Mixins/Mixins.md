@@ -11,4 +11,4 @@
 - 可以使用的時機點在 mounted 之後
 - mixins 都指定無關 domain 的處理邏輯，與 domain 有關的處理邏輯，請用 abstract class 來共用 !
 
-[typescript 範例](../../TypeScript/mixins/local%20範例一.md)
+[typescript 範例](../../2/TypeScript/mixins/local%20範例一.md)

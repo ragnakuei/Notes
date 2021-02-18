@@ -13,7 +13,7 @@
 
 ### 安裝 Vue Cli
 
-> npm install -g @vue/cli@3.0.5
+> npm install -g @vue/cli
 
 > vue --version
 

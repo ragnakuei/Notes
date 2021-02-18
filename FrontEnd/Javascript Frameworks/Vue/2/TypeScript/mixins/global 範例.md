@@ -5,7 +5,20 @@
 - 每個 vue 初始化時，都會一併初始化 mixins !
 - IDE 可能無法辨識
 
-## [建立要共用的 ts](./local%20範例一.md#建立要共用的%20ts)
+## mixins01.ts
+
+```ts
+import Vue from 'vue';
+
+export default Vue.extend({
+  created () {
+    console.log('mixins01 created')
+  },
+  mounted () {
+    console.log('mixins01 mounted')
+  }
+});
+```
 
 ## main.ts
 
