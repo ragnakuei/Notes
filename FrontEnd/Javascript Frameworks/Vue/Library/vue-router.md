@@ -1,4 +1,4 @@
-# [Vue Router](https://router.vuejs.org/)
+# [vue-router](https://router.vuejs.org/)
 
 - [Vue Router](#vue-router)
   - [手動安裝](#%e6%89%8b%e5%8b%95%e5%ae%89%e8%a3%9d)
@@ -7,6 +7,10 @@
     - [做法](#%e5%81%9a%e6%b3%95)
 
 ---
+
+## 透過 vue cli 自動安裝
+
+> vue add router
 
 ## 手動安裝
 

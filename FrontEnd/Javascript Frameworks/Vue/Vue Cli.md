@@ -7,4 +7,3 @@
 建立專案
 
 > vue create [project name]
-
