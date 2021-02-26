@@ -1,4 +1,4 @@
-# 範例四 - 加上 jQuery DatePicker
+# 範例 04 - 加上 jQuery DatePicker
 
 ```html
 <div id="app" class="text-center" style="display: none">
