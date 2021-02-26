@@ -8,5 +8,5 @@
 
 可參考
 
-- [binding-one-way](../2/binding-one-way.md)
-- [binding-two-way](../2/binding-two-way.md)
+- [binding-one-way](../binding-one-way.md)
+- [binding-two-way](../binding-two-way.md)
