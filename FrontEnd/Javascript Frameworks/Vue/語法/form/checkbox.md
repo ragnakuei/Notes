@@ -1,4 +1,4 @@
-# 範例 05 - checkbox binding
+# checkbox
 
 ```html
 <form id="app">
