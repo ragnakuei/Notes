@@ -41,6 +41,8 @@
   });
   
   const vm = app.mount('#app');
-  document.getElementById("app").style.display = "block";
+  window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("app").style.display = "block";
+  });
 </script>
 ```

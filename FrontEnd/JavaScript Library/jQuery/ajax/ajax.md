@@ -3,11 +3,11 @@
 
 ## request 使用 content type json
 
-```javascript
+```js
 $.ajax({
     url: searchEmployeeApiUrl,
     type: 'post',
-    data: JSON.stringfy({ keyword: request.term }),
+    data: JSON.stringify({ keyword: request.term }),
     dataType: 'json',
     contentType: 'application/json',
     // processData: false,   // 不讓 jQuery 做額外的處理，適合用於只傳簡單型別的資料
@@ -17,6 +17,24 @@ $.ajax({
     }
 })
 ```
+
+```js
+$.ajax({
+            url: sumbitUrl,
+            type: 'post',
+            data: JSON.stringify( model ),
+            dataType: 'json',
+            contentType: 'application/json',
+        })
+ .done(function(res) {
+            console.log('done', res);
+            window.location.href = redirectUrl;
+        })
+ .fail(function(res) {
+            console.log('error', res);
+        });
+```
+
 
 - 設定 dataType 為 json
 - 設定 contentType 為 `application/json`
