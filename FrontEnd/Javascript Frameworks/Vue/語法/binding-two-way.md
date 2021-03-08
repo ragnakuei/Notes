@@ -89,3 +89,36 @@ Vue.component("product", {
 });
 ```
 
+## number 範例
+
+- 預設 model binding 至 input 都是以字串方式
+- 在 v-model 後面加上 .number 就可以指定以 number 來解析
+- 如果輸入 非數字 的字元，則不會進行 binding !
+
+```html
+<div id="app" class="text-center" style="display: none">
+  <input type="text" v-model.number="vm.Count" />
+  <label>{{JSON.stringify(vm)}}</label><br>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+
+<script>
+  const {
+    createApp,
+    reactive,
+  } = Vue;
+  const app = createApp({
+    setup() {
+      const vm = reactive({ Count: 0})
+      return {
+        vm,
+      }
+    }
+  });
+  const vm = app.mount('#app');
+  window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById("app").style.display = "block";
+  });
+</script>
+```
