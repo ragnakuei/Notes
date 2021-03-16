@@ -4,11 +4,14 @@
 
 [.NET 程式鎖死與 SynchronizationContext](https://www.huanlintalk.com/2016/01/asyc-deadlock-in-aspbet.html)
 
+[.NET 非同步程式小技巧：GetAwaiter().GetResult() 與 Result 的差異](https://blog.darkthread.net/blog/getawaiter-getresult-vs-result/)
 
 ## 範例
 
 - 只要 .Result 裡面有 await ，就會卡死
 
+- 建議改用 .GetAwaiter().GetResult()
+  - 但是非同步方法內有 await，仍然會卡死
 
 ```csharp
 public ActionResult Index1()
