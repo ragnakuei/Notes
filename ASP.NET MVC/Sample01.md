@@ -1,3 +1,0 @@
-### Sample01
-
-Practice

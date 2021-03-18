@@ -1,0 +1,1 @@
+# [Bubble](https://www.highcharts.com/docs/chart-concepts/bubble-legend)
