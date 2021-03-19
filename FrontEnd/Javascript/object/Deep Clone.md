@@ -6,9 +6,18 @@
 
 `var target = Object.assign({}, source);`
 
-```jsx
+```js
 var obj1 = { a: 10, b: 20, c: 30 };
 var obj2 = Object.assign({}, obj1);
+```
+
+## 使用 Object Spread operator
+
+`var target = Object.assign({}, source);`
+
+```js
+var obj1 = { a: 10, b: 20, c: 30 };
+var obj2 = { ...obj1 };
 ```
 
 ### 透過 json 處理

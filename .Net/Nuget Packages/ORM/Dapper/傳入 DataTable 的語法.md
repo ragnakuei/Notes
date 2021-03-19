@@ -42,7 +42,7 @@ public static class DataTableHelpers
         var dt = new DataTable();
 
         var propertyInfos = typeof(T).GetProperties()
-                                     .Where(p => p.GetCustomAttribute<mclmeasureWeb.Infra.IgnoreDataTableAttribute>() == null);
+                                     .Where(p => p.GetCustomAttribute<IgnoreDataTableAttribute>() == null);
 
         foreach (var p in propertyInfos)
         {

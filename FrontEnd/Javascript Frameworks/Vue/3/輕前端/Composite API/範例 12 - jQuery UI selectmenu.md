@@ -1,5 +1,7 @@
 # 範例 12 - jQuery UI selectmenu
  
+- 預設的 option 可以設定 value = null，來讓 v-model 的值為 null 時，可以停在預設的 option 上
+
 ```html
 @model SelectMenuViewModel
 <div id="app"
@@ -8,7 +10,7 @@
     <form v-on:submit.prevent="submitForm">
         <label for="GendorId">性別：</label>
         <select id="GendorId" v-model="model.GendorId">
-            <option value="" disabled selected>請選擇</option>
+            <option value=null disabled selected>請選擇</option>
             <option v-for="gendor in gendorOptions" :value="gendor.Value">{{gendor.Text}}</option>
         </select><br>
 
@@ -46,7 +48,17 @@
                 change : (e, item) => {
                    console.log('select change',item);
                    model.GendorId = item.item.value;
-                }
+                },
+                open: (e) => {
+                    // 頁面上同時有多個 select menu 時，讓非觸發的 select menu 可以被關閉
+                    const target = e.target;
+
+                    $('select').each((index, item) => {
+                        if (item !== target) {
+                            $(item).selectmenu("close");
+                        }
+                    })
+                },
               });
           });
 
