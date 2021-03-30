@@ -88,3 +88,22 @@ DbString 可對應至 DbType.AnsiString 及 DbType.String，但是無法對應�
 | false | false | nvarchar |
 | true  | true | char |
 | false | true | nchar |
+
+
+## 套用至 SQL 語法 IN
+
+```csharp
+var sql = @"
+        SELECT p.Id,
+            p.Name
+        FROM [dbo].[Product] [p]
+        WHERE [p].[Code] IN @Codes
+        AND [p].[ParentId] = @ParentId
+";
+
+var param = new DynamicParameters();
+param.AddDynamicParams(new { Codes = new[] { "CodeA", "CodeB" } });
+param.Add("ParentId", 99, DbType.Int64);
+
+return conn.Query<SelectListItem>(sql, param);
+```
