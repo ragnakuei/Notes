@@ -1,5 +1,7 @@
 # DynamicParameters
 
+- [待 Study](https://dotblogs.com.tw/OldNick/2018/01/15/Dapper#INSERT%20statement)
+
 ## 未指定長度時
 
 ```csharp
