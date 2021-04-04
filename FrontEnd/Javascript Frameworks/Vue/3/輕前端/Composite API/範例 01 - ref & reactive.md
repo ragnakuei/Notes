@@ -2,6 +2,7 @@
 
 - ref() 內給定的是 primitive type
   - 必須以 變數.value 來存取
+  - Array 要用 ref !
 - reactive() 內給定的是 object
   - 不用以 變數.value 來存取
 
