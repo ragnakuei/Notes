@@ -7,6 +7,10 @@
   - child component 內，必須要以 get / set 來處理 props
   - 更新的方式就是透過 emit 來處理
 
+參考資料
+- [1](https://www.youtube.com/watch?v=5TFelzoDMBQ&ab_channel=QiroLab)
+- [2](https://codepen.io/ragnakuei/pen/eYgGqZw?editors=1011)
+
 ```csharp
 <div id="app"
      class="text-center"
