@@ -1,56 +1,10 @@
-# [System.Text.Json](https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to)
-
--   支援 `JsonIgnore` 但要注意 namespace 是否引用正確
--   預設支援 Escape Html 功能
-
-```csharp
-JsonSerializer.Serialize(weatherForecast);
-```
-
--   預設不會以子類 Type 的角度來序列化 (跟 Newton.Json 的預設行為不同)
-
-## Escape Html 功能
-
-這個做法只是示範怎麼設定 Encode，不建議關閉 Escape Html 功能
-
-- JavaScriptEncoder.Default - 預設，具有 Escape Html 功能
-- JavaScriptEncoder.UnsafeRelaxedJsonEscaping - 關閉 Escape Html 功能
-
-[相關連結](https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-character-encoding#serialize-all-characters)
-
-
-```csharp
-void Main()
-{
-    var t = new TestDto
-    {
-        Id = 1,
-        Name = "A </script>",
-    };
-
-
-    JsonSerializer.Serialize(t, 
-                             new JsonSerializerOptions 
-                             { 
-                                // Encoder = JavaScriptEncoder.Default 
-								Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping 
-                             }).Dump();
-}
-
-public class TestDto
-{
-    public int Id { get; set; }
-
-    public string Name { get; set; }
-}
-```
-
-## 反序列化成不同 derived class
+# 反序列化成不同 derived class
 
 -   [官方文件](https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-converters-how-to#support-polymorphic-deserialization)
 -   情境對照 [Newton.Json 反序列化成不同 derived class](./../Nuget%20Packages/Json.NET/反序列化成不同%20derived%20class.md)
+-   預設不會以子類 Type 的角度來序列化 (跟 Newton.Json 的預設行為不同)
 
-### 範例一：Discriminator 欄位必須放在 json object 首個 property
+## 範例一：Discriminator 欄位必須放在 json object 首個 property
 
 -   Discriminator 欄位 為 Type
 -   Discriminator 欄位必須放在 json object 首個 property
@@ -208,7 +162,7 @@ public class BaseTypeDiscriminator : JsonConverter<BaseType>
 }
 ```
 
-### 範例二：Discriminator 欄位不必放在 json object 首個 property
+## 範例二：Discriminator 欄位不必放在 json object 首個 property
 
 -   Discriminator 欄位 為 Type
 -   Discriminator 欄位不必放在 json object 首個 property
