@@ -64,7 +64,7 @@ public class TestDto
 
 ## 前端
 
-- 前端視該 Property 為字串
+- 前端視該 Property 為字串，所以 v-model 不加上 .number 來將值轉為 number !
 - 為避免不必要的處理，將 input type 指定為 number
 
 ```html
