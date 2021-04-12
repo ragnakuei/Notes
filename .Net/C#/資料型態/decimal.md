@@ -86,3 +86,10 @@ public static decimal ToFix(this decimal input, int digits)
     return decimal.Round(input, digits, MidpointRounding.AwayFromZero);
 }
 ```
+
+## Parse Exponential Notation 的方式
+
+```csharp
+decimal.Parse("1e-10", System.Globalization.NumberStyles.Float).Dump();
+```
+
