@@ -20,24 +20,6 @@ private void 四捨五入(decimal d, int digits)
 
 ```csharp
 /// <summary>
-/// 給定 2，就會產生 1.00m
-/// </summary>
-private static decimal GenerateFillTailZeroMultipler(int digits)
-{
-    if (digits <= 0)
-    {
-        return 0m;
-    }
-
-    var digitList = new List<string> { "1", "." };
-    digitList.AddRange(Enumerable.Repeat("0", digits));
-
-    var dInString = digitList.Join(string.Empty);
-
-    return decimal.Parse(dInString);
-}
-
-/// <summary>
 /// 四捨五入 + 補齊浮點數 0
 /// </summary>
 public static decimal ToFixAndFillTailZero(this decimal input, int digits)
@@ -84,5 +66,23 @@ public static decimal ToFixAndFillTailZero(this decimal input, int digits)
 public static decimal ToFix(this decimal input, int digits)
 {
     return decimal.Round(input, digits, MidpointRounding.AwayFromZero);
+}
+
+/// <summary>
+/// 給定 2，就會產生 1.00m
+/// </summary>
+private static decimal GenerateFillTailZeroMultipler(int digits)
+{
+    if (digits <= 0)
+    {
+        return 0m;
+    }
+
+    var digitList = new List<string> { "1", "." };
+    digitList.AddRange(Enumerable.Repeat("0", digits));
+
+    var dInString = digitList.Join(string.Empty);
+
+    return decimal.Parse(dInString);
 }
 ```
