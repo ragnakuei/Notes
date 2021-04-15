@@ -86,3 +86,10 @@ private static decimal GenerateFillTailZeroMultipler(int digits)
     return decimal.Parse(dInString);
 }
 ```
+
+## Parse Exponential Notation 的方式
+
+```csharp
+decimal.Parse("1e-10", System.Globalization.NumberStyles.Float).Dump();
+```
+
