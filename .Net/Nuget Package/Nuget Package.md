@@ -1,6 +1,5 @@
 # Nuget Package
 
-
 ## [建立包含 pdb 的 nuget package](https://docs.microsoft.com/zh-tw/dotnet/core/tools/csproj#includesymbols)
 
 在 .csproj 中加上 `IncludeSymbols` 的宣告，並給定 true
