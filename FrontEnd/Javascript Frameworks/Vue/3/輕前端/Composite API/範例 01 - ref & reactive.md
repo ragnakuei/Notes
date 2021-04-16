@@ -45,9 +45,15 @@
 ## ref
 
 ```html
-<div id="app" class="text-center" style="display: none">
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+<div id="app" class="text-center" v-cloak>
   <label>{{counter}}</label><br />
-  <button @click="plusCounter">Plus Counter</button>
+  <button v-on:click="plusCounter()">Plus Counter</button>
 </div>
 
 <script src="https://unpkg.com/vue@next"></script>
@@ -76,9 +82,6 @@
   const app = createApp(RootComponent);
 
   const vm = app.mount("#app");
-  window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("app").style.display = "block";
-  });
 </script>
 ```
 
