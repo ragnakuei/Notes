@@ -1,6 +1,7 @@
 # 前端處理字串、後端處理 NullableDecimal
 
-- [專案連結](https://github.com/ragnakuei/JsonDecimalFloat)
+- [專案連結-簡單](https://github.com/ragnakuei/JsonDecimalFloat)
+- [專案連結-完整](https://github.com/ragnakuei/DecimalFloatTailZero)
 - 搭配輕前端 vue 3
 
 ## 後端
