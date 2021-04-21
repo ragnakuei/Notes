@@ -4,7 +4,7 @@
 
 簡單說，就是不受_ViewStart.cshtml影響的View，通常也不指定Layout
 
-取用 Partial View 的二個方式
+## 取用 Partial View 的二個方式
 
 ### 方式一
 
@@ -27,4 +27,11 @@ public ActionResult Get()
 
 ```csharp
 @Html.Action("action_name");
+```
+
+
+## 以絕對路徑指定 Partial 的方式
+
+```html
+@Html.Partial("/Areas/BackStage/Views/Shared/_Nav.cshtml");
 ```

@@ -18,6 +18,13 @@
         endpoints.MapControllerRoute(
                                     name: "defaultArea",
                                     pattern: "{area:exists}/{controller}/{action=Index}/{id?}");
+
+        // 明確直接對應 Area 的 Route
+        endpoints.MapAreaControllerRoute(
+                                    name: "SystemManagementArea",
+                                    areaName: "SystemManagement",
+                                    pattern: "{controller}/{action=Index}/{id?}");
+
         // 這個是既有的
         endpoints.MapControllerRoute(
                                     name: "default",
