@@ -6,7 +6,7 @@
 ```html
 <div id="app" class="text-center" style="display: none">
   <label>{{initialDate}}</label><br>
-  <datepicker v-model="initialDate"></datepicker>
+  <datepicker v-model:modelValue="initialDate"></datepicker>
 </div>
 
 <script src="https://unpkg.com/vue@next"></script>
