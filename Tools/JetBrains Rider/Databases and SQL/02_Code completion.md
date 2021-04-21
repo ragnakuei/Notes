@@ -29,7 +29,7 @@ from Orders;
     select 
     from orders
     ```
-1. 在 select 後面加一個空何後，按下 ctrl + space ，會列出所有 code completion 項目，在中間會有所有欄位的項目
+1. 在 select 後面加一個空格後，按下 ctrl + space ，會列出所有 code completion 項目，在中間會有所有欄位的項目
     
     ![Alt text](./_images/04.png)
 
