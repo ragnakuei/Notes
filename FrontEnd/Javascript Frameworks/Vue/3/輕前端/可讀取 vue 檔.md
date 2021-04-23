@@ -4,6 +4,8 @@
 - 套件：[vue3-sfc-loader](https://github.com/FranckFreiburger/vue3-sfc-loader)
 - [範例](https://github.com/ragnakuei/HttpVueLoader/blob/master/HttpVueLoader/Views/Home/vue3style1.cshtml))
 - 較多 IDE 支援 intellisense
+- 疑慮
+  - 外網會曝露 vue 內的邏輯 ?
 
 ```html
 <div id="my-app"
