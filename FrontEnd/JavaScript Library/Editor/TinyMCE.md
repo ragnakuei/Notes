@@ -22,11 +22,17 @@
 
                 setup: function (editor) {
 
-                    // 在這裡加上 keyup 事件
-                    editor.on('keyup', function (e) {
-                        console.log('keyup');
+                    // 初始化時，將 vue 內容寫至 tinymce 中
+                    editor.on('init', function (e) {
+                      editor.setContent(dom_value.value);
+                    });
 
-                        editor.setContent('<p>Hello world!</p>');
+                    // 內容回寫至 vue 中
+                    editor.on('Change KeyUp Undo Redo', function (e) {
+
+                        console.log('change');
+
+                        dom_value.value = editor.getContent();
                     });
                 }
             });
