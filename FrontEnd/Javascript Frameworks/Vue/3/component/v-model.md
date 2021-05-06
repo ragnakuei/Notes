@@ -12,9 +12,12 @@
 - [2](https://codepen.io/ragnakuei/pen/eYgGqZw?editors=1011)
 
 ```csharp
+<style>
+  [v-cloak]
+</style>
 <div id="app"
      class="text-center"
-     style="display: none">
+     v-cloak>
     <label>{{initial1}}</label>
     <label>{{initial2}}</label>
     <br>
@@ -92,10 +95,5 @@
   });
 
   const vm = app.mount('#app');
-
-  window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("app").style.display = "block";
-  });
-
 </script>
 ```

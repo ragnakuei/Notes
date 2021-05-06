@@ -30,12 +30,30 @@
 
 - 整列給定 .row 來包住二個 button
 - 左邊 div .col-auto mr-auto，無 inner html
-- 右邊 button 給定 .col-auto
+- 右邊 div 給定 .col-auto
 
 ```html
 <div class="row my-1">
     <div class="col-auto mr-auto"></div>
     <div class="col-auto">
+        <button type="button"
+                class="btn btn-primary float-right">
+            Submit
+        </button>
+    </div>
+</div>
+```
+
+## row 內靠物件靠下的方式
+
+- 整列給定 .row 來包住二個 button
+- 左邊 div .col-auto mr-auto，無 inner html
+- 右邊 div 給定 .col-auto 以及 `.align-self-end`
+
+```html
+<div class="row my-1">
+    <div class="col-auto mr-auto"></div>
+    <div class="col-auto align-self-end">
         <button type="button"
                 class="btn btn-primary float-right">
             Submit

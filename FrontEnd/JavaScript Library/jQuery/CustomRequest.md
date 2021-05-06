@@ -300,6 +300,97 @@
 CustomFullScreenLoading.js
 
 ```html
+@{
+    Layout = null;
+}
+
+<style>
+  #loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    display:none;
+  }
+
+  /* SVG spinner icon animation */
+  .spinner {
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+    z-index: 999;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .spinner .path {
+    stroke: #000000;
+    stroke-linecap: round;
+    -webkit-animation: dash 1.5s ease-in-out infinite;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @-webkit-keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+</style>
+
+<div id="loading-overlay">
+  <svg class="spinner" viewBox="0 0 50 50">
+    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+  </svg>
+</div>
+
 <script>
     window.CustomFullScreenLoading = function()
     {
@@ -307,27 +398,26 @@ CustomFullScreenLoading.js
 
         @* 下面是 Properties *@
 
-        // self.Dom = $('#full-screen-loading');
+        self.Dom = $("#loading-overlay");
+
+        self.FadePeriod = 300;
 
         @* 下面是 Functions *@
 
         self.Show = function()
         {
-            // self.Dom.fadeIn(300);
-
+            self.Dom.fadeIn(self.FadePeriod);
             console.log('Show FullScreenLoading');
         }
 
         self.Close = function()
         {
-            // self.Dom.fadeOut(300);
-
+            self.Dom.fadeOut(self.FadePeriod);
             console.log('Hide FullScreenLoading');
         }
     }
 </script>
 ```
-
 
 ## 呼叫語法
 
