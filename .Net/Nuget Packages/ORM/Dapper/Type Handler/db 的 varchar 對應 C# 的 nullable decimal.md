@@ -1,5 +1,9 @@
 # db 的 varchar 對應 C# 的 nullable decimal.md
 
+- T 必須實作 `IConvertible`
+
+## 範例
+
 -   先宣告對應的 TypeHandler
 
     ```csharp
