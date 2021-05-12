@@ -17,7 +17,7 @@
             <input v-model="password" placeholder="Password" />
         </p>
         <p>
-            <button type="submit">Entrar</button>
+            <button type="submit">Enter</button>
         </p>
     </form>
 </div>
