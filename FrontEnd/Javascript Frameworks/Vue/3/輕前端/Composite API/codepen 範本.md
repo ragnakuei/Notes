@@ -15,6 +15,10 @@
   <p>Value1:{{value1}}</p>
   <p>Value2:{{value2}}</p>
   
+  <hr>
+  
+  <child-component></child-component>
+  
 </div>
 
 <script src="https://unpkg.com/vue@next"></script>
@@ -29,19 +33,38 @@
   
   const app = createApp({
     setup() {
-      
-      const value1 = ref('');
-      const value2 = ref('');
-      
-      onMounted(() => {
-        
-      })
-    return {
-      value1,
-      value2,
+
+        const value1 = ref('');
+        const value2 = ref('');
+
+        onMounted(() => {
+
+        })
+      return {
+        value1,
+        value2,
+      }
     }
-  }
   });
+  
+  app.component('child-component', {
+    template: `
+                <p>Child Component</p>
+                <span>{{ v }}</span>
+              `,
+     setup() {
+
+        const v = ref('hello');
+
+        onMounted(() => {
+
+        })
+      return {
+        v,
+      }
+    }
+  });
+  
   const vm = app.mount('#app');
 </script>
 ```
