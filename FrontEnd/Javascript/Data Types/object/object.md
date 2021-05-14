@@ -26,7 +26,7 @@ let p = new Person('Peter', 'Jobs', 25);
 
 ### object create method
 
-```
+```js
 let person = {
     firstName: "Peter",
     lastName: "Jobs",
