@@ -1,10 +1,11 @@
 # 套用 Release 組態設定
 
+-   發佈檔
+    -   建議只建立以 Release 方案組態 為主的發佈設定檔
+        -   實際上無 Release 專案組態 !!
+
 ## 範例一
 
--   發佈檔
-    -   建議只建立 Release 方案組態
-        -   實際上無 Release 專案組態 !!
 -   建立 Webform WebSite 專案
 -   組態管理員
     -   新增 Release 方案組態
@@ -22,11 +23,17 @@
     -   刪除 Site.Mobile.master / Site.Mobile.master.cs
     -   刪除 ViewSwitch.ascx / ViewSwitch.ascx.cs
     -   刪除 Default.aspx 的 Content 內容
+    -   把 Web.Debug.config 改為 Web.Release.config
+
 -   Web.config 調整
 
     -   設定完畢後
         -   可在 Visual Studio > Web.Release.config 上面，按下滑鼠右鍵，選擇 `預覽和轉換` 來檢視 web.config 是否會符合預期 !
+
+
     -   Web.config
+
+        本機執行用
 
         ```xml
         <?xml version="1.0" encoding="UTF-8"?>
@@ -36,6 +43,11 @@
                 <add key="DEBUG" value="false"/>
             </appSettings>
 
+            <connectionStrings>
+                <add name="Default"
+                     connectionString="Data Source=.\mssql2017 ;Initial Catalog=xxxx ;Trusted_Connection=True;MultipleActiveResultSets=true"
+                     providerName="System.Data.SqlClient" />
+            </connectionStrings>
 
             <system.web>
                 <customErrors mode="Off" />
@@ -45,28 +57,9 @@
         </configuration>
         ```
 
-    -   Web.Debug.config
-
-        ```xml
-        <?xml version="1.0" encoding="utf-8"?>
-
-        <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-
-            <appSettings>
-                <add key="DEBUG" value="true"
-                    xdt:Transform="SetAttributes" xdt:Locator="Match(key)" />
-
-                <add key="DEBUG.ACCOUNT" value="535467"
-                    xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
-
-            </appSettings>
-            <system.web>
-                <compilation xdt:Transform="RemoveAttributes(debug)" />
-            </system.web>
-        </configuration>
-        ```
-
     -   Web.Release.config
+
+        發佈至正式機用
 
         ```xml
         <?xml version="1.0" encoding="utf-8"?>
@@ -79,6 +72,14 @@
                 <add key="DEBUG.ACCOUNT"
                     xdt:Transform="Remove" xdt:Locator="Match(key)" />
             </appSettings>
+
+            <connectionStrings>
+                <add name="Default"
+                    connectionString="Data Source=xxxx,4300;Initial Catalog=xxxx ;User ID=xxxx;Password=xxxx;Trusted_Connection=false;"
+                    providerName="System.Data.SqlClient"
+                    xdt:Transform="SetAttributes" xdt:Locator="Match(name)"/>
+            </connectionStrings>
+
             <system.web>
                 <compilation xdt:Transform="RemoveAttributes(debug)" />
             </system.web>
@@ -90,7 +91,7 @@
     -   在專案上面按下滑鼠右鍵，選擇 `發佈 Web 應用程式`
     -   選擇 `發佈至資料夾`
     -   檔案會建立在 /App_Data/PublishProfiles/ 資料夾中
-    -   目標位置設定在 Publish\Release\
+    -   目標位置設定在 Publish\
     -   組態選擇 Release
         -   這裡指的是方案組態
         -   會同步讀取 Web.config 及 Web.Release.config 來產生最後的 Web.config
