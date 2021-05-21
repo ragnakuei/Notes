@@ -1,6 +1,28 @@
 # ajax
 
 
+## request 使用 content type multipart/form-data
+
+```js
+let formData = new FormData();
+formData.append('json', JSON.stringify( requestBody ))
+
+$.ajax({
+            url: '/api/CheckItem.aspx',
+            async: false,
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+        })
+    .done(function(res) {
+            console.log('done', res);
+        })
+    .fail(function(res) {
+            console.log('error', res);
+        });
+```
+
 ## request 使用 content type json
 
 ```js
