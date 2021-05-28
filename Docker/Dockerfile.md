@@ -64,6 +64,7 @@ volumes:
 ---
 
 ## 參考資料
+- Top 20 Dockerfile best practices
 - https://philipzheng.gitbooks.io/docker_practice/content/dockerfile/basic_structure.html
 - https://philipzheng.gitbooks.io/docker_practice/content/dockerfile/instructions.html
 - http://dockone.io/article/103
