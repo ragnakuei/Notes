@@ -1,5 +1,16 @@
 # 套用 Release 組態設定
 
+-   組態設定
+    -   只有 Debug
+    -   設定檔預設只有 Web.Debug.config
+    -   設定檔實際執行時，不會執行 Web.config 與 Web.Debug.config 的合併處理
+        -   要經過發佈才會進行合併處理
+    -   導致 Web.Debug.config 就不符合預期的開發效果
+    -   故需要做以下調整
+        -   新增 Release 方案組態
+        -   把 Web.Debug.config 改為 Web.Release.config
+        -   建立發佈檔，只針對 Release 方案組態
+
 -   發佈檔
     -   建議只建立以 Release 方案組態 為主的發佈設定檔
         -   實際上無 Release 專案組態 !!
@@ -12,6 +23,7 @@
         -   實際上，編譯時，不會有 Release 專案組態
         -   只是為了給 Web.Release.config 套用
 -   精簡專案
+
     -   刪除 Account 資料夾
     -   刪除 App_Code 內的 AuthConfig.cs 及 RouteConfig.cs
     -   刪除 Content 資料夾
@@ -28,8 +40,8 @@
 -   Web.config 調整
 
     -   設定完畢後
-        -   可在 Visual Studio > Web.Release.config 上面，按下滑鼠右鍵，選擇 `預覽和轉換` 來檢視 web.config 是否會符合預期 !
 
+        -   可在 Visual Studio > Web.Release.config 上面，按下滑鼠右鍵，選擇 `預覽和轉換` 來檢視 web.config 是否會符合預期 !
 
     -   Web.config
 
