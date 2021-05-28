@@ -1,5 +1,8 @@
 # 範例 07 - watch
 
+- watch variable - watch 第一個引數給定 變數既可
+- watch props - watch 第一個引數給定 arrow function 才行，例：() => props.is_show
+
 ```html
 <div id="app" class="text-center" style="display: none">
   <label>{{counter}}</label><br />

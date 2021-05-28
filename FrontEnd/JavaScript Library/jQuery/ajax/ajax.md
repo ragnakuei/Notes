@@ -1,6 +1,49 @@
 # ajax
 
 
+## request 使用 content type multipart/form-data
+
+```js
+let formData = new FormData();
+formData.append('json', JSON.stringify( requestBody ))
+
+$.ajax({
+            url: '/api/CheckItem.aspx',
+            async: false,
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+        })
+    .done(function(res) {
+            console.log('done', res);
+        })
+    .fail(function(res) {
+            console.log('error', res);
+        });
+```
+
+## request 使用 content type application/x-www-form-urlencoded
+
+```js
+window.ItemsCount = 0;
+
+$.ajax({
+            url: '/api/Day14/AddOrderItem',
+            async: false,
+            type: 'post',
+            data: { index : ItemsCount },
+            processData: true,              // 這個一定要設為 true
+        })
+    .done(function(res) {
+            $('#Items').append(res);
+            ItemsCount++;
+        })
+    .fail(function(res) {
+            console.log('error', res);
+        });
+```
+
 ## request 使用 content type json
 
 ```js
