@@ -6,8 +6,6 @@
 
 ## functions 範例
 
-在 `@functions { }` 的宣告上，用 `@{ }` 似乎也是可以，但 Rider 會無法判讀 !
-
 ```csharp
 <nav>
     @if (User.IsInRole(RoleConst.Manager))
