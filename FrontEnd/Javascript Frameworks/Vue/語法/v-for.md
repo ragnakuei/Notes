@@ -12,6 +12,8 @@
     - [套用至 v-bind](#套用至-v-bind)
   - [attribute](#attribute)
     - [自訂 attribute](#自訂-attribute)
+  - [特殊](#特殊)
+    - [產生 1 至 N 所有數](#產生-1-至-n-所有數)
 
 ---
 
@@ -199,4 +201,16 @@ Vue.component("product", {
   <button test="id2">Checked : true</button>
   <button test="id3">Checked : false</button>
 </div>
+```
+
+## 特殊
+
+### 產生 1 至 N 所有數
+
+假設 N = 30
+
+```html
+<p v-for="v in 30 ">
+    {{ v }}
+</p>
 ```
