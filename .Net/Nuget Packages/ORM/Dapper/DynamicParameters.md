@@ -31,6 +31,12 @@ using (SqlConnection conn = new SqlConnection(Connection))
 }
 ```
 
+## 浮點數
+
+```csharp
+param.Add("FloatPrecision", dto.FloatPrecision, DbType.Decimal, precision: 18, scale: 10);
+```
+
 ## DbType String 型別
 
 如果不指定長度，就會以 4000 處理，就可能會造成效能 issue
