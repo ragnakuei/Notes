@@ -19,7 +19,7 @@
 - 只產生 Model
 
 ```
-dotnet ef dbcontext scaffold "Server=.\\MSSQL2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o Models
+dotnet ef dbcontext scaffold "Server=.\\MSSQL2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o EntityModels
 ```
 
 - 指定 appsettings.json ConnectionStrings 的 Connection String Key
@@ -30,6 +30,11 @@ dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCor
 
 - 要求建立 DbContext
 
+  -c [指定的 DbCOntextName]
+
 ```
 dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -c NorthwindDbContext -o Models/Ef
+dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -c NorthwindDbContext -o Models/Ef
+
+dotnet ef dbcontext scaffold "Server=.\\MSSQL2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o EntityModels -c NorthwindDbContext
 ```
