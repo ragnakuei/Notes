@@ -20,6 +20,11 @@ public class TestMiddleware
 
     public async Task Invoke(HttpContext context)
     {
+        if (context.Request.HasJsonContentType())
+        {
+            
+        }
+
         if (context.Request.HasFormContentType)
         {
             // 這邊取出的 FormCollection 不會包含 IFormFile 的資料
