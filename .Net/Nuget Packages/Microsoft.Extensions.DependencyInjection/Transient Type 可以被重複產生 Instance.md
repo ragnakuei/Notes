@@ -62,6 +62,7 @@ public class ServiceA : IDisposable
 
     public void Dispose()
     {
+        // 會在 Request 結束前，確實進行 Dispose !
         _logger.LogInformation("ServiceA Dispose");
     }
 }
