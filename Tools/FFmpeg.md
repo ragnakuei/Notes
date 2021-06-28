@@ -11,7 +11,7 @@
 - 要先把各檔案路徑改成絕對路徑
 
 ```
-ffmpeg.exe -protocol_whitelist file,http,https,tcp,tls -i 1.m3u8 -c copy video.mp4
+ffmpeg.exe -protocol_whitelist crypto,file,http,https,tcp,tls -i 1.m3u8 -c copy video.mp4
 ```
 
 檔案可能會放在以下路徑
