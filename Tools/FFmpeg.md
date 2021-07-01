@@ -22,7 +22,13 @@ ffmpeg.exe -protocol_whitelist crypto,file,http,https,tcp,tls -i index.m3u8 -c c
 C:\VTRoot\HarddiskVolume6\ffmpeg\bin\
 ```
 
-### mp4 併檔
+### ts 併檔
+
+用下載軟體，把 m3u8 內的檔案清單下載下來後，就可以用這個方式來併檔
+
+但不要用來併 mp4 檔案 !
+
+---------------------------------------------------------------
 
 建立一個檔案 merge.txt
 
