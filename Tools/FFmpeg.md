@@ -28,7 +28,7 @@ C:\VTRoot\HarddiskVolume6\ffmpeg\bin\
 
 但不要用來併 mp4 檔案 !
 
----------------------------------------------------------------
+#### 避免 reencode
 
 建立一個檔案 merge.txt
 
@@ -47,4 +47,16 @@ file 3.mp4
 
 ```
 ffmpeg -f concat -safe 0 -i merge.txt -c copy output.mp4
+```
+
+#### concat protocol
+
+```
+ffmpeg -i "concat:01.mp4|02.mp4|03.mp4|04.mp4" -c copy output.mp4
+```
+
+#### concat video filter
+
+```
+ffmpeg -i 01.mp4 -i 02.mp4 -i 03.mp4 -filter_complex "[0:v] [0:a] [1:v] [1:a] [2:v] [2:a] concat=n=3:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mp4
 ```
