@@ -51,6 +51,19 @@ class Program
             return xmlSerializerToString;
         }
     }
+
+    // 也可以用 StringWriter 的語法
+    private static string XmlSerializerToString2<T>(T obj)
+    {
+        using (var writer = new StringWriter())
+        {
+            var serializer = new XmlSerializer(typeof(T));
+            serializer.Serialize(writer, obj);
+            writer.Close();
+
+            return writer.ToString();
+        }
+    }
 }
 
 
