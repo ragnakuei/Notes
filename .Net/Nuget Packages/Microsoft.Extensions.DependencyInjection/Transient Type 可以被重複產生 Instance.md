@@ -17,10 +17,18 @@
 ```csharp
 public static class IServiceCollectionHelper
 {
-    public static void AddTransientCustom<T>(this IServiceCollection services)
+    public static void AddTransientCustom<T>(this IServiceCollection services, Func<IServiceProvider, T> func = null)
         where T : class
     {
-        services.AddTransient<T>();
+        if (func == null)
+        {
+            services.AddTransient<T>();
+        }
+        else
+        {
+            services.AddTransient<T>(func);
+        }
+
         services.AddScoped<Func<T>>(serviceProvider => () => serviceProvider.GetService<T>());
     }
 }
