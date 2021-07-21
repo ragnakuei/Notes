@@ -1,4 +1,12 @@
-# SqlDataReader 讀至 DataTable 中.md
+# SqlDataReader Samples.md
+
+## 逐筆讀取轉成 DTO
+
+```csharp
+
+```
+
+## 讀至 DataTable 中
 
 ```csharp
 public DataTable GetOrderListToDataTable(int pageIndex, int pageSize)
