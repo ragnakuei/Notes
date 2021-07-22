@@ -100,4 +100,8 @@ public class GmailService : BaseSendMailService
 
 ## 套用至二階段驗証的帳號
 
+至 [這裡](https://accounts.google.com/b/0/SmsAuthConfig?hl=zh_TW) 啟用二階段驗証
 
+至 [這裡](https://security.google.com/settings/security/apppasswords?pli=1) 取得應用程式專用密碼
+
+在語法中，替換原本的登入密碼，就可以了 !
