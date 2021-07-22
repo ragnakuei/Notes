@@ -64,3 +64,20 @@ public class SendGridMailService : ISendMailService
     }
 }
 ```
+
+## 套用至 Asp.Net MVC 5 碰到 套件版本相依性問題
+
+原本套件用的是 Newtonsoft.Json 9 版,
+
+而 MVC 本身預設可能會裝到 10 版以上
+
+在 Web.config > configuration > runtime> assemblyBinding 以上以下語法
+
+讓指向該套件都使用新版的
+
+```xml
+<dependentAssembly>
+    <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+    <bindingRedirect oldVersion="0.0.0.0-13.0.0.0" newVersion="13.0.0.0" />
+</dependentAssembly>
+```
