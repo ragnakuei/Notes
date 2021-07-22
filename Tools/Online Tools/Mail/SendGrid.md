@@ -18,7 +18,7 @@
 
 ## C# 語法
 
-安裝[套件](https://github.com/sendgrid/sendgrid-csharp#prerequisites) `SendGrid`
+安裝[套件](https://www.nuget.org/packages/SendGrid/) `SendGrid`
 
 -   From 要設定申請的 email
 
