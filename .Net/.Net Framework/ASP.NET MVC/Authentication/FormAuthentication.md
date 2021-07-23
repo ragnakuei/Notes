@@ -32,20 +32,31 @@
     ```csharp
     public class MvcApplication : System.Web.HttpApplication
     {
-        private void Application_AuthenticateRequest(object sender, EventArgs e)
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             if (Request.IsAuthenticated)
             {
-                // 先取得該使用者的 FormsIdentity
-                FormsIdentity id = (FormsIdentity)User.Identity;
+                var identity     = (FormsIdentity)User.Identity;
+                var ticket = identity.Ticket;
 
-                // 再取出使用者的 FormsAuthenticationTicket
-                FormsAuthenticationTicket ticket = id.Ticket;
+                var userInfoDtoInIdentity = ticket.UserData.ParseJson<UserInfoDto>();
 
-                // 將儲存在 FormsAuthenticationTicket 中的角色定義取出，並轉成字串陣列
-                string[] roles = ticket.UserData.Split(new char[] { ',' });
+                var userInfoDto = new AccountService().GetUserInfo(userInfoDtoInIdentity.Guid);
+                if (userInfoDto == null)
+                {
+                    return;
+                }
 
-                // 指派角色到目前這個 HttpContext 的 User 物件去
+                // 加一層保護
+                if (userInfoDto.ToJson() != ticket.UserData)
+                {
+                    // 記在 Cookie 資訊被 Client 修改，或是後端使用者修改資料，則進行強制登出
+                    HttpContext.Current.Response.Redirect("/Account/Logout");
+
+                    return;
+                }
+
+                var roles  = new []{ userInfoDto.Role };
                 Context.User = new GenericPrincipal(Context.User.Identity, roles);
             }
         }
