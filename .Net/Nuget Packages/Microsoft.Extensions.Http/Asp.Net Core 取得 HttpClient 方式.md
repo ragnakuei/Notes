@@ -10,6 +10,8 @@
 services.AddHttpClient();
 ```
 
+方式一：
+
 1. 建構子 DI IHttpClientFactory
 
 ```csharp
@@ -23,4 +25,17 @@ public Constructor(IHttpClientFactory clientFactory)
 
 ```csharp
 HttpClient client = _clientFactory.CreateClient();
+```
+
+方式二：
+
+DI HttpClient
+
+```csharp
+private readonly HttpClient _client;
+
+public Constructor(HttpClient client)
+{
+    _client = client;
+}
 ```

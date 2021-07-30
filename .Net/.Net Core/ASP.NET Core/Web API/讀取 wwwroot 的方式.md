@@ -10,6 +10,8 @@ app.UseStaticFiles();
 
 ## 讓非 api 開頭又找不到的 route 導到 wwwroot/index.html 中
 
+可以用來整合 vue
+
 [參考資料](https://blog.poychang.net/vue-cli-with-dotnet-core-api/)
 
 ```csharp
