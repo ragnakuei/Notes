@@ -36,7 +36,7 @@
         {
             if (Request.IsAuthenticated)
             {
-                var identity     = (FormsIdentity)User.Identity;
+                var identity     = (FormsIdentity)System.Web.HttpContext.Current?.User?.Identity;
                 var ticket = identity.Ticket;
 
                 var userInfoDtoInIdentity = ticket.UserData.ParseJson<UserInfoDto>();

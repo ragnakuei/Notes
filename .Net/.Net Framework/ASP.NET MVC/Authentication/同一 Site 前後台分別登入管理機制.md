@@ -30,7 +30,7 @@ public abstract class BaseController : Controller
 {
     protected BaseController()
     {
-        var userInfoDtos = ((FormsIdentity)User?.Identity)?.Ticket?.UserData?.ParseJson<Dictionary<string, UserInfoDto>>();
+        var userInfoDtos = ((FormsIdentity)System.Web.HttpContext.Current?.User?.Identity)?.Ticket?.UserData?.ParseJson<Dictionary<string, UserInfoDto>>();
 
         if (userInfoDtos?.Count > 0)
         {
