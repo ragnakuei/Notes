@@ -30,12 +30,25 @@ public abstract class BaseController : Controller
 {
     protected BaseController()
     {
-        var userInfoDtos = ((FormsIdentity)System.Web.HttpContext.Current?.User?.Identity)?.Ticket?.UserData?.ParseJson<Dictionary<string, UserInfoDto>>();
+        // 下面這行語法，上正式機 + IIS 時，就會報錯，出現轉型失敗的問題
+        // var userInfoDtos = ((FormsIdentity)System.Web.HttpContext.Current?.User?.Identity)?.Ticket?.UserData?.ParseJson<Dictionary<string, UserInfoDto>>();
 
-        if (userInfoDtos?.Count > 0)
+        // if (userInfoDtos?.Count > 0)
+        // {
+        //     FrontendUserInfoDto = userInfoDtos.GetValueOrDefault(CookieNameConst.Frontend);
+        //     ManageUserInfoDto   = userInfoDtos.GetValueOrDefault(CookieNameConst.Manage);
+        // }
+
+        // 目前測試，用這個語法就會正常 !
+        if (System.Web.HttpContext.Current?.User?.Identity is FormsIdentity formsIdentity)
         {
-            FrontendUserInfoDto = userInfoDtos.GetValueOrDefault(CookieNameConst.Frontend);
-            ManageUserInfoDto   = userInfoDtos.GetValueOrDefault(CookieNameConst.Manage);
+            var userInfoDtos = formsIdentity.Ticket?.UserData?.ParseJson<Dictionary<string, UserInfoDto>>();
+
+            if (userInfoDtos?.Count > 0)
+            {
+                FrontendUserInfoDto = userInfoDtos.GetValueOrDefault(CookieNameConst.Frontend);
+                ManageUserInfoDto   = userInfoDtos.GetValueOrDefault(CookieNameConst.Manage);
+            }
         }
     }
 
