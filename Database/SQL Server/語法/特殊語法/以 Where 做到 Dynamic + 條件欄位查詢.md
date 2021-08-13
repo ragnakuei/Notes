@@ -23,7 +23,7 @@ VALUES (1, 'A', 11),
        (10, 'K', 20)
 ```
 
-方式一
+## 方式一
 
 ```sql
 DECLARE @queryId int = 1
@@ -37,7 +37,7 @@ WHERE (@queryId IS NULL OR t.Id = @queryId)
   AND (@queryAge IS NULL OR t.Age = @queryAge)
 ```
 
-方式二 - 可搭配集合 Join
+## 方式二 - 可搭配集合 Join
 
 ```sql
 DECLARE @queryId INT = 1
@@ -78,3 +78,17 @@ WHERE (@queryId IS NULL OR EXISTS(
 缺點
 
 > 日後維護相對費工
+
+
+## 方式三 - 最簡潔
+
+把原本 Where 欄位名稱 = 判斷的變數 
+改成 Where 欄位名稱 = ISNULL(判斷的變數，欄位名稱)
+
+```sql
+SELECT [Account],
+       [Name]
+FROM [dbo].[User]
+WHERE [Account] = ISNULL(@account, [Account])
+```
+
