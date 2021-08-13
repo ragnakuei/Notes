@@ -7,3 +7,8 @@
 [用 ASP.NET Core 寫桌面 GUI 應用程式 - Electron.NET](https://blog.darkthread.net/blog/electron-net/)
 
 [在 Electron 中使用 jQuery 與網頁偵錯技巧](https://blog.darkthread.net/blog/jquery-in-electron/)
+
+
+## Rider
+
+[Run Blazor Apps Within Electron Shell](https://blog.jetbrains.com/dotnet/2020/11/05/run-blazor-apps-within-electron-shell/)
