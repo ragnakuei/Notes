@@ -6,5 +6,7 @@
 
 ## 預設 shell 改為 bash
 
+deprecate
+
 > "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe"
 
