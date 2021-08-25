@@ -8,6 +8,7 @@
   - [範例 - Style Binding 2](#範例---style-binding-2)
   - [範例 - Style Binding 3](#範例---style-binding-3)
   - [範例 - Style Binding 4](#範例---style-binding-4)
+  - [範例 - Style Binding 5](#範例---style-binding-5)
   - [範例 - Class Binding 1](#範例---class-binding-1)
   - [範例 - Class Binding 2](#範例---class-binding-2)
   - [範例 - Class Binding 3](#範例---class-binding-3)
@@ -197,6 +198,82 @@ conditional binding style
     };
 </script>
 ```
+
+## 範例 - Style Binding 5
+
+- 注意 progress_bar_width 的語法 
+
+```js
+window.UploadFile = {
+    template: `
+<input type="file"
+    class="custom-file-input"
+    v-on:change="change_upload_file"
+    v-bind:id="id">
+
+<label class="custom-file-label"
+    v-bind:for="id">請選擇檔案</label>
+
+<div class="progress">
+    <div class="progress-bar"
+            role="progressbar"
+            v-bind:style="{ width : progress_bar_width }"
+            ></div>
+</div>
+    `,
+    props: {
+        id: String,
+    },
+    setup(props, {emit}) {
+
+        const file = ref({});
+
+        const progress = ref(0);
+
+        const change_upload_file = function(e) {
+
+            const file = e.target.files.item(0);
+
+            $.ajax(
+                {
+                    url: "/api/Upload/Attachment",
+                    data: file,
+                    processData: false,
+                    contentType: false,
+                    type: "POST",
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function (evt) {
+                            if (evt.lengthComputable) {
+                                progress.value = Math.round((evt.loaded / evt.total) * 100);
+
+                                console.log('progress:' + progress.value);
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function (data) {
+                    }
+                }
+            );
+
+            emit('change-upload-files', files.value);
+        }
+
+        const progress_bar_width = computed(() => progress.value + '%' );
+
+        return {
+            file,
+            progress_bar_width,
+            change_upload_file,
+        }
+    }
+}
+
+app.component("upload-file", UploadFile);
+```
+
+
 
 ---
 
