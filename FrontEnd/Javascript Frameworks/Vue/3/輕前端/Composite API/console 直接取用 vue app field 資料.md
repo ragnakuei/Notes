@@ -1,4 +1,4 @@
-# 直接取用 field 資料
+# console 直接取用 vue app field 資料
 
 ```html
 <style>

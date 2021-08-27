@@ -1,7 +1,8 @@
 # 範例 01 - ref & reactive
 
 - ref() 內給定的是 primitive type
-  - 必須以 變數.value 來存取
+  - 在 setup 內，必須以 變數.value 來存取
+  - 在 template 內，不需要以 .value 來讀取
   - Array 要用 ref !
 - reactive() 內給定的是 object
   - 不用以 變數.value 來存取
