@@ -14,6 +14,15 @@
 ## 不使用 Code-Behind
 
 
-```html
+```csharp
+<%@ Page Title="Home Page" Language="C#"
+AutoEventWireup="true" Inherits="WebSample.Index" %>
 
+<script language="c#"
+        runat="server">
+    public void Page_Load(object sender, EventArgs e)
+    {
+        HttpContext.Current.Response.Redirect("/Account/Login.aspx");
+    }
+</script>
 ```
