@@ -36,7 +36,7 @@ var result = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(json);
 (result["B"] as JObject)["B2"].Dump();
 ```
 
-## 不要用 dynamic + JObject
+## 不要用 dynamic + JObject - 弱型別最小化
 
 ```csharp
 void Main()
@@ -62,4 +62,15 @@ public class TestDto
 
 	public JObject B { get; set; }
 }
+```
+
+## 轉成指定型別
+
+```csharp
+
+// 資料來源先不管
+JObject o;
+
+// 轉成指定型別 B
+o.ToObject(typeof(B)) as B;
 ```
