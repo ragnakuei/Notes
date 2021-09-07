@@ -38,3 +38,4 @@
 -   必須停用 [被阻擋的 Url 會直接顯示 404.8](../RequestFiltering/HiddenSegments/被阻擋的%20Url%20會直接顯示%20404.8.md)
     因為 IIS 預設會將指定的路徑以 404.8 來回應，這個部份不會再經過上述 error 的處理 !
 -   再將上述被停用的 HiddenSegments 改由 [Url Rewrite](../URL%20Rewrite/範例.md) 來處理
+-   [Route 找不到，統一導到錯誤頁面](../../../.Net/.Net%20Framework/ASP.NET/Global.asax.cs.md#Route%20%E6%89%BE%E4%B8%8D%E5%88%B0%EF%BC%8C%E7%B5%B1%E4%B8%80%E5%B0%8E%E5%88%B0%E9%8C%AF%E8%AA%A4%E9%A0%81%E9%9D%A2)
