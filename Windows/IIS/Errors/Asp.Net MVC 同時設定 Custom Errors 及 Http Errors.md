@@ -35,6 +35,7 @@
 
 ## 要求統一顯示同樣錯誤頁面
 
+-   只套用上述的 httpErrors
 -   必須停用 [被阻擋的 Url 會直接顯示 404.8](../RequestFiltering/HiddenSegments/被阻擋的%20Url%20會直接顯示%20404.8.md)
     因為 IIS 預設會將指定的路徑以 404.8 來回應，這個部份不會再經過上述 error 的處理 !
 -   再將上述被停用的 HiddenSegments 改由 [Url Rewrite](../URL%20Rewrite/範例.md) 來處理
