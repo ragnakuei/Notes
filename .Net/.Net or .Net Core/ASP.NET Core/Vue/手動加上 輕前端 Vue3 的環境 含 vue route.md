@@ -9,6 +9,18 @@
 
 ## 實作
 
+1. 專案檔新增 TypeScriptCompileBlocked 讓 VS 不會對 ts 進行編譯
+
+> 這個設定是給 Visual Studio 用，Rider 不需要 !
+
+```xml
+<PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+</PropertyGroup>
+```
+
 1. 新增 Middleware
 
     ```csharp
@@ -46,7 +58,7 @@
     }
     ```
 
-1. Startup.cs > Configure() 加上以下語法:
+3. Startup.cs > Configure() 加上以下語法:
 
     ```csharp
     app.UseSpaStaticFiles();
@@ -73,7 +85,7 @@
                                             }));
     ```
 
-1. 新增 index.html
+4. 新增 index.html
 
     ```html
     <!DOCTYPE html>
@@ -109,7 +121,7 @@
     </html>
     ```
 
-1. 其餘檔案在[這](https://github.com/ragnakuei/AspNetCoreVueRouteAndModule)
-1. 驗証結果
+5. 其餘檔案在[這](https://github.com/ragnakuei/AspNetCoreVueRouteAndModule)
+6. 驗証結果
    - 在 vue 切到不同 route 後，直接按下 F5 ，要可以回到原本的頁面
 

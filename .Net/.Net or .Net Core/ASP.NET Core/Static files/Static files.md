@@ -28,3 +28,17 @@ new Dictionary<string, string>
                                             RequestPath  = new PathString(kv.Value)
                                         }));
 ```
+
+## 開放指定副檔名
+
+```csharp
+// 讓 asp.net core 可以開放讀取指定副檔名之檔案
+var extensionProvider = new FileExtensionContentTypeProvider();
+extensionProvider.Mappings.Add(".vue", "text/plain");
+app.UseStaticFiles(new StaticFileOptions
+                    {
+                        FileProvider        = new PhysicalFileProvider(Path.Combine(new []{ env.ContentRootPath, "wwwroot", "vue" })),
+                        RequestPath         = new PathString("/vue"),
+                        ContentTypeProvider = extensionProvider
+                    });
+```
