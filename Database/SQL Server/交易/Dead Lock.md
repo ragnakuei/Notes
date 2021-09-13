@@ -12,7 +12,7 @@ https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedur
 https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-tran-locks-transact-sql?view=sql-server-2017
 
 
-```
+```sql
 
 SELECT request_session_id AS spid,
   resource_type AS rt,
