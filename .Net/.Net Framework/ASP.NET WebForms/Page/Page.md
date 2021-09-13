@@ -26,3 +26,20 @@ AutoEventWireup="true" Inherits="WebSample.Index" %>
     }
 </script>
 ```
+
+## 不使用 AutoWireup，手動綁定事件
+
+```csharp
+public class Default : Page
+{
+    protected Default()
+    {
+        this.Load += new EventHandler(this.Page_Load);
+    }
+
+    private void Page_Load(object sender, EventArgs e)
+    {
+        Console.WriteLine("BasePage PageLoad");
+    }
+}
+```
