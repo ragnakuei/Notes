@@ -1,4 +1,6 @@
-#
+# 傳入 DataTable 的語法
+
+> 注意： System.Data.SqlClient 的版本要在 4.3.1 以上
 
 ```csharp
             var sql = @"

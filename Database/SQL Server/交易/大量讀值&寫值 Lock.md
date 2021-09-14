@@ -16,6 +16,9 @@ GO
 
 測試語法
 
+- 搭配 C# Transaction IsolationLevel.ReadCommitted 
+- UPDLOCK 可改用 ROWLOCK
+
 ```sql
 DECLARE @currentMoney BIGINT;
 
