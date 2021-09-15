@@ -17,12 +17,16 @@
 
 Startup.ConfigureServices() 加上
 
+- 不額外指定 Cookie 時，會使用 預設的 Cookie 來執行，該 Cookie Name 為 `.AspNetCore.Session`
+- 
+
 ```csharp
 services.AddSession(options =>
                     {
                         // 靠 Cookie 來取得 Session
                         options.Cookie = new CookieBuilder
                                             {
+                                                // 如果要額外指定 Cookie ，就必須指定名稱，否則報錯
                                                 Name = "Test.Session"
                                             };
                         options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -94,6 +98,24 @@ View
 
 ## 清除 Session
 
+- Sessiobn.Clear() 會清掉放在 Session 的物件，但不會更改 Session Id !
+- 要做到確實達到 Session Id 都變更的情況：就是將原本 Session 產生的 Cookie 設為過期
+
+ >
+
 ```csharp
 _contextAccessor.HttpContext.Session.Clear();
+_contextAccessor.Response.Cookies.Append(".AspNetCore.Session",
+                                        string.Empty,
+                                        new CookieOptions
+                                        {
+                                            // Domain      = null,
+                                            // Path        = null,
+                                            Expires  = DateTimeOffset.Now.AddSeconds(-1),
+                                            Secure   = true,
+                                            SameSite = SameSiteMode.Strict,
+                                            HttpOnly = true,
+                                            // MaxAge      = null,
+                                            // IsEssential = false
+                                        });
 ```
