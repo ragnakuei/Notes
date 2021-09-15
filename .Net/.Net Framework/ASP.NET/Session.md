@@ -24,12 +24,12 @@
 ### Session.Clear()
 
 - 與 Asp.Net Core 實作不同 !
-- - 立即清掉該 Session 所儲存的所有東西
+- 立即清掉該 Session 所儲存的所有東西
 - Session Id 變動規則與[這](#session-id-變動規則)一致
 
 ## 設定逾時清空 Session 內容的方式
 
-清空後，Session Id 不一定會變
+清空後，Session Id 變動規則與[這](#session-id-變動規則)一致
 
 - Web.config 加上以下這段
 
@@ -53,6 +53,7 @@
 - 將 Session Cookie 設定為 Expire
   - Expire 後，當下的 Cookie 會清掉，但是 Session 仍然還是會取到原本的 !
 - 再重新 Rediret
+  - 就可以重新取得新的 Session Id
 
 ```csharp
 public ActionResult ExpireSessionCookie()
