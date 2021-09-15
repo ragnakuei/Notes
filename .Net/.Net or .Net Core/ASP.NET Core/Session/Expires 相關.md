@@ -1,5 +1,7 @@
 # Expires 相關
 
+- [相關測試方案](https://github.com/ragnakuei/CookieVsSessionTests)
+
 ## Session Cookie Expires
 
 - 因為會產生對應的 Session Cookie，所以這部份觀念與 [Cookie](../Cookie/Expires.md) 一致

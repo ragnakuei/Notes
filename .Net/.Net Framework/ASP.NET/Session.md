@@ -47,9 +47,11 @@
 
 - 預設 Session Cookie Name：`ASP.NET_SessionId`
 - 會將 Session Id 放入 Session Cookie Value 中
+- [相關測試方案](https://github.com/ragnakuei/CookieVsSessionTests)
 
 ### 強制更新 Session Id 的方式
 
+- 呼叫 Session.Clear()
 - 將 Session Cookie 設定為 Expire
   - Expire 後，當下的 Cookie 會清掉，但是 Session 仍然還是會取到原本的 !
 - 再重新 Rediret
@@ -58,6 +60,7 @@
 ```csharp
 public ActionResult ExpireSessionCookie()
 {
+    Session.Clear();
     Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", null)
                             {
                                 // Path      = null,
