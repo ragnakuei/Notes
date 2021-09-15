@@ -31,15 +31,17 @@
 
 清空後，Session Id 不一定會變
 
-```xml
-  <system.web>
+- Web.config 加上以下這段
+
+    ```xml
+    <system.web>
     <compilation debug="true" targetFramework="4.8"/>
     <httpRuntime targetFramework="4.8"/>
 
     <!-- 加上下面這行，單位：分鐘 -->
     <sessionState timeout="1" />
-  </system.web>
-```
+    </system.web>
+    ```
 
 ## Asp.Net MVC
 
