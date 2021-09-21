@@ -1,5 +1,7 @@
 # 鎖定擴大 Lock Escalation
 
+SQL Server 2005 之後才有的功能
+
 處理資料異動時，要注意處理資料筆數
 
 

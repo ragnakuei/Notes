@@ -17,6 +17,8 @@ var customerIds = new[] {
 Orders.Where(o => customerIds.Contains(o.CustomerID)).Dump();
 ```
 
+Contains 實際上會被轉成 IN 的語法 !
+
 ### Any 必須套用 Entity Source
 
 ```csharp
