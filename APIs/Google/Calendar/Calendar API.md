@@ -37,3 +37,18 @@ calendar 上的每個 行程，叫做 `event`
 
 -   Credential 使用 `Google OAuth 2.0`
     將預設的二個 Scope 打勾
+
+
+## ColorId
+
+1 blue
+2 green
+3 purple
+4 red
+5 yellow
+6 orange
+7 turquoise
+8 gray
+9 bold blue
+10 bold green
+11 bold red
