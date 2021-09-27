@@ -25,6 +25,8 @@ mode = production 的 environment variables 放在 `.env.production` 檔案中
 
 ## .env.development 範例
 
+### VITE_APP_BackendHost
+
 ```
 VITE_APP_BackendHost=https://localhost:5001/
 ```
@@ -32,5 +34,5 @@ VITE_APP_BackendHost=https://localhost:5001/
 然後在程式中，就可以用下面的方式來取用
 
 ```ts
-this.baseUrl = process.env.VITE_APP_BackendHost;
+const baseUrl = import.meta.env.VITE_APP_BackendHost;
 ```
