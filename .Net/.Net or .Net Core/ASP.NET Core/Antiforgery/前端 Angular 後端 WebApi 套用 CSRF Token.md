@@ -255,6 +255,8 @@ public class AntiforgeryConst
 
 先加上測試環境可以直接 proxy 至後端 WebApi 的設定，可以參考[這](../../../../FrontEnd/Javascript%20Frameworks/Angular/開發階段%20設定%20proxy%20server.md)
 
+再讓 fetch 可以套用 Cross Domain Cookie，實作可以參考[這](../Cookie/Cross%20Domain%20設定.md#JavaScript%20fetch)
+
 主要就是加上一個 TestComponent，然後直接在 App Component
 
 - 其中大量註解的部份，主要測試後端 IAntiforgery.GetTokens() 與 IAntiforgery.GetAndStoreTokens() 用的 !

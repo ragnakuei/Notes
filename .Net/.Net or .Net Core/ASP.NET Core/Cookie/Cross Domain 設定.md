@@ -45,7 +45,7 @@ HttpContext.Response.Cookies.Append(".AspNetCore.Antiforgery-Token",
                                     });
 ```
 
-#### JavaScript fetch 
+#### JavaScript fetch
 
 一定要加上 `credentials: "include"`
 
