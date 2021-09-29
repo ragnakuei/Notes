@@ -14,6 +14,8 @@ app.UseStaticFiles(new StaticFileOptions
 
 ## 白名單做法
 
+- 發佈後，對應的資料夾要存在，才不會導致應用程式啟動失敗 !
+
 ```csharp
 new Dictionary<string, string>
     {
