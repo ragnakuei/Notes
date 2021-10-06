@@ -1,4 +1,4 @@
-# 自訂 AuthenticationHandler 驗証 二個 JWT Schema
+# 自訂 AuthenticationHandler 驗証 二個 JWT Scheme
 
 ### 範例
 
@@ -10,15 +10,15 @@
     4. 短時效 access token 過期後，再用 refresh token 要過新的 access token
     5. refresh token 過期後，視為被登出
 
--   因為要驗証二種 JWT，所以用二個 JWT Schema 來分開驗証
--   [新增 Authentication 及 Schema 驗証](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Infra/JwtServiceHelper.cs)
+-   因為要驗証二種 JWT，所以用二個 JWT Scheme 來分開驗証
+-   [新增 Authentication 及 Scheme 驗証](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Infra/JwtServiceHelper.cs)
 
--   Schema 驗証放在 [BaseAuthenticationHandler](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Infra/BaseAuthenticationHandler.cs) 中
+-   Scheme 驗証放在 [BaseAuthenticationHandler](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Infra/BaseAuthenticationHandler.cs) 中
     -   實作類別，主要是給定不同的 Properties
     -   [RefreshTokenAuthenticationHandler](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Jwt/RefreshTokenAuthenticationHandler.cs)
-        -   Authorize 使用 AuthenticationSchemes.RefreshTokenSchema
+        -   Authorize 使用 AuthenticationSchemes.RefreshTokenScheme
     -   [AccessTokenAuthenticationHandler](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Jwt/AccessTokenAuthenticationHandler.cs)
-        -   Authorize 使用 AuthenticationSchemes.AccessTokenSchema
+        -   Authorize 使用 AuthenticationSchemes.AccessTokenScheme
 -   [BaseJwtService](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Jwt/BaseJwtService.cs)
     -   產生 JWT 及 驗証
     -   [RefreshTokenJwtService](https://github.com/ragnakuei/ReserveRoom/blob/master/WebApiServer/Jwt/RefreshTokenJwtService.cs)
