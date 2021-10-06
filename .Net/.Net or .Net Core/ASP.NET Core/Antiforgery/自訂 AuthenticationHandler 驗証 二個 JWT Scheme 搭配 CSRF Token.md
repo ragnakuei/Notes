@@ -22,3 +22,8 @@ Cache 的猜測是：
 只要從 IAntiforgery 取得 Token 時，就 cache 當下的 HttpContext.User Claims
 
 即使之後更換了 HttpContext.User Claims，IAntiforgery 仍然會提供相同的 Token !
+
+因此，以預設的 IAntiforgery 實作 DefaultAntiforgery 來看：
+
+無法支援同時要產出二個以上的 JWT Scheme 的 CSRF Token !
+
