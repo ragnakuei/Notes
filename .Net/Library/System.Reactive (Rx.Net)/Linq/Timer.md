@@ -1,4 +1,6 @@
-# 範例二
+# Timer
+
+- 非阻塞式
 
 ```cs
 using System.Reactive.Subjects;

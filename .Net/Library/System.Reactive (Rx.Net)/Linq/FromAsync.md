@@ -1,33 +1,26 @@
 # FromAsync
 
-將非同步轉成 Observable\<T>
+- 非阻塞式
+- 將非同步轉成 Observable\<T>
 
 ```cs
-class Program
+private static void Sample02()
 {
-    static void Main(string[] args)
-    {
-        var observer = Observer.Create<Dto<long>>(s => SubscribeAction(s),
-                                                  () => Console.WriteLine("Complete"));
+    var source = Observable.FromAsync(() => AsyncTask());
 
-        var source = Observable.FromAsync(() => Task.FromResult(new Dto<long>()));
+    using var dispose = source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s}"),
+                                            onError: e => Console.WriteLine(e.Message),
+                                            onCompleted: () => Console.WriteLine("Complete"));
 
-        using (source.Subscribe(observer))
-        {
-            Console.WriteLine("All Completed !");
-        }
-    }
+    source.Wait();
 
-    private static void SubscribeAction<T>(Dto<T> dto)
-    {
-        Console.WriteLine(dto.Date.ToString("hh:mm:ss fffffff"));
-    }
+    Console.WriteLine("All Completed !");
 }
 
-public class Dto<T>
+private static async Task<int> AsyncTask()
 {
-    public DateTime Date { get; set; }
+    await Task.Delay(500);
 
-    public T Item { get; set; }
+    return 1;
 }
 ```

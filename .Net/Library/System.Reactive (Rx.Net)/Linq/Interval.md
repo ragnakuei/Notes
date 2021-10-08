@@ -1,6 +1,7 @@
 # Interval
 
-等於是 Timer dueTime 為 0 + period !
+-   阻塞式
+-   等於是 Timer dueTime 為 0 + period !
 
 ```cs
 class Program

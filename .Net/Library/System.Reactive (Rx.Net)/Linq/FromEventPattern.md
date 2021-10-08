@@ -1,6 +1,7 @@
 # FromEventPattern
 
-用來綁定事件
+- 用來綁定事件
+- FromEventPattern(object instance, object event name)
 
 ```cs
 public partial class Form1 : Form
@@ -10,17 +11,17 @@ public partial class Form1 : Form
         InitializeComponent();
 
         var windowMove = Observable.FromEventPattern(this, "Move")
-            .Subscribe(evt =>
-            {
-                if(evt.Sender is not Form form)
-                {
-                    return;
-                }
-
-                var position = form.PointToScreen(new Point(0, 0));
-
-                Debug.WriteLine($"Position X: {position.X} Y:{position.Y}");
-            });
+                                   .Subscribe(evt =>
+                                   {
+                                       if(evt.Sender is not Form form)
+                                       {
+                                           return;
+                                       }
+   
+                                       var position = form.PointToScreen(new Point(0, 0));
+   
+                                       Debug.WriteLine($"Position X: {position.X} Y:{position.Y}");
+                                   });
     }
 }
 ```
