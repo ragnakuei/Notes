@@ -17,9 +17,8 @@ using var subscribe = Observable.Generate(initialState: 1,
                                           resultSelector: x => x * 2)
                                 .Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s}"),
                                            onError: e => Console.WriteLine(e.Message),
-                                           onCompleted: () => Console.WriteLine("Complete"));
-
-Console.WriteLine("All Completed !");
+                                           onCompleted: () => Console.WriteLine("Complete"))
+                                .Finally(() => Console.WriteLine("All Completed !"));
 ```
 
 執行結果：

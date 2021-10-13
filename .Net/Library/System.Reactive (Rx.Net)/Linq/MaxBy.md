@@ -1,11 +1,11 @@
-# MinBy
+# MaxBy
 
 - 阻塞式
 - 可視為 GroupBy() 但 key 值取最小的
 
 ```cs
 var source = Observable.Range(1, 10)
-                       .MinBy(x => x % 2 == 0)
+                       .MaxBy(x => x % 2 == 0)
                        .Finally(() => Console.WriteLine("All Completed !"));
 
 using var dispose = source.Subscribe(onNext: s =>
@@ -22,11 +22,11 @@ using var dispose = source.Subscribe(onNext: s =>
 執行結果：
 
 ```
-Subscribe Message:1
-Subscribe Message:3
-Subscribe Message:5
-Subscribe Message:7
-Subscribe Message:9
+Subscribe Message:2
+Subscribe Message:4
+Subscribe Message:6
+Subscribe Message:8
+Subscribe Message:10
 Complete
 All Completed !
 ```

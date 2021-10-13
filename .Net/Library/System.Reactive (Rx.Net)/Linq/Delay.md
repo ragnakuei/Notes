@@ -8,7 +8,8 @@
 
 ```cs
 var source = Observable.Range(1, 10)
-                       .Delay(TimeSpan.FromSeconds(1));
+                       .Delay(TimeSpan.FromSeconds(1))
+                       .Finally(() => Console.WriteLine("All Completed !"));
 using var dispose = source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s}"),
                                      onError: e => Console.WriteLine(e.Message),
                                      onCompleted: () => Console.WriteLine("Complete"));
@@ -18,6 +19,4 @@ while (task.IsCompleted == false)
 {
     Thread.Sleep(1);
 }
-
-Console.WriteLine("All Completed !");
 ```
