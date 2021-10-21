@@ -56,6 +56,8 @@ private void CheckArray(int[] ints)
 
 #### Thread-Safe 操作 List\<int>
 
+- 直接存取 index ，每個 Thread 存取不同的 index
+
 ```cs
 private readonly int _collectionSize = 10;
 
