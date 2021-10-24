@@ -15,13 +15,12 @@ var source = Observable.Create<int>(o =>
 
                                         o.OnCompleted();
                                         return () => Console.WriteLine("timer Disposed");
-                                    });
+                                    })
+                       .Finally(() => Console.WriteLine("All Completed !"));
 
 using var dispose = source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s}"),
                                         onError: e => Console.WriteLine(e.Message),
                                         onCompleted: () => Console.WriteLine("Complete"));
-
-Console.WriteLine("All Completed !");
 ```
 
 #### 讓 Create() 裡面的物件 可以執行 Dispose

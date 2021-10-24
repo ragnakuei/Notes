@@ -5,15 +5,15 @@
   - 可直接加 .Take(N) 來限制幾次 !
 
 ```cs
-var observer = Observer.Create<DateTime>(s => Console.WriteLine(s.ToString("hh:mm:ss fffffff")),
-                                            () => Console.WriteLine("Complete"));
-
 var source = Observable.Return(DateTime.Now)
-                       .Repeat(5)
-                       .Take(4);
+                        .Repeat(5)
+                        .Take(4)
+                        .Finally(() => Console.WriteLine("All Completed !"));
 
-using (source.Subscribe(observer))
+using (source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s:yyyy/MM/dd hh:mm:ss fffffff}"),
+                        onError: e => Console.WriteLine(e.Message),
+                        onCompleted: () => Console.WriteLine("Complete")))
 {
-    Console.WriteLine("All Completed !");
+    
 }
 ```

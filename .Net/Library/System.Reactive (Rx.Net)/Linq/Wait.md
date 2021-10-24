@@ -3,6 +3,7 @@
 - 用在 Timer 上，會持續等待
 - 用在 Delay 上，會等 Delay 完成
   - 但原本的工作可能未完成
+- 用在阻塞式 + Finally 時，會造成呼叫二次 Finally !
 
 ```cs
 var source = Observable.Timer(TimeSpan.FromSeconds(2),

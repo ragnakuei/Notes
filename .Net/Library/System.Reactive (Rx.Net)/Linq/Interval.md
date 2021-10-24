@@ -4,36 +4,15 @@
 -   等於是 Timer dueTime 為 0 + period !
 
 ```cs
-class Program
+var source = Observable.Interval(TimeSpan.FromSeconds(1))
+                       .Select(i => DateTime.Now)
+                       .Take(10)
+                       .Finally(() => Console.WriteLine("All Completed !"));
+
+using (source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s:yyyy/MM/dd hh:mm:ss fffffff}"),
+                        onError: e => Console.WriteLine(e.Message),
+                        onCompleted: () => Console.WriteLine("Complete")))
 {
-    static void Main(string[] args)
-    {
-        var observer = Observer.Create<Dto<int>>(s => SubscribeAction(s),
-                                                    () => Console.WriteLine("Complete"));
-
-        var source = Observable.Interval(TimeSpan.FromSeconds(1))
-                                .Select(i => new Dto<int>
-                                            {
-                                                Date = DateTime.Now
-                                            });
-
-        using (source.Subscribe(observer))
-        {
-            Thread.Sleep(10000);
-            Console.WriteLine("All Completed !");
-        }
-    }
-
-    private static void SubscribeAction<T>(Dto<T> dto)
-    {
-        Console.WriteLine(dto.Date.ToString("hh:mm:ss fffffff"));
-    }
-}
-
-public class Dto<T>
-{
-    public DateTime Date { get; set; }
-
-    public T Item { get; set; }
+    source.Wait();
 }
 ```

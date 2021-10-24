@@ -26,6 +26,6 @@ using var subscribe = Observable.Defer(() =>
                                 .Retry(3)
                                 .Subscribe(onNext: s => Console.WriteLine($"Subscribe int:{s}"),
                                             onError: e => Console.WriteLine(e.Message), // 無法抓到每次 retry 的 Exception
-                                            onCompleted: () => Console.WriteLine("Complete"));
-Console.WriteLine("All Completed !");
+                                            onCompleted: () => Console.WriteLine("Complete"))
+                                .Finally(() => Console.WriteLine("All Completed !"));
 ```

@@ -76,3 +76,36 @@ namespace ConsoleApp8
 | ---------------- | ----------: | --------: | --------: | -----: | --------: |
 | 測試項目1_Unwrap | 2,242.31 ns | 13.140 ns | 12.291 ns | 0.0420 |     264 B |
 | 測試項目2_await  |    62.84 ns |  1.252 ns |  1.392 ns | 0.0229 |     144 B |
+
+
+#### 範例
+
+```cs
+var cts = new CancellationTokenSource();
+
+var task1 = Task.Run(() =>
+{
+    "Task1.Running".Dump();
+});
+
+var task2 = task1.ContinueWith(t =>
+{
+    "Task2.Running".Dump();
+
+    // 模擬發生 Exception 的情況
+    throw new Exception("Test");
+});
+
+task2.ContinueWith(t =>
+{
+    // task2 執行成功時才會執行的地方
+    "Task2.Complete".Dump();
+}, TaskContinuationOptions.OnlyOnRanToCompletion);
+
+task2.ContinueWith(t =>
+{
+    // task2 執行失敗時才會執行的地方
+    "Task2.Exception".Dump();
+    t.Dump();
+}, TaskContinuationOptions.OnlyOnFaulted);
+```

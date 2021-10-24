@@ -10,11 +10,10 @@ private static void Sample02()
 
     using var dispose = source.Subscribe(onNext: s => Console.WriteLine($"Subscribe Message:{s}"),
                                             onError: e => Console.WriteLine(e.Message),
-                                            onCompleted: () => Console.WriteLine("Complete"));
+                                            onCompleted: () => Console.WriteLine("Complete"))
+                              .Finally(() => Console.WriteLine("All Completed !"));
 
     source.Wait();
-
-    Console.WriteLine("All Completed !");
 }
 
 private static async Task<int> AsyncTask()
