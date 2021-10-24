@@ -16,7 +16,7 @@ private void 四捨五入(decimal d, int digits)
 }
 ```
 
-## 將 decimal 指定的小數位數補 0
+#### 將 decimal 指定的小數位數補 0
 
 ```csharp
 /// <summary>
@@ -87,9 +87,18 @@ private static decimal GenerateFillTailZeroMultipler(int digits)
 }
 ```
 
-## Parse Exponential Notation 的方式
+### Parse
+
+#### Parse 多種 Style 的方式
+
+```cs
+decimal.Parse("1,000.00", NumberStyles.AllowDecimalPoint 
+                        | NumberStyles.AllowThousands ).Dump();
+```
+
+#### Parse Exponential Notation 的方式
 
 ```csharp
-decimal.Parse("1e-10", System.Globalization.NumberStyles.Float).Dump();
+decimal.Parse("1e-10", NumberStyles.Float).Dump();
 ```
 
