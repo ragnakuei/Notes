@@ -17,7 +17,7 @@
             <p v-for="(item, index) in vue_model.Items"
                v-bind:key="index">
                 <input type="text"
-                       v-model="item" />
+                       v-model="vue_model.Items[index]" />
             </p>
             <p>{{ JSON.stringify(vue_model) }}</p>
         </div>
