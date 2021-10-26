@@ -1,6 +1,6 @@
 # [TinyMCE](https://www.tiny.cloud)
 
--   [Document](https://www.tiny.cloud/docs/)
+- [Document](https://www.tiny.cloud/docs/)
 
 - [Full Featured: Non-Premium Plugins](https://www.tiny.cloud/docs/demo/full-featured/#fullfeaturednon-premiumplugins)
 

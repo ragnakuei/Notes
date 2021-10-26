@@ -10,6 +10,8 @@
 [範例一](https://github.com/ragnakuei/AspNetCorePushNotification)
 
 關鍵
+- 推播用的 keypair
+  - [VAPID Key Generator](https://www.attheminute.com/vapid-key-generator/)
 - 後端記錄 client browser 資訊
 - push notification 時，將需要的資料以 json 格式放進 payload 中
 - browser service worker 收到 push 時，從 event.data 取出 json 資料
