@@ -16,6 +16,10 @@
     ```js
     import { timer } from 'rxjs';
 
-    const source = timer(2000, 500);
-    const subscribe = source.subscribe((val) => console.log(val));
+    timer(2000, 500)
+    .subscribe({
+          next: (val) => console.log(val),
+          complete: () => console.log('complete'),
+          error: val => console.log('error', val)
+        });
     ```
