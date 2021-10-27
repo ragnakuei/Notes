@@ -1,4 +1,13 @@
-# range
+# [range](https://rxjs.dev/api/index/function/range)
+
+
+```js
+import { range } from 'rxjs';
+
+const source = range(1, 10);
+const example = source.subscribe(val => console.log(val));
+```
+
 
 ```html
 <script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
