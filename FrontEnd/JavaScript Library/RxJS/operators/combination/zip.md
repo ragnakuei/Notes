@@ -1,4 +1,4 @@
-# zip
+# [zip](https://rxjs.dev/api/operators/zip)
 
 - v8 會改用 zipWith
 - 以各 Observable 最小的數量、一致的時間差，來執行 next

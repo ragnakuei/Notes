@@ -1,8 +1,6 @@
 # codepen 範例
 
 ```html
-<script src="https://unpkg.com/vue@next"></script>
-
 <div id="app">
     <form autocomplete="off"
           v-on:submit.prevent="submit_form">
@@ -27,7 +25,7 @@
     </form>
 </div>
 
-
+<script src="https://unpkg.com/vue@next"></script>
 <script>
   const { createApp, ref, reactive, onMounted, computed, watch, watchEffect } = Vue;
   
