@@ -1,5 +1,7 @@
 # [reduce](https://rxjs.dev/api/operators/reduce)
 
+- 只會回傳整個 Observable\<T> 處理完的結果
+
 ```js
 reduce<V, A>(
     accumulator: (acc: V | A, value: V, index: number) => A, 
@@ -22,6 +24,13 @@ range(1,10)
   complete: () => console.log('complete'),
   error: (err) => console.log(err),
 });
+```
+
+執行結果
+
+```
+55
+complete
 ```
 
 #### 第二個參數  1 至 10 的加總 + 給定初始值

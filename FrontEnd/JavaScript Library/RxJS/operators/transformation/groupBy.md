@@ -9,3 +9,36 @@ groupBy<T, K, R>(keySelector: (value: T) => K,
     ): OperatorFunction<T, GroupedObservable<K, R>>
 ```
 
+#### 範例 回傳 key value: array
+
+```js
+import { of } from 'rxjs';
+import { mergeMap, groupBy, reduce, toArray } from 'rxjs/operators';
+
+of(
+  { id: 1, name: 'JavaScript' },
+  { id: 2, name: 'Parcel' },
+  { id: 2, name: 'webpack' },
+  { id: 1, name: 'TypeScript' },
+  { id: 3, name: 'TSLint' }
+)
+  .pipe(
+    groupBy((p) => p.id),
+    mergeMap( async (group$) => {
+      return {
+        key: group$.key,
+        value: await group$
+                      .pipe(toArray())
+                      // 用這個也可以，但是 toArray() 比較簡潔直接 !
+                      // .pipe(reduce((acc, cur) => [...acc, cur], []))
+                      .toPromise()
+      };
+    })
+  )
+  .subscribe({
+    next: (val) => console.log(val),
+    complete: () => console.log('complete'),
+    error: (err) => console.log(err),
+  });
+```
+
