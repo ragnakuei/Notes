@@ -1,6 +1,6 @@
 # [concatMap](https://rxjs.dev/api/operators/concatMap)
 
-- 將 Observable\<Observable<T>> 給攤平
+- 將 Observable\<T> 給解開成 T 給 Subscribe.Next
 
 #### 範例
 
