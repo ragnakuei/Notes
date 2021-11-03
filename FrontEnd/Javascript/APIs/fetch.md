@@ -12,5 +12,13 @@ fetch(url, {
             'RequestVerificationToken': '@(GetAntiXsrfRequestToken())',
         },
         method: 'POST',
+    })
+    .then(response => {
+
+        if (!response.ok) {
+            throw response;
+        }
+
+        return response.json();
     });
 ```

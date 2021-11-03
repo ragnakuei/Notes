@@ -1,27 +1,28 @@
 # [debounce](https://rxjs.dev/api/operators/debounce)
 
-- 每個 next 執行間隔小於 debounce time 才會允許執行
+- 每個 next 執行間隔大於(沒有等於) debounce time 才會允許執行
 - 會先額外執行一次 empty
 
 #### debounce + timer 範例一
+
+- 以下不會收到任何 next
 
 ```js
 import { of, range, timer } from 'rxjs';
 import { debounce, mergeMap, delay, concatMap } from 'rxjs/operators';
 
 range(1,10)
-.pipe(concatMap(i => of(i).pipe(delay(500))))
-.pipe(debounce(() => timer(400)))
-.subscribe(val => console.log('next', val),
-           (err) => console.log('error', err),
-           () => console.log('complete')
-);
+.pipe(concatMap(i => of(i).pipe(delay(400))))
+.pipe(debounce(() => timer(500)))
+.subscribe({
+  next: (val) => console.log(val),
+  complete: () => console.log('complete'),
+  error: (err) => console.log(err),
+});
 ```
 
-如果把 timer 的 400 改成 600
-
-只會收到 next 10
-
+- 如果把 delay 的 400 改成 600
+- 就會會收到各種 next 值
 
 #### debounce + timer 範例二
 
@@ -44,8 +45,9 @@ range(1,10)
 
 // 當 debounce time 小於 delay 間隔時，就會允許執行當下的 next 
 .pipe(debounce(() => timer(500)))
-.subscribe(val => console.log('next', val),
-           (err) => console.log('error', err),
-           () => console.log('complete')
-);
+.subscribe({
+  next: (val) => console.log(val),
+  complete: () => console.log('complete'),
+  error: (err) => console.log(err),
+});
 ```
