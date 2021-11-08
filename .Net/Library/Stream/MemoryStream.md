@@ -15,8 +15,7 @@ async Task Main()
     var fileContents = await Task.WhenAll(tasks);
     
     fileContents.Length.Dump();
-
-    fileContents[0].Position = 0;
+    
     using (var reader = new StreamReader(fileContents[0]))
     {
         reader.ReadToEnd().Dump();
@@ -32,6 +31,7 @@ public async Task<MemoryStream> ReadFileAsync(string filePath)
         var memeoryStream = new MemoryStream();
         
         fs.CopyTo(memeoryStream);
+		fileContents[0].Position = 0;
         
         return memeoryStream;
     }
