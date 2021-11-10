@@ -8,7 +8,7 @@
 mode
 
 -   On - 顯示自訂錯誤
--   Off - 不顯示自訂錯誤
+-   Off - 不顯示自訂錯誤 - 就會顯示程式細部錯誤
 -   RemoteOnly - 遠端使用者顯示自訂錯誤
 
 redirectMode
