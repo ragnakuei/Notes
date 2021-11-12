@@ -1,5 +1,7 @@
 # 讓 SQL 的變更可以變成 Queue 的情況
 
+[範例](https://github.com/ragnakuei/MassChargeAndConsumeWithTransaction)
+
 ### 建立資料表 LockTable
 
 ```sql
