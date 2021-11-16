@@ -29,6 +29,8 @@ HttpClient client = _clientFactory.CreateClient();
 
 ### 設定 TImeout 與不同設定檔 的方式
 
+- 在 AddHttpClient() 時，可以給定不同設定檔名稱，以符合不同的 Request 情境
+
 ```csharp
 static void Main(string[] args)
 {

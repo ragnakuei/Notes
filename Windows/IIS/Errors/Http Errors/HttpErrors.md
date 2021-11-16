@@ -2,7 +2,7 @@
 
 ## [Configuration](https://docs.microsoft.com/en-us/iis/configuration/system.webserver/httperrors/#configuration)
 
-errorMode
+#### errorMode
 
 -   Detailed
     -   顯示詳細錯誤訊息
@@ -11,8 +11,11 @@ errorMode
 -   Custom
     -   不顯示詳細錯誤訊息
 
-defaultResponseMode
+#### defaultResponseMode
 
--   File
--   ExecuteUrl
--   Redirect
+- 區分大小寫
+- 有以下項目
+  -   File
+  -   ExecuteURL
+  -   Redirect
+

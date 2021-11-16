@@ -8,6 +8,23 @@
 
 ## 按下 button 不會 post back 的方式
 
+### 正確解法
+
+加上 **UseSubmitBehavior="false"** 就可以了 !
+
+```html
+    <asp:Button
+        ID="btn01"
+        runat="server"
+        UseSubmitBehavior="false"
+        type="Button"
+        Text="Button01"
+        OnClick="btn01Click"
+    />
+```
+
+### 錯誤解法：還是有可能會先觸發 submit form 的動作
+
 - type="button"
 - 加上 attribute OnClientClick 而且回傳 false。如果需要額外執行 js 可加在 return false; 前面。
 
@@ -19,7 +36,6 @@
         runat="server"
         type="Button"
         Text="Button01"
-        OnClick="btn01Click"
         OnClientClick="doSomething(); return false;"
     />
     ```
