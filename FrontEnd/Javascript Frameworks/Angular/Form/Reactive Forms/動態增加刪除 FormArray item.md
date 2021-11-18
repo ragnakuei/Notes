@@ -88,17 +88,30 @@ export class AppComponent implements OnInit {
         {{ option.text }}
       </option>
     </select>
-
-    <button *ngIf="formOptionIds.controls.length > 1" (click)="removeFormOptionId(i)" >del</button>
+    <button *ngIf="formOptionIds.controls.length > 1"
+            (click)="removeFormOptionId(i)">del
+    </button>
+    <label>valid:{{ formOptionIds.controls[i].valid}}</label>&nbsp;
+    <label>touched:{{ formOptionIds.controls[i].touched}}</label>&nbsp;
+    <label>dirty:{{ formOptionIds.controls[i].dirty}}</label>&nbsp;
+    <label *ngIf="formOptionIds.controls[i].touched && formOptionIds.controls[i].errors?.['required']"
+           style="color: red">
+      請選擇項目 !
+    </label>
   </div>
 
   <div>
     <button (click)="addFormOptionId()">Add Option</button>
   </div>
   <div>
-    <button type="submit" [disabled]="!orderForm.valid">Submit</button>
+    <button type="submit"
+            [disabled]="orderForm.invalid">Submit
+    </button>
   </div>
 </form>
 
-<p>Result:{{ orderForm.value | json }}</p>
+<div>
+  <div>Result:{{ orderForm.value | json }}</div>
+  <div>Valid:{{ orderForm.valid | json }}</div>
+</div>
 ```

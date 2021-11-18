@@ -1,5 +1,7 @@
 # [Reactive Forms](https://angular.io/guide/reactive-forms#reactive-forms)
 
+[驗證](https://angular.io/guide/form-validation#validating-input-in-reactive-forms)
+
 #### 註冊 ReactiveFormsModule
 
 ```typescript
