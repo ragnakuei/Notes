@@ -1,5 +1,7 @@
 # [Reactive Forms](https://angular.io/guide/reactive-forms#reactive-forms)
 
+#### 註冊 ReactiveFormsModule
+
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,7 +36,7 @@ import { OrderEditComponent } from './order/order-edit/order-edit.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule                                      // 1
+    ReactiveFormsModule   // 1
   ],
   providers: [OrderService],
   bootstrap: [AppComponent]
@@ -45,9 +47,7 @@ export class AppModule {
 
 ```
 
----
-
-給定 FormGroup 值的方式：透過 FormGroup.setValue()
+#### 給定 FormGroup 值的方式：透過 FormGroup.setValue()
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -126,7 +126,7 @@ export class OrderEditComponent implements OnInit {
 }
 ```
 
-template
+#### template
 
 ```html
 <h2>OrderEdit</h2>
