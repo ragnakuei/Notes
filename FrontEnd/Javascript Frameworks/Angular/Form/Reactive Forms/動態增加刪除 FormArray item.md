@@ -115,3 +115,144 @@ export class AppComponent implements OnInit {
   <div>Valid:{{ orderForm.valid | json }}</div>
 </div>
 ```
+
+### FormArray 的 item 為物件
+
+#### script
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Option } from "./models/option";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.scss' ]
+})
+export class AppComponent implements OnInit {
+  title = 'angular-practice';
+  orderForm!: FormGroup;
+  options!: Array<Option>;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+  }
+
+  ngOnInit() {
+    this.orderForm = this.formBuilder.group({
+      OrderId: [ '', Validators.required ],
+      Dtos: this.formBuilder.array([
+        this.generateFormDto(),
+      ])
+    });
+
+    this.options = [
+      { text: "A", value: 1 },
+      { text: "B", value: 2 },
+      { text: "C", value: 3 },
+    ];
+  }
+
+  get formDtos(): FormArray {
+    return this.orderForm.get('Dtos') as FormArray;
+  }
+
+  addFormDto() {
+    this.formDtos.push(this.generateFormDto());
+  }
+
+  removeFormOption(index : number) {
+    this.formDtos.removeAt(index);
+  }
+
+  private generateFormDto(): FormGroup {
+    return this.formBuilder.group({
+      name: [ '', Validators.required ],
+      type: [ '', Validators.required ],
+    })
+  }
+
+  onSubmit() {
+    console.log(this.orderForm);
+  }
+}
+
+```
+
+#### template
+
+- tr > td 之間，靠 `ng-container` 來指定 formGroupName
+
+```html
+<form [formGroup]="orderForm"
+      (ngSubmit)="onSubmit()">
+  <div>
+    <label for="orderId"></label>
+    <input type="text"
+           id="orderId"
+           formControlName="OrderId" />
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>名稱</th>
+      <th>類型</th>
+      <th>
+        <button type="button" (click)="addFormDto()">Add Dto</button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr formArrayName="Dtos"
+        *ngFor="let dto of formDtos.controls; let i = index;">
+      <ng-container [formGroupName]="i">
+        <td>
+          <input type="text"
+                 formControlName="name" />
+          <label *ngIf="dto.get('name')?.touched
+                     && dto.get('name')?.errors?.['required']"
+                 style="color: red">
+            請輸入名稱 !
+          </label>
+        </td>
+        <td>
+          <select formControlName="type">
+            <option [ngValue]="null"
+                    disabled
+                    selected>請選擇
+            </option>
+            <option *ngFor="let option of options"
+                    [value]="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+          <label *ngIf="dto.get('type')?.touched
+                     && dto.get('type')?.errors?.['required']"
+                 style="color: red">
+            請選擇項目 !
+          </label>
+        </td>
+        <td>
+          <button *ngIf="formDtos.controls.length > 1"
+                  (click)="removeFormOption(i)">del
+          </button>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <button type="submit"
+            [disabled]="orderForm.invalid">Submit
+    </button>
+  </div>
+</form>
+
+<div>
+  <div>Result:{{ orderForm.value | json }}</div>
+  <div>Valid:{{ orderForm.valid | json }}</div>
+</div>
+```
