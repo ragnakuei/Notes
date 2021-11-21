@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
 
   addFormOptionId() {
-    this.formOptionIds.push(this.formBuilder.control('', Validators.required));
+    this.formOptionIds.push(this.formBuilder.control(null, Validators.required));
   }
 
   removeFormOptionId(index : number) {
