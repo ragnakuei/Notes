@@ -8,11 +8,11 @@ this.route.fragment.subscribe((fragment: string) => {
 
 ```html
 <button
-mat-button
-[routerLink]="['/order/detail/', order.OrderID]"
-fragment="readonly"
-routerLinkActive="active"
-color="primary"
+  mat-button
+  [routerLink]="['/order/detail/', order.OrderID]"
+  fragment="readonly"
+  routerLinkActive="active"
+  color="primary"
 >
 Detail
 </button>

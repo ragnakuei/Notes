@@ -6,6 +6,13 @@
 
 ## Sample01
 
+- 這個範例不直接使用以下的 component，而直接使用 html tag
+  - mat-table
+  - mat-header-row
+  - mat-row
+  - mat-header-cell
+  - mat-cell
+
 ```typescript
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
