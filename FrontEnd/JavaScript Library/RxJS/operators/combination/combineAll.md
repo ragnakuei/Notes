@@ -1,5 +1,6 @@
 # [combineAll](https://rxjs.dev/api/operators/combineAll)
 
+> 可以結合多個 Observable\<T> 為 T[]
 > v8 之後移除，改為 `combineLatestAll`
 
 ```js
