@@ -1,6 +1,8 @@
 # [ViewChild](https://angular.io/guide/component-interaction#parent-calls-an-viewchild)
 
-二種語法
+#### 二種語法
+
+- 生命週期在 `AfterViewInit` 之後
 
 - 語法一
 

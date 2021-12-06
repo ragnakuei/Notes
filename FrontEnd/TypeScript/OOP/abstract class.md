@@ -1,6 +1,25 @@
 # abstract class
 
 
+#### 呼叫父類 proeprty
+
+```ts
+abstract class BaseClass{
+    protected key : string = "defaultKey";
+
+    public abstract printKey() : void;
+}
+
+class ClassA extends BaseClass {
+    public printKey() : void {
+        // 不需要用 super.key
+        console.log(this.key);
+    }
+}
+
+new ClassA().printKey();
+```
+
 #### 搭配 angular 範例
 
 - abstract class

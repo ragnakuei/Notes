@@ -8,7 +8,7 @@
     - let-itemName - itemName 可自訂
     - [ngForOf]="arrayVariable" - arrayVariable 就是陣列變數
     - let-i="index" - 指定 i 為 index
-
+- 如果不要被 syntax 影響，可以改用 ng-container
 
 #### 範例一
 
