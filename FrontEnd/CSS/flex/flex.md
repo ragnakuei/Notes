@@ -9,7 +9,16 @@ display 預設為 block
     - 未達最小寬度，會以平均寬度來擺放
 
 
-#### flex-direction
+## [flex](https://developer.mozilla.org/en-US/docs/Web/CSS/flex)
+
+包含了以下三個部份
+
+#### flex-grow
+
+#### flex-shrink
+
+#### flex-basis
+## flex-direction
 
 
 預設水平排列
@@ -17,12 +26,12 @@ display 預設為 block
 column - 垂直排列
 
 
-#### align-items
+## align-items
 
 center 水平置中
 
 
-#### justify-content
+## justify-content
 
 center 垂直置中
 
