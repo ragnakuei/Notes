@@ -1,6 +1,9 @@
 # FormArray
 
-FormGroup 裡面有 FormArray 的寫法
+注意：
+- FormArray 無法直接用於 form tag 中，必須加一層 FormGroup 才可以 !
+
+### FormGroup 裡面有 FormArray 的寫法
 
 ```typescript
 ngOnInit() {
