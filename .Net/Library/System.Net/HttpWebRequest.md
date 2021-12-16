@@ -25,6 +25,8 @@
         }
         return false;
     };
+
+    Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
     ```
 
 1. HttpWebRequest Sample Code
