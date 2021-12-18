@@ -1,5 +1,25 @@
 # 動態增加刪除 FormArray item
 
+### FormControl 套用 select multiple
+
+```ts
+this.form = new FormGroup({
+  name: new FormControl(dayOffType?.code, [ Validators.required ]),
+  courseIds: new FormControl(courseIds, [ Validators.required ]),
+});
+```
+
+```html
+<mat-select formControlName="courseIds" multiple>
+  <mat-option
+    *ngFor="let course of courseService.list$ | async"
+    [value]="course.id"
+  >
+    {{ course.name }}
+  </mat-option>
+</mat-select>
+```
+
 ### FormArray 的 item 為字串
 
 #### script

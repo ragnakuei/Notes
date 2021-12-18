@@ -57,3 +57,31 @@ this.formControl.valueChanges
           this.isLoading = false;
       });
 ```
+
+#### 隱藏欄位
+
+```js
+fields: FormlyFieldConfig[] = [
+{
+    type: 'form-group',
+    templateOptions: { flexDirection: 'horizontal' },
+    fieldGroup: [
+    {
+        key: 'id',
+        type: 'input',
+        hide: true,
+        templateOptions: {},
+    },
+    {
+        key: 'name',
+        type: 'input',
+        templateOptions: {
+        label: 'WORKFLOW.WORKFLOW.NAME',
+        placeholder: '請輸入名稱',
+        required: true,
+        },
+    },
+    ]
+},
+]        
+```
