@@ -2,3 +2,6 @@
 
 [demo](https://tailwindcss-forms.vercel.app/)
 
+```
+yarn add -D @tailwindcss/forms
+```

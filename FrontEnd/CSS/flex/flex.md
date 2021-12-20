@@ -20,11 +20,9 @@ display 預設為 block
 #### flex-basis
 ## flex-direction
 
-
-預設水平排列
+row - 水平排列，預設
 
 column - 垂直排列
-
 
 ## align-items
 
@@ -33,5 +31,5 @@ center 水平置中
 
 ## justify-content
 
-center 垂直置中
-
+center - 垂直置中
+space-between - 在每個 item 中間插入 space
