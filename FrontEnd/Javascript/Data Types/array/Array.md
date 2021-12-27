@@ -29,3 +29,11 @@ const reducer = (aggregateValue, iteratorValue) => {
 array1.reduce(reducer);
 ```
 
+## unshift
+
+- push element at index 0
+
+## shift
+
+- pop index 0 element
+
