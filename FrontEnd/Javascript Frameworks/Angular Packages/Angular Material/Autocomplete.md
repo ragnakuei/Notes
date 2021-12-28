@@ -121,3 +121,24 @@ public onCustomerOptionChanged(e: MatAutocompleteSelectedEvent) {
 
 [method called multiple times in angular material autocomplete](https://stackoverflow.com/questions/57856800/method-gets-called-multiple-times-in-angular-material-autocomplete)
 
+
+## 給定下拉選單語法
+
+```html
+<h1>Hello {{name}}!</h1>
+
+<form class="example-form">
+	<mat-form-field class="example-full-width">
+		<input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto4"/>
+
+    <!-- 加上此行即可 -->
+    <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+
+    <mat-autocomplete autoActiveFirstOption #auto4="matAutocomplete" (optionSelected)="onFilterOptionSelected($event)" >
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+```
