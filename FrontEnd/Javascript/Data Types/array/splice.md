@@ -17,3 +17,15 @@
   - replaceCount 如果為 0，就可視為只有 insert 的動作
   - 插入 insertItem 至 index
 
+
+### slice(0, 0, item) 替代語法 unshift
+
+```js
+let ary = [1,2,3];
+
+ary.unshift(0);
+console.log(ary);
+
+ary.splice(0,0, -1);
+console.log(ary);
+```

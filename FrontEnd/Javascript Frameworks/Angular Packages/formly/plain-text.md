@@ -1,8 +1,8 @@
 # plain-text
 
-
 #### 注意事項
 
+- 顯示資料用
 - boolean 為 false 不會顯示資料
 - 這個方式不要與 編輯 form 混用
 

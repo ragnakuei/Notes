@@ -2,6 +2,13 @@
 
 [參考資料](https://dev.to/rishabk7/beautify-your-terminal-wsl2-5fe2)
 
+### 觀念
+
+- WSL2 裝 zsh theme
+- terminal tool 端設定支援 powerline font 及 color schemes
+
+### 步驟
+
 1. [WSL2] 安裝 zsh & oh-my-zsh
    1. 執行 `apt install zsh`
    1. 執行 `curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh >> install.sh`
