@@ -1,4 +1,4 @@
-# [vee-validate](https://logaretm.github.io/vee-validate/)
+# [vee-validate](https://vee-validate.logaretm.com/v4/)
 
 ## 參考資料
 
