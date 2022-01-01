@@ -58,6 +58,8 @@
 
          `Set-PoshPrompt -Theme "~/.ohmyposhv3-will.omp.json"`
 
+         > 可以編輯設定檔以進行自訂
+
       1. Theme 說明
          1. 支援 unicode
             1. 可從 html unicode 複製下來直接貼上至 vscode 中
