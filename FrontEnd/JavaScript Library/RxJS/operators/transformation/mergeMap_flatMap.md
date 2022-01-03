@@ -2,6 +2,7 @@
 
 - flatMap 在 v8 時，會 rename 成 mergeMap
 - 將 Observable\<T> 給解開成 T 給 Subscribe.Next
+- 也會拆解 Array\<T> 為 T
 - 跟 exhaustMap 類似
 
 ```js
