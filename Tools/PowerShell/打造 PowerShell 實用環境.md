@@ -24,8 +24,6 @@
     1. 安裝 Module：以系統管理員身份執行 `Install-Module -Name Terminal-Icons -Repository PSGallery -Force`
     1. 套用 Module：以系統管理員身份執行 `Import-Module -Name Terminal-Icons`
 
-    可能會需要執行 `Import-Module -Name Terminal-Icons`
-
     執行完畢後，執行 `dir` 會發現 檔案/資料夾 都有圖示了 !
 
     1. 建立啟動設定檔 `notepad $PROFILE`
