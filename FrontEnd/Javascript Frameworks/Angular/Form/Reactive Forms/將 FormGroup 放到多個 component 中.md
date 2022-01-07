@@ -1,6 +1,8 @@
 # 將 FormGroup 放到多個 component 中
 
-Q：其他 component 經過動態 增加/刪除 FormControl 時，會發生無法立即顯示 FormGroup 的 validate error status !
+---
+
+Q：將 FormGroup 放到多個 component 中時，其他 component 經過動態 增加/刪除 FormControl 時，會發生無法立即顯示 FormGroup 的 validate error status !
 
 A： 解法
 
