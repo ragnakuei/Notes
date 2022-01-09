@@ -73,6 +73,14 @@
 ### component
 
 -   ng g c Test --skip-tests=true
+### service
+
+- 會自動帶上 .service.ts 副檔名
+- 不需要給定 module
+
+範例
+
+-   ng g s Test 
 
 ## [serve](https://angular.io/cli/serve)
 
