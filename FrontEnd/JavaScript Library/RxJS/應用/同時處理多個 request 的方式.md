@@ -31,6 +31,7 @@
 ```
 
 
+
 ### 前二個 reqeust 幾乎平行跑，後面再串一個 request
 
 - createObservable 視為模擬 request 的動作
@@ -63,6 +64,27 @@
         console.log('x.i1', x.i1);   // [1,2]
         console.log('x.i', x.i);     // 3
         
+    });
+</script>
+```
+
+### 從 array 幾乎平行跑 observable
+
+```html
+<script src="https://unpkg.com/rxjs@^7/dist/bundles/rxjs.umd.min.js"></script>
+<script>
+    const { from, of, range, interval, concat, forkJoin,  } = rxjs;
+    const { map, mergeMap, filter, repeat, take, delay  } = rxjs.operators;
+   
+    function createObservable(i) {
+        return of(i).pipe(delay(500));
+    }
+    
+    const observables = [...Array(10).keys()].slice(1).map(i => createObservable(i));
+    
+    forkJoin(observables)
+    .subscribe((x) => {
+        console.log('x', x);     // [1,2,3,4,5,6,7,8,9]
     });
 </script>
 ```

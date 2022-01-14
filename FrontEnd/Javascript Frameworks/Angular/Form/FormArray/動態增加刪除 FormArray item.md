@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
   }
 
   removeFormOptionId(index : number) {
+    // 千萬不要用 splice 會造成 FormArray 的 validate status 不一致 !
     this.formOptionIds.removeAt(index);
   }
 
