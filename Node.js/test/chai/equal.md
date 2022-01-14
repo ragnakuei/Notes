@@ -10,19 +10,19 @@
 
     ```js
     {
-    "name": "chai-practice",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "mocha ./tests/*.test.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "chai": "^4.3.4",
-        "mocha": "^9.1.3"
-    }
+        "name": "chai-practice",
+        "version": "1.0.0",
+        "description": "",
+        "main": "index.js",
+        "scripts": {
+            "test": "mocha ./tests/*.test.js"
+        },
+        "author": "",
+        "license": "ISC",
+        "devDependencies": {
+            "chai": "^4.3.4",
+            "mocha": "^9.1.3"
+        }
     }
     ```
 
