@@ -2,6 +2,8 @@
 
 ## 範例一
 
+callback function 為 `onload` 、 `onerror` !
+
 ```js
 function create_resumeable_promise(url, request_body) {
     return new Promise((resolve) => {
