@@ -32,21 +32,30 @@ function rigth(n : number) : string {
 
 #### 取右邊 N 位，並補上指定字元
 
+- 既有 api 做法
 
-```js
-String.prototype.fillLeft = function(fill, digits) {
-    const fillString = fill.repeat(digits);
-    let result = fillString + this;
-    return result.slice(result.length - digits);
-}
-```
+  ```js
+  "1".padStart(3, '0')
+  ```
 
-```js
-let n = 1;
-n.toString().fillLeft('0', 3)
-```
+    > '001'
 
-> '001'
+- 手刻做法
+
+  ```js
+  String.prototype.fillLeft = function(fill, digits) {
+      const fillString = fill.repeat(digits);
+      let result = fillString + this;
+      return result.slice(result.length - digits);
+  }
+  ```
+
+  ```js
+  let n = 1;
+  n.toString().fillLeft('0', 3)
+  ```
+
+  > '001'
 
 
 

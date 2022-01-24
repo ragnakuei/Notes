@@ -1,0 +1,1 @@
+# [AiXcoder Code Completer](https://plugins.jetbrains.com/plugin/13574-aixcoder-code-completer)
