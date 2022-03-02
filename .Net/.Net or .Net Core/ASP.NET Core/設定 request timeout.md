@@ -1,5 +1,7 @@
 # 設定 request timeout
 
+### asp.net core 6 之後
+
 ```cs
 builder.WebHost.UseKestrel(options =>
 {
