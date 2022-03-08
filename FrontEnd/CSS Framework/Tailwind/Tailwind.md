@@ -1,6 +1,9 @@
 # [Tailwind](https://tailwindcss.com/docs/guides)
 
 
+[排版神器 Tailwind CSS～和兔兔一起快速上手漂亮的元件開發！](https://ithelp.ithome.com.tw/m/articles/10259296)
+
+
 ### 在 vite 安裝
 
 1. [第一步](https://tailwindcss.com/docs/guides/vite)
