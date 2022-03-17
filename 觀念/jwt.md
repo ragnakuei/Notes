@@ -22,3 +22,10 @@ https://tec.xenby.com/44-%E7%B5%90%E5%90%88-jwt-%E8%88%87-refresh-token-%E9%81%9
 4. 為避免 access token 過期後，立即被停用而導致不明錯誤
    1. 允許 access token 過期後的幾秒鐘，仍然可以存取 !
    2. expire 跟 禁止存取 要拆開判斷
+
+
+其他參考資料：
+
+- https://github.com/anjoy8/Blog.Core
+- https://gitee.com/CoreUnion/CoreShop
+

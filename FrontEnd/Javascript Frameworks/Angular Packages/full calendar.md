@@ -103,3 +103,9 @@ select(arg: DateSelectArg): void {
     console.log('select', arg.view);
 }
 ```
+
+
+```ts
+this.calendar = this.calendarComponent?.getApi();
+this.calendar.gotoDate(new Date());
+```

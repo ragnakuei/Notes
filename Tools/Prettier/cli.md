@@ -6,6 +6,8 @@
 npm install -g prettier
 or
 npm install prettier -D --save-exact
+or
+npm install --save-dev --save-exact prettier
 ```
 
 #### 執行 Prettier 掃瞄
