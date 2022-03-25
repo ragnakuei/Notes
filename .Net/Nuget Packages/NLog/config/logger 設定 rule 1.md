@@ -7,11 +7,14 @@ NLog.config 重點設定如下：
 ```xml
 <targets>
   <target xsi:type="File" name="controllers" fileName="${basedir}/logs/${shortdate}-Controllers.log"
-          layout="${longdate} ${uppercase:${level}} ${logger} ${message}" />
+          layout="${longdate} ${uppercase:${level}} ${logger} ${message}"
+          encoding="utf-8" />
   <target xsi:type="File" name="extends" fileName="${basedir}/logs/${shortdate}-Extends.log"
-          layout="${longdate} ${uppercase:${level}} ${logger} ${message}" />
+          layout="${longdate} ${uppercase:${level}} ${logger} ${message}"
+          encoding="utf-8" />
   <target xsi:type="File" name="all" fileName="${basedir}/logs/${shortdate}-All.log"
-          layout="${longdate} ${uppercase:${level}} ${logger} ${message}" />
+          layout="${longdate} ${uppercase:${level}} ${logger} ${message}"
+          encoding="utf-8" />
 </targets>
 
 <rules>
