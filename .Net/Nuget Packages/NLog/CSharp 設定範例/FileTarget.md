@@ -5,7 +5,6 @@ using NLog.Config;
 using NLog.Targets;
 using NLog.Web;
 
-
 var processPath = AppDomain.CurrentDomain.BaseDirectory;
 var fileTarget = new FileTarget
                     {

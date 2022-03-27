@@ -30,10 +30,12 @@
     Write events to a file with the date in the filename.
     -->    
     <target xsi:type="File" name="f" fileName="${logPath}/logs/webapi/${shortdate}.log"
-            layout="${longdate} ${uppercase:${level}} ${message}" />
+            layout="${longdate} ${uppercase:${level}} ${message}"
+            encoding="utf-8" />
     
     <target xsi:type="File" name="Sns" fileName="${logPath}/logs/webapi/Sns ${shortdate}.log"
-            layout="${longdate} ${uppercase:${level}}-${activityid}-${message}" />
+            layout="${longdate} ${uppercase:${level}}-${activityid}-${message}"
+            encoding="utf-8" />
 
   </targets>
 

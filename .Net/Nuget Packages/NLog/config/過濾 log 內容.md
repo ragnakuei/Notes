@@ -57,12 +57,14 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
     <target xsi:type="File" 
             name="allfile" 
             fileName="nlog-all-${shortdate}.log"
-            layout="${longdate}|${logger}|${uppercase:${level}}|${message} ${exception}" />
+            layout="${longdate}|${logger}|${uppercase:${level}}|${message} ${exception}"
+            encoding="utf-8" />
 
     <target xsi:type="File" 
             name="ownFile-web" 
             fileName="nlog-my-${shortdate}.log"
-            layout="${longdate}|${logger}|${uppercase:${level}}|${message} ${exception}" />
+            layout="${longdate}|${logger}|${uppercase:${level}}|${message} ${exception}"
+            encoding="utf-8" />
 
     <target xsi:type="Null" name="blackhole" />
 

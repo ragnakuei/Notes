@@ -29,3 +29,12 @@ public class TestError : IHttpHandler
     }
 }
 ```
+
+
+## 非同步版
+
+[參考資料](https://www.codeguru.com/dotnet/how-to-create-an-asynchronous-http-handler-in-asp-net-4-5/)
+
+- 繼承 HttpTaskAsyncHandler
+- 實作 public override async Task ProcessRequestAsync(HttpContext context)
+
