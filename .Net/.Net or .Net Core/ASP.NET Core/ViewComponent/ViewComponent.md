@@ -66,10 +66,11 @@ ViewComponent 同樣分為 .cs 與 .cshtml
           @addTagHelper *, WebApplicationAssembly
           ```
 
+         ```html
+         <vc:test str="B" />
+         <vc:test str="B"></vc:test>
+         ```
 
-        ```html
-        <vc:test str="B"></vc:test>
-        ```
    1. 在 Controller 內呼叫
 
         ```cs
