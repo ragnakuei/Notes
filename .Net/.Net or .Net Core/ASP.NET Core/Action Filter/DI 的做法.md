@@ -10,6 +10,8 @@
 
 假設在 Action 上要加這段 Action Filter
 
+- ActionFilterAttribute 也可以改為 IActionFilter
+
 ```csharp
 public class TestActionFilter : ActionFilterAttribute
 {
@@ -30,16 +32,17 @@ public class TestActionFilter : ActionFilterAttribute
 
 則在 Startup.ConfigureServices() 中要加上
 
-以下以 mvc 的角度來切入
+以下以 mvc 的角度來切入，以下二個註冊方式擇一使用
 
 ```csharp
 services.AddControllersWithViews(options =>
                                     {
+                                        // 全域註冊
                                         options.Filters.Add(typeof(TestActionFilter));
                                     });
 
+// 區域註冊
 services.AddScoped<TestActionFilter>();
-
 ```
 
 那麼在 Action 上，就可以用以下語法
