@@ -1,7 +1,5 @@
 # IAntiforgery
 
-- 可能不適用 Cross Site 的情境 !
-
 ### ValidateRequestAsync(HttpContext)
 
 傳入 HttpContext 進行 Antiforgery 驗証 !
@@ -52,3 +50,31 @@ context.HttpContext.Response.Cookies.Append(".AspNetCore.Antiforgery.Token",
 - 已包含了 SetCookieTokenAndHeader() 的動作
 - 產生 Token 並儲存
 - 每次都會取出新的 Token，但舊的 Token 不會 Expire
+
+
+### ValidateRequestAsync()
+
+- 可能產生 AntiforgeryValidationException
+  - 可以在 Middleware 被 catch
+
+#### 驗証 IAntiforgery 可以拋出 AntiforgeryValidationException 的做法
+
+  - 通常搭配 Web Api 使用
+
+  ```cs
+  public class CsrfTokenValidateService : IAsyncActionFilter
+  {
+      private readonly IAntiforgery _antiforgery;
+
+      public CsrfTokenValidateService(IAntiforgery antiforgery)
+      {
+          _antiforgery = antiforgery;
+      }
+
+      public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+      {
+          await _antiforgery.ValidateRequestAsync(context.HttpContext);
+          await next();
+      }
+  }
+  ```
