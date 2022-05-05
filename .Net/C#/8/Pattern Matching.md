@@ -1,4 +1,6 @@
-# Nullable Reference
+# Pattern Matching
+
+### 範例一
 
 ```csharp
 static void Main(string[] args)
@@ -35,3 +37,16 @@ private static IEnumerable<(int Id, string Name)> Filter(List<Employee> employee
     > if(employee is { Id: int id, Name: var name } && name != null)
 
 [參考資料](https://dotblogs.com.tw/supershowwei/2019/09/30/120134)
+
+### 範例二
+
+左邊承接的變數，一定要用明確型別，用 var 會無法編譯 !
+
+```cs
+public Fruit Fruit { get; set; }
+public string WhatFruit => Fruit switch
+{
+  Apple _ => "This is an apple",
+  _ => "This is not an apple"
+};
+```
