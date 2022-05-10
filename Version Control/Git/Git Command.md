@@ -99,7 +99,7 @@
 | git rebase                                               | 說明                                                                                                                                           |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | git rebase <target-branch>                               | 將目前的 branch 接至 <target-branch> 上。 rebase 後的順序跟 commit 順序無關，而是以 目前 branch > target branch > 共同的來源 branch 的方式排列 |
-| git rebase --onto <target-branch> --root <source-branch> | 將 <source-branch> 接至 <target-branch> 上。                                                                                                   |
+| git rebase --root <source-branch> --onto <target-branch> | 將 <source-branch> 接至 <target-branch> 上。                                                                                                   |
 
 | git remote                                                                   | 說明                         |
 | ---------------------------------------------------------------------------- | ---------------------------- |
