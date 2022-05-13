@@ -2,7 +2,7 @@
 
 ## value 要 binding 成數字
 
-將原本輸入的 `value=2` 改為 `:value=2` 就可以了
+將原本輸入的 `value="2"` 改為 `:value=2` 就可以了
 
 ```html
 <div class="form-group form-inline ml-3">
