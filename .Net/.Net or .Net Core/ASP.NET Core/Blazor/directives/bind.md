@@ -1,5 +1,7 @@
 # [bind](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/data-binding)
 
+參考資料
+- [A Detailed Look At Data Binding in Blazor](https://chrissainty.com/a-detailed-look-at-data-binding-in-blazor/)
 
 ## input
 

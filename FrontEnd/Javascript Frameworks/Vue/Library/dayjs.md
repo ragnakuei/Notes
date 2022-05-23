@@ -1,0 +1,5 @@
+# dayjs
+
+```
+npm install dayjs
+```

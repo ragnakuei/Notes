@@ -1,5 +1,11 @@
 # bootstrap 5 modal
 
+## Cannot read property 'classList' of undefined
+
+原因：太早呼叫 Modal 初始化動作 !
+解法：在 onMounted 時初始化 Modal !
+
+### 輕前端版本
 
 ```html
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -61,4 +67,32 @@
         const vm = app.mount('#app');
     });
 </script>
+```
+
+### script setup 版本
+
+```js
+import { computed, defineProps, onMounted, ref, watch } from "vue";
+import { Modal } from "bootstrap";
+
+const emit = defineEmits( [ "update:isOpen" ] );
+const props = defineProps( {
+    id: String,
+    title: String,
+    isOpen: Boolean,
+} );
+
+let modal = null;
+onMounted(() => {
+    modal = new Modal(document.getElementById(props.id), {
+        backdrop: true,
+        keyboard: true,
+        focus: true,
+    });
+
+    const modalDom = document.getElementById(props.id)
+    modalDom.addEventListener('hidden.bs.modal', function (event) {
+        isOpen.value = false;
+    });
+});
 ```
