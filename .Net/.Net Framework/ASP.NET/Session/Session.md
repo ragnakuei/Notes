@@ -1,5 +1,8 @@
 # Session
 
+參考資料
+- [Exploring Session in ASP.NET](https://www.codeproject.com/Articles/32545/Exploring-Session-in-ASP-Net)
+
 ## Session Id 變動規則
 
 - 只要未放入資料至 Session 中，那麼每次拿到的 Session Id 都會變 !

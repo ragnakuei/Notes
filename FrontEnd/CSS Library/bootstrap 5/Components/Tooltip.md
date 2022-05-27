@@ -12,7 +12,8 @@
 
 <div class="container m-5">    
     <button type="button" 
-            class="btn btn-secondary" 
+            class="btn btn-secondary"
+            data-bs-custom-class="abc" 
             data-bs-toggle="tooltip" 
             data-bs-html="true" 
             title="<em>Tooltip</em> <u>with</u> <b>HTML</b>">
