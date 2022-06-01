@@ -3,6 +3,12 @@
 ## GraphApiService
 
 ```cs
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 public interface IGraphApiService
 {
     Task<T> GetAsync<T>(string url);
@@ -25,7 +31,7 @@ public class GraphApiService : IGraphApiService
     private readonly int                    _maxRetryCount = 3;
 
     public GraphApiService(IHttpClientFactory     clientFactory,
-                            IAccessTokenRepository accessTokenRepository)
+                           IAccessTokenRepository accessTokenRepository)
     {
         _clientFactory         = clientFactory;
         _accessTokenRepository = accessTokenRepository;
@@ -215,6 +221,8 @@ public class GraphApiService : IGraphApiService
 - 透過 MemoryCache 來記錄 AccessToken
 
 ```cs
+using Microsoft.Identity.Client;
+
 public interface IAccessTokenRepository
 {
     Task<string> GetAsync(Guid userId);
