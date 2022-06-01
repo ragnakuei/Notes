@@ -30,13 +30,25 @@ routes.MapRoute("TestIndex2",
                 new { Controller = "Test", Action = "Index2" }
                 )
         .RouteHandler = new CategoriesRouteHandler();
+
+
+public class CategoriesRouteHandler : IRouteHandler
+{
+    public IHttpHandler GetHttpHandler(RequestContext requestContext)
+    {
+        IRouteHandler handler = new MvcRouteHandler();
+        var vals = requestContext.RouteData.Values;
+        vals["categoryIds"] = vals["categories"].ToString().Split('/');
+        return handler.GetHttpHandler(requestContext);
+    }
+}
 ```
 
 對應的 Action 可以這樣寫：
 
 ```cs
 public ActionResult Index2(string   categories,
-                            string[] categoryIds)
+                           string[] categoryIds)
 {
     var array = categories.Split('/');
     return Json(new

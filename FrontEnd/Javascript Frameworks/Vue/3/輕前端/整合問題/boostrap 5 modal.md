@@ -2,7 +2,7 @@
 
 ## Cannot read property 'classList' of undefined
 
-原因：太早呼叫 Modal 初始化動作 !
+原因：太早呼叫 Modal 初始化動作，傳入 undefined / null 至 new bootstrap.Modal() 中 !
 解法：在 onMounted 時初始化 Modal !
 
 ### 輕前端版本
