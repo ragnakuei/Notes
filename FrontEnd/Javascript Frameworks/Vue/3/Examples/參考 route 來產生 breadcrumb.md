@@ -1,5 +1,12 @@
 # 參考 route 來產生 breadcrumb
 
+- 此範例產生的 breadcrumb 不會以 Home 當根節點
+- 如需以 Home 當根節點
+  - 方法一
+    - 額外建立 Base.vue 與 App.vue 同個資料夾內
+    - 所有的 Component 都為該 Base.vue 的子節點
+  - 方法二
+    - 在 App.vue 內，直接手動加上 Home 為根節點的資料
 
 route/index.js
 
@@ -335,6 +342,11 @@ watch( () => route.matched,
         console.log( 'route.params', route.params );
 
         const breadcrumbItems = [];
+
+        // 如需以 Home 做為 breadcrumb 的根點，可以改成
+        // const breadcrumbItems = [
+        //     { text: "Home", linkTo: { name: "Home" } },
+        // ];
 
         for( const newRoute of newRoutes ) {
 
