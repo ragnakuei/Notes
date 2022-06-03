@@ -1,5 +1,8 @@
 # GraphApiService
 
+- 用於 Application Permission
+- 
+
 ## GraphApiService
 
 ```cs
@@ -148,6 +151,9 @@ public class GraphApiService : IGraphApiService
     {
         var client = _clientFactory.CreateClient();
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+        // 傳回指定語系的資料
+        client.DefaultRequestHeaders.Add("accept-language", "zh-TW");
 
         var accessToken = await _accessTokenRepository.GetAsync();
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);

@@ -49,9 +49,6 @@
     }
   });
   app.mount("#app");
-  window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById("app").style.display = "block";
-  });
 </script>
 ```
 

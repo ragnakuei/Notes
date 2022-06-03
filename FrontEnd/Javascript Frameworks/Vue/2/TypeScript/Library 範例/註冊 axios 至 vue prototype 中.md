@@ -2,6 +2,8 @@
 
 ## 建立 AxiosService.ts
 
+- 之後可直接用 instance 來發 request
+
 ```ts
 import axios, { AxiosInstance } from 'axios';
 import router from '@/router';
