@@ -6,3 +6,6 @@
 
 [什麼是 Microsoft Graph？](https://docs.microsoft.com/zh-tw/learn/modules/msgraph-intro-overview/)
 
+[Microsoft Teams Graph API Samples](https://github.com/microsoftgraph/csharp-teams-sample-graph)
+
+

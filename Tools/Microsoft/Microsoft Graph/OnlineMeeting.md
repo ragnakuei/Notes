@@ -17,7 +17,7 @@
 
     <style>
     .joinInformationContent {
-        width: 700px;
+        width: 100%;
         height: 300px;
     }
     </style>

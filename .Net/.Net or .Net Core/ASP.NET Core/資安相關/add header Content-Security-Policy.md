@@ -6,6 +6,15 @@
     -   就是無法在 cshtml 內使用 \<style><\style>
     -   可以改用 css file
 -   優先序：指定特定項目的 policy > default
+-   找出特殊規則的方式
+    -   意圖：
+        -   先拒絕所有，看 Chrome Console 錯誤訊息，再一步一步開啟 !
+        -   也就是先設定阻擋所有，再開啟白名單 !
+    -   步驟：
+        1.  給定 Default.Disallow() 以拒絕所有的 CSP
+        1.  看錯誤訊息，針對該錯誤訊息修正 > 給定 XXX.AllowAny()
+        1.  看錯誤訊息 > 就可以看出是要 http / https / data: / blob: 之類的
+        1.  重複上述二個步驟，直到完成所有動作 !
 
 ## 參考資料
 
@@ -21,7 +30,7 @@ app.UseCsp(options =>
                 // 最通用的設定方式
                 options.Defaults.AllowSelf().AllowUnSafeInline();
 
-                // 這樣連自己的網頁都會無法存取
+                // 拒絕所有
                 options.Defaults.Disallow();
 
                 // 其他的範例
