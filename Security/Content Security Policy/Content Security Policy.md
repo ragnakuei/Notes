@@ -1,6 +1,7 @@
 # Content Security Policy
 
 -   [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+-   [Content Security Policy (CSP) 筆記](https://hackmd.io/@Eotones/BkOX6u5kX)
 -   [網頁內容安全政策 (Content Security Policy)](https://blog.johnwu.cc/article/ironman-day27-asp-net-core-content-security-policy.html)
 -   不同項目的 `scheme-source` 會不一樣
 

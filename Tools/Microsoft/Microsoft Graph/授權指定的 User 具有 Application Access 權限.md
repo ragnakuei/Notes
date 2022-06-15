@@ -6,7 +6,7 @@
 
 ## [Install Microsoft Teams PowerShell Module](https://docs.microsoft.com/en-us/microsoftteams/teams-powershell-install)
 
-- 以系統管理員身份執行
+- 以系統管理員身份執行 PowerShell
 
   ```
   Install-Module -Name PowerShellGet -Force -AllowClobber
