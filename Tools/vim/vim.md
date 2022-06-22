@@ -1,23 +1,44 @@
 # vim
 
-- 以下排序依照常用程度排序
+- [重新體驗即將失傳的古老技藝 Vim](https://www.youtube.com/watch?v=rhhm2JCZoFY)
+- [再次學習即將失傳的古老技藝 Vim](https://kaochenlong.com/2019/10/16/learning-vim-again/?fbclid=IwAR322GDjkb6AQMCG1rAov8DqMYKcqlbs7FN-76evLyATnRvdeUJm_ntdC7Q)
+- [vimrc-builder](https://vimrc-builder.vercel.app/)
+- [Getting started with vim](https://riptutorial.com/vim)
+- vim 遊戲
+  - [Vim Adventures](https://vim-adventures.com/)
+  - [Vim Snake](https://vimsnake.com/)
+  - [Vim Genius](http://www.vimgenius.com/)
+  - [Openvim](https://www.openvim.com/)
+
 
 ## 待學清單
 
 如何複製片段，再貼上
 
+ctrl + [  => 跟 esc 一樣的功能
+
+進入 visual mode 後，方向鍵取，按下 y 進行複製 => 進行 normal mode
+
+yy => 整行複製
+
+viw => visual => inner select => word
+diw => delete => inner select => word
+ciw => 
+
+https://vim-adventures.com/
+
+
 ## mode 切換
 
-- v 
-  - 切換至 visual mode
-  - 可做 selection
-    - y - 複製 selection 的文字
-    - delete - 刪除 selection 的文字
+替代 => shift + H
+替代 => shift + L
 
 ## move
 
-- e - 跳到目前字的字
+- e - 跳到目前字的字尾
 - b - 跳到目前字的字首
+- w - 跳到下一個字的字首
+- B - 跳到下一個字的字首
  
 - w - 跳到下一個字的字首
 - g e - 跳到上一個字的字尾，不會略過標點符號

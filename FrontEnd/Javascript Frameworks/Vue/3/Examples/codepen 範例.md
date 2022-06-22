@@ -17,7 +17,7 @@
                 <input type="text"
                        v-model="vue_model.Items[index]" />
             </p>
-            <p>{{ JSON.stringify(vue_model) }}</p>
+            <p>{{ vue_model }}</p>
         </div>
         <p>
             <button type="submit">送出</button>
