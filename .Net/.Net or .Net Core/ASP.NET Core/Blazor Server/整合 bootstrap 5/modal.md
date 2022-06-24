@@ -289,7 +289,7 @@
     ```
 
 
-### ModalDialog 呼叫端
+##### ModalDialog 呼叫端
 
 - 以最少的程式碼來呼叫
 
@@ -327,7 +327,7 @@
     }
     ```
 
-### ModalPromptDialog 呼叫端
+##### ModalPromptDialog 呼叫端
 
 - 以最少的程式碼來呼叫
 
