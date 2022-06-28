@@ -1,4 +1,4 @@
-# [event callback](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/event-handling#eventcallback)
+# [EventCallback](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/event-handling#eventcallback)
 
 child component emit event to parent component
 
