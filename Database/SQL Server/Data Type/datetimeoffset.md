@@ -16,7 +16,7 @@ DECLARE @table1 TABLE
                     [UpdatedDate] [datetime]
                 );
 INSERT INTO @table1([UserId], [CreatedDate], [UpdatedDate])
-VALUES (1, '2021/01/02', '2021/01/02'),
+VALUES (1, '2021/01/01', '2021/01/02'),
        (2, '2021/01/03', '2021/01/04'),
        (3, '2021/01/05', '2021/01/06')
 
