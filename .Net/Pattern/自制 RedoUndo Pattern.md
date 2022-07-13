@@ -1,5 +1,8 @@
 # 自制 RedoUndo Pattern
 
+替代的 Design Pattern
+- Memento Pattern
+  - [Implementing Undo/Redo With The Memento Pattern](https://medium.com/design-patterns-in-python/memento-pattern-eba610b3b59c)
 
 ## Sample
 
