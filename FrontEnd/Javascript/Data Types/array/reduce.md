@@ -7,15 +7,37 @@ arr.reduce(
 );
 ```
 
-#### 第四個參數: array
+#### callback 第一個參數: accumulator
 
--   如果需要在原始資料加工，而不影響既有的 interator，可以使用 array 參數
+- 如果有給定 initialValue 的話，則 callback 中，第一次 iteration 的 accumulator 就是 initialValue
+  - 常用情境：array groupby
+- 如果沒有給定 initialValue 的話，則 callback 中，第一次 iteration 的 accumulator 就是 array 的第一個 element
+  - 常用情境：加總
+
 
 ##### 範例 01
 
--   傳入 array 的值為 [1, 2, 3, 4, 5]
--   結果為 [1, 2, 3, 4, 5, 1, 4, 9, 16, 25]
--   initialValue 要給定，才會讓第一次進入的 cur 為第一個元素 !
+```js
+const ints = [1,2,3,4,5];
+
+const result = ints.reduce((acc,cur, _, ary) => {
+
+	acc.push(cur * cur);
+  
+  return acc;
+
+}, []);
+
+console.log('result', result);
+// result > [1, 4, 9, 16, 25]
+```
+
+
+#### callback 第四個參數: array
+
+-   代表呼叫的 array 本身
+
+##### 範例 01
 
 ```js
 const data = [1, 2, 3, 4, 5];
@@ -23,5 +45,26 @@ const result = data.reduce((acc, cur, _, ary) => {
     ary.push(cur * cur);
     return ary;
 }, []);
+
 console.log(result);
+// [1, 2, 3, 4, 5, 1, 4, 9, 16, 25]
+```
+
+
+#### initialValue
+
+
+##### 未給 initialValue
+
+```js
+const ints = [1,2,3,4,5];
+
+const result = ints.reduce((acc,cur, _, ary) => {
+
+  return acc + cur;
+
+});
+
+console.log('result', result);
+// result > 15
 ```

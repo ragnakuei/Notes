@@ -1,6 +1,6 @@
 # DataRow
 
-## 強型別
+#### 強型別
 
 取值
 - row.Field<int>("Id");
@@ -23,4 +23,28 @@ leftDt.Rows.Add(2, "Mary", null);
 leftDt.Rows.Add(3, "Mike", null);
 
 leftDt.AsEnumerable().CopyToDataTable().Dump();
+```
+
+#### 複製 DataRow 的方式
+
+```cs
+public DataTable Filter(DataTable dt, Predicate<DataRow> predicate)
+{
+	var result = dt.Clone();
+
+	foreach (DataRow row in dt.Rows)
+	{
+		if (predicate(row))
+		{
+
+            // 複製 DataRow
+			var resultRow = result.NewRow();
+			resultRow .ItemArray = row.ItemArray.Clone() as object[];
+
+			result.Rows.Add(resultRow);
+		}
+	}
+
+	return result;
+}
 ```
