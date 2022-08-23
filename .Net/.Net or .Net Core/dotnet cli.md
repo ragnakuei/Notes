@@ -1,4 +1,4 @@
-# [.Net Core Cli](https://docs.microsoft.com/zh-tw/dotnet/core/tools/)
+# [dotnet cli](https://docs.microsoft.com/zh-tw/dotnet/core/tools/)
 
 https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet
 
@@ -19,7 +19,7 @@ https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet
 |                                     |                                  |
 | dotnet dev-certs https --trust      | 信任開發用 https 憑証            |
 |                                     |                                  |
-|                                     |                                  |
+| dotnet outdated -u                  | 列出需要更新的 nuget packages    |
 |                                     |                                  |
 |                                     |                                  |
 

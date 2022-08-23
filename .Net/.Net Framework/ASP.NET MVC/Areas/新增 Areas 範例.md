@@ -22,6 +22,8 @@
         1. Web.config
         1. Shared > \_ViewStart.cshtml
         1. 其他視情況自行複製
+        > 注意：如果 Areas 的 Controller 所對應的 View 不存在，就會變成讀取 ~/Views/_ViewStart.cshtml !
+        > 而不會讀取 ~/Areas/[Area]/Views/_ViewStart.cshtml
 1. 新增 Area 對應的 Route
     
     先確認 Global.asax.cs 有呼叫這段語法

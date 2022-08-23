@@ -1,8 +1,8 @@
 # Type Handler
 
-自訂轉換型別的處理
+自訂轉換型別的處理，用於轉換資料庫的資料型別至 C# 的型別。
 
-目前不知道怎麼跟 DynamicParameter 合併使用 !
+★ 目前不知道怎麼讓 DynamicParameter 使用也可以套用 !
 
 
 參考資料：

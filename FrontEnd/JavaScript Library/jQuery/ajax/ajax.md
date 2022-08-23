@@ -1,5 +1,6 @@
 # ajax
 
+- dataType 可以視為回傳的資料類型
 
 ## request 使用 content type multipart/form-data
 
