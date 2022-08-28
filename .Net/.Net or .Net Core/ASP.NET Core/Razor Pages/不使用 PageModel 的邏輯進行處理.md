@@ -2,7 +2,7 @@
 
 -   只需要 .cshtml 檔
 -   不需要 .cshtml.cs 檔
--   不需要指定 @model
+-   不需要指定 @model，否則會產生 Exception
 -   @functions block 內，視為 csharp 語法
 -   無法使用 Constructor
 -   可以使用 @inject 來 DI 物件

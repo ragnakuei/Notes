@@ -1,6 +1,6 @@
 # prevent XSS attack example
 
-- 透過 he 做 content encode
+- 透過 額外套件：he 做 content encode
 - 透過 v-html 做 content encode
 
 ```html

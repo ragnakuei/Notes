@@ -1,6 +1,10 @@
-# Render Razor Page 內容為字串
+# Render Partial View 內容為字串
 
 資料來源：[Programmatically render Razor Page as HTML string](https://stackoverflow.com/questions/63297920/programmatically-render-razor-page-as-html-string)
+
+- 被呼叫的 cshtml
+  - 必須是 Partial View
+  - 不可以給定 @page
 
 ```cs
 public class RazorPartialToStringRenderer
@@ -73,6 +77,40 @@ public class RazorPartialToStringRenderer
                               RequestServices = _serviceProvider
                           };
         return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
+    }
+}
+```
+
+使用方式
+
+```cs
+@page
+@inject IHttpContextAccessor HttpContextAccessor
+@inject RazorPartialToStringRenderer RazorPartialToStringRenderer
+@{
+    Layout = null;
+}
+
+@functions
+{
+    public async Task<IActionResult> OnPost()
+    {
+        // 指定路徑的方式
+        // 1. 從專案根目錄開始，指定 cshtml 完整路徑
+        // 2. 指定主檔名，會從以下指定的地方搜尋
+        //    /Pages/Shared/
+        //    /Views/Shared/
+        var pageHtml = await RazorPartialToStringRenderer.RenderPartialToStringAsync("/Pages/Test4.cshtml", "Hello World !");
+
+        return new JsonResult(new
+                              {
+                                  Html = pageHtml,
+                                  Data = new
+                                         {
+                                             Id = 1,
+                                             Name = "A",
+                                         }
+                              });
     }
 }
 ```
