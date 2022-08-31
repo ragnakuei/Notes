@@ -115,3 +115,9 @@ param.Add("ParentId", 99, DbType.Int64);
 
 return conn.Query<SelectListItem>(sql, param);
 ```
+
+## Debug 用 - 列出所有的 Key 及 Value
+
+```cs
+sqlParameters.ParameterNames.Select(n => sqlParameters.Get<object>(n))
+```

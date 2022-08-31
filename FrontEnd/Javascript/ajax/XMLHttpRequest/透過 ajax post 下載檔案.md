@@ -4,7 +4,63 @@
 
 以下範例搭配[_CustomRequest](../../JavaScript%20Library/jQuery/CustomRequest.md)
 
-- 因為使用 jQuery 發生不明錯誤，短時間內無法解決，以 XMLHttpRequest 測試成功 !
+jQuery 版:
+
+
+```js
+self.PostDownloadFile = function()
+{
+    try
+    {
+        $.ajax( {
+            type: 'POST',
+            url: url,
+            data: JSON.stringify( requestBody ),
+            contentType: 'application/json',
+            beforeSend: function( xhr ) {
+                xhr.setRequestHeader( 'RequestVerificationToken', $( 'input:hidden[name="__RequestVerificationToken"]' ).val() );
+            },
+            xhrFields: {
+                responseType: 'blob'
+            },
+        } ).done( function( blob, status, xhr ) {
+            
+            let filename = "";
+            const disposition = xhr.getResponseHeader('Content-Disposition');
+            if (disposition && disposition.indexOf('attachment') !== -1) {
+                const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                const matches = filenameRegex.exec(disposition);
+                if (matches != null && matches[1])
+                {
+                    filename = matches[1].replace(/['"]/g, '');
+                    filename = filename.replace(/\+/g, '%20')
+                    filename = decodeURI(filename.replace('UTF-8',''));
+                }
+            }
+
+            const link=document.createElement('a');
+            link.href=window.URL.createObjectURL(blob);
+            link.download=filename;
+            link.click();
+            
+        }).fail( function( jqXHR, textStatus ) {
+            console.log( "Request failed: " );
+            console.log( textStatus );
+
+            if( jqXHR?.responseText ) {
+                alert( jqXHR.responseText );
+            }
+        } );
+    }
+    catch (e)
+    {
+        alert('發生錯誤，請聯絡開發人員 !');
+        console.log(e);
+    }
+}
+```
+XMLHttpRequest 版:
+
 
 ```js
 self.PostDownloadFile = function()
@@ -34,6 +90,8 @@ self.PostDownloadFile = function()
                 const matches = filenameRegex.exec(disposition);
                 if (matches != null && matches[1]) {
                     filename = matches[1].replace(/['"]/g, '');
+                    filename = filename.replace(/\+/g, '%20')
+                    filename = decodeURI(filename.replace('UTF-8',''));
                 }
             }
 
