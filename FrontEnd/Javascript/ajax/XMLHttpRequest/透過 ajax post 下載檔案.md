@@ -111,3 +111,45 @@ self.PostDownloadFile = function()
     }
 }
 ```
+
+fetch 版：
+
+```js
+function fetch_json_download( url, requestBody ) {
+    return fetch( url, {
+        method: 'POST',
+        body: JSON.stringify( requestBody ),
+        headers: {
+            'Content-Type': 'application/json',
+            'RequestVerificationToken': $( 'input:hidden[name="__RequestVerificationToken"]' ).val()
+        },
+        credentials: 'same-origin'
+    } ).then( response => {
+        if( !response.ok ) {
+            response.json().then( json => {
+                process_fetch_error_response( json );
+            } )
+        }
+        return response.blob()
+            .then( blob => {
+                let filename = "";
+                const disposition = response.headers.get( 'Content-Disposition' );
+                if( disposition && disposition.indexOf( 'attachment' ) !== -1 ) {
+                    const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    const matches = filenameRegex.exec( disposition );
+                    if( matches != null && matches[1] ) {
+                        filename = matches[1].replace( /['"]/g, '' );
+                        filename = filename.replace( /\+/g, '%20' )
+                        filename = decodeURI( filename.replace( 'UTF-8', '' ) );
+                    }
+                }
+                const link = document.createElement( 'a' );
+                link.href = window.URL.createObjectURL( blob );
+                link.download = filename;
+                link.click();
+            } ).catch( error => {
+                process_error_response( error );
+            } );
+    } )
+}
+```

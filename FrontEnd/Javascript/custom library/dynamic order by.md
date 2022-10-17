@@ -25,21 +25,35 @@ function global_toggle_sort(sort_column_map, column) {
 }
 
 // 依照指定的欄位排序
-Array.prototype.global_sort = function (column, order) {
-    if (this?.length > 0 === false) {
+Array.prototype.global_sort = function( column, order ) {
+    
+    if(this?.length > 0 === false) {
         return this;
     }
-
-    if (order === 'asc') {
-        return this.sort(function (a, b) {
+    
+    if( order === 'asc' ) {
+        return this.sort( function( a, b ) {
+            // if value is string
+            if( isNaN( a[column] ) ) {
+                return a[column] > b[column] ? 1 : -1;
+            } 
+            
+            // if value is Number
             return a[column] - b[column];
-        });
+        } );
     } else {
-        return this.sort(function (a, b) {
+        return this.sort( function( a, b ) {
+            // if value is string
+            if( isNaN( a[column] ) ) {
+                return b[column] > a[column] ? 1 : -1;
+            } 
+            
+            // if value is String
             return b[column] - a[column];
-        });
+        } );
     }
-};
+    
+}
 ```
 
 ### 搭配 icon vue component

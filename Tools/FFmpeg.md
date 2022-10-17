@@ -16,6 +16,8 @@
 ffmpeg.exe -protocol_whitelist crypto,file,http,https,tcp,tls -i index.m3u8 -c copy video.mp4
 ```
 
+PS：因為 m3u8 內都是檔名列表，因此也可以用下載軟體，把 m3u8 內的檔案清單下載下來後，也可以用上面指令來併檔 !
+
 檔案可能會放在以下路徑，也可能會在同目錄下
 
 ```

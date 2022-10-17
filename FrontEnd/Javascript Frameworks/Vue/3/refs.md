@@ -2,7 +2,7 @@
 
 與 2 版有落差 !
 
-## 範例
+## 範例 01
 
 jquery-ui-select-menu.js
 
@@ -208,4 +208,56 @@ const jquery_ui_select_menu = {
       const vm = app.mount('#app');
     </script>
 }
+```
+
+
+## 範例 02： binding 多筆 ref
+
+- 只能用 ref，不能用 reactive !
+- 不能放在 ref value 的某個 property 內 ! 一定要直接指定至 ref 變數中 !
+
+```Html
+<style>
+  #app {
+      height : 500px;
+      overflow-y: scroll;
+  }
+  
+  #item {
+    
+  }
+</style>
+<div id="app">
+  <div id="item" v-for="(item, index) in vue_model.items" ref="item_doms">
+    {{ item }}
+  </div>
+</div>
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+  const { createApp, ref, reactive, onMounted, computed, watch, watchEffect } = Vue;
+  
+ const app = createApp({
+        setup(){
+
+          const vue_model = ref({ 
+            items : Array.from(Array(100).keys()),
+            item_doms: []
+          });
+          
+          const item_doms = ref([]);
+
+          onMounted(() => {
+            item_doms.value[97]?.scrollIntoView();
+          })
+          
+          return {
+              vue_model,
+              item_doms,
+          }
+        }
+      });
+
+      const vm = app.mount('#app');
+</script>
 ```

@@ -16,6 +16,7 @@ https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet
 | dotnet remove reference [csproj]    |                                  |
 |                                     |                                  |
 | dotnet new globaljson               | 建立 global.json 檔案            |
+| dotnet new gitignore                | 建立 .gitignore 檔案             |
 |                                     |                                  |
 | dotnet dev-certs https --trust      | 信任開發用 https 憑証            |
 |                                     |                                  |
