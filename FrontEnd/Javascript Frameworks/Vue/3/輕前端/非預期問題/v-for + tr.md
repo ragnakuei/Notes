@@ -1,5 +1,7 @@
 # v-for + tr
 
+原因： 因為 vue 會斷 tr 內是否有 td，如果 td 放到另一個 component 中，就會出錯
+
 
 ```js
 <div id='app' >

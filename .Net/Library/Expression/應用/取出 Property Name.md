@@ -11,8 +11,19 @@ public static class Helper
 {
     internal static string GetExpressionPropertyName<TSource, TKey>(Expression<Func<TSource, TKey>> expression)
     {
-        var memberExpression = expression?.Body as MemberExpression;
-        var propertyName = memberExpression.Member?.Name;
+        MemberExpression? memberExpression = null;
+        
+        if(expression.Body is UnaryExpression u)
+        {
+            // value type
+            memberExpression = u.Operand as MemberExpression;
+        }
+        else {
+            // nullable value type
+            memberExpression = expression.Body as MemberExpression;
+        }
+        
+        var propertyName = memberExpression?.Member.Name;
         return propertyName;
     }
 }
