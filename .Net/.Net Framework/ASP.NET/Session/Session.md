@@ -38,11 +38,11 @@
 
     ```xml
     <system.web>
-    <compilation debug="true" targetFramework="4.8"/>
-    <httpRuntime targetFramework="4.8"/>
+      <compilation debug="true" targetFramework="4.8"/>
+      <httpRuntime targetFramework="4.8"/>
 
-    <!-- 加上下面這行，單位：分鐘 -->
-    <sessionState timeout="1" />
+      <!-- 加上下面這行，單位：分鐘 -->
+      <sessionState timeout="1" />
     </system.web>
     ```
 
@@ -57,7 +57,7 @@
 - 呼叫 Session.Clear()
 - 將 Session Cookie 設定為 Expire
   - Expire 後，當下的 Cookie 會清掉，但是 Session 仍然還是會取到原本的 !
-- 再重新 Rediret
+- ★★★ 再重新 Rediret
   - 就可以重新取得新的 Session Id
 
 ```csharp

@@ -10,4 +10,4 @@ https://stackoverflow.com/questions/27513994/chrome-stalls-when-making-multiple-
 
 找到 Delete domain security policies
 
-輸入指定的 Domain，按下 Delete
+輸入指定的 Domain (不包含 port) ，按下 Delete 即可
