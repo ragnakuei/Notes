@@ -26,13 +26,13 @@ const vue_date_picker = {
   template: `
 <div class="vue-date-picker-calendar"
     v-bind:class="divClass">
-    <input class="input"
-           v-bind:id="id"
+    <input v-bind:id="id"
            v-model="domValue"
            v-on:focus="focusInput"
            v-on:blur="blurInput"
            v-on:keydown="keydownNav"
            v-bind:readonly="!showCalendar"
+           v-bind:style="{ zIndex: showCalendar ? '100' : '0' }"
            placeholder="x"
           />
     
@@ -214,8 +214,8 @@ const vue_date_picker = {
       return {
         "in-month": dayObj.isViewMonth,
         "not-in-month": !dayObj.isViewMonth,
-        "is-today": allowSelectDay(dayObj) && dayObj.isToday,
-        "is-selected-day": dayObj.isSelectedDay,
+        "is-today": allowSelectDay(dayObj) && dayObj.dayInDayjs.isSame(dayjs(), "day"),
+        "is-selected-day": dayObj.dayInDayjs.isSame(dayjs(domValue.value)),
       };
     };
 
@@ -233,7 +233,7 @@ const vue_date_picker = {
 
     const clickCalendarDay = function (dayObj) {
       //   console.log("clickCalendarDay", dayObj);
-      domValue.value = dayObj.fullDay;
+      domValue.value = dayObj.dayInDayjs.format(props.format);
       closeCalendar();
     };
 
@@ -358,11 +358,12 @@ const vue_date_picker = {
     };
   },
 };
+
 ```
  共用 js
 
 ```js
-function getCalendarByDayjs(currentDate, format, selectedDay) {
+function getCalendarByDayjs(currentDate) {
   const currentYear = currentDate.get("year");
   const currentMonth = currentDate.get("month") + 1;
 
@@ -381,25 +382,31 @@ function getCalendarByDayjs(currentDate, format, selectedDay) {
   // 日曆上的最後一天，可能會是下個月的
   const lastDayOfCalendar = firstDayOfCalendar.add(weeks * 7 - 1, "day");
 
+  // 產生日曆上的日期，以 7 * weeks 的陣列表示
   const calendarWeeks = Array.from({ length: weeks }, (_, w) => {
     const firstDayOfWeek = firstDayOfCalendar.add(w, "week");
     return Array.from({ length: 7 }, (_, d) => {
       const day = firstDayOfWeek.add(d, "day");
 
       return {
+        // 該日以 dayjs 表示
         dayInDayjs: day,
+
+        // 該日的年、月、日
         year: day.get("year"),
         month: day.get("month") + 1,
         day: day.get("date"),
+
+        // 該日是星期幾
         week: day.get("day"),
-        fullDay: day.format(format),
+
+        // 該日是否為顯示的月份
         isViewMonth: currentDate.get("month") === day.get("month"),
-        isSelectedDay: day.format("YYYY/MM/DD") === selectedDay?.format("YYYY/MM/DD"),
-        isToday: day.format("YYYY/MM/DD") === dayjs().format("YYYY/MM/DD"),
       };
     });
   });
 
+  // 把 7 * weeks 的陣列展開(攤平)成一個陣列
   const calendarDays = calendarWeeks.reduce((prev, current) => {
     prev.push(...current);
     return prev;
@@ -434,14 +441,8 @@ style
   position: relative;
 }
 
-.vue-date-picker-calendar .input {
-  position: relative;
-  z-index: 100;
-}
-
 .vue-date-picker-calendar .calendar-wrapper {
   background: #fff;
-  position: absolute;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -450,7 +451,8 @@ style
   border-radius: 6px;
   box-shadow: 10px 10px 20px #e4e4e4;
   padding: 10px;
-
+  
+  position: absolute;
   top: 31px;
 }
 
@@ -591,9 +593,9 @@ style
 }
 
 .vue-date-picker-calendar .is-selected-day {
-  border: 1px solid #7548ff;
-  background: white;
+  background-color: rgba(117, 72, 255, 0.6);
   color: black;
+  border-radius: 7px;
 }
 
 .vue-date-picker-calendar .is-selected-day:hover {
