@@ -49,3 +49,32 @@ console.log(a);
 const b = TestClass.Rectangle(3, 4);
 console.log(b);
 ```
+
+
+### 封裝
+
+```js
+class wallet {
+#balance = 0;
+
+constructor(initialBalance) {
+    this.#balance = initialBalance;
+}
+
+get balance() {
+    return this.#balance;
+}
+
+deduct(amount) {
+    this.#balance -= amount;
+}
+}
+
+let myWallet = new wallet(300);
+
+// 無法直接存取 private field
+// myWallet.#balance = 200;
+
+myWallet.deduct(50);
+console.log(myWallet.balance);
+```

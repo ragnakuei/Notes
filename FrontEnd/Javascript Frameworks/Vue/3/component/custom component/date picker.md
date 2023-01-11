@@ -14,6 +14,7 @@
                      format="YYYY-MM-DD"
                      min-date="2021-12-10"
                      max-date="2024-01-10"
+                     v-on:validate-fail="validateFail()"
     >
     </vue_date_picker>
 </div>
