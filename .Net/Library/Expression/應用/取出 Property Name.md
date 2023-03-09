@@ -76,3 +76,24 @@ public class TestDto
     public string Name { get; set; }
 }
 ```
+
+
+### 範例
+
+```cs
+void Main()
+{
+	Expression<Func<TestDto, bool>> e = t => t.Id == 0;
+
+	if (e.Body is BinaryExpression b
+	&& b.Left is MemberExpression m)
+	{
+		m.Member.Name.Dump();
+	}
+}
+
+public class TestDto
+{
+	public int Id { get; set; }
+}
+```
