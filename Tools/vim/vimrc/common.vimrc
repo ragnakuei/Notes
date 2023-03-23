@@ -1,6 +1,4 @@
 
-mapclear
-
 set surround
 set clipboard+=unnamed
 
@@ -36,6 +34,22 @@ vmap <A-h> <HOME>
 nmap <A-l> <END>
 imap <A-l> <END>
 vmap <A-l> <END>
+nmap <C-h> <Left>
+imap <C-h> <Left>
+vmap <C-h> <Left>
+nmap <C-l> <Right>
+imap <C-l> <Right>
+vmap <C-l> <Right>
+nmap <C-j> <Down>
+imap <C-j> <Down>
+vmap <C-j> <Down>
+nmap <C-k> <Up>
+imap <C-k> <Up>
+vmap <C-k> <Up>
+nmap <Leader>f <PageUp>
+nmap <Leader>b <PageDown>
+vmap <Leader>f <PageUp>
+vmap <Leader>b <PageDown>
 
 " 移至外層 { }
 " ]} 為同一鍵，因為 } 使用頻率極高，所以只針對 } 做設定
