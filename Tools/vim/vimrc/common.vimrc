@@ -68,4 +68,5 @@ ioremap <A-0> ])
 ioremap <A-9> [(
 
 nnoremap <leader>; A;<c-[>
-nnoremap <leader><leader> A,<c-[>
+nnoremap <leader>, A,<c-[>
+nnoremap <leader>a ggVG

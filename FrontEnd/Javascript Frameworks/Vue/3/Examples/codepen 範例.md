@@ -7,17 +7,17 @@
         <p>
             <label for="OrderDate">訂單日期：</label>
             <input type="date"
-                   v-model="vue_model.OrderDate"
+                   v-model="vmodel.OrderDate"
                    id="OrderDate" />
         </p>
         <div>
             <label>訂單項目</label>
-            <p v-for="(item, index) in vue_model.Items"
+            <p v-for="(item, index) in vmodel.Items"
                v-bind:key="index">
                 <input type="text"
-                       v-model="vue_model.Items[index]" />
+                       v-model="vmodel.Items[index]" />
             </p>
-            <p>{{ vue_model }}</p>
+            <p>{{ vmodel }}</p>
         </div>
         <p>
             <button type="submit">送出</button>
@@ -32,14 +32,14 @@
  const app = createApp({
         setup(){
 
-          const vue_model = reactive({ OrderDate : '', Items : [null, null, null] });
+          const vmodel = reactive({ OrderDate : '', Items : [null, null, null] });
 
           const submit_form = function() {
             console.log('submit');
           }
 
           return {
-              vue_model,
+              vmodel,
               submit_form,
           }
         }
