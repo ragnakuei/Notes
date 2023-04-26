@@ -19,7 +19,7 @@
 <script src="https://unpkg.com/vue@next"></script>
 
 <script type="text/x-template" id="test">
-    <div>test</text>
+    <div>test</div>
 </script>
 <script>
     const test = {
