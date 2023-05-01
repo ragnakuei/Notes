@@ -44,3 +44,15 @@
       }
     });
     ```
+
+  - 解法4：使用 DOMPurify 來過濾 html tag
+
+    聽說用解法3 的功能會壞掉，所以可以試試用假的 
+
+    ```js
+    let DOMPurify = {
+      sanitize : function(data) {
+          return data;
+      }
+    }
+    ```
