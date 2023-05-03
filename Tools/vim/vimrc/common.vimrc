@@ -2,6 +2,10 @@
 set surround
 set clipboard+=unnamed
 
+" 不要有 錯誤提示音
+set visualbell
+set noerrorbells
+
 set nu rnu
 nnoremap <A-L> :set rnu!<CR>
 
