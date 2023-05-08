@@ -6,6 +6,8 @@
 
 ## 全域設定方式
 
+- 只打開 Origin 的話，會讓所有的 Method 都可以存取，但是無法讓 Content-Type: application/json 的 POST 存取
+
 Startup.cs
 
 ```csharp
@@ -19,8 +21,15 @@ public void ConfigureServices(IServiceCollection services)
                                             builder =>
                                             {
                                                 builder.WithOrigins("http://localhost:8080")
-                                                       .AllowAnyMethod()
-                                                       .AllowAnyHeader();
+                                                    //    .WithHeaders("Content-Type");
+                                                    
+                                                    // 額外開放 Content-Type: application/json 的 POST 存取
+                                                    .WithMethods("POST")
+                                                    .WithHeaders("Content-Type")      // 實際上無法只開放 Content-Type: application/json，只能開放全部
+
+                                                    //    .AllowAnyMethod()
+                                                    //    .AllowAnyHeader()
+                                                    ;
                                             });
                         });
     services.ConfigDiContainer(Configuration);
@@ -31,6 +40,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     app.UseCors(_frontEndSiteName);
 }
 ```
+
+
+
 
 ## 部份套用方式
 
@@ -54,3 +66,18 @@ services.AddCors(options =>
 ```csharp
 [EnableCors("Policy1")]
 ```
+
+
+
+
+## Debug 方式
+
+如果不知道缺少哪些設定，可以看 Chrome Console 的錯誤訊息
+
+例：
+
+```
+cess to fetch at 'https://localhost:7120/weatherforecast' from origin 'http://127.0.0.1:5501' has been blocked by CORS policy: Request header field content-type is not allowed by Access-Control-Allow-Headers in preflight response.
+```
+
+其中就提示說 header 的部份缺少 content-type

@@ -10,7 +10,24 @@
 
 - HttpGet 儘量不要用 query string & key 的資料型為 string，會被視為有 path traversal 的高風險。
 
-- Client DOM Stored XSS
+### Path Traversal
+
+被列出高風險的問題點
+
+1. 不能切換到不同資料夾
+
+   > 過濾 / \ .. 等字元，就可以解決 !
+  
+1. 不能判斷該資料夾內有哪些檔案
+   > 只要一直儲存相同檔案，不會被阻擋或拒絕，就可以解決 !
+   
+   解決方式：
+   1. 以亂數檔名儲存，例：Path.GetTempFileName()，實際檔名要存在資料庫中
+   1. 儲存檔案時，先寫入資料表，取得 id 後，再以 id 當作檔名的一部份儲存
+
+
+### Client DOM Stored XSS
+
   - 原因1: ajax 取回資料後，直接透過 jQuery.html() 放入 DOM 中。
   - 建議解法1：使用 jQuery.text() 或 jQuery.val() 來取代 jQuery.html()
   - 解法2：在 ajax 取回資料後，用以下的 js function 來過濾掉 html tag。

@@ -17,11 +17,21 @@ public async Task<IActionResult> UploadImage(SingleImageFileFormDto file)
 }
 ```
 
-## 透過 Startup.ConfigureService() 設定
+## Kestrel 設定
 
 ```csharp
 services.Configure<KestrelServerOptions>(options =>
                                          {
                                             options.Limits.MaxRequestBodySize = 1000;
                                          });
+```
+
+或
+
+```cs
+var maxRequestSize = 1024 * 1024 * 100;
+builder.WebHost.ConfigureKestrel(serverOptions =>
+                                {
+                                    serverOptions.Limits.MaxRequestBodySize = maxRequestSize;
+                                });
 ```
