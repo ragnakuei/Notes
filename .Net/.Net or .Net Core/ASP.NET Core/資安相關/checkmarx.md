@@ -26,6 +26,27 @@
    1. 儲存檔案時，先寫入資料表，取得 id 後，再以 id 當作檔名的一部份儲存
 
 
+##### File.Exist() 的非正統替代解法
+
+[資料來源](https://dotblogs.com.tw/shadow/2017/11/09/153304)
+
+```cs
+string dirPath = Server.MapPath("~/App_Data");
+DirectoryInfo dir = new DirectoryInfo(dirPath);
+//只取檔名
+string fileName = Path.GetFileName(imgSrc);
+//列舉全部檔案再比對檔名
+FileInfo file  = dir.EnumerateFiles()
+                    .FirstOrDefault(m=>m.Name==fileName);
+
+if (file!=null && file.Exists)//檔案存在的話
+{
+    return Content("exists");
+}
+```
+
+可以確實閃過 Checkmarx 的檢查，但多了列舉資料夾內所有檔案的效能問題。
+
 ### Client DOM Stored XSS
 
   - 原因1: ajax 取回資料後，直接透過 jQuery.html() 放入 DOM 中。
