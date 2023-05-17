@@ -2,7 +2,7 @@
 
 -   在 Middleware 中，透過 MVC 的功能來渲染 Razor Page
 -   會直接將 View Render 的結果寫入至 Response Body 中
--   asp-append-version="true" 功能好像怪怪的，待確認
+-   asp-append-version="true" 功能，會在檔案內容變更後，其 version 才會變更
 -   如果原本的專案為 Asp.Net Core Web API, 需要加入 MVC 的功能
 
     ```cs
@@ -51,7 +51,7 @@ public class SpaMiddleware
                          };
 
         var executor  = context.RequestServices.GetRequiredService<IActionResultExecutor<ViewResult>>();
-        var routeData = context.GetRouteData() ?? new Microsoft.AspNetCore.Routing.RouteData();
+        var routeData = context.GetRouteData();
         var actionContext = new ActionContext(context,
                                               routeData,
                                               new Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor());
