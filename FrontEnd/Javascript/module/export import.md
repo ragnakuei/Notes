@@ -14,7 +14,11 @@ import Vue from 'vue';
 import { createApp } from 'vue';
 ```
 
-## 動態 export
+## await export
+
+- js 檔案可以用 await 語法
+- 就算 await 語法在 export 之後，也會執行，並且會執行該檔案所有程式
+
 
 ```js
 // 單一 動態 import
