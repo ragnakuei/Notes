@@ -10,8 +10,49 @@
 
     > Now it is better to disable AutoEventWireup and either create these event handlers yourself in the pages OnInit method or simply override the parent page's OnLoad method.
 
+### 使用 AutoEventWireup
 
-## 不使用 Code-Behind
+自動綁定事件，不需要手動綁定，事件順序可參考[這裡](https://learn.microsoft.com/en-us/previous-versions/aspnet/ms178472(v=vs.100)#life-cycle-events)
+
+```csharp
+
+protected void Page_PreInit(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage PreInit");
+}
+
+protected void Page_Init(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage Init");
+}
+
+protected void Page_PreLoad(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage PreLoad");
+}
+
+protected void Page_Load(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage PageLoad");
+}
+
+protected void Page_PreRender(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage PreRender");
+}
+
+protected void Page_Unload(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage Unload");
+}
+
+protected void Page_Disposed(object sender, EventArgs e)
+{
+    Console.WriteLine("BasePage Disposed");
+}
+```
+
+### 不使用 Code-Behind
 
 
 ```csharp
@@ -27,7 +68,7 @@ AutoEventWireup="true" Inherits="WebSample.Index" %>
 </script>
 ```
 
-## 不使用 AutoWireup，手動綁定事件
+### 不使用 AutoWireup，手動綁定事件
 
 ```csharp
 public class Default : Page
