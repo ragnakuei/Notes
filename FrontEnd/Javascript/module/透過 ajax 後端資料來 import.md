@@ -37,7 +37,16 @@ async function importFromBackend(method, url, data) {
             return Promise.reject(response);
         }
         
+        // 如果 response content type 是 javascript 就用下面方式
         const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const module = await import(url);
+        URL.revokeObjectURL(url); // GC objectURLs
+        return await module;
+        
+        // 如果 response content type 是 html 就用下面方式
+        const responseText = await response.text();
+        const blob = new Blob([responseText], { type: 'application/javascript' });
         const url = URL.createObjectURL(blob);
         const module = await import(url);
         URL.revokeObjectURL(url); // GC objectURLs
