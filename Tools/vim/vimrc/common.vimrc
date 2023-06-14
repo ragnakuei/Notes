@@ -55,6 +55,9 @@ nmap <Leader>b <PageDown>
 vmap <Leader>f <PageUp>
 vmap <Leader>b <PageDown>
 
+" 全選
+noremap <Leader>a ggVG
+
 " 移至外層 { }
 " ]} 為同一鍵，因為 } 使用頻率極高，所以只針對 } 做設定
 noremap <A-]> ]}
