@@ -74,12 +74,13 @@ nnoremap <S-Pagedown> :action EditorPageDownWithSelection<CR>
 " Home / End
 nnoremap <Home> :action EditorLineStart<CR>
 nnoremap <End> :action EditorLineEnd<CR>
-vnoremap <Home> :action EditorLineStart<CR>
-vnoremap <End> :action EditorLineEnd<CR>
+vnoremap <Home> ^
+vnoremap <End> $
 inoremap <Home> :action EditorLineStart<CR>
 inoremap <End> :action EditorLineEnd<CR>
 
 " insert mode
+inoremap <C-a> <Esc>ggVG
 
 " VCS
 nnoremap <Leader>gr :action ChangesView.Revert<CR>
