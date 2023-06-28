@@ -8,3 +8,8 @@
     - 在 ideavimrc 中設定了 inoremap \<C-J>
     - 在 ideavim 的 Settings 將衝突的 Shortcut Conflicts 設定為 vim
     - 此時，在 insert mode 中 & 觸發了 AutoComplete，會彈出選單，此時按下 Ctrl + J，會觸發 IDE 上的 EditorDown，而不會觸發 vim 的 inoremap
+
+
+## [已內建的 plugins](https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins)
+
+- [vim-surround](https://github.com/tpope/vim-surround)

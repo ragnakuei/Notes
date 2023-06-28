@@ -1,17 +1,37 @@
 mapclear
 source D:\Kuei\Notes\Tools\vim\vimrc\common.vimrc
 
+" plugins
+"--- package surround
+set surround
+"--- package matchit
+set matchit
+"--- package easymotion
+Plug 'easymotion/vim-easymotion'
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+"--- multiple-cursors plugin
+" Emulates vim-multiple-cursors
+" Basic Commands:
+"   <A-n> start multicursor
+"   <A-n> next match
+"   <A-x> skip next match
+"   <A-p> remove current match and go back to previous one
+" See https://github.com/terryma/vim-multiple-cursors for details
+set multiple-cursors
+
 " 安裝 vim-repeat 插件
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-repeat'
-call plug#end()
+" call plug#begin('~/.vim/plugged')
+" Plug 'tpope/vim-repeat'
+" call plug#end()
 " 啟用 vim-repeat 插件
-packadd! vim-repeat
+" packadd! vim-repeat
 
 
 " ideavim 與 vim 的剪貼簿共用
 set clipboard+=ideaput
 
+" 重讀設定檔
 nnoremap <Leader>vc :source D:\Kuei\Notes\Tools\vim\vimrc\rider.vimrc<CR>
 
 " AceJump
@@ -89,7 +109,3 @@ nnoremap <Leader>gr :action ChangesView.Revert<CR>
 " 同檔案 - 避免移至不同的檔案
 nnoremap <Leader>ne :action GotoNextError<CR>
 vnoremap <Leader>ne :action GotoNextError<CR>
-
-" duplicate line - 因為原本的 IDE 功能不會將游標移至第一個非空白字元，所以用這個代替
-nnoremap <C-d> :action EditorDuplicate<CR>^
-vnoremap <C-d> :action EditorDuplicate<CR>^
