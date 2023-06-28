@@ -22,7 +22,7 @@
 
 1. 建立報表的專案
 
-    目前已知在 Asp.Net Empty Project + 勾選 MVC 專案中，無法指定 DataSet 資料來源為 Object，目前測試 Class Library Project 沒有此問題
+    目前已知在 Asp.Net MVC Project，無法指定 DataSet 資料來源為 Object，目前測試 Class Library Project 沒有此問題
 
 1. 報表專案安裝套件
 
@@ -79,7 +79,7 @@
 
     新增 DataSource
 
-    > 注意：如果在 Asp.Net Empty Project + 勾選 MVC 專案中新增 DataSet > DataSource 時，下面的畫面的可選項目會更少 !
+    > 注意：如果在 Asp.Net MVC Project 專案中新增 DataSet > DataSource 時，會無法看到下面的畫面 !
 
     ![image](../_images/04.png)
 
