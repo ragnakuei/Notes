@@ -1,10 +1,11 @@
 # Git Command
 
-| git config                             | 說明                                                           |
-| -------------------------------------- | -------------------------------------------------------------- |
-| git config --global core.quotepath off | 讓 git command 支援顯示中文                                    |
-| --global user.email user@Test.com      | 設定 global user 的 email，有設定過 email，才可以用 git commit |
-| --global core.sshCommand "ssh -p 1234" | 修改連線至遠端的 port 為 1234                                  |
+| git config                                        | 說明                                                           |
+| ------------------------------------------------- | -------------------------------------------------------------- |
+| git config --global core.quotepath off            | 讓 git command 支援顯示中文                                    |
+| git config --global user.name "User"              | 設定 global user 的 name，有設定過 name，才可以用 git commit   |
+| git config --global user.email user@Test.com      | 設定 global user 的 email，有設定過 email，才可以用 git commit |
+| git config --global core.sshCommand "ssh -p 1234" | 修改連線至遠端的 port 為 1234                                  |
 
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
