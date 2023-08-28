@@ -90,7 +90,7 @@ vnoremap <A-0> ])
 vnoremap <A-9> [(
 
 " 補上字尾的 ;
-" nnoremap <leader>; A;<c-[>
+nnoremap <leader>; A;<c-[>
 " 補上字尾的 ,
 " nnoremap <leader>, A,<c-[>
 
