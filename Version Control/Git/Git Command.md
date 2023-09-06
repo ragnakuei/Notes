@@ -4,6 +4,17 @@
 | -------------------------------------- | --------------------------- |
 | git config --global core.quotepath off | 讓 git command 支援顯示中文 |
 
+| git config                            | 說明 |
+| ------------------------------------- | ---- |
+| git config --global alias.co checkout |      |
+| git config --global alias.br branch   |      |
+| git config --global alias.ci commit   |      |
+| git config --global alias.st status   |      |
+| git config --global alias.rb rebase   |      |
+|                                       |      |
+|                                       |      |
+|                                       |      |
+
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
 | git status | 檢查目前的狀態，可能會有對應的提示 |
