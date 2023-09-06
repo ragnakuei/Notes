@@ -26,7 +26,12 @@
 protected void Page_Load(object sender, EventArgs e)
 {
     string eventTarget = this.Request["__EVENTTARGET"];
+    // var eventTarget = Request.Params["__EVENTTARGET"];
+    // var eventTarget = Request.Form["__EVENTTARGET"];
+
     string eventArgument = this.Request["__EVENTARGUMENT"];
+
+
 }
 
 protected void LinkButton1_Click(object sender, EventArgs e)

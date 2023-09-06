@@ -1,8 +1,11 @@
 # Git Command
 
-| git config                             | 說明                        |
-| -------------------------------------- | --------------------------- |
-| git config --global core.quotepath off | 讓 git command 支援顯示中文 |
+| git config                                        | 說明                                                           |
+| ------------------------------------------------- | -------------------------------------------------------------- |
+| git config --global core.quotepath off            | 讓 git command 支援顯示中文                                    |
+| git config --global user.name "User"              | 設定 global user 的 name，有設定過 name，才可以用 git commit   |
+| git config --global user.email user@Test.com      | 設定 global user 的 email，有設定過 email，才可以用 git commit |
+| git config --global core.sshCommand "ssh -p 1234" | 修改連線至遠端的 port 為 1234                                  |
 
 | git config                            | 說明 |
 | ------------------------------------- | ---- |
@@ -100,17 +103,14 @@
 | git push                                | 將目前的變更記錄 push 至指定的 remote branch                             |
 | git push -u <remote-branch>             | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
 | git push --set-upstream <remote-branch> | 將目前的變更記錄 push 至指定的 remote branch，並設定 track remote branch |
+| git push -d origin cat                  | 刪除 origin/cat branch                                                   |
 | git push origin :cat                    | 刪除 origin/cat branch                                                   |
 | git push origin --delete cat            | 刪除 origin/cat branch                                                   |
-
-| git config                        | 說明                                                           |
-| --------------------------------- | -------------------------------------------------------------- |
-| --global user.email user@Test.com | 設定 global user 的 email，有設定過 email，才可以用 git commit |
 
 | git rebase                                               | 說明                                                                                                                                           |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | git rebase <target-branch>                               | 將目前的 branch 接至 <target-branch> 上。 rebase 後的順序跟 commit 順序無關，而是以 目前 branch > target branch > 共同的來源 branch 的方式排列 |
-| git rebase --onto <target-branch> --root <source-branch> | 將 <source-branch> 接至 <target-branch> 上。                                                                                                   |
+| git rebase --root <source-branch> --onto <target-branch> | 將 <source-branch> 接至 <target-branch> 上。                                                                                                   |
 
 | git remote                                                                   | 說明                         |
 | ---------------------------------------------------------------------------- | ---------------------------- |

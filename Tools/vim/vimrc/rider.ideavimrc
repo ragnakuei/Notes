@@ -1,0 +1,207 @@
+mapclear
+
+"--------------------------------------------------------------------------
+" Plugin
+"-------------------------------------------------------------------------
+Plug 'tpope/vim-surround'
+"--- package matchit
+Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors'
+
+"--------------------------------------------------------------------------
+" Settings
+"--------------------------------------------------------------------------
+
+" ideavim 與 vim 的剪貼簿共用
+set clipboard+=ideaput
+set clipboard+=unnamed
+set visualbell
+" 不要有 錯誤提示音
+" set noerrorbells " ideavim 不支援
+
+set number
+set relativenumber
+" set tabstop=4
+" set shiftwidth=4
+
+" 設定搜尋時高亮顯示
+set incsearch
+" 設定搜尋後高亮顯示
+set hlsearch
+
+let mapleader=','
+
+"--------------------------------------------------------------------------
+" Key Mapping
+"--------------------------------------------------------------------------
+
+" 重讀設定檔
+nnoremap <Leader>vc :source D:\Kuei\Notes\Tools\vim\vimrc\rider.ideavimrc<CR>
+" 清除高亮搜尋
+nnoremap <Leader>sc :nohlsearch<CR>
+" 清除高亮搜尋
+inoremap <Leader>sc <Esc>:nohlsearch<CR>
+
+" 在 Normal Mode 清除搜尋高亮結果
+nnoremap <Esc> :nohlsearch<CR><Esc>
+
+" indent
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Navigation - 不要設定為 noremap 要給實作 <Home> <End> 有額外調整的空間
+nmap <A-h> <HOME>
+imap <A-h> <HOME>
+vmap <A-h> <HOME>
+nmap <A-l> <END>
+imap <A-l> <END>
+vmap <A-l> <END>
+nmap <C-h> <Left>
+imap <C-h> <Left>
+vmap <C-h> <Left>
+nmap <C-l> <Right>
+imap <C-l> <Right>
+vmap <C-l> <Right>
+nmap <C-j> <Down>
+imap <C-j> <Down>
+vmap <C-j> <Down>
+nmap <C-k> <Up>
+imap <C-k> <Up>
+vmap <C-k> <Up>
+nmap <Leader>f <PageDown>zz
+nmap <Leader>b <PageUp>zz
+vmap <Leader>f <PageDown>zz
+vmap <Leader>b <PageUp>zz
+
+" 移至外層 { }
+" ]} 為同一鍵，因為 } 使用頻率極高，所以只針對 } 做設定
+nnoremap <A-]> ]}
+nnoremap <A-[> [{
+vnoremap <A-]> ]}
+vnoremap <A-[> [{
+
+" 移至外層 ( ) 
+nnoremap <A-0> ])
+nnoremap <A-9> [(
+vnoremap <A-0> ])
+vnoremap <A-9> [(
+
+" 補上字尾的 ;
+nnoremap <leader>; A;<c-[>
+" 補上字尾的 ,
+nnoremap <leader>, A,<c-[>
+
+" 全選
+nnoremap <leader>a ggVG
+vnoremap <leader>a <ESC>ggVG
+
+" 彈窗
+nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+nnoremap <C-D> :action EditorDuplicate<CR>
+
+
+" duplicate
+" 複製游標所在行，並將游標移至貼上行首
+nnoremap <C-d> Yp
+" 複製選取範圍，並貼至游標所在
+vnoremap <C-d> may<ESC>`ap
+""" 如果游標在選取範圍起始處，會將複製的內容插入至選取範圍第二個字元中，有點怪
+
+
+" AceJump
+nnoremap <Space> :action AceAction<CR>
+
+" run all tests
+nnoremap <Leader>ra :action RiderUnitTestRunSolutionAction<CR>
+
+
+" introduce
+nnoremap <Leader>iv :action IntroduceVariable<CR>
+nnoremap <Leader>if :action IntroduceField<CR>
+"nnoremap <Leader>ip viw:action IntroduceParameter<CR><ESC>
+nnoremap <Leader>ip :action IntroduceParameter<CR>
+vnoremap <Leader>ip :action IntroduceParameter<CR>
+
+" extract
+nnoremap <Leader>em V:action ExtractMethod<CR>
+vnoremap <Leader>em :action ExtractMethod<CR>
+
+" SurroundWith
+nnoremap <Leader>sw V:action SurroundWith<CR>
+vnoremap <Leader>sw :action SurroundWith<CR>
+
+
+" 建立 nunit test setup 並貼上已複製的內容至 { } 中
+nnoremap <Leader>ns ma?[T<CR>O[SetUp]<CR>public void Setup()<CR>{<ESC>po}<ESC>`a:action ReformatCode<CR>
+
+" copy unit test 並將游標移至 void 後的 method name 上
+nnoremap <Leader>ct ztmay?[T<CR>`ap?void<CR>w:action ReformatCode<CR>
+
+
+" shift to visual mode
+nnoremap <S-Up> :action EditorUpWithSelection<CR>
+nnoremap <S-Down> :action EditorDownWithSelection<CR>
+" 這個做法在第一次按下 Shift + Left 時，只會選到第一個字元，而漏掉第二個字元
+"nnoremap <S-Left> :action EditorLeftWithSelection<CR>
+"nnoremap <S-Right> :action EditorRightWithSelection<CR>
+" 這個做法在第一次按下 Shift + Left 時，會選到第一個字元，並且選到第二個字元
+nnoremap <S-Left> v<Left><Right><Left>
+nnoremap <S-Right> v<Right><Left><Right>
+" vnoremap <S-Up> <Up>
+" vnoremap <S-k> <Up>
+" vnoremap <S-Down> <Down>
+" vnoremap <S-j> <Down>
+" vnoremap <S-Left> <Left>
+" vnoremap <S-Right> <Right>
+inoremap <S-Up> <Esc>v<Up>
+inoremap <S-Down> <Esc>v<Down>
+inoremap <S-Left> <Esc>v<Left>
+inoremap <S-Right> <Esc>v<Right>
+
+nnoremap <S-Home> :action EditorLineStartWithSelection<CR>
+nnoremap <S-End> :action EditorLineEndWithSelection<CR>
+inoremap <S-Home> :action EditorLineStartWithSelection<CR>
+inoremap <S-End> :action EditorLineEndWithSelection<CR>
+nnoremap <S-Pageup> :action EditorPageUpWithSelection<CR>
+nnoremap <S-Pagedown> :action EditorPageDownWithSelection<CR>
+
+" Home / End
+nnoremap <Home> :action EditorLineStart<CR>
+nnoremap <End> :action EditorLineEnd<CR>
+vnoremap <Home> ^
+vnoremap <End> $
+inoremap <Home> :action EditorLineStart<CR>
+inoremap <End> :action EditorLineEnd<CR>
+
+" VCS
+nnoremap <Leader>gr :action ChangesView.Revert<CR>
+
+" error 
+" 同檔案 - 避免移至不同的檔案
+nnoremap <Leader>ne :action GotoNextError<CR>
+vnoremap <Leader>ne :action GotoNextError<CR>
+
+" navigate
+nnoremap <A-u> :action FindUsages<CR>
+nnoremap <A-m> :action ShowUsages<CR>
+nnoremap <A-h> :action Back<CR>
+nnoremap <A-l> :action Forward<CR>
+nnoremap <A-j> :action GotoImplementation<CR>
+nnoremap <A-k> :action GotoSuperMethod<CR>
+nnoremap <A-i> :action MethodUp<CR>
+nnoremap <A-,> :action MethodDown<CR>
+
+" 彈窗
+nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+
+" Editor 相關
+nnoremap <A-S-Down> :action MoveLineDown<CR>
+nnoremap <A-S-J> :action MoveLineDown<CR>
+nnoremap <A-S-Up> :action MoveLineUp<CR>
+nnoremap <A-S-K> :action MoveLineUp<CR>
+nnoremap <A-S-O> :action RevealIn<CR>
+nnoremap <A-S-L> :action LocateInSolutionView<CR>
+" nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用

@@ -2,6 +2,15 @@
 
 可用來做為 foreach 的簡化，讓邏輯的處理語法更為集中
 
+```cs
+Aggregate<TSource,TAccumulate,TResult>(
+    this IEnumerable<TSource>, 
+    TAccumulate seed, 
+    Func<TAccumulate,TSource,TAccumulate> func,, 
+    Func<TAccumulate,TResult> resultSelector)
+)
+```
+
 ## 範例一
 
 套用 Aggregate 前
@@ -40,7 +49,7 @@ result2.Dump();
 
 實際執行結果
 
-![Alt Text](_images/01.png)
+![Alt Text](../_images/01.png)
 
 
 ## 範例二 Aggregeate func 支援 Index

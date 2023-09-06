@@ -1,0 +1,1 @@
+# [NamedPipeClientStream](https://learn.microsoft.com/zh-tw/dotnet/api/system.io.pipes.namedpipeclientstream)

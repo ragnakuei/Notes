@@ -1,13 +1,13 @@
 # [Docker command line](https://docs.docker.com/engine/reference/commandline/cli/)
 
 - [Docker command line](#docker-command-line)
-  - [建立 Image 前](#%e5%bb%ba%e7%ab%8b-image-%e5%89%8d)
+  - [建立 Image 前](#建立-image-前)
     - [search](#search)
     - [pull](#pull)
     - [network](#network)
     - [ps](#ps)
     - [images](#images)
-  - [建立 Image 後](#%e5%bb%ba%e7%ab%8b-image-%e5%be%8c)
+  - [建立 Image 後](#建立-image-後)
     - [attach](#attach)
     - [exec](#exec)
     - [start](#start)
@@ -19,7 +19,7 @@
     - [commit](#commit)
     - [create](#create)
     - [logs](#logs)
-  - [參考資料](#%e5%8f%83%e8%80%83%e8%b3%87%e6%96%99)
+  - [參考資料](#參考資料)
 
 ---
 
@@ -70,13 +70,19 @@
 
 ### attach
 
+> 等於 docker container attach
+
 進入到 ubuntu 的 container 中
 
 > docker attach ubuntu
 
+離開 container 但不要停止 container，可以使用 detach 的快捷鍵 `Ctrl + p` `Ctrl + q`
+
 ---
 
 ### exec
+
+> 等於 docker container exec
 
 登入指定的 Container 後，進入到 bash 中
 
@@ -95,6 +101,8 @@
 
 ### start
 
+> 等於 docker container start
+
 啟動有 Image 的 Container
 
 > docker start ContainerName
@@ -104,6 +112,8 @@
 ---
 
 ### stop
+
+> 等於 docker container stop
 
 停止 Container
 > docker stop CONTAINER_ID
@@ -120,6 +130,8 @@
 
 ### [run](https://docs.docker.com/engine/reference/commandline/run/)
 
+> 等於 docker container run
+
 下載並執行 ubuntu 14.04 的版本 執行完就會立即停止
 
 > docker run ubuntu:14.04
@@ -127,6 +139,7 @@
 - -d 以離線方式執行
 - -it 於 tty 中執行 command
 - --rm 如果存在，就刪除，再重建
+  - 可以跟 -it 一起使用，就不用再手動刪除
 - --restart always 如果關閉，會自動重啟
 
 透過 Image：nginx 產生 Container：nginx1，給定執行COMMAND：/sbin/init
@@ -175,6 +188,8 @@ docker run -d --network=mybridge --ip=192.168.17.3 -p 8000:80 dotnetnano
 ---
 
 ### rm
+
+> 等於 docker container rm
 
 刪除指定的 Container
 

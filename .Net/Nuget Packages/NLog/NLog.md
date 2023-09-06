@@ -1,5 +1,6 @@
 # NLog
 
+-   [官網 Wiki](https://github.com/NLog/NLog/wiki)
 -   [(官網) Configuration file](https://github.com/nlog/NLog/wiki/Configuration-file)
 -   [(官網) 介紹](https://github.com/NLog/NLog.Extensions.Logging)
 -   [使用 NLog - Advanced .NET Logging (1)](http://kevintsengtw.blogspot.tw/2011/10/nlog-advanced-net-logging-1.html)

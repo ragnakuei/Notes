@@ -12,6 +12,11 @@ fetch(url, {
             'RequestVerificationToken': '@(GetAntiXsrfRequestToken())',
         },
         method: 'POST',
+
+        // 影響是否要套用 cross-origin cookie
+        // 值為 include 時，會套用 cross-origin cookie
+        // 值為 same-origin 時，會套用 same-origin cookie 而不套用 cross-origin cookie
+        credentials: 'include',
     })
     .then(response => {
 

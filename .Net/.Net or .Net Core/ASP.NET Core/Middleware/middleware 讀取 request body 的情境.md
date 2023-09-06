@@ -25,11 +25,29 @@ public class SqlInjectionMiddleware
     {
         ValidateQueryString(context);
 
-        if (_validateRequestBodyHttpMethods.Contains(context.Request.Method, StringComparer.CurrentCultureIgnoreCase)
-            && string.IsNullOrWhiteSpace(context.Request.ContentType)      == false
-            && context.Request.ContentType.Contains("multipart/form-data") == false)
+        if(!string.IsNullOrWhiteSpace(context.Request.ContentType))
         {
-            await ValidateRequestBodyAsync(context);
+            // 如果是 form-data
+            if(context.Request.ContentType.Contains("multipart/form-data"))
+            {
+                // 取出 Request Body 內的資料並轉為 FormData
+                var formValueProvider = await context.Request.ReadFormAsync();
+
+                // 檢查 FormData 內的資料
+                foreach (var key in formValueProvider.Keys)
+                {
+                    // 如果是檔案，就略過 => 找不到解決辦法
+                    
+                    // 檢查 FormData 欄位內的資料
+                    _sqlInjectionValidateStringService.Validate(formValueProvider[key]);
+                }
+            }
+
+
+            if (_validateRequestBodyHttpMethods.Contains(context.Request.Method, StringComparer.CurrentCultureIgnoreCase))
+            {
+                await ValidateRequestBodyAsync(context);
+            }
         }
 
         await _next(context);

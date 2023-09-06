@@ -9,6 +9,13 @@
 -   Error = 4
 -   Critical = 5
 
+注意事項：
+
+- Trace 會記錄所有的訊息，包含 Debug、Information、Warning、Error、Critical，但同時效能也會最差
+  - 如果以 Warning 來執行，每個 Request 可以在 200ms 內完成
+  - 但是改用 Trace 來執行，每個 Request 可能要 1000ms ↑ 才能完成
+
+
 ## 設定 Log Level 的方式
 
 因為 CreateDefaultBuilder() 預設會使用 [File configuration provider](https://docs.microsoft.com/zh-tw/aspnet/core/fundamentals/configuration/)

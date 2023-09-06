@@ -31,6 +31,64 @@
       - 例：C:/Users/User/Documents/Projects/xxx/xxx/bin/Debug/net5.0/xxx.dll。xxx 就是 project name
 
 ## 語法
+### .Net 6
+
+
+```cs
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
+                       {
+                           services.AddHostedService<App>();
+                       })
+    .Build()
+    .Run();
+
+public class App : IHostedService
+{
+    private readonly ILogger<App> _logger;
+
+    private readonly IHostApplicationLifetime _appLifetime;
+
+    private readonly IHostEnvironment _env;
+
+    private readonly IConfiguration _configuration;
+
+    public App(ILogger<App>             logger,
+               IHostApplicationLifetime appLifetime,
+               IHostEnvironment         env,
+               IConfiguration           configuration)
+    {
+        _logger        = logger;
+        _appLifetime   = appLifetime;
+        _env           = env;
+        _configuration = configuration;
+    }
+
+    public async Task StartAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("App running at: {time}",                  DateTimeOffset.Now);
+        _logger.LogInformation("App running at Env: {env}",               _env.EnvironmentName);
+        _logger.LogInformation("App running at Configuration Key: {key}", _configuration.GetSection("key").Value);
+
+        await Task.Yield();
+
+        _appLifetime.StopApplication();
+    }
+
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("App stopped at: {time}", DateTimeOffset.Now);
+        return Task.CompletedTask;
+    }
+}
+```
+
+### .Net 5
 
 ```csharp
 class Program

@@ -1,10 +1,15 @@
 # Microsoft.Extensions.DependencyInjection
 
+參考資料
+- 在 ASP.NET MVC 5 中使用 ASP.NET Core Dependency Injection 與 HttpClientFactory
+
 此套件為 DotNet Core 預設的 DI 套件，目前測試可用於 DotNet Framework 上
 
 安裝套件
 
 > Microsoft.Extensions.DependencyInjection
+
+## 語法
 
 讓 Web API 2 改用此套件做為 DI 元件
 
@@ -30,7 +35,7 @@ public static void Register(HttpConfiguration config)
     services.AddBusinessLogicServices();
 
     var provider = services.BuildServiceProvider();
-    config.DependencyResolver = new MyDependencyResolver(provider);  
+    config.DependencyResolver = new DefaultDependencyResolver(provider);  
 }
 
 public static class ServiceProviderExtensions
@@ -74,6 +79,30 @@ public static class ServiceProviderExtensions
             }
         }
     }
+}
+```
+
+```cs
+public class DefaultDependencyResolver : IDependencyResolver
+{
+    private readonly IServiceProvider _serviceProvider;
+
+    public DefaultDependencyResolver(IServiceProvider serviceProvider)
+    {
+        _serviceProvider = serviceProvider;
+    }
+
+    public object GetService(Type serviceType)
+        => _serviceProvider.GetService(serviceType);
+
+    public IEnumerable<object> GetServices(Type serviceType)
+        => _serviceProvider.GetServices(serviceType);
+
+    public IDependencyScope BeginScope()
+        => new DefaultDependencyResolver(_serviceProvider.CreateScope().ServiceProvider);
+
+    public void Dispose()
+        => ((ServiceProvider)_serviceProvider).Dispose();
 }
 ```
 

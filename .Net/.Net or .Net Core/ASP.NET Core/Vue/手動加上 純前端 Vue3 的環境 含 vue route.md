@@ -8,7 +8,7 @@
 > 本範例沒有要安裝 `Microsoft.AspNetCore.SpaServices.Extensions` 這個套件 !
 
 
-## 實作
+## 實用 - 通用部份
 
 1. 專案檔新增 TypeScriptCompileBlocked 讓 VS 不會對 ts 進行編譯
 
@@ -59,7 +59,52 @@
     }
     ```
 
-3. Startup.cs > Configure() 加上以下語法:
+
+## 實作 ( After Asp.Net Core 6.0 )
+
+1. Program.cs
+
+    ```cs
+    using AspNetCoreWebAPI_Vue.Infra;
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Add services to the container.
+
+    builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    
+    // 一定要放在 UseStaticFiles 之前
+    app.UseMiddleware<SpaMiddleware>();
+
+    app.UseStaticFiles();
+
+    app.MapControllers();
+
+    app.Run();
+
+    ```
+
+
+
+## 實作 ( Before Asp.Net Core 5.0 )
+
+
+1. Startup.cs > Configure() 加上以下語法:
 
     ```csharp
     app.UseSpaStaticFiles();
@@ -86,7 +131,7 @@
                                             }));
     ```
 
-4. 新增 index.html
+1. 新增 index.html
 
     ```html
     <!DOCTYPE html>
@@ -122,8 +167,8 @@
     </html>
     ```
 
-5. 其餘檔案在[這](https://github.com/ragnakuei/AspNetCoreVueRouteAndModuleAndVueFile)
+1. 其餘檔案在[這](https://github.com/ragnakuei/AspNetCoreVueRouteAndModuleAndVueFile)
    - 也可以參考[這](https://github.com/ragnakuei/AspNetCoreVueRouteAndModule) 
-6. 驗証結果
+1. 驗証結果
    - 在 vue 切到不同 route 後，直接按下 F5 ，要可以回到原本的頁面
 

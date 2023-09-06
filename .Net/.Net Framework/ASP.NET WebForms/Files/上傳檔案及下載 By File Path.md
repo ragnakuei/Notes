@@ -22,6 +22,9 @@ protected void btnConvert_Click(object sender, EventArgs e)
     ReplaceMergeField(wordFile, mergeFields);
 
     Response.ContentType = wordFile.ContentType;
+    // 如果要支援中文檔名，請使用下面的方式
+    // Response.AddHeader("Content-Disposition", $"attachment; filename={HttpUtility.UrlEncode(wordFile.FileName, System.Text.Encoding.UTF8)}");
+
     Response.AppendHeader("Content-Disposition", $"attachment; filename={wordFile.FileName}");
     Response.TransmitFile(wordFile.FileNameWithPath);
     Response.Flush();

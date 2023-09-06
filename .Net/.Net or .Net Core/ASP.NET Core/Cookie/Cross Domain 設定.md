@@ -27,10 +27,10 @@ app.UseCors(options =>
 
 在 Controller Action 內就可以直接這樣建立 Cookie
 
-    - Domain 一定要設對，不需要加 protocol (http/https) 及 port
-    - SameSite 一定要設定為 None
-      - 因為設定為 SameSite.None 後，連帶 Secure 一定要設定為 true，才會正常 !
-    - HttpOnly 就可以視情況決定
+  - Domain 一定要設對，不需要加 protocol (http/https) 及 port
+  - SameSite 一定要設定為 None
+    - 因為設定為 SameSite.None 後，連帶 Secure 一定要設定為 true，才會正常 !
+  - HttpOnly 就可以視情況決定
 
 ```csharp
 var tokenSet = _antiforgery.GetAndStoreTokens(HttpContext);

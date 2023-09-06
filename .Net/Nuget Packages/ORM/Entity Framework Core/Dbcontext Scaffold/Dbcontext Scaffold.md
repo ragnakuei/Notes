@@ -36,5 +36,16 @@ dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCor
 dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -c NorthwindDbContext -o Models/Ef
 dotnet ef dbcontext scaffold name=DefaultConnection Microsoft.EntityFrameworkCore.SqlServer -c NorthwindDbContext -o Models/Ef
 
+dotnet ef dbcontext scaffold "Server=(local)\MSSQL2019;Database=TestDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -o EntityModels -c TestDbDbContext
+
+dotnet ef dbcontext scaffold "Server=.\MSSQL2019;Database=TestDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o EntityModels -c TestDbDbContext
+
 dotnet ef dbcontext scaffold "Server=.\\MSSQL2017;Database=Northwind;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -o EntityModels -c NorthwindDbContext
+```
+
+
+如果不加 `TrustServerCertificate=True;` 就有可能會出現下面的錯誤訊息：
+
+```
+A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)
 ```

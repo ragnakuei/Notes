@@ -18,6 +18,9 @@ protected void btn_Click(object sender, EventArgs e)
     Response.ContentType = FileUpload1.PostedFile.ContentType;
     Response.AppendHeader("Content-Disposition", $"attachment; filename={FileUpload1.PostedFile.FileName}");
 
+    // 如果要支援中文檔名，請使用下面的方式
+    // Response.AddHeader("Content-Disposition", $"attachment; filename={HttpUtility.UrlEncode(wordFile.FileName, System.Text.Encoding.UTF8)}");
+
     short bufferSize = 1024;
     byte[] buffer = new byte[bufferSize + 1];
     Response.BufferOutput = false;

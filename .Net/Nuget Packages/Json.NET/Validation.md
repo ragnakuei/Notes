@@ -1,0 +1,1 @@
+# [Validation](https://www.newtonsoft.com/jsonschema/help/html/ValidatingJson.htm)

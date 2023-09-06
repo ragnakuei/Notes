@@ -1,0 +1,23 @@
+{
+    "liveServer.settings.port": 5501,
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost\\MSSQL2019",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "name": "Local",
+            "database": "Northwind",
+            "username": "sa"
+        }
+    ],
+    "dataworkspace.excludedProjects": [
+        "Local/Local.sqlproj"
+    ]
+}

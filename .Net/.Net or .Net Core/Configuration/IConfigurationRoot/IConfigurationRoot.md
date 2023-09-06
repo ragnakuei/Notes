@@ -20,6 +20,10 @@
   - configurationRoot.GetSection("TestFolder:Image")
   - configurationRoot.GetSection("TestFolder).GetSection("Image") 
 
+### Get
+
+GetSecion().Get\<T\>() 可以將 Section 內的資料轉成指定的型別
+
 ## 取出指定 Section 的 Array 資料
 
 ```json

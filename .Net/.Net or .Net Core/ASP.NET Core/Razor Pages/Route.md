@@ -1,9 +1,10 @@
 # [Route](https://www.learnrazorpages.com/razor-pages/routing)
 
 - [Route](#route)
-  - [基本](#%e5%9f%ba%e6%9c%ac)
-  - [給定規則](#%e7%b5%a6%e5%ae%9a%e8%a6%8f%e5%89%87)
-  - [取值](#%e5%8f%96%e5%80%bc)
+  - [基本](#基本)
+  - [給定規則](#給定規則)
+  - [取值](#取值)
+  - [搭配 Tag Helper](#搭配-tag-helper)
 
 ---
 
@@ -86,3 +87,15 @@
   ```
 
   就可以用 /order/detail/10248 來瀏覽，此時 Id 為 10248
+
+
+## 搭配 Tag Helper
+
+- 假設 Conventions Route 未定議 seqno，就會變成以 Query String 給定 ! 
+
+```html
+<div class="margin10TB padding5RL textright">
+  <a asp-page="/test/test_main" asp-route-seqno="@Model.Dto.seqno" class="genbtn">上一頁</a>
+  <a asp-page="/test/test_body" asp-route-seqno="@Model.Dto.seqno" class="genbtn">下一頁</a>
+</div>
+```
