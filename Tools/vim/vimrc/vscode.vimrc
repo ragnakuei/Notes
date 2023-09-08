@@ -100,9 +100,3 @@ vnoremap <leader>a <ESC>ggVG
 
 nnoremap <S-Left> v<Left><Right><Left>
 nnoremap <S-Right> v<Right><Left><Right>
-" vnoremap <S-Up> <Up>
-" vnoremap <S-k> <Up>
-" vnoremap <S-Down> <Down>
-" vnoremap <S-j> <Down>
-" vnoremap <S-Left> <Left>
-" vnoremap <S-Right> <Right>

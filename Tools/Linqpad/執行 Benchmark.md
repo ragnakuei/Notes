@@ -14,7 +14,7 @@ void Main()
 
 Random random = new();
 
-#region 按下 ctrl + shit + B 執行 Benchmark
+#region 反白下面二行，再按下 ctrl + shit + B 執行 Benchmark
 
 int Test01() => Test01((char)random.Next(99, 120));
 int Test02() => Test02((char)random.Next(99, 120));
