@@ -17,7 +17,7 @@ set clipboard+=ideaput
 set clipboard+=unnamed
 set visualbell
 " 不要有 錯誤提示音
-" set noerrorbells
+" set noerrorbells " ideavim 不支援
 
 set number
 set relativenumber
@@ -97,6 +97,11 @@ nnoremap <leader>, A,<c-[>
 " 全選
 nnoremap <leader>a ggVG
 vnoremap <leader>a <ESC>ggVG
+
+" 彈窗
+nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+nnoremap <C-D> :action EditorDuplicate<CR>
+
 
 " duplicate
 " 複製游標所在行，並將游標移至貼上行首
@@ -188,3 +193,15 @@ nnoremap <A-j> :action GotoImplementation<CR>
 nnoremap <A-k> :action GotoSuperMethod<CR>
 nnoremap <A-i> :action MethodUp<CR>
 nnoremap <A-,> :action MethodDown<CR>
+
+" 彈窗
+nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+
+" Editor 相關
+nnoremap <A-S-Down> :action MoveLineDown<CR>
+nnoremap <A-S-J> :action MoveLineDown<CR>
+nnoremap <A-S-Up> :action MoveLineUp<CR>
+nnoremap <A-S-K> :action MoveLineUp<CR>
+nnoremap <A-S-O> :action RevealIn<CR>
+nnoremap <A-S-L> :action LocateInSolutionView<CR>
+" nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用

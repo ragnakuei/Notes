@@ -7,6 +7,17 @@
 | git config --global user.email user@Test.com      | 設定 global user 的 email，有設定過 email，才可以用 git commit |
 | git config --global core.sshCommand "ssh -p 1234" | 修改連線至遠端的 port 為 1234                                  |
 
+| git config                            | 說明 |
+| ------------------------------------- | ---- |
+| git config --global alias.co checkout |      |
+| git config --global alias.br branch   |      |
+| git config --global alias.ci commit   |      |
+| git config --global alias.st status   |      |
+| git config --global alias.rb rebase   |      |
+|                                       |      |
+|                                       |      |
+|                                       |      |
+
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
 | git status | 檢查目前的狀態，可能會有對應的提示 |
