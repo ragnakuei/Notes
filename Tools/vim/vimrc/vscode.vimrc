@@ -56,26 +56,6 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-" Navigation - 不要設定為 noremap 要給實作 <Home> <End> 有額外調整的空間
-" nmap <A-h> <HOME>
-" imap <A-h> <HOME>
-" vmap <A-h> <HOME>
-" nmap <A-l> <END>
-" imap <A-l> <END>
-" vmap <A-l> <END>
-" nmap <C-h> <Left>
-" imap <C-h> <Left>
-" vmap <C-h> <Left>
-" nmap <C-l> <Right>
-" imap <C-l> <Right>
-" vmap <C-l> <Right>
-" nmap <C-j> <Down>
-" imap <C-j> <Down>
-" vmap <C-j> <Down>
-" nmap <C-k> <Up>
-" imap <C-k> <Up>
-" vmap <C-k> <Up>
-
 " 移至外層 { }
 " ]} 為同一鍵，因為 } 使用頻率極高，所以只針對 } 做設定
 nnoremap <A-]> ]}
@@ -92,11 +72,8 @@ vnoremap <A-9> [(
 " 補上字尾的 ;
 nnoremap <leader>; A;<c-[>
 " 補上字尾的 ,
-" nnoremap <leader>, A,<c-[>
+nnoremap <leader>, A,<c-[>
 
 " 全選
 nnoremap <leader>a ggVG
 vnoremap <leader>a <ESC>ggVG
-
-nnoremap <S-Left> v<Left><Right><Left>
-nnoremap <S-Right> v<Right><Left><Right>

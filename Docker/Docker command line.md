@@ -170,7 +170,7 @@
 
 如果沒有 mysql，就會下載，並執行 MySQL 的 Container
 
-如果沒有 wordpress，就會下載，並執行 wordpress & 連結 mysql
+如果沒有 wordpress，就會下載，並執行 wordpress & 連結 mysql
 
 > docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
 > docker run --name mywp --link mysql -d -p 8080:80 wordpress
