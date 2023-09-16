@@ -152,19 +152,29 @@ nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
 
 " Editor 相關
 nnoremap <A-S-Down> :action MoveLineDown<CR>
+vnoremap <A-S-Down> :action MoveLineDown<CR>
 nnoremap <A-S-J> :action MoveLineDown<CR>
+vnoremap <A-S-J> :action MoveLineDown<CR>
 nnoremap <A-S-Up> :action MoveLineUp<CR>
+vnoremap <A-S-Up> :action MoveLineUp<CR>
 nnoremap <A-S-K> :action MoveLineUp<CR>
+vnoremap <A-S-K> :action MoveLineUp<CR>
+nnoremap <C-S-K> :action MoveStatementUp<CR>
+vnoremap <C-S-K> :action MoveStatementUp<CR>
+nnoremap <C-S-J> :action MoveStatementDown<CR>
+vnoremap <C-S-J> :action MoveStatementDown<CR>
+
 nnoremap <A-S-O> :action RevealIn<CR>
 nnoremap <A-S-L> :action LocateInSolutionView<CR>
 " nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用
 
 " navigate
-nnoremap <a-u> :action findusages<cr>
-nnoremap <a-m> :action showusages<cr>
-nnoremap <a-h> :action back<cr>
-nnoremap <a-l> :action forward<cr>
-nnoremap <a-j> :action gotoimplementation<cr>
-nnoremap <a-k> :action gotosupermethod<cr>
-nnoremap <a-i> :action methodup<cr>
-nnoremap <a-,> :action methoddown<cr>
+nnoremap <a-u> :action FindUsages<CR>
+nnoremap <a-m> :action ShowUsages<CR>
+nnoremap <a-h> :action Back<CR>
+nnoremap <a-l> :action Forward<CR>
+nnoremap <a-j> :action GotoImplementation<CR>
+nnoremap <a-k> :action GotoSuperMethod<CR>
+nnoremap <a-i> :action MethodUp<CR>
+nnoremap <a-,> :action MethodDown<CR>
+
