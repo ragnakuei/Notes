@@ -102,18 +102,6 @@ vnoremap <leader>a <ESC>ggVG
 nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
 nnoremap <C-D> :action EditorDuplicate<CR>
 
-
-" duplicate
-" 複製游標所在行，並將游標移至貼上行首
-nnoremap <C-d> Yp
-" 複製選取範圍，並貼至游標所在
-vnoremap <C-d> may<ESC>`ap
-""" 如果游標在選取範圍起始處，會將複製的內容插入至選取範圍第二個字元中，有點怪
-
-
-" AceJump
-nnoremap <Space> :action AceAction<CR>
-
 " run all tests
 nnoremap <Leader>ra :action RiderUnitTestRunSolutionAction<CR>
 
@@ -132,41 +120,6 @@ vnoremap <Leader>em :action ExtractMethod<CR>
 " SurroundWith
 nnoremap <Leader>sw V:action SurroundWith<CR>
 vnoremap <Leader>sw :action SurroundWith<CR>
-
-
-" 建立 nunit test setup 並貼上已複製的內容至 { } 中
-nnoremap <Leader>ns ma?[T<CR>O[SetUp]<CR>public void Setup()<CR>{<ESC>po}<ESC>`a:action ReformatCode<CR>
-
-" copy unit test 並將游標移至 void 後的 method name 上
-nnoremap <Leader>ct ztmay?[T<CR>`ap?void<CR>w:action ReformatCode<CR>
-
-
-" shift to visual mode
-nnoremap <S-Up> :action EditorUpWithSelection<CR>
-nnoremap <S-Down> :action EditorDownWithSelection<CR>
-" 這個做法在第一次按下 Shift + Left 時，只會選到第一個字元，而漏掉第二個字元
-"nnoremap <S-Left> :action EditorLeftWithSelection<CR>
-"nnoremap <S-Right> :action EditorRightWithSelection<CR>
-" 這個做法在第一次按下 Shift + Left 時，會選到第一個字元，並且選到第二個字元
-nnoremap <S-Left> v<Left><Right><Left>
-nnoremap <S-Right> v<Right><Left><Right>
-" vnoremap <S-Up> <Up>
-" vnoremap <S-k> <Up>
-" vnoremap <S-Down> <Down>
-" vnoremap <S-j> <Down>
-" vnoremap <S-Left> <Left>
-" vnoremap <S-Right> <Right>
-inoremap <S-Up> <Esc>v<Up>
-inoremap <S-Down> <Esc>v<Down>
-inoremap <S-Left> <Esc>v<Left>
-inoremap <S-Right> <Esc>v<Right>
-
-nnoremap <S-Home> :action EditorLineStartWithSelection<CR>
-nnoremap <S-End> :action EditorLineEndWithSelection<CR>
-inoremap <S-Home> :action EditorLineStartWithSelection<CR>
-inoremap <S-End> :action EditorLineEndWithSelection<CR>
-nnoremap <S-Pageup> :action EditorPageUpWithSelection<CR>
-nnoremap <S-Pagedown> :action EditorPageDownWithSelection<CR>
 
 " Home / End
 nnoremap <Home> :action EditorLineStart<CR>
@@ -205,3 +158,13 @@ nnoremap <A-S-K> :action MoveLineUp<CR>
 nnoremap <A-S-O> :action RevealIn<CR>
 nnoremap <A-S-L> :action LocateInSolutionView<CR>
 " nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用
+
+" navigate
+nnoremap <a-u> :action findusages<cr>
+nnoremap <a-m> :action showusages<cr>
+nnoremap <a-h> :action back<cr>
+nnoremap <a-l> :action forward<cr>
+nnoremap <a-j> :action gotoimplementation<cr>
+nnoremap <a-k> :action gotosupermethod<cr>
+nnoremap <a-i> :action methodup<cr>
+nnoremap <a-,> :action methoddown<cr>
