@@ -119,7 +119,7 @@ vnoremap <A-0> ])
 vnoremap <A-9> [(
 
 nnoremap <leader>; A;<c-[>
-nnoremap <leader><leader> A,<c-[>
+nnoremap <leader>, A,<c-[>
 
 
 
@@ -142,7 +142,7 @@ nnoremap <Leader>sw V:action SurroundWith<CR>
 vnoremap <Leader>sw :action SurroundWith<CR>
 
 " 彈窗
-nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+" nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR> " 這個和 vim 原生的功能衝突，所以不使用
 
 " Editor 相關
 nnoremap <A-S-Down> :action MoveLineDown<CR>
