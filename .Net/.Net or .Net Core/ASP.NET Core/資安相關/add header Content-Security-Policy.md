@@ -22,7 +22,48 @@
 -   [[鐵人賽 Day27] ASP.NET Core 2 系列 - 網頁內容安全政策 (Content Security Policy)](https://blog.johnwu.cc/article/ironman-day27-asp-net-core-content-security-policy.html)
 -   [Content Security Policy (CSP) in ASP.NET Core](https://joonasw.net/view/csp-in-aspnet-core)
 
-## 語法
+## 語法 1
+
+- 這比語法 2 簡潔多了 !
+
+```csharp
+app.UseMiddleware<CspMiddleware>();
+```
+
+```cs
+public class CspMiddleware
+{
+    public CspMiddleware(RequestDelegate next)
+    {
+        _next = next;
+    }
+
+    private readonly RequestDelegate _next;
+
+    public async Task Invoke(HttpContext context)
+    {
+        var cspHeaderName = "Content-Security-Policy";
+
+        if (context.Response.Headers.ContainsKey(cspHeaderName))
+        {
+            context.Response.Headers.Remove(cspHeaderName);
+        }
+
+        var cspValue = new StringBuilder();
+        cspValue.Append("default-src 'self';");
+        cspValue.Append("script-src 'self' 'unsafe-inline' 'unsafe-eval' ;");
+        cspValue.Append("style-src 'self' 'unsafe-inline' ;");
+        cspValue.Append("font-src 'self' ;");
+        cspValue.Append("img-src 'self' data: ;");
+
+        context.Response.Headers.Add(cspHeaderName, cspValue.ToString());
+
+        await _next(context);
+    }
+}
+```
+
+## 語法 2
 
 ```csharp
 app.UseCsp(options =>
