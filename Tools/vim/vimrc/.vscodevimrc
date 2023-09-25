@@ -69,6 +69,3 @@ nnoremap <leader>; A;<c-[>
 " 補上字尾的 ,  " 會跟 EasyMotion 衝突
 " nnoremap <leader>, A,<c-[>
 
-" 全選
-nnoremap <leader>a ggVG
-vnoremap <leader>a <ESC>ggVG
