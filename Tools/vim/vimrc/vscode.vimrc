@@ -32,15 +32,10 @@ set incsearch
 " 設定搜尋後高亮顯示
 set hlsearch
 
-" 只能由 vscode 指定
-" let mapleader=','
-
 "--------------------------------------------------------------------------
 " Key Mapping
 "--------------------------------------------------------------------------
 
-" 重讀設定檔 "無效中
-" nnoremap <Leader>vc :source D:\Kuei\Notes\Tools\vim\vimrc\vscode.vimrc<CR>
 " 清除高亮搜尋
 nnoremap <Leader>sc :nohlsearch<CR>
 " 清除高亮搜尋
@@ -71,8 +66,8 @@ vnoremap <A-9> [(
 
 " 補上字尾的 ;
 nnoremap <leader>; A;<c-[>
-" 補上字尾的 ,
-nnoremap <leader>, A,<c-[>
+" 補上字尾的 ,  " 會跟 EasyMotion 衝突
+" nnoremap <leader>, A,<c-[>
 
 " 全選
 nnoremap <leader>a ggVG

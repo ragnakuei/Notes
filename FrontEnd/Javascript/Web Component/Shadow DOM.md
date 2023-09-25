@@ -10,11 +10,15 @@
 
 <script>
     window.customElements.define('custom-element-01', class extends HTMLElement {
+        
+        shadowRoot = null;
+
         constructor() {
             super();
             
-            const shadowRoot = this.attachShadow({ mode: 'open' });
-            shadowRoot.innerHTML = `
+            // 如果這邊不用 shadowRoot，那麼 slot 內容會直接顯示出來，而達不到 shadow DOM 的效果
+            this.shadowRoot = this.attachShadow({ mode: 'open' });
+            this.shadowRoot.innerHTML = `
 <div>
     Success !
     <slot></slot>

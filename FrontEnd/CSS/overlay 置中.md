@@ -1,5 +1,7 @@
 # overlay 置中
 
+- 會顯示在畫面正中間
+
 ```html
 <style>
   .overlay {

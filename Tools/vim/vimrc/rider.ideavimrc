@@ -47,7 +47,7 @@ Plug 'easymotion/vim-easymotion'
 "   <A-x> skip next match
 "   <A-p> remove current match and go back to previous one
 " See https://github.com/terryma/vim-multiple-cursors for details
-set multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
 
 "--- acejump
 "" 按 Enter 跳至標記的下一個位置
@@ -66,10 +66,6 @@ nnoremap <Leader>ja :action AceWordAction<CR>
 "==================================================================
 " key mapping
 "==================================================================
-
-vmap <C-S-d> <Plug>NextOccurrence
-vmap <C-S-x> <Plug>SkipOccurrence
-vmap <C-S-u> <Plug>RemoveOccurrence
 
 " indent
 nnoremap <Tab> >>_
@@ -142,7 +138,7 @@ nnoremap <Leader>sw V:action SurroundWith<CR>
 vnoremap <Leader>sw :action SurroundWith<CR>
 
 " 彈窗
-nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR>
+" nnoremap <A-1> :action Refactorings.QuickListPopupAction<CR> " 這個和 vim 原生的功能衝突，所以不使用
 
 " Editor 相關
 nnoremap <A-S-Down> :action MoveLineDown<CR>
@@ -175,6 +171,8 @@ nnoremap <A-S-O> :action RevealIn<CR>
 nnoremap <A-S-L> :action LocateInSolutionView<CR>
 " nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用
 
+" nnoremap <C-S-D> :action SelectNextOccurrence<CR> " 這個和 vim 原生的功能衝突，所以不使用
+" nnoremap <C-S-A-D> :action UnselectPreviousOccurrence<CR> " 這個和 vim 原生的功能衝突，所以不使用
 
 " 建立 nunit test setup 並貼上已複製的內容至 { } 中
 nnoremap <Leader>ns i[SetUp]<CR>public void Setup()<CR>{<ESC>po}<ESC>:action ReformatCode<CR>
