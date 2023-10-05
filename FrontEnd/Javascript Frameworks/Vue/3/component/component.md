@@ -34,3 +34,49 @@
         -   例：Vue.component('testComponent', { ... })
 
     - 透過 props 在 vue componentn 間傳遞資料時，也適用 `特殊情境` 下的規則
+
+
+### 呼叫 component 上的事件
+
+```js
+const {createApp, ref, reactive, onMounted, computed} = Vue;
+
+createApp({
+    template: `
+      <div>
+        <!-- 在呼叫方宣告 component 上的原生事件，用 .natie  -->
+        <my-component v-on:click.native="clickMyComponent" ></my-component>
+      </div>
+    `,
+    setup() {
+
+        function clickMyComponent() {
+            console.log('clickMyComponent outer');
+        }
+      
+
+        return {
+            clickMyComponent,
+        }
+    }
+}).component('my-component', {
+    template: `
+      <!-- 在宣告方給定 component 上的事件，就跟一般的使用方式一樣  -->
+      <!-- 這邊給定 .stop.self 其實不會影響呼叫方的 .native 事件 !  -->
+      <div v-on:click.stop.self="clickMyComponent">
+        <p>My Component 1</p>
+        <p>My Component 2</p>
+      </div>
+    `,
+    setup(props) {
+        
+        function clickMyComponent() {
+            console.log('clickMyComponent inner');
+        }
+        
+        return {
+            clickMyComponent,
+        }
+    }
+}).mount('#app');
+```

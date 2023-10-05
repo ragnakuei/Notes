@@ -54,7 +54,7 @@ app.component('my-component', {
 })
 ```
 
-#### 預設值給定方式
+#### 預設值給定方式 1
 
 ```js
   app.component("component-a", {
@@ -63,6 +63,56 @@ app.component('my-component', {
           message: {
               type: String,
               default: "Hello World2",
+          },
+      },
+      template: `
+      <div>
+          <h3>Component A</h3>
+          <p>{{ message }}</p>
+      </div>
+      `,
+  });
+```
+
+#### 預設值給定方式 2
+
+```js
+  app.component("component-a", {
+      props: {
+          // 宣告型別 且 給定預設值
+          message: {
+              type: String,
+              // 也可以給定一個 function 來給定預設值
+              default: () => {
+                  return "Hello World2";
+              },
+          },
+      },
+      template: `
+      <div>
+          <h3>Component A</h3>
+          <p>{{ message }}</p>
+      </div>
+      `,
+  });
+```
+
+#### 給定 validator
+
+```js
+  app.component("component-a", {
+      props: {
+          // 宣告型別 且 給定預設值
+          message: {
+              type: String,
+              // 也可以給定一個 function 來給定預設值
+              default: () => {
+                  return "Hello World2";
+              },
+              // 給定 validator
+              validator: (value) => {
+                  return value.length > 5;
+              },
           },
       },
       template: `
