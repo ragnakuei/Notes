@@ -7,3 +7,7 @@
 建立專案
 
 > vue create [project name]
+
+列出可用的 template
+
+> vue list

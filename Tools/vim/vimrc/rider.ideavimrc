@@ -167,6 +167,10 @@ inoremap <C-S-Up> :action MoveStatementUp<CR>
 inoremap <C-S-J> :action MoveStatementDown<CR>
 inoremap <C-S-Down> :action MoveStatementDown<CR>
 
+" 手動做垂直選取，就可以不用 multiple-cursor 了 !
+inoremap <A-K> :action EditorCloneCaretAbove<CR>
+inoremap <A-J> :action EditorCloneCaretBelow<CR>
+
 nnoremap <A-S-O> :action RevealIn<CR>
 nnoremap <A-S-L> :action LocateInSolutionView<CR>
 " nnoremap <C-D> :action EditorDuplicate<CR> " 這個和 vim 原生的功能衝突，所以不使用
@@ -208,3 +212,7 @@ nnoremap <A-j> :action GotoImplementation<CR>
 nnoremap <A-k> :action GotoSuperMethod<CR>
 nnoremap <A-i> :action MethodUp<CR>
 nnoremap <A-,> :action MethodDown<CR>
+
+
+" tab
+nnoremap <Leader>tw :action CloseTab<CR>
