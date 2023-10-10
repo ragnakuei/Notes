@@ -4,8 +4,10 @@
   - [建立 Image 前](#建立-image-前)
     - [search](#search)
     - [pull](#pull)
+    - [push](#push)
     - [network](#network)
     - [ps](#ps)
+    - [image](#image)
     - [images](#images)
   - [建立 Image 後](#建立-image-後)
     - [attach](#attach)
@@ -39,6 +41,12 @@
 
 > docker pull ubuntu:latest
 
+### push
+
+上傳 image 到 docker hub
+
+> docker push [IMAGE_NAME]:[TAG]
+
 ### [network](https://docs.docker.com/engine/reference/commandline/network/)
 
 管理網路
@@ -56,11 +64,44 @@
 
 ---
 
+### image
+
+docker image 的管理
+> docker image
+> docker image ls
+
+取得指定的 docker image
+> docker image pull [IMAGE_NAME]:[TAG]
+
+看指定的 image 的資訊
+> docker image inspect [IMAGE_ID | IMAGE_NAME]:[TAG]
+> docker image inspect ubuntu:latest
+
+(Windows PowerShell)
+查看指定的 image 的資訊，將 JSON 格式 轉一般的物件
+> docker image inspect ubuntu:latest | ConvertFrom-Json
+從一般物件取出指定的屬性
+> (docker image inspect ubuntu:latest | ConvertFrom-Json).OsVersion
+查看該 image 的 expose port
+> (docker image inspect ubuntu:latest | ConvertFrom-Json).ContainerConfig.ExposedPorts
+
+
+刪除指定的 image
+
+> docker image rm [IMAGE_ID | IMAGE_NAME]
+
+
+
 ### images
 
 列出可執行的 Image
 
 > docker images
+
+等同於
+
+> docker image ls
+
 
 ---
 
@@ -105,9 +146,12 @@
 
 啟動有 Image 的 Container
 
+
 > docker start ContainerName
 
 > docker start ContainerID		
+
+- 可以用該 ContainerID 的前幾碼
 
 ---
 
@@ -136,11 +180,13 @@
 
 > docker run ubuntu:14.04
 
-- -d 以離線方式執行
-- -it 於 tty 中執行 command
-- --rm 如果存在，就刪除，再重建
+- -d > 以離線方式執行
+- -it > 於 tty 中執行 command
+- --rm > container 停止後，就刪除，或是，以重建的方式建立 container
   - 可以跟 -it 一起使用，就不用再手動刪除
-- --restart always 如果關閉，會自動重啟
+- --restart always > 如果關閉，會自動重啟
+- --entrypoint > 覆寫既有的 command 來指定執行的 command
+  - 可以用來直接 debug image，當 deubg 完，就可以刪除 container
 
 透過 Image：nginx 產生 Container：nginx1，給定執行COMMAND：/sbin/init
 

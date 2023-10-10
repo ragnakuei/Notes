@@ -39,7 +39,7 @@ set hlsearch
 " 清除高亮搜尋
 nnoremap <Leader>sc :nohlsearch<CR>
 " 清除高亮搜尋
-inoremap <Leader>sc <Esc>:nohlsearch<CR>
+" inoremap <Leader>sc <Esc>:nohlsearch<CR>
 
 " 在 Normal Mode 清除搜尋高亮結果
 nnoremap <Esc> :nohlsearch<CR><Esc>
@@ -69,3 +69,5 @@ nnoremap <leader>; A;<c-[>
 " 補上字尾的 ,  " 會跟 EasyMotion 衝突
 " nnoremap <leader>, A,<c-[>
 
+" 全選
+nnoremap <leader>a ggVG

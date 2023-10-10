@@ -10,13 +10,31 @@
 | git config                            | 說明 |
 | ------------------------------------- | ---- |
 | git config --global alias.co checkout |      |
+| git config --global alias.mg merge    |      |
 | git config --global alias.br branch   |      |
 | git config --global alias.ci commit   |      |
 | git config --global alias.st status   |      |
 | git config --global alias.rb rebase   |      |
+| git config --global alias.rb rebase   |      |
 |                                       |      |
 |                                       |      |
 |                                       |      |
+
+git rebase 簡化成 git rb
+
+-   如果只有一個參數，則是 git rebase <base>
+-   如果有兩個參數，則是 git rebase --root <base> --onto <branch>
+
+```git
+git config --global alias.rb '!f() { case $# in 1) git rebase "$1" ;; 2) git rebase --root "$1" --onto "$2" ;; *) echo "Usage: git rb [branch] / git rb [base] [branch]" ;; esac }; f'
+```
+
+git fetch -p 簡化成 git fp
+
+```git
+git config --global alias.ft '!f() { git fetch -p; }; f'
+```
+
 
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
