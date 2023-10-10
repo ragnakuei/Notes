@@ -15,12 +15,15 @@ https://docs.microsoft.com/zh-tw/dotnet/core/tools/dotnet
 | dotnet add reference [csproj]       |                                  |
 | dotnet remove reference [csproj]    |                                  |
 |                                     |                                  |
+| dotnet new list                     | 列出所有專案範本                 |
 | dotnet new globaljson               | 建立 global.json 檔案            |
 | dotnet new gitignore                | 建立 .gitignore 檔案             |
 |                                     |                                  |
 | dotnet dev-certs https --trust      | 信任開發用 https 憑証            |
 |                                     |                                  |
 | dotnet outdated -u                  | 列出需要更新的 nuget packages    |
+|                                     |                                  |
+| dotnet sln list                     | 列出方案中的所有專案             |
 |                                     |                                  |
 |                                     |                                  |
 
