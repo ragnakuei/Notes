@@ -1,5 +1,12 @@
 # custom event
 
+```js
+emit('event name', data)
+```
+
+data 其實是 ...args，所以可以傳多個參數 ! 
+
+
 ## 範例一
 
 - v-on:select-value="to_page($event)"
