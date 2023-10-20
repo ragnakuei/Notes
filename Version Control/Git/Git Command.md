@@ -9,12 +9,12 @@
 
 | git config                            | 說明 |
 | ------------------------------------- | ---- |
+| git config --global alias.pu push     |      |
 | git config --global alias.co checkout |      |
 | git config --global alias.mg merge    |      |
 | git config --global alias.br branch   |      |
 | git config --global alias.ci commit   |      |
 | git config --global alias.st status   |      |
-| git config --global alias.rb rebase   |      |
 | git config --global alias.rb rebase   |      |
 |                                       |      |
 |                                       |      |
@@ -34,7 +34,6 @@ git fetch -p 簡化成 git fp
 ```git
 git config --global alias.ft '!f() { git fetch -p; }; f'
 ```
-
 
 | git status | 說明                               |
 | ---------- | ---------------------------------- |
