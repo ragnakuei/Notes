@@ -1,5 +1,12 @@
 # 不要使用 router 的 hash tag 符號
 
+預設 mode 是 hash，雖然可以改為 history
+★★★ 但在發佈後，就必須在 web server 上設定 url rewrite 才能正常運作 !
+
+多了 # 的目的是，讓瀏覽器不會重新發送 request，而是在前端處理 !
+
+mode 為 history，可以視為在 dev 環境下模擬了 url rewrite 的效果 !
+
 預設的 router url 會長這樣
 
 > http://192.168.8.102:8080/#/helloWorld

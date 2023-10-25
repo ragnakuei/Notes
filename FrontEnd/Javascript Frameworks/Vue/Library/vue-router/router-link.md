@@ -25,4 +25,5 @@ export default router;
 
 ```html
 <router-link v-bind:to="{ name: 'Home' }" class="nav-link">Home</router-link>
+<router-link v-bind:to="{ name: 'component1', params: { id : 3 }  }">Component1</router-link> |
 ```
