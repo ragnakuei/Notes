@@ -3,77 +3,66 @@
 取消 symbolic link：
 > unlink ~/Library/Caches/[target]
 
-## Brave
+## script
 
-### 影響範圍
+```zsh
+#!/bin/zsh
 
-- 下載檔案時，會先儲存至 Cache 中，再將檔案移至指定的資料夾中
+# key => source folder, value => destination folder
+typeset -A folderMapping=(
+"/Users/$USER/Library/Caches/com.microsoft.VSCode" "/Volumes/Transcend 1TB/Caches,com.microsoft.VSCode"
+"/Users/$USER/Library/Caches/Microsoft Edge" "/Volumes/Transcend 1TB/Caches,Microsoft Edge"
+"/Users/$USER/Library/Caches/BraveSoftware" "/Volumes/Transcend 1TB/Caches,BraveSoftware"
+"/Users/$USER/Library/Caches/JetBrains" "/Volumes/Transcend 1TB/Caches,JetBrains"
+"/Users/$USER/Library/Caches/Google" "/Volumes/Transcend 1TB/Caches,Google"
+"/Users/$USER/Library/Application Support/Microsoft Edge" "/Volumes/Transcend 1TB/Application Support,Microsoft Edge"
+"/Users/$USER/Library/Application Support/BraveSoftware" "/Volumes/Transcend 1TB/Application Support,BraveSoftware"
+"/Users/$USER/Library/Application Support/JetBrains" "/Volumes/Transcend 1TB/Application Support,JetBrains"
+"/Users/$USER/Library/Application Support/Google" "/Volumes/Transcend 1TB/Application Support,Google"
+# Visual Studio Code
+"/Users/$USER/Library/Application Support/Code" "/Volumes/Transcend 1TB/Application Support,Code"
+)
 
-### 操作步驟
+for key val in "${(@kv)folderMapping}"; do
+  # 以 , 拆開 val ( destination folder, folder name )
+  destinationFolder=$(echo $val | cut -d ',' -f 1)
+  folderName=$(echo $val | cut -d ',' -f 2)
+  targetFolder="${destinationFolder}/${folderName}"
 
-來源資料夾：~/Library/Caches/BraveSoftware
-移轉目的地：/Volumes/Transcend_1TB/Caches/BraveSoftware
+  echo "$key -> $targetFolder"
+  
+  # 如果 targetFolder 已經存在，則不執行
+  if [[ ! -d "${targetFolder}" ]]; then
+    echo "Creating ${targetFolder}"
+    mkdir "${targetFolder}"
 
-將快取資料夾移動到移轉目的地中：
-> mv ~/Library/Caches/BraveSoftware /Volumes/Transcend_1TB/Caches/BraveSoftware
+    echo "Moving ${key} to ${destinationFolder}"
+    mv "$key" "$destinationFolder"
+    if [[ $? -ne 0 ]]; then
+      echo "移动失败" >&2
+      exit 1
+    fi
 
-建立 Symbolic Link：
-注意：左方有 BraveSoftware 的資料夾，右方也有
-> ln -s /Volumes/Transcend_1TB/Caches/BraveSoftware ~/Library/Caches/BraveSoftware 
+    echo "Creating symlink ${key} -> ${targetFolder}"
+    ln -sf "${targetFolder}" "${key}"
+  else
+    echo "Directory ${targetFolder} already exists, skipping."
+  fi
 
-最終要確保
-/Volumes/Transcend_1TB/Caches/BraveSoftware/Brave-Browser/Default/Cache/Cache_Data
-這個資料夾存在，且有檔案存在其中
+  echo " "
+done
 
-### 驗証方式
+```
 
-開啟 Brave App 後，以指令 `ls -alrt` 檢視 ~/Library/Caches/BraveSoftware/Brave-Browser/Default/Cache/Cache_Data
-確保有檔案會是最新的修改時間，就代表設定成功 !
+### 查出該 App 存取哪些檔案
 
+1. 開啟 Active Monitor
+1. 找到指定的 Process
+1. 點選 Inspect selected process
+1. 點選 Open Files and Ports
 
-## JetBrains
+就可以看出該 Process 存取了哪些檔案 !
 
-### 操作步驟
+### Line
 
-來源資料夾：~/Library/Caches/JetBrains
-移轉目的地：/Volumes/Transcend_1TB/Cache/JetBrains
-
-將快取資料夾移動到移轉目的地中：
-> mv ~/Library/Caches/JetBrains /Volumes/Transcend_1TB/Cache/JetBrains
-
-建立 Symbolic Link：
-注意：左方有 JetBrains 的資料夾，右方也有
-> ln -s /Volumes/Transcend_1TB/Cache/JetBrains ~/Library/Caches/JetBrains
-
-最終要確保
-/Volumes/Transcend_1TB/Caches/JetBrains/Toolbox
-確保有檔案會是最新的修改時間，就代表設定成功 !
-
-### 驗証方式
-
-開啟 JetBrains Toolbox App 後
-以指令 `ls -alrt` 檢視 ~/Library/Caches/JetBrains/Toolbox/Download/ 中的資料有最新的修改時間，就代表設定成功 !
-
-## Line
-
-### 操作步驟
-
-來源資料夾：~/Library/Caches/JetBrains
-移轉目的地：/Volumes/Transcend_1TB/Cache/JetBrains
-
-將快取資料夾移動到移轉目的地中：
-> mv ~/Library/Caches/JetBrains /Volumes/Transcend_1TB/Cache/JetBrains
-
-建立 Symbolic Link：
-注意：左方有 JetBrains 的資料夾，右方也有
-> ln -s /Volumes/Transcend_1TB/Cache/JetBrains ~/Library/Caches/JetBrains
-
-最終要確保
-/Volumes/Transcend_1TB/Caches/JetBrains/Toolbox
-確保有檔案會是最新的修改時間，就代表設定成功 !
-
-### 驗証方式
-
-開啟 JetBrains Toolbox App 後
-以指令 `ls -alrt` 檢視 ~/Library/Caches/JetBrains/Toolbox/Download/ 中的資料有最新的修改時間，就代表設定成功 !
-
+目前不支援
