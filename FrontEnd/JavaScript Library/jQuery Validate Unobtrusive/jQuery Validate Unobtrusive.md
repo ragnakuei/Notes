@@ -100,3 +100,11 @@ $("#form").valid();
     </p>
 </form>
 ```
+
+當異動過 form 的 dom 後，需要重新註冊
+
+```js
+$(formDom).removeData('validator');
+$(formDom).removeData('unobtrusiveValidation');
+$.validator.unobtrusive.parse(formDom);
+```
