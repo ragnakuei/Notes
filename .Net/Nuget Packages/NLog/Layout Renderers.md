@@ -6,7 +6,6 @@
 
 以下僅列出部份
 
-
 | Parameter             | 說明                                   | 備註 |
 | --------------------- | -------------------------------------- | ---- |
 | ${basedir}            | 應用程式所在的資料夾                   |      |
@@ -19,11 +18,11 @@
 | ${machinename}        | 電腦名稱                               | 必填 |
 | ${message}            | 日誌的內容                             |      |
 | ${newline}            | 換行符號                               |      |
-| ${shortdate}          | 短日期格式  yyyy-MM-dd                 |      |
+| ${shortdate}          | 短日期格式 yyyy-MM-dd                  |      |
 | ${stacktrace}         | 呼叫堆疊資訊                           |      |
 | ${threadid}           |                                        | 必填 |
 | ${time}               | 時間格式，HH:mm:ss.mmm.                |      |
-| ${windows-            | identity}	登入帳號                     |      |
+| ${windows-identity}   | 登入帳號                               |      |
 | ${buildConfiguration} | 組態檔名                               |      |
 
 參考範本
