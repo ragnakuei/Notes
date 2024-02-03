@@ -64,6 +64,8 @@ diskutil unmount force "/Volumes/${ramdisk_name}"
 
 ### LaunchAgent.plist
 
+暫時不處理，因為 plist 要能執行 zsh script 需要較高的權限
+
 路徑： $HOME/Library/LaunchAgents/com.ramdisk.scripts.plist
 
 ```xml
