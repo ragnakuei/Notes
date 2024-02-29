@@ -13,11 +13,9 @@ typeset -A folderMapping=(
 "/Users/$USER/Library/Caches/com.microsoft.VSCode" "/Volumes/Transcend 1TB/Caches,com.microsoft.VSCode"
 "/Users/$USER/Library/Caches/Microsoft Edge" "/Volumes/Transcend 1TB/Caches,Microsoft Edge"
 "/Users/$USER/Library/Caches/BraveSoftware" "/Volumes/Transcend 1TB/Caches,BraveSoftware"
-"/Users/$USER/Library/Caches/JetBrains" "/Volumes/Transcend 1TB/Caches,JetBrains"
 "/Users/$USER/Library/Caches/Google" "/Volumes/Transcend 1TB/Caches,Google"
 "/Users/$USER/Library/Application Support/Microsoft Edge" "/Volumes/Transcend 1TB/Application Support,Microsoft Edge"
 "/Users/$USER/Library/Application Support/BraveSoftware" "/Volumes/Transcend 1TB/Application Support,BraveSoftware"
-"/Users/$USER/Library/Application Support/JetBrains" "/Volumes/Transcend 1TB/Application Support,JetBrains"
 "/Users/$USER/Library/Application Support/Google" "/Volumes/Transcend 1TB/Application Support,Google"
 # Visual Studio Code
 "/Users/$USER/Library/Application Support/Code" "/Volumes/Transcend 1TB/Application Support,Code"

@@ -1,5 +1,9 @@
 # modal
 
+這做法不夠完善，要改成搭配 Bootstrap JS !
+
+在 BlazorPractice 的範例中有提供 !
+
 ## components
 
 -   modal.razor

@@ -1,7 +1,25 @@
 # 如何針對既有的 Test Case 調整測試內容
 
+參考資料：
+[Debugging Tests](https://playwright.dev/dotnet/docs/running-tests#debugging-tests)
+
 要點：
-1. 以指令 dotnet test 執行測試時，就會開啟 Playwright Inspector 及 Browser
+
+1. 以下面指令執行測試時，就會開啟 Playwright Inspector 及 Browser
+
+    ```bash
+    PWDEBUG=1
+    dotnet test
+    ```
+
+    在 Rider 內執行無效 !
+    在 cmd 內執行有效 !
+
+    ```batch
+    set PWDEBUG=1
+    dotnet test
+    ```
+
 1. 要調有既有的 Test Case 進行測行，首先要將下面的語法加到該 Test Case 中
 
     ```cs

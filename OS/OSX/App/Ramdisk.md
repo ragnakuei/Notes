@@ -1,6 +1,5 @@
 # Ramdisk
 
-
 ### Startup.sh
 
 ```zsh
@@ -41,7 +40,6 @@ done
 
 ### Shutdown.sh
 
-
 ```zsh
 #!/bin/zsh
 
@@ -62,4 +60,59 @@ done
 
 # 移除 ramdisk
 diskutil unmount force "/Volumes/${ramdisk_name}"
+```
+
+### LaunchAgent.plist
+
+暫時不處理，因為 plist 要能執行 zsh script 需要較高的權限
+
+路徑： $HOME/Library/LaunchAgents/com.ramdisk.scripts.plist
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.ramdisk.scripts</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>sh</string>
+      <string>-c</string>
+      <string>"$HOME/Library/Ramdisk/Startup.sh"</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>$HOME/logs/com.ramdisk.error.log</string>
+    <key>StandardOutPath</key>
+    <string>$HOME/logs/com.ramdisk.output.log</string>
+
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+    </dict>
+
+    <key>ExitTimeOut</key>
+    <integer>3</integer>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>sh</string>
+      <string>-c</string>
+      <string>"$HOME/Library/Ramdisk/Shutdown.sh"</string>
+    </array>
+
+  </dict>
+</plist>
+```
+
+
+```sh
+launchctl load com.ramdisk.scripts.plist
+launchctl list | grep com.ramdisk.scripts
+launchctl unload com.ramdisk.scripts.plist
 ```
