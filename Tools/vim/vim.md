@@ -10,19 +10,56 @@
     -   [Vim Genius](http://www.vimgenius.com/)
     -   [Openvim](https://www.openvim.com/)
 
+## 基本觀念
+
+### pattern
+
+[count]operation{motion}
+
 ## 待學清單
 
-如何複製片段，再貼上
+z<Enter> - 將游標所在的行置於畫面中央
 
-ctrl + [ => 跟 esc 一樣的功能
+gu<Enter> 整行換小寫，Enter 前可加 N，意指往下 N 行
 
-進入 visual mode 後，方向鍵取，按下 y 進行複製 => 進行 normal mode
+-   guNk 往上 N 行換小寫
+-   guNj 往下 N 行換成小寫
 
-yy => 整行複製
+gU<Enter> 整行換大寫，Enter 前可加 N
 
-viw => visual => inner select => word
-diw => delete => inner select => word
-ciw =>
+<Ctrl> + w + w - 分割視窗間跳躍
+<Crtrl> + R - Redo
+
+normal mode
+
+-   50a=<Esc>
+-   4o#<Esc>
+
+<R> Replace Mode
+
+-   => 直接以所在的 word 進行往後搜尋
+
+# => 直接以所在的 word 進行往前搜尋
+
+上述二個按下對應關鍵字後，仍然可以用 n / N 來做搜尋，或是用重複按下原本的 Key 也更為直覺 !
+
+搭配 hls 更為醒目 !
+
+d / x 這類後方要加 motion 的 command 可以搭配 / 來做整合 !
+
+Command
+
+:h keyword
+
+搜尋 keyword 功能
+
+:set is?
+
+:set hls?
+
+ctrl + [ - 跟 esc 一樣的功能
+
+進入 visual mode 後，方向鍵取，按下 y 進行複製 => 進入 normal mode
 
 https://vim-adventures.com/
 
@@ -44,9 +81,13 @@ https://vim-adventures.com/
 
 ## command
 
-| 命令 | 功能             | 說明                                                         |
-| ---- | ---------------- | ------------------------------------------------------------ |
-| map  | 顯示目前 mapping | [map manual](https://vimhelp.org/map.txt.html#map%2Dlisting) |
+| 命令        | 功能             | 說明                                                         |
+| ----------- | ---------------- | ------------------------------------------------------------ |
+| map         | 顯示目前 mapping | [map manual](https://vimhelp.org/map.txt.html#map%2Dlisting) |
+| set ruler   |                  |                                                              |
+| set noruler |                  |                                                              |
+| set ruler   | toggle ruler     |                                                              |
+|             |                  |                                                              |
 
 ## bookmark
 

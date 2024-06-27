@@ -1,0 +1,355 @@
+mapclear
+
+"==================================================================
+" settings
+"==================================================================
+
+" 設定距離邊界的行數，當距離的邊界的行數小於這個值時，會自動移動 scroll
+set scrolloff=10
+
+" 剪貼簿共用
+set clipboard+=unnamed
+" ideavim 與 vim 的剪貼簿共用
+set clipboard+=ideaput
+
+" 不要有錯誤提示音
+set visualbell
+" set noerrorbells " ideavim 不支援
+
+" 相對行號
+set nu rnu
+nnoremap <A-L> :set rnu!<CR>
+
+" Leader 設定為 ,
+let mapleader=','
+
+" 設定搜尋時高亮顯示 is
+set incsearch
+
+" 設定搜尋後高亮顯示 hls
+set hlsearch
+
+" 清除高亮搜尋
+nnoremap <Leader>sc :nohlsearch<CR>
+"inoremap <Leader>sc <Esc>:nohlsearch<CR>
+
+"==================================================================
+" plugins
+"==================================================================
+
+" surround
+set surround
+
+" matchit
+set matchit
+
+" easymotion
+Plug 'easymotion/vim-easymotion'
+" map <leader>F <Plug>(easymotion-s)
+" map <leader>f <Plug>(easymotion-f)
+
+" multiple cursors
+" Emulates vim-multiple-cursors
+" Basic Commands:
+"   <A-n> start multicursor
+"   <A-n> next match
+"   <A-x> skip next match
+"   <A-p> remove current match and go back to previous one
+" See https://github.com/terryma/vim-multiple-cursors for details
+" Plug 'terryma/vim-multiple-cursors' " windows 才支援，如果無效，需要重新開啟 Rider
+" 需要 Plugin IdeaVimMulticursor 
+" set multiple-cursors " mac os 才支援，如果無效，需要重新開啟 Rider
+" set multicursor
+
+" IdeaVimSneak
+"    Use `s` plus two characters to search forward in document
+"    Use `S` plus two characters to search backward in document
+"    Use `;` and `,` just as with `f` and `F` commands to repeat searches
+set sneak
+
+"==================================================================
+" key mapping
+"==================================================================
+
+" ------------------------------------------------------------
+" Normal Mode
+" ------------------------------------------------------------
+" 
+" Basic ------------------------------------------------
+" 
+" <Esc> 清除搜高亮結果
+nnoremap <Esc> :nohlsearch<CR><Esc>
+
+" Editor -----------------------------------------------
+" 
+" <Leader>a 全選
+noremap <Leader>a ggVG
+" <Tab> 增加縮排
+nnoremap <Tab> >>_
+" <S-Tab> 減少縮排
+nnoremap <S-Tab> <<_
+" <C-h> 游標 ←
+nmap <C-h> <Left>
+" <C-j> 游標 ↓
+nmap <C-l> <Right>
+" <C-k> 游標 ↑
+nmap <C-j> <Down>
+" <C-l> 游標  →
+nmap <C-k> <Up>
+" <A-S-j> 整行往下移
+nnoremap <A-S-Down> :action MoveLineDown<CR>
+nnoremap <A-S-J> :action MoveLineDown<CR>
+" <A-S-kl> 整行往上移
+nnoremap <A-S-Up> :action MoveLineUp<CR>
+nnoremap <A-S-K> :action MoveLineUp<CR>
+" <C-S-j> 所在的 statement / block 往下移
+nnoremap <C-S-J> :action MoveStatementDown<CR>
+nnoremap <C-S-Down> :action MoveStatementDown<CR>
+" <C-S-k> 所在的 statement / block 往上移
+nnoremap <C-S-K> :action MoveStatementUp<CR>
+nnoremap <C-S-Up> :action MoveStatementUp<CR>
+" <Leader>; 補上字尾的 ;
+nnoremap <leader>; A;<c-[>
+" <Leader>, 補上字尾的 ,
+nnoremap <leader>, A,<c-[>
+ 
+" Navigation --------------------------------------------
+
+" <A-h> Back
+nnoremap <A-h> :action Back<CR>
+" <A-l> Forward
+nnoremap <A-l> :action Forward<CR>
+" <A-u> 顯示游標所在成員呼叫點至新視窗中，原 <A-Home>
+nnoremap <A-u> :action FindUsages<CR>
+" <A-m> 顯示游標所在成員呼叫點至彈出視窗中，原 <A-End>
+nnoremap <A-m> :action ShowUsages<CR>
+" <A-j> 移至實作
+nnoremap <A-j> :action GotoImplementation<CR>
+" <A-k> 移至父層宣告
+nnoremap <A-k> :action GotoSuperMethod<CR>
+" <A-i> 移至上方最接近的 Method，原 <A-PageUp>
+nnoremap <A-i> :action MethodUp<CR>
+" <A-,> 移至下方最接近的 Method，原 <A-PageDown>
+nnoremap <A-,> :action MethodDown<CR>
+" <Home> 移至同一行最前方
+nnoremap <Home> :action EditorLineStart<CR>
+" <End> 移至同一行最後方
+nnoremap <End> :action EditorLineEnd<CR>
+
+" 移至外層 { }
+""" ]} 為同一鍵，因為 } 使用頻率極高，所以只針對 } 做設定
+""" <A-]> 移至所在 { } block 的 }
+nnoremap <A-]> ]}
+" <A-[> 移至所在 { } block 的 {
+nnoremap <A-[> [{
+" <A-0> 移至所在 ( ) block 的 )
+nnoremap <A-0> ])
+" <A-9> 移至所在 ( ) block 的 (
+nnoremap <A-9> [(
+" <Leader>f <PageDown>
+nmap <Leader>f <PageDown>
+" <leader>b <PageUp>
+nmap <Leader>b <PageUp>
+" <Leader>ne 移至同檔案內下一個錯誤
+nnoremap <Leader>ne :action GotoNextError<CR>
+
+" Tab -----------------------------------------------------
+" 
+" <Leader>tw 關閉目前分頁
+nnoremap <Leader>tw :action CloseContent<CR>
+" <Leader>tcb 關閉目前分頁往下/右的所有分頁 below
+nnoremap <Leader>tcb :action CloseAllToTheRight<CR>
+" <Leader>tca 關閉目前分頁往上/左的所有分頁 above
+nnoremap <Leader>tca :action CloseAllToTheLeft<CR>
+" <Leader>tp Pin 目前的分頁
+""" 這也具有 toggle 的功能
+nnoremap <Leader>tp :action PinActiveEditorTab<CR>
+" <Leader>tu Toggle Pin 目前的分頁
+" nnoremap <Leader>tp :action PinActiveTabToggle<CR>
+nnoremap <Leader>tu :action ActivateUnitTestsToolWindow<CR>
+
+" Operator ------------------------------------------------
+
+" <Leader>cf 建立檔案
+nnoremap <Leader>cf :action NewFile<CR>
+" <A-S-l> 移至檔案列表中的目前檔案
+nnoremap <A-S-L> :action LocateInSolutionView<CR>
+" <A-S-o> 移至檔案總管中的目前檔案
+nnoremap <A-S-O> :action RevealIn<CR>
+" 
+" <A-S-f> 格式化文件
+" 
+" AceJump ------------------------------------------------
+"" 按 Enter 跳至標記的下一個位置
+"" 按 ESC 可以當作離開 AceJump
+"" CycleMode
+nnoremap <Leader>jw :action AceAction<CR>
+"" MarksMode
+nnoremap <Leader>jl :action AceLineAction<CR>
+"" LineStartMode
+nnoremap <Leader>jl :action AceLineStartsAction<CR>
+"" LineEndMode
+nnoremap <Leader>je :action AceLineEndsAction<CR>
+"" AllWordMode
+nnoremap <Leader>ja :action AceWordAction<CR>
+ 
+" Refactor ------------------------------------------------
+" <Leader>il inline
+nnoremap <Leader>il :action Inline<CR>
+" <Leader>iv introduce variable
+nnoremap <Leader>iv :action IntroduceVariable<CR>
+" <Leader>if introduce field
+nnoremap <Leader>if :action IntroduceField<CR>
+" <Leader>ip introduce parameter
+nnoremap <Leader>ip viw:action IntroduceParameter<CR><ESC>
+" <Leader>em extract method
+nnoremap <Leader>em V:action ExtractMethod<CR>
+" <Leader>sw surround with
+nnoremap <Leader>sw V:action SurroundWith<CR>
+
+" Github Copilot ------------------------------------------
+" <Leader>cm 開啟 copilot popup menu
+nnoremap <Leader>cm :action copilot.toolsActionGroupLoggedIn<CR>
+" 跟 <Alt>\ 一樣的功能，但只在 insert mode 下有效
+" nnoremap <Leader>cc :action copilot.requestCompletions<CR>
+nnoremap <Leader>co :action copilot.openCopilot<CR>
+nnoremap <Leader>cs :action copilot.chat.show<CR>
+" <Leader>ca 開啟 Copilot Chat
+nnoremap <Leader>ca :action ActivateGitHubCopilotChatToolWindow<CR>
+
+" VCS -------------------------------------------------- 
+nnoremap <Leader>gr :action ChangesView.Revert<CR>
+
+" Unit Test --------------------------------------------
+
+" 執行單元測試
+nnoremap <Leader>ut :action RiderUnitTestRunContextAction<CR>
+" 執行單元測試並偵錯
+nnoremap <Leader>udt :action RiderUnitTestDebugContextAction<CR>
+" 執行整個專案的單元測試
+nnoremap <Leader>uat :action RiderUnitTestRunSolutionAction<CR>
+
+
+
+
+
+
+
+
+" ------------------------------------------------------------
+" Visual Mode
+" ------------------------------------------------------------
+
+" Editor -----------------------------------------------
+
+" <Leader>a 全選
+vnoremap <Leader>a <ESC>ggVG 
+" <A-S-j> 整行往下移
+vnoremap <A-S-Down> :action MoveLineDown<CR>
+vnoremap <A-S-J> :action MoveLineDown<CR>
+" <A-S-kl> 整行往上移
+vnoremap <A-S-Up> :action MoveLineUp<CR>
+vnoremap <A-S-K> :action MoveLineUp<CR>
+" <C-S-j> 所在的 statement / block 往下移
+vnoremap <C-S-J> :action MoveStatementDown<CR>
+vnoremap <C-S-Down> :action MoveStatementDown<CR>
+" <C-S-k> 所在的 statement / block 往上移
+vnoremap <C-S-K> :action MoveStatementUp<CR>
+vnoremap <C-S-Up> :action MoveStatementUp<CR>
+
+" Navigation --------------------------------------------
+" 
+" <Home> 移至同一行最前方
+" 
+" <End> 移至同一行最後方
+
+" <A-]> 移至所在 { } block 的 }
+vnoremap <A-]> ]}
+" <A-[> 移至所在 { } block 的 {
+vnoremap <A-[> [{
+" <A-0> 移至所在 ( ) block 的 )
+vnoremap <A-0> ])
+" <A-9> 移至所在 ( ) block 的 (
+vnoremap <A-9> [(
+" <Tab> 增加縮排
+vnoremap <Tab> >gv
+" <S-Tab> 減少縮排
+vnoremap <S-Tab> <gv
+" <C-h> 游標 ←
+vmap <C-h> <Left>
+" <C-j> 游標 ↓
+vmap <C-j> <Down>
+" <C-k> 游標 ↑
+vmap <C-k> <Up>
+" <C-l> 游標  →
+vmap <C-l> <Right>
+" <Leader>f <PageDown
+vmap <Leader>f Lz<CR>
+" <leader>b <PageUp>
+vmap <Leader>b Hz<CR>
+
+" Refactor ------------------------------------------------
+" <Leader>iv introduce variable
+vnoremap <Leader>iv :action IntroduceVariable<CR>
+" <Leader>if introduce field
+vnoremap <Leader>if :action IntroduceField<CR>
+" <Leader>ip introduce parameter
+vnoremap <Leader>ip :action IntroduceParameter<CR>
+" <Leader>em extract method
+vnoremap <Leader>em :action ExtractMethod<CR>
+" <Leader>sw surround with
+vnoremap <Leader>sw :action SurroundWith<CR>
+
+
+
+" Copilot ------------------------------------------------
+
+vnoremap <Leader>cs :action copilot.chat.show<CR>
+vnoremap <Leader>ca :action ActivateGitHubCopilotChatToolWindow<CR>
+
+
+
+
+
+
+
+
+
+
+" ------------------------------------------------------------
+" Insert Mode
+" ------------------------------------------------------------
+" 
+" Editor -----------------------------------------------
+"
+" <A-j> 所在游標往下垂直選取 
+inoremap <A-j> :action EditorCloneCaretBelow<CR>
+" <A-k> 所在游標往上垂直選取 
+inoremap <A-k> :action EditorCloneCaretAbove<CR>
+" <A-S-j> 整行往下移
+inoremap <A-S-Down> :action MoveLineDown<CR>
+inoremap <A-S-J> :action MoveLineDown<CR>
+" <A-S-kl> 整行往上移
+inoremap <A-S-Up> :action MoveLineUp<CR>
+inoremap <A-S-K> :action MoveLineUp<CR>
+" <C-S-j> 所在的 statement / block 往下移
+inoremap <C-S-J> :action MoveStatementDown<CR>
+inoremap <C-S-Down> :action MoveStatementDown<CR>
+" <C-S-k> 所在的 statement / block 往上移
+inoremap <C-S-K> :action MoveStatementUp<CR>
+inoremap <C-S-Up> :action MoveStatementUp<CR>
+
+" Navigation
+"
+" <Tab> 增加縮排
+inoremap <Tab> <Esc>>i
+" <S-Tab> 減少縮排
+inoremap <S-Tab> <Esc><<i 
+" <C-h> 游標 ←
+imap <C-h> <Left>
+" <C-j> 游標 ↓
+imap <C-j> <Down>
+" <C-k> 游標 ↑
+imap <C-k> <Up>
+" <C-l> 游標  →
+imap <C-l> <Right>
