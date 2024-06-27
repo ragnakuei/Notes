@@ -9,6 +9,10 @@
 1. 右方工具列選擇 Categories > Scripting > Run Shell Script ( 會需要開啟權限 )
 1. Script 輸入 `open -n -b "com.microsoft.VSCode" --args "$*"`
 1. Input > Type 選擇 Folder > Get 選擇 File Path
+    - 新版無 File Path 選項，要想辦法 清空選項，有幾種可能的方式
+      - 選 Selected Variable > Done
+      - 選 CurrentDate
+      - 選 Clipboard
 1. Pass Input 選擇 as arguments
 1. Shortcuts.app 設定完成
 1. 開啟 System Settings > Privacy & Security > Others 區塊中的 Extensions > Finder
@@ -23,3 +27,8 @@
 
 以下的是不行的，原因猜測是 以 " " 包住的路徑，讀不到 ~/ 的部分
 - open -a "~/Library/Application Support/JetBrains/Toolbox/scripts/rider.app" --args "$*"
+
+
+### PyCharm
+
+- open -a "/Users/kuei/Library/Application Support/JetBrains/Toolbox/scripts/pycharm" --args "$*"
