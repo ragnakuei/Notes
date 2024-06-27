@@ -57,6 +57,7 @@ git config --global alias.ft '!f() { git fetch -p; }; f'
 | git checkout                                               | 切換至指定的 branch                                                                         |
 | git checkout -b <target-branch>                            | 從目前所在的 branch 建立 target-branch 並切換過去                                           |
 | git checkout -b <target-branch> <source-branch>            | 從 source target 建立 target-branch 並切換過去                                              |
+| git checkout <target-branch> -b <source-branch>            | 同上，但似乎比較好理解及使用                                                                |
 | git checkout --track <source-branch> -b <target-branch>    | 從 source target 建立 target-branch 並切換過去，同時設定 target-branch 要追縱 source-branch |
 | git checkout --no-track <source-branch> -b <target-branch> | 從 source target 建立 target-branch 並切換過去，同時設定 target-branch 不要追縱             |
 | git checkout -m xxxFile                                    | 還原 merge 時指定檔案的衝突                                                                 |

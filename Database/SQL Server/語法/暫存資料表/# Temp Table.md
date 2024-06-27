@@ -1,5 +1,7 @@
 # # Temp Table
 
+該 Session 關閉時會被刪除的暫存資料表。
+
 
 ## DROP 語法
 
