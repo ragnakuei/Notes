@@ -1,9 +1,19 @@
 # Microsoft.Extensions.Configuration.Json
 
-- IConfigurationBuilder.AddJsonFile() 的引用順序是有差的
-  - 後讀的檔案內容，會蓋過先讀的檔案
-  - 建議 appsettings.json 先讀
-  - 建議 appsettings.組態.json 後讀
+IConfigurationBuilder.AddJsonFile() 的引用順序是有差的
+
+-   後讀的檔案內容，會蓋過先讀的檔案
+-   建議 appsettings.json 先讀
+-   建議 appsettings.組態.json 後讀
+
+概念上，就可以這樣思考：
+
+-   第一個為組態的基底
+-   第二個為針對不同情境給定的差異
+
+例：
+先準備好 appsettings.json，再依照各組態產生對應的 appsettings.[env].json
+讀取順序為 appsettings.json > appsettings.[env].json
 
 ## 是否需要複製 configuration files 至指定目錄
 
