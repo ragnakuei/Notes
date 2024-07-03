@@ -53,3 +53,29 @@ dotnet ignore get -n VisualStudio
 
 git init && git add . && git commit -m "Initial commit"
 ```
+
+### 範例
+
+建立 Asp.Net Core MVC 流程
+
+```bash
+mkdir SolutionName
+cd SolutionName
+dotnet new list
+dotnet new mvc -n ProjectName
+dotnet new sln
+dotnet sln add ProjectName/ProjectName.csprojs
+dotnet new gitignore
+git init
+git add -A
+cd ProjectName
+dotnet dev-certs https --trust
+dotnet run -lp https
+```
+
+發佈
+
+```bash
+dotnet build -c Release -r linux-arm64
+dotnet build -c Release -r osx-arm64
+```

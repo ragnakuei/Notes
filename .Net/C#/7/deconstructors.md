@@ -9,6 +9,8 @@
 
 ## 語法： tuple
 
+這應該跟 Deconstruction 沒有關係
+
 ```csharp
 void Main()
 {
@@ -98,5 +100,39 @@ public class Person
         city = City;
         state = State;
     }
+}
+```
+
+## 語法： extension method
+
+```cs
+void Main()
+{
+	var dto = new TestDto { Id = 1, Name = "A" };
+	(var id, var name) = dto;
+	
+	id.Dump();
+	name.Dump();
+}
+
+public class TestDto
+{
+	public int Id { get; set; }
+	public string Name { get; set; }
+
+	//public void Deconstruct(out int id, out string name)
+	//{
+	//	id = this.Id;
+	//	name = this.Name;
+	//}
+}
+
+public static class TestDtoHelper
+{
+	public static void Deconstruct(this TestDto dto, out int id, out string name)
+	{
+		id = dto.Id;
+		name = dto.Name;
+	}
 }
 ```
