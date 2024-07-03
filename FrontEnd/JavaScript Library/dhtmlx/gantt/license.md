@@ -1,0 +1,1 @@
+# [license](https://docs.dhtmlx.com/gantt/api__gantt_license_other.html)
