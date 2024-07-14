@@ -1,6 +1,7 @@
 # [config](https://docs.dhtmlx.com/gantt/api__refs__gantt_props.html)
 
 開啟拖拉
+
 ```js
 gantt.config.order_branch = true;
 gantt.config.order_branch_free = true;
@@ -10,10 +11,12 @@ gantt.config.order_branch_free = true;
 
 ```js
 gantt.config.multiselect = true;
-gantt.templates.task_class = gantt.templates.grid_row_class = gantt.templates.task_row_class = function (start, end, task) {
-    if (gantt.isSelectedTask(task.id))
-        return "gantt_selected";
-};
+gantt.templates.task_class =
+    gantt.templates.grid_row_class =
+    gantt.templates.task_row_class =
+        function (start, end, task) {
+            if (gantt.isSelectedTask(task.id)) return 'gantt_selected';
+        };
 ```
 
 唯讀
@@ -74,4 +77,21 @@ gantt.config.lightbox['customType' + '_sections'] = [
         map_to: 'type',
     },
 ];
+```
+
+### [columns](https://docs.dhtmlx.com/gantt/api__gantt_columns_config.html)
+
+-   連結內有各 column 的 property 定義
+
+### 日期格式相關
+
+```js
+//時間軸單位預設為「月」
+gantt.config.scale_unit = 'month';
+gantt.config.date_scale = '%Y/%m';
+
+const _dateFormat = '%Y/%m/%d';
+gantt.config.task_date = _dateFormat;
+gantt.config.date_format = _dateFormat;
+gantt.config.parse_date = _dateFormat;
 ```

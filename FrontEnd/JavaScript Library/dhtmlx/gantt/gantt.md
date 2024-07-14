@@ -8,3 +8,7 @@
 
 -   scale 是指時間軸
 -   lightbox 是指在設定 type 時，可以設定該 type 的編輯視窗有哪些欄位。
+
+
+範例
+- [Samples](https://snippet.dhtmlx.com/wl1yxm8d)
