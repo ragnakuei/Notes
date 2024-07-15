@@ -11,7 +11,6 @@
 -   gantt.refreshTask(taskId);
 -   gantt.updateTask(taskId);
     -   某些情況下，更新 task 後，會造成 task 顯示不正確，此時可以用 gantt.refreshTask(taskId) 來更新 task
--   gantt.deleteTask(taskId);
 -   gantt.moveTask(fromTaskId, , toTaskId)
 -   gantt.refreshData();
 -   gantt.getPrevSibling(taskId)
@@ -31,6 +30,34 @@
 
 -   用 gantt.open(taskId) 來展開該 task
 -   用 gantt.close(taskId) 來收起該 task
+
+### 刪除 task
+
+-   用 gantt.deleteTask(taskId) 來刪除 task
+
+注意事項：
+
+Q：刪除時，出現 Task not found id: xxxxx 錯誤訊息 !
+A: 參考 [解法](https://forum.dhtmlx.com/t/questions-about-gantt-deletetask/71391)
+
+解法 1：
+
+```js
+setTimeout(() => {
+    gantt.deleteTask(taskId);
+}, 0);
+```
+
+解法 2：
+
+```js
+// 點擊任務時的事件
+gantt.attachEvent('onTaskClick', (id, e) => {
+    console.log('onTaskClick');
+    // 也用來避免 deleteTask 時，會產金額外的錯誤訊息
+    return false;
+});
+```
 
 ### 注意事項
 

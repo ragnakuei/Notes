@@ -1,5 +1,7 @@
 # [config](https://docs.dhtmlx.com/gantt/api__refs__gantt_props.html)
 
+其實就是 Gantt API 的 Properties !
+
 開啟拖拉
 
 ```js
@@ -25,6 +27,28 @@ gantt.config.readonly = true;
 [gantt.config.autosize](https://docs.dhtmlx.com/gantt/api__gantt_autosize_config.html) - 指定要自動調整的維度，例：x, y, xy。不指定則不自動調整，會以 scroll bar 顯示。
 
 [gantt.config.scale_height](https://docs.dhtmlx.com/gantt/api__gantt_scale_height_config.html) - 指定時間軸的高度
+
+允許拖拉 task / link / milestone
+gantt.config.drag_move = true;
+
+允許調整時間長短
+gantt.config.drag_resize = true;
+
+禁用 dbclick
+gantt.config.details_on_dblclick = false;
+
+禁用拖拉 progress
+gantt.config.drag_progress = false;
+
+不使用 link
+gantt.config.drag_links = false;
+
+不拖拉多個項目
+gantt.config.drag_multiple = false;
+
+不使用多選        
+gantt.config.multiselect = false;
+
 
 ## [gantt.parse](https://docs.dhtmlx.com/gantt/api__gantt_parse.html)
 

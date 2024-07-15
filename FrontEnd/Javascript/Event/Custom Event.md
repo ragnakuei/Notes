@@ -39,3 +39,26 @@
     });
 </script>
 ```
+
+### bug
+
+發生過無法順利 remove > add 後，在 dispatchEvent 時觸發兩次的問題。
+
+解決方法是在 addEventListener 時，先檢查是否已經有註冊過，若有則不再註冊。
+
+```javascript
+HTMLElement.prototype.addCustomEvent = function (eventName, callback) {
+    if (!this.customEvents) {
+        this.customEvents = {};
+    }
+
+    if (!this.customEvents[eventName]) {
+        this.customEvents[eventName] = [];
+    }
+
+    if (this.customEvents[eventName].indexOf(callback) === -1) {
+        this.customEvents[eventName].push(callback);
+        this.addEventListener(eventName, callback);
+    }
+};
+```
