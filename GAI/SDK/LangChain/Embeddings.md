@@ -38,6 +38,8 @@ def cosine_similarity(a: list[float], b: list[float]) -> float:
 ```
 
 驗証共用元件
+計算機
+- [Cosine Similarity Calculator](https://www.omnicalculator.com/math/cosine-similarity)
 
 ```python
 from langchainpractice.OpenAI.EmbeddingsHelper import EmbeddingDTO, cosine_similarity

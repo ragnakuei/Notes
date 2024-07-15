@@ -1,0 +1,128 @@
+# Qdrant
+
+- 將指定的資料分割後，轉成向量，並存入 Qdrant 中，以供 RAG 模型使用。
+
+
+
+```python
+from langchain_community.document_loaders import WebBaseLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Qdrant
+from langchain_core.prompts import ChatPromptTemplate
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains import create_retrieval_chain
+import Initial_ChatOpenAI
+
+
+# 這邊需要套件 BeautifulSoup4
+loader = WebBaseLoader("https://www.drmaster.com.tw/bookinfo.asp?BookID=MP22315")
+docs = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter()
+documents = text_splitter.split_documents(docs)
+
+model = Initial_ChatOpenAI.llm
+embeddings_model = Initial_ChatOpenAI.embeddings
+
+# 這邊需要套件 qdrant-client
+qdrant = Qdrant.from_documents(
+    # 下面二行，二選一使用
+    # docs,
+    documents,
+    embeddings_model,
+    # url="your qdrant cloud url",
+    url="http://localhost:6333",
+    # api_key="your key",
+    collection_name="book",
+    force_recreate=True,
+)
+
+retriever = qdrant.as_retriever()
+
+prompt = ChatPromptTemplate.from_template("""請回答依照 context 裡的資訊來回答問題:
+<context>
+{context}
+</context>
+Question: {input}""")
+
+# create_stuff_documents_chain 會將 retriever 的資料放進 context 裡
+document_chain = create_stuff_documents_chain(model, prompt)
+
+retrieval_chain = create_retrieval_chain(retriever, document_chain)
+
+response = retrieval_chain.invoke({"input": "請問這本書的作者？"})
+
+print(response["answer"])
+
+```
+
+### 範例 2
+
+```python
+# 具有 Memroy 功能的 RAG 模型
+
+from langchain_community.document_loaders import WebBaseLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import Qdrant
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains import create_retrieval_chain
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_community.chat_message_histories import SQLChatMessageHistory
+
+import Initial_ChatOpenAI
+
+loader = WebBaseLoader("https://www.drmaster.com.tw/bookinfo.asp?BookID=MP22315")
+
+docs = loader.load()
+
+text_splitter = RecursiveCharacterTextSplitter()
+documents = text_splitter.split_documents(docs)
+
+model = Initial_ChatOpenAI.llm
+embeddings_model = Initial_ChatOpenAI.embeddings
+
+qdrant = Qdrant.from_documents(
+
+    # 下面二行，二選一使用
+    # docs,
+    documents,
+    embeddings_model,
+    # url="your qdrant cloud url",
+    url="http://localhost:6333",
+    # api_key="your key",
+    collection_name="book",
+    force_recreate=True,
+)
+
+retriever = qdrant.as_retriever()
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "請回答依照 context 裡的資訊來回答問題:{context}。問題{input}"),
+    MessagesPlaceholder(variable_name="history"),
+    ("human", "{input}")
+])
+
+document_chain = create_stuff_documents_chain(model, prompt)
+
+retrieval_chain = create_retrieval_chain(retriever, document_chain)
+
+chain_with_history = RunnableWithMessageHistory(
+    retrieval_chain,
+    lambda session_id: SQLChatMessageHistory(
+        session_id="session_id",
+        connection="sqlite:///langchain.db"
+    ),
+    input_messages_key="input",
+    output_messages_key="answer",
+    history_messages_key="history",
+)
+
+config = {"configurable": {"session_id": "session_id"}}
+
+response = chain_with_history.invoke({"input": "請問這本書的作者？"}, config=config)
+print(response["answer"])
+
+response = chain_with_history.invoke({"input": "我剛剛的問題是什麼"}, config=config)
+print(response["answer"])
+```
