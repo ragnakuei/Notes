@@ -1,10 +1,16 @@
 # [task](https://docs.dhtmlx.com/gantt/desktop__task_types.html)
 
+注意事項：
+
+-   id 預設用 string，parent 預設會以 number 來關聯，所以在判斷上要注意儘量使用 ==
+
 ### 相關 config
 
 -   gantt.config.cascade_delete = false;
 
 ### 相關操作
+
+參數中的 taskId 可以是 number 或 string
 
 -   gantt.getTask(taskId);
 -   gantt.addTask({});

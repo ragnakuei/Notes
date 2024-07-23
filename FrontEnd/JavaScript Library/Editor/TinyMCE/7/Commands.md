@@ -1,0 +1,1 @@
+# [Commands](https://www.tiny.cloud/docs/tinymce/latest/editor-command-identifiers/)

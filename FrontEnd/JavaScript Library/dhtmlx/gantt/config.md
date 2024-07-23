@@ -49,6 +49,10 @@ gantt.config.drag_multiple = false;
 不使用多選        
 gantt.config.multiselect = false;
 
+不可拖拉 project
+gantt.config.drag_project = false;
+
+
 
 ## [gantt.parse](https://docs.dhtmlx.com/gantt/api__gantt_parse.html)
 

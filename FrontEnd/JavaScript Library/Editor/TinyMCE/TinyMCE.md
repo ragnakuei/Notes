@@ -38,3 +38,9 @@
             });
 
 ```
+
+### 圖片上傳
+
+#### [images_upload_url](https://www.tiny.cloud/docs/tinymce/latest/upload-images/#images_upload_url)
+
+#### [images_upload_handler](https://www.tiny.cloud/docs/tinymce/latest/upload-images/#images_upload_handler)
