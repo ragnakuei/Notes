@@ -216,6 +216,9 @@ nnoremap <Leader>co :action copilot.openCopilot<CR>
 nnoremap <Leader>cs :action copilot.chat.show<CR>
 " <Leader>ca 開啟 Copilot Chat
 nnoremap <Leader>ca :action ActivateGitHubCopilotChatToolWindow<CR>
+" <Leader>ci 開啟 Copilot Inline Chat
+nnoremap <Leader>ci :action OpenInlineChatAction<CR>
+
 
 " VCS -------------------------------------------------- 
 nnoremap <Leader>gr :action ChangesView.Revert<CR>
@@ -306,6 +309,7 @@ vnoremap <Leader>sw :action SurroundWith<CR>
 
 vnoremap <Leader>cs :action copilot.chat.show<CR>
 vnoremap <Leader>ca :action ActivateGitHubCopilotChatToolWindow<CR>
+vnoremap <Leader>ci :action OpenInlineChatAction<CR>
 
 
 
