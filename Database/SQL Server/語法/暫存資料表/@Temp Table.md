@@ -6,8 +6,18 @@
 DECLARE @TmpTable TABLE
                   (
                       [FirstName] VARCHAR(20),
-                      [LastName]  VARCHAR(20)
+                      [LastName]  VARCHAR(20),
+                      [Sex]       INT,
+                      [FullName]  AS [FirstName] + ' ' + [LastName],
+                      [Sexname]   AS IIF([Sex] = 1, 'Man', 'Woman')
                   )
+
+INSERT INTO @TmpTable ([FirstName], [LastName], [Sex])
+VALUES ('John', 'Doe', 1)
+
+SELECT *
+FROM @TmpTable
+
 
 DELETE
 FROM @TmpTable
