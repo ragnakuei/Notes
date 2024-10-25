@@ -1,4 +1,6 @@
-# 設定檔備份
+# 設定檔 settings.json 備份
+
+這個設定檔中，vim 的部份，只給定 <leader> 相關的部份，其餘目前暫訂都用 keybindings.json 設定。
 
 ```md
 {
@@ -51,7 +53,7 @@
   "editor.fontSize": 16,
   "editor.formatOnSave": false,
   "editor.accessibilitySupport": "off",
-  "editor.stickyScroll.enabled": false,
+  "editor.stickyScroll.enabled": true,
   "editor.inlineSuggest.enabled": true,
   "editor.minimap.renderCharacters": false,
 
@@ -59,6 +61,12 @@
 
   "git.autofetch": false,
   "git.openRepositoryInParentFolders": "always",
+
+  "gitlens.defaultDateStyle": "absolute",
+  "gitlens.defaultDateFormat": "YYYY/MM/DD HH:mm:",
+  "gitlens.defaultTimeFormat": "HH:mm:ss",
+  "gitlens.defaultDateShortFormat": "YYYY/MM/DD HH:mm:ss",
+  "gitlens.hovers.currentLine.over": "line",
 
   "github.copilot.enable": {
     "*": true,
@@ -86,7 +94,6 @@
 
   "typescript.updateImportsOnFileMove.enabled": "never",
 
-
   "vim.vimrc.enable": false,
   "editor.cursorSurroundingLines": 10,
   "vim.leader": ",",
@@ -95,18 +102,22 @@
   "vim.joinspaces": false,
   "vim.smartRelativeLine": true,
   "vim.showMarksInGutter": true,
+
   "vim.easymotion": true,
+  "vim.easymotionMarkerBackgroundColor": "#FBD87F",
+  "vim.easymotionMarkerFontWeight": "bold",
+  "vim.easymotionMarkerForegroundColorOneChar": "#DE0079",
+  "vim.easymotionKeys": "hklyuiopnmqwertzxcvbasdgjf",
+
   "vim.mouseSelectionGoesIntoVisualMode": true,
   "vim.surround": true,
   "vim.useCtrlKeys": true,
   "vim.ignorecase": false,
   "vim.autoindent": true,
-  // 會加在這邊清單的就是預設 vim 有功能的組合鍵，但不會希望讓 vim 處理的 keybinding
+  // 會加在這邊清單的就是不會被 vim 處理的 keybinding，換句話說就是要給 VSCode 處理的
   "vim.handleKeys": {
     // 保留搜尋
     "<C-f>": false,
-    // 保留複製
-    "<C-d>": false,
     // 保留複製
     "<C-c>": false,
     // 保留貼上
@@ -156,19 +167,6 @@
       "before": ["<C-l>"],
       "commands": ["cursorRight"]
     },
-    // " <A-S-j> 整行往下移
-    {
-      "before": ["<A-S-j>"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
-    // " <A-S-kl> 整行往上移
-    {
-      "before": ["<A-S-k>"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-    // Normal Mode 預設已有 ctrl + alt + up/down => add cursor above/below
-    // " <C-S-j> 所在的 statement / block 往下移
-    // " <C-S-k> 所在的 statement / block 往上移
     // " <Leader>; 補上字尾的 ;
     {
       "before": ["<leader>", ";"],
@@ -180,39 +178,6 @@
       "after": ["A", ",", "<c-[>"]
     },
 
-    // navigation
-    {
-      // " <A-h> Back
-      "before": ["<A-h>"],
-      "commands": ["workbench.action.navigateBack"]
-    },
-    {
-      // " <A-l> Forward
-      "before": ["<A-l>"],
-      "commands": ["workbench.action.navigateForward"]
-    },
-    {
-      // " <A-u> 顯示游標所在成員呼叫點至新視窗中，原 <A-Home>
-      "before": ["<A-u>"],
-      "commands": ["references-view.findReferences"]
-    },
-    {
-      // " <A-m> 顯示游標所在成員呼叫點至彈出視窗中，原 <A-End>
-      "before": ["<A-m>"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
-    {
-      // " <A-j> 移至實作
-      "before": ["<A-j>"],
-      "commands": ["editor.action.goToImplementation"]
-    },
-    {
-      // " <A-k> 移至父層宣告
-      "before": ["<A-k>"],
-      "commands": ["editor.action.goToSuperMethod"]
-    },
-    // " <A-i> 移至上方最接近的 Method，原 <A-PageUp>
-    // " <A-,> 移至下方最接近的 Method，原 <A-PageDown>
     // " <Home> 移至同一行最前方
     {
       "before": ["<Home>"],
@@ -222,6 +187,21 @@
       // " <End> 移至同一行最後方
       "before": ["<End>"],
       "commands": ["cursorEnd"]
+    },
+    {
+      // 新增空白頁籤
+      "before": ["<leader>", "t", "n"],
+      "commands": ["workbench.action.files.newUntitledFile"]
+    },
+    {
+      // 關閉目前頁籤
+      "before": ["<leader>", "t", "w"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      // 切換至 terminal
+      "before": ["<leader>", "t", "t"],
+      "commands": ["workbench.action.terminal.focus"]
     },
 
     // " 移至外層 { }
@@ -241,9 +221,10 @@
     },
     {
       // " <leader>b <PageUp>
-      "before": ["<leader>", "b"],
+      "befere": ["<leader>", "b"],
       "commands": ["cursorPageUp"]
     },
+
     // " <Leader>ne 移至同檔案內下一個錯誤
     // nnoremap <Leader>ne :action GotoNextError<CR>
 
@@ -255,8 +236,20 @@
     {
       "before": ["<leader>", "c", "i"],
       "commands": ["inlineChat.start"]
-    }
+    },
+
+    // mapping 至 easy-motion
+    {
+      "before": [" "],
+      // 跳躍點為後續輸入的第一個字元
+      "after": ["leader", "leader", "s"]
+      // 跳躍點為 word 的開頭
+      // "after": ["leader", "leader", "leader", "b", "d", "w"]
+      // 跳躍點為單字的開頭
+      // "after": ["leader", "leader", "leader", "j"]
+    },
   ],
+  "vim.insertModeKeyBindingsNonRecursive": [],
   "vim.visualModeKeyBindingsNonRecursive": [
     // Editor
     {
@@ -271,14 +264,6 @@
       "before": ["<S-tab>"],
       "commands": ["editor.action.outdentLines"]
     },
-    {
-      "before": ["<leader>", "n"],
-      "commands": ["editor.action.addSelectionToNextFindMatch"]
-    },
-    {
-      "before": ["<C-S-d>"],
-      "commands": ["editor.action.addSelectionToNextFindMatch"]
-    },
 
     // github copilot 相關
     {
@@ -291,21 +276,18 @@
     }
   ],
 
-  "win-ca.inject": "append",
-
-  "workbench.colorTheme": "One Dark Modern",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.tree.indent": 32,
   "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#1073cf2d",
     "editor.lineHighlightBorder": "#9fced11f"
   },
-  "editor.mouseWheelScrollSensitivity": 3,
-  "workbench.editorLargeFileConfirmation": 512,
-  "github.copilot.editor.enableAutoCompletions": true,
-  "markdown-preview-enhanced.previewTheme": "atom-dark.css",
-  "markdown-preview-enhanced.codeBlockTheme": "auto.css"
+  "hexeditor.columnWidth": 16,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside",
+  "github.copilot.editor.enableAutoCompletions": true
 }
 
 ```
-
