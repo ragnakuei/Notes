@@ -22,5 +22,11 @@
             distance: '0px',
         },
     },
+    states: {
+      hover: {
+        // 停用 hover 效果
+        enabled: false
+      }
+    },
 }
 ```
