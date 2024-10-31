@@ -122,3 +122,37 @@ private async Task PrintAsync(CancellationToken token, bool hasError = false)
     Console.WriteLine($"Thread Id:{Thread.CurrentThread.ManagedThreadId}");
 }
 ```
+
+
+
+## 加入 CancellationToken 的步驟
+
+從 XXXAsync() 改為 XXXAsync(CancellationToken token)
+
+原先
+
+```csharp
+XXXAsync()
+{
+    // TODO
+}
+```
+
+修改
+1. 原先的方式加上 CancellationToken
+1. 以 CancellationToken.None 來呼叫原先的方法 
+
+
+```csharp
+XXXAsync(CancellationToken token)
+{
+    // TODO
+}
+
+
+XXXAsync()
+{
+    // 以 CancellationToken.None 來呼叫
+    return XXXAsync(CancellationToken.None);
+}
+```
