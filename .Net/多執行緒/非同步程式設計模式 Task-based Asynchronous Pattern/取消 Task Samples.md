@@ -144,15 +144,8 @@ XXXAsync()
 
 
 ```csharp
-XXXAsync(CancellationToken token)
+XXXAsync(CancellationToken token = default)
 {
     // TODO
-}
-
-
-XXXAsync()
-{
-    // 以 CancellationToken.None 來呼叫
-    return XXXAsync(CancellationToken.None);
 }
 ```
