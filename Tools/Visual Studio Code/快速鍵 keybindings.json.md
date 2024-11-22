@@ -43,6 +43,11 @@
   // 以下是 vim 設定
   // ------------------------------
   {
+    "key": "ctrl+w",
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus && vim.active && ( vim.mode == 'Normal' || vim.mode == 'Visual')"
+  },
+  {
     "key": "ctrl+d",
     "command": "editor.action.duplicateSelection",
     "when": "editorTextFocus && vim.active && (vim.mode == 'Visual')"
