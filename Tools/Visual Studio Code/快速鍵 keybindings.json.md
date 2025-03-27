@@ -31,7 +31,7 @@
   },
   {
     "key": "alt+cmd+r",
-    "command": "-revealfileinos",
+    "command": "-revealFileInOS",
     "when": "editorFocus"
   },
   // ------------------------------
