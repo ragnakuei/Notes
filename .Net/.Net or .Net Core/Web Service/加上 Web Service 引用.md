@@ -31,7 +31,14 @@
 
             var address = new EndpointAddress("https://localhost:44390/TestWS.asmx");
 
-            var result = await new TestWSSoapClient(binding, address).SumAsync(1, 2);
+            var client = new TestWSSoapClient(binding, address);
+
+            // 設定 RequestTimeout 時間
+            // System.ServiceModel.ClientBase<T>.Endpoint.Binding.SendTimeout
+            // client.Endpoint.Binding.SendTimeout = TimeSpan.FromSeconds(30);
+
+            var result = await client.SumAsync(1, 2);
+
             return Ok(result);
         }
         ```
