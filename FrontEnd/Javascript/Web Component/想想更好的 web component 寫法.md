@@ -114,7 +114,7 @@ customElements.define('wc-component', jsClass);
 
 ## 第三種寫法
 
-目前
+目前個人使用這個寫法，主要是可以一眼看出 template 的結構，而 JS 只負責修改必要的內容 !
 
 
 ```js
