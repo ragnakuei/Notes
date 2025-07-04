@@ -4,7 +4,8 @@
 
 -   https://www.wenaidev.com/blog/zh-TW/claude-code-windows-install-cursor-integration
 -   https://www.youtube.com/watch?v=hI6Wb4zWK3Q
--   https://www.youtube.com/watch?v=hI6Wb4zWK3Q
+-   https://www.youtube.com/watch?v=jP3KTFobzGI
+-   https://vocus.cc/article/68542450fd897800012ffd86
 
 ## 安裝
 
@@ -17,3 +18,5 @@
     - sudo apt install nodejs npm -y
 1. 安裝 Claude Code
     - sudo npm install -g @anthropic-ai/claude-code
+
+如果有 certificate 問題，可以參考[這邊](/Certificate/被建議設定%20NODE_TLS_REJECT_UNAUTHORIZED%20為%200%20的解法.md)
