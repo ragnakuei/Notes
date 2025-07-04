@@ -25,7 +25,7 @@
 ### 最佳解法：
 
 -   實際安裝 DOMPurify 套件去過濾 html
--   ajax 回傳資料結構以 json / xml 為主，在 js 中以 .innerText 或 jQuery.text() 來將值放入 DOM 中
+-   ajax 回傳資料結構以 json / xml 為主，在 js 中以 .textContent 或 jQuery.text() 來將值放入 DOM 中
 
 註：
 
