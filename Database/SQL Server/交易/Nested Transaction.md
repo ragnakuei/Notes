@@ -6,12 +6,12 @@ SQL Server 不支援巢狀交易 (Nested Transaction)，當在一個交易內部
 
 使用 **TRY-CATCH 搭配手動 ROLLBACK** 的方式，而不使用 `SET XACT_ABORT ON`，原因如下：
 
-- `SET XACT_ABORT ON` 會在錯誤發生時自動回滾交易並**立即終止執行**，導致無法進入 CATCH 區塊
+- `SET XACT_ABORT ON` 會在錯誤發生時自動回滾交易，但仍會繼續執行 CATCH 區塊
 - 使用 TRY-CATCH 可以：
   - 捕捉錯誤並記錄日誌
   - 執行自訂的錯誤處理邏輯
   - 決定是否要重新拋出錯誤（THROW）
-- 在 CATCH 區塊中檢查 `@@TRANCOUNT > 0` 再執行 `ROLLBACK`，確保交易正確回滾
+- 在 CATCH 區塊中檢查 `XACT_STATE() = -1` 再執行 `ROLLBACK`，確保交易正確回滾
 
 ## 通用 SP 的錯誤處理模式
 
@@ -84,7 +84,7 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
     -- 呼叫者負責交易回滾
-    IF @@TRANCOUNT > 0
+    IF XACT_STATE() = -1
         ROLLBACK TRANSACTION;
     
     SET @operation = 'UpdateUser Process';
@@ -142,7 +142,7 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
     -- 呼叫者處理交易回滾
-    IF @@TRANCOUNT > 0
+    IF XACT_STATE() = -1
         ROLLBACK TRANSACTION;
     
     SET @operation = 'Main Process';
