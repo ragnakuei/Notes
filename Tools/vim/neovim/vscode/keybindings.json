@@ -1,0 +1,104 @@
+[
+  // navigation
+  { "key": "alt+h", "command": "workbench.action.navigateBack",    "when": "editorTextFocus && neovim.mode != insert" },
+  { "key": "alt+l", "command": "workbench.action.navigateForward", "when": "editorTextFocus && neovim.mode != insert" },
+
+  {
+    "key": "shift+alt+l",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+alt+o",
+    "command": "revealFileInOS",
+    // "when": "editorFocus"
+  },
+  {
+    "key": "alt+cmd+r",
+    "command": "-revealFileInOS",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.chat.attachContext",
+    "when": "inChatInput && chatLocation == 'panel'"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.chat.newChat",
+    "when": "chatEditingParticipantRegistered && chatIsEnabled && inChat"
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.duplicateSelection",
+    "when": "editorFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-editor.action.addSelectionToNextFindMatch",
+    "when": "editorFocus"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  { "key": "ctrl+[", "command": "vscode-neovim.escape", "when": "editorTextFocus && neovim.mode == insert" },
+  // ---------- 行首 <C-u> ----------
+  // vscode-neovim 預設把 <C-u> 攔去捲動,這條強制送回 neovim,
+  // 讓 init.lua 的 map('<C-u>', '^') 生效。代價:放棄 <C-u> 半頁上捲(你本來就改掉了)。
+  {
+    "key": "ctrl+u",
+    "command": "vscode-neovim.send",
+    "args": "<C-u>",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  { "key": "ctrl+f",       "command": "actions.find",                "when": "editorTextFocus" },
+  { "key": "ctrl+shift+f", "command": "workbench.action.findInFiles" },
+  // insert:VSCode 原生移動
+  { "key": "ctrl+h", "command": "cursorLeft",  "when": "editorTextFocus && neovim.mode == insert" },
+  { "key": "ctrl+l", "command": "cursorRight", "when": "editorTextFocus && neovim.mode == insert" },
+  // normal/visual:送方向鍵給 neovim
+  { "key": "ctrl+h", "command": "vscode-neovim.send", "args": "<Left>",  "when": "editorTextFocus && neovim.mode != insert" },
+  { "key": "ctrl+l", "command": "vscode-neovim.send", "args": "<Right>", "when": "editorTextFocus && neovim.mode != insert" },
+  { "key": "alt+j", "command": "editor.action.insertCursorBelow", "when": "editorTextFocus && neovim.mode == insert" },
+  { "key": "alt+k", "command": "editor.action.insertCursorAbove", "when": "editorTextFocus && neovim.mode == insert" },
+
+  // Normal / Visual:整行 / 選取行縮排
+  { "key": "tab",       "command": "editor.action.indentLines",  "when": "editorTextFocus && neovim.mode != insert" },
+  { "key": "shift+tab", "command": "editor.action.outdentLines", "when": "editorTextFocus && neovim.mode != insert" },
+  // Insert:縮排當行;有建議浮窗時 Tab 仍接受建議
+  { "key": "tab",       "command": "editor.action.indentLines",  "when": "editorTextFocus && neovim.mode == insert && !suggestWidgetVisible && !inlineSuggestionVisible && !editorReadonly" },
+  { "key": "shift+tab", "command": "editor.action.outdentLines", "when": "editorTextFocus && neovim.mode == insert && !editorReadonly" },
+
+  {
+    "key": "ctrl+l",
+    "command": "-expandLineSelection",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
+  }
+]
