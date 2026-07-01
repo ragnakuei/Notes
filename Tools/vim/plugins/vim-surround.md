@@ -4,7 +4,34 @@
 set surround
 ```
 
-### 支援的 text
+## 啟動方式
+
+### ys{motion}{char}
+
+以 motion 來控制要 surround 的範圍
+
+例：
+- ysiw - 將游標所在的字串以指定的符號包起來
+- ysi"' - 將游標所在的字串以 " 包起來的部份，再加上 ' 包起來
+- ys$)  - 將游標所在處至字串以 ) 包起來
+- yst,) - 將游標所在處至 , 前的字串以 ) 包起來
+- ysiwt - 將游標所在的字串以 html tag 包起來
+
+### yss{char}
+
+以整行為 surround 的範圍
+
+- yss) → 整行內容包成 (...),行首的縮排不會被包進去
+- ysst → 用標籤把整行內容包起來
+
+### yS{motion}{char} 與 ySS{char}
+
+前後先加上換行符號，再加上指定的 surround 符號
+- 前者 - 指定 motion 來控制範圍
+- 後者 - 以整行為 surround 的範圍
+
+
+## 支援的 text
 
 - { }
 - \[ ]
@@ -12,6 +39,8 @@ set surround
 - " ' ` ... 等很多的單一字元的符號
 - html tag
 
+
+## 範例
 
 ### 將 text object 包起來
 
