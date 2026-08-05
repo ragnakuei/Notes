@@ -342,3 +342,185 @@ var safePath = fileStorage.BuildSafeFullPath(parts);
 ## 6. 進階：DB 來源的殘餘風險（真實資安，非掃瞄議題）
 
 本做法的圍堵是「拿 DB 讀出的根目錄自己當基準」——若 DB 值被竄改（SQL Injection、直接改表），信任邊界會跟著位移，圍堵斷言照樣通過。若需要防到這一層，可在組態檔放一份**根目錄白名單**，啟動或使用時驗証 DB 值必須落在白名單內；DB 保留營運彈性，白名單守住信任邊界。
+
+
+### 7. 待測試 - 最簡化的語法
+
+> ⚠ **狀態：待重掃驗證**。§3 的版本是實測歸零的完整版；本節是把「掃瞄器真正採計的元素」抽出後的最小骨架，**尚未經重掃對照**。採用前請先實掃確認 Path Traversal / Stored Path Traversal 兩項仍為 0。
+
+#### 7-1 程式碼
+
+四個成員、各司一職：`SaveAsync()` 只負責串接與 Sink；`ExtractNewFileName()` 收斂「上傳檔名」這條污點鏈；`ValidateFileExtension()` 只做白名單比對；`BuildSafeFullPath()` 是路徑組裝的唯一入口。
+
+```csharp
+public class SecureFileStorage(IAppConfigRepository configRepository)
+{
+    private readonly ConfigDto? _configDto = configRepository.Get();
+
+    /// <summary>
+    /// 儲存上傳檔案，回傳實際儲存的檔名。
+    /// </summary>
+    public async Task<AfterSaveFileDto> SaveAsync(string[] directoryParts,
+                                                  IFormFile upload,
+                                                  string[]? fileExtensions = null)
+    {
+        // ── (1) 上傳檔名淨化（Replace ＋ fail-closed）、副檔名白名單、組成實際儲存檔名 ──
+        //        全部集中在 GenerateNewFileName()，此處不再重複做一次。
+        var storedFileName = GenerateNewFileName(upload, fileExtensions);
+
+        // ── (2) 目錄：Sink 參數為 BuildSafeFullPath() 的直接回傳值，中間不可再加工 ──
+        var safeDirectoryPath = BuildSafeFullPath(directoryParts);
+
+        if (Directory.Exists(safeDirectoryPath) == false)      // Sink
+        {
+            Directory.CreateDirectory(safeDirectoryPath);      // Sink
+        }
+
+        // ── (3) 檔案：檔名以「片段」傳入，再走一次同一個入口——不可自行 Path.Combine ──
+        var safeFilePath = BuildSafeFullPath([.. directoryParts, storedFileName]);
+
+        using var fileStream = new FileStream(safePath,
+                                              new FileStreamOptions
+                                              {
+                                                  Mode    = FileMode.CreateNew,
+                                                  Access  = FileAccess.Write,
+                                                  Share   = FileShare.None,
+                                                  Options = FileOptions.Asynchronous,
+                                              });
+
+        await upload.CopyToAsync(stream);
+
+        return new AfterSaveFileDto
+               {
+                   FileName     = file.FileName,
+                   SaveFileName = newFileName,
+               };
+    }
+
+    /// <summary>
+    /// 組成新的檔案名稱，格式為 {原始檔名}_{yyyyMMdd_HHmmss_fffffff}.{副檔名}
+    /// </summary>
+    private string GenerateNewFileName(IFormFile file, string[]? fileExtensions)
+    {
+        if (string.IsNullOrWhiteSpace(file.FileName))
+        {
+            throw new InvalidOperationException("檔案名稱不可為空白");
+        }
+
+        // 【為通過 Checkmarx 掃瞄而加】先以 Replace 斷開來自 multipart 檔名的 Path Traversal 污點鏈。
+        // 淨化結果若與原值不同會直接拒絕，不會把惡意檔名靜默改成另一個可寫入的檔名。
+        var replacedFileName = file.FileName.Replace("..", "")
+                                            .Replace("/",  "")
+                                            .Replace("\\", "");
+
+        var safeFileName = Path.GetFileName(replacedFileName);
+
+        if (!string.Equals(safeFileName, file.FileName, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"檔案名稱不可包含目錄資訊或穿越字元：'{file.FileName}'");
+        }
+
+        if (safeFileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+        {
+            throw new InvalidOperationException($"檔案名稱包含非法字元：'{safeFileName}'");
+        }
+
+        var mainFileName  = Path.GetFileNameWithoutExtension(safeFileName);
+        var fileExtension = Path.GetExtension(safeFileName);
+
+        // 主檔名不可再含點，擋 "a.aspx.pdf"／"a.pdf.aspx" 這類多重副檔名
+        if (string.IsNullOrWhiteSpace(mainFileName) || mainFileName.Contains('.'))
+        {
+            throw new InvalidOperationException($"檔案名稱不可包含多重副檔名：'{safeFileName}'");
+        }
+
+        // 【為通過 Checkmarx Dangerous File Extension 掃瞄而加】
+        // 於寫入點所在的資料流內比對副檔名白名單；允許清單由呼叫端指定。
+        ValidateFileExtension(fileExtension, fileExtensions);
+
+        // 時間戳接在主檔名之後、副檔名之前——實際落地的副檔名就是上面驗過的那一個
+        var newFileName = $"{mainFileName}_{DateTime.Now:yyyyMMdd_HHmmss_fffffff}{fileExtension}";
+        return newFileName;
+    }
+
+    /// <summary>
+    /// 副檔名白名單比對（不分大小寫）。呼叫端未指定時，改用 DB 的全域白名單。
+    /// 注意：這是「驗証」不是「淨化」，掃瞄器不採計，不能拿它取代上面的 Replace。
+    /// </summary>
+    /// <param name="fileExtension">來源檔名的副檔名（含點，例如 ".docx"）</param>
+    /// <param name="fileExtensions">呼叫端指定的允許清單；null 或空陣列時改用全域白名單</param>
+    private void ValidateFileExtension(string fileExtension, string[]? fileExtensions)
+    {
+        if (fileExtensions is null or { Length: 0 })
+        {
+            fileExtensions = _configDto.FileExtensions;
+        }
+
+        // 連全域白名單都未設定時視為設定錯誤，採 fail-closed，避免靜默停用副檔名檢查
+        if (fileExtensions is null or { Length: 0 })
+        {
+            throw new InvalidOperationException("SystemConfig.FileExtensions 未設定，無法驗証檔案副檔名");
+        }
+
+        if (fileExtensions.Contains(fileExtension, StringComparer.OrdinalIgnoreCase) == false)
+        {
+            throw new AlertException($"檔案副檔名不正確，允許的副檔名為：{fileExtensions.Join(", ")}");
+        }
+    }
+
+    /// <summary>
+    /// 可用於 SaveAsync / Delete / Download 等情境
+    /// </summary>
+    public string BuildSafeFullPath(string[] pathParts)
+    {
+        var rawRoot = _configDto.FileServerRoot;
+        if (string.IsNullOrWhiteSpace(rawRoot) || pathParts is null or { Length: 0 })
+        {
+            throw new InvalidOperationException("根目錄未設定或路徑片段為空");
+        }
+
+        // ── (1) 根目錄：Replace 在最早使用點，隨即 fail-closed（不含 "\"，UNC／磁碟機需要它）──
+        var safeRoot = rawRoot.Replace("..", "")
+                              .Replace("/",  "");
+        if (!string.Equals(safeRoot, rawRoot, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"根目錄設定值含不允許的字元：'{rawRoot}'");
+        }
+
+        var basePath = Path.TrimEndingDirectorySeparator(safeRoot);
+
+        // ── (2) 片段：for 迴圈直接呼叫 Replace，取代後立刻 fail-closed（含 "\"，片段是單一名稱）──
+        var safeParts = new string[pathParts.Length];
+        for (var i = 0; i < pathParts.Length; i++)
+        {
+            var rawPart  = pathParts[i];
+            var safePart = rawPart.Replace("..", "")
+                                  .Replace("/",  "")
+                                  .Replace("\\", "");
+
+            if (string.IsNullOrWhiteSpace(safePart)
+             || !string.Equals(safePart, rawPart, StringComparison.Ordinal))
+            {
+                throw new InvalidOperationException($"路徑片段不合法：'{rawPart}'");
+            }
+
+            safeParts[i] = safePart;
+        }
+
+        // ── (3) 組合並正規化，再 Replace 一次（順序：Replace → 驗証 → 回傳同一個值）──
+        var combinedPath = Path.GetFullPath(Path.Combine([basePath, .. safeParts]));
+        // var safeFullPath = combinedPath.Replace("..", "")
+        //                                .Replace("/",  "");
+
+        // ── (4) fail-closed ＋ 圍堵，合併為單一判斷；前綴必須以分隔字元結尾 ──
+        var requiredPrefix = basePath + Path.DirectorySeparatorChar;
+
+        if (!combinedPath.StartsWith(requiredPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException($"路徑不合法或已逸出根目錄：'{combinedPath}'");
+        }
+
+        return combinedPath;
+    }
+}
+```
