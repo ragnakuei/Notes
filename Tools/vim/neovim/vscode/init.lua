@@ -47,6 +47,7 @@ require('lazy').setup({
       require('nvim-surround').setup({})
     end,
   },
+  { import = 'plugins' },
 })
 
 -- 純終端 nvim 到此為止,以下全部只在 VSCode 內
