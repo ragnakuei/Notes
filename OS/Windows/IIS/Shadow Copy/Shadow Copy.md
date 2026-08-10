@@ -24,6 +24,9 @@
     -   判斷間隔 2 小時的方式：
         -   在 ShadowCopy 資料夾 > 按下滑鼠右鍵 > 內容 > 以前的版本 Tab > 看各修改日期的間隔
 -   後續更新網站資料時，如果不需更新 web.config 的話，此功能會立即進行複製至序號 + 1 的資料夾中
+    -   啟用 Shadow Copy 後，假設更新了不包含 web.config 的網站資料後，網站就掛了。
+      -   解決方式是：編輯網站的 web.config，在最後面加一個空格，儲存 !
+      -   AI 的回答：為什麼改 web.config 有效，IIS 對 web.config 有檔案變更通知，任何寫入都會觸發應用程式集區回收 / ANCM 重新啟動應用程式,重啟後才會重新做一次完整的 shadow copy,新版本才真正生效。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
